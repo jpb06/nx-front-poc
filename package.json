@@ -1,0 +1,49 @@
+{
+  "name": "mui-rhf-sandbox",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/jpb06/mui-rhf-sandbox.git",
+  "author": "jpb06 <jpb.06@outlook.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "test": "jest",
+    "test:dev": "jest --watchAll --coverage"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.5.0",
+    "@emotion/server": "^11.4.0",
+    "@emotion/styled": "^11.3.0",
+    "@mui/icons-material": "^5.0.4",
+    "@mui/material": "^5.0.4",
+    "next": "11.1.2",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-query": "^3.27.0"
+  },
+  "devDependencies": {
+    "@emotion/jest": "^11.5.0",
+    "@testing-library/react": "^12.1.2",
+    "@types/jest": "^27.0.2",
+    "@types/jest-when": "^2.7.3",
+    "@types/node": "^16.11.1",
+    "@types/react": "17.0.30",
+    "@typescript-eslint/eslint-plugin": "^5.1.0",
+    "@typescript-eslint/parser": "^5.1.0",
+    "eslint": "8.0.1",
+    "eslint-config-next": "11.1.2",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jest-dom": "^3.9.2",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.26.1",
+    "jest-watch-typeahead": "^1.0.0",
+    "jest-when": "^3.4.1",
+    "prettier": "^2.4.1",
+    "ts-jest": "^27.0.7",
+    "typescript": "4.4.4"
+  }
+}
