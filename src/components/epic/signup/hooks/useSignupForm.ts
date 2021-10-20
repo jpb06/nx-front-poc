@@ -15,7 +15,7 @@ export const useSignupForm = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<T> = (data) => {
+  const onSubmit: SubmitHandler<FormModel> = (data) => {
     // eslint-disable-next-line no-console
     console.info(data);
     mutate();
