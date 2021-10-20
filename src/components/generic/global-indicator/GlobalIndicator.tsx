@@ -2,15 +2,20 @@ import { Box, SvgIconTypeMap } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { cyan } from '@mui/material/colors';
 import { alpha } from '@mui/material/styles';
+import { keyframes } from '@mui/styled-engine';
 import React from 'react';
-
-interface GlobalErrorProps {
+interface GlobalIndicatorProps {
   hasTopMargin: boolean;
   title: string;
   Icon: OverridableComponent<SvgIconTypeMap>;
 }
 
-export const GlobalError: React.FC<GlobalErrorProps> = ({
+const spin = keyframes`
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+`;
+
+export const GlobalIndicator: React.FC<GlobalIndicatorProps> = ({
   hasTopMargin,
   title,
   Icon,
@@ -28,16 +33,13 @@ export const GlobalError: React.FC<GlobalErrorProps> = ({
       sx={{
         height: 100,
         width: 100,
-        animationName: '$spin',
-        animationDuration: '600ms',
-        animationIterationCount: '1',
-        animationTimingFunction: 'linear',
+        animation: `${spin} 2s linear infinite`,
       }}
     />
     <Box
       component="div"
       sx={{
-        fontSize: 'xx-large',
+        fontSize: 'x-large',
         fontWeight: '600',
       }}
     >
