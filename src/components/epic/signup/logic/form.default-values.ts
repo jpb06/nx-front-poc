@@ -1,4 +1,4 @@
-import { FormModel } from '../children/SignupForm';
+import { FormModel } from '../types/form-model.type';
 
 export const formDefaultValues: FormModel = {
   lastName: '',

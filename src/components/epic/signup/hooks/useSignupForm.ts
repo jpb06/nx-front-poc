@@ -3,9 +3,9 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { useSignupMutation } from '@api/useSignupMutation';
 
-import { FormModel } from '../children/SignupForm';
 import { formDefaultValues } from '../logic/form.default-values';
 import { schema } from '../logic/form.schema';
+import { FormModel } from '../types/form-model.type';
 
 export const useSignupForm = () => {
   const { status, mutate } = useSignupMutation();

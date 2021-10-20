@@ -2,7 +2,7 @@ import AutorenewIcon from '@mui/icons-material/Autorenew';
 import { Box, Button, Grid } from '@mui/material';
 import React from 'react';
 
-import { Role, RoleItem } from '@api/useRolesQuery';
+import { RoleItem } from '@api/useRolesQuery';
 import {
   CheckBoxGroup,
   CheckboxItem,
@@ -13,14 +13,6 @@ import { Select } from '@components/generic/forms/select/Select';
 import { GlobalIndicator } from '@components/generic/global-indicator/GlobalIndicator';
 
 import { useSignupForm } from '../hooks/useSignupForm';
-
-export interface FormModel {
-  firstName: string;
-  lastName: string;
-  role: Role;
-  password: string;
-  skills: Array<number>;
-}
 
 type SignupFormProps = {
   roles: Array<RoleItem>;

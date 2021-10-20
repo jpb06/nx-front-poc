@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 import { rolesTypes } from '@api/useRolesQuery';
 
-import { FormModel } from '../children/SignupForm';
+import { FormModel } from '../types/form-model.type';
 
 export const schema: yup.SchemaOf<FormModel> = yup.object().shape({
   firstName: yup.string().required(),
