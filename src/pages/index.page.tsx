@@ -1,7 +1,7 @@
 import type { NextPage } from 'next';
 
-const Home: NextPage = () => {
-  return <div>Cool</div>;
-};
+import { Signup } from '@components/epic/signup/Signup';
+
+const Home: NextPage = () => <Signup />;
 
 export default Home;

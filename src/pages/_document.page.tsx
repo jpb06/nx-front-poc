@@ -1,9 +1,10 @@
-import React from 'react';
+import createEmotionServer from '@emotion/server/create-instance';
 // eslint-disable-next-line @next/next/no-document-import-in-page
 import Document, { Html, Head, Main, NextScript } from 'next/document';
-import createEmotionServer from '@emotion/server/create-instance';
-import { theme } from '@styles/create-theme';
+import React from 'react';
+
 import { createEmotionCache } from '@logic/create-emotion-cache.logic';
+import { theme } from '@styles/create-theme';
 
 export default class MyDocument extends Document {
   render() {

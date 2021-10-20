@@ -6,8 +6,8 @@ import Head from 'next/head';
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import { theme } from '@styles/create-theme';
 import { createEmotionCache } from '@logic/create-emotion-cache.logic';
+import { theme } from '@styles/create-theme';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
