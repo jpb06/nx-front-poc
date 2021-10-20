@@ -5,7 +5,7 @@ import React from 'react';
 import { RoleItem } from '@api/useRolesQuery';
 import { CheckboxItem } from '@components/generic/forms/checkboxes/CheckBoxGroup';
 import { FullpageBox } from '@components/generic/fullpage-box/FullpageBox';
-import { GlobalError } from '@components/generic/global-error/GlobalError';
+import { GlobalIndicator } from '@components/generic/global-indicator/GlobalIndicator';
 
 import { SignupForm } from './children/SignupForm';
 import { useSignupData } from './hooks/useSignupData';
@@ -25,7 +25,7 @@ export const Signup: React.FC = () => {
             />
           ),
           error: (
-            <GlobalError
+            <GlobalIndicator
               title="Oh no!"
               Icon={SentimentDissatisfied}
               hasTopMargin

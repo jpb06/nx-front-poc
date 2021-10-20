@@ -1,31 +1,29 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import {
-  DeepPartial,
-  SubmitHandler,
-  UnpackNestedValue,
-  useForm,
-} from 'react-hook-form';
-import * as yup from 'yup';
+import { SubmitHandler, useForm } from 'react-hook-form';
+
+import { useSignupMutation } from '@api/useSignupMutation';
 
 import { FormModel } from '../children/SignupForm';
+import { formDefaultValues } from '../logic/form.default-values';
+import { schema } from '../logic/form.schema';
 
-type SignupFormProps<T> = {
-  schema: yup.SchemaOf<FormModel>;
-  defaultValues: UnpackNestedValue<DeepPartial<T>>;
-};
+export const useSignupForm = () => {
+  const { status, mutate } = useSignupMutation();
 
-export const useSignupForm = <T>(props: SignupFormProps<T>) => {
-  const { control, handleSubmit } = useForm<T>({
-    defaultValues: props.defaultValues,
-    resolver: yupResolver(props.schema),
+  const { control, handleSubmit } = useForm<FormModel>({
+    defaultValues: formDefaultValues,
+    resolver: yupResolver(schema),
   });
 
   const onSubmit: SubmitHandler<T> = (data) => {
-    console.log(data);
+    // eslint-disable-next-line no-console
+    console.info(data);
+    mutate();
   };
 
   return {
     control,
     onSubmit: handleSubmit(onSubmit),
+    status,
   };
 };
