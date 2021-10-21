@@ -11,14 +11,7 @@ type RolesProps = Omit<
 >;
 
 export const Roles = (props: RolesProps) => {
-  const { isLoading, isError, error, data } = useRolesQuery();
+  const query = useRolesQuery();
 
-  return (
-    <Select
-      {...props}
-      name="role"
-      label="Role"
-      {...{ isLoading, isError, error, data }}
-    />
-  );
+  return <Select {...props} name="role" label="Role" {...query} />;
 };
