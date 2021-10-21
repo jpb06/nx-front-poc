@@ -1,5 +1,5 @@
-import EmotionCacheProvider from './EmotionCacheProvider';
-import ReactQueryProvider from './ReactQueryProvider';
-import ThemeProvider from './ThemeProvider';
+import EmotionCacheProvider from './emotion-cache.provider';
+import ReactQueryProvider from './react-query.provider';
+import ThemeProvider from './theme.provider';
 
 export { ReactQueryProvider, ThemeProvider, EmotionCacheProvider };
