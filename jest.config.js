@@ -29,9 +29,7 @@ module.exports = {
     'src/**/*.{ts,tsx}',
     '!**/node_modules/**',
     '!src/tests-related/**',
-    '!src/types/**',
     '!src/pages/**/*.tsx',
-    '!src/components/**/*.styles.ts',
-    '!src/api/**',
   ],
+  coverageReporters: ['json-summary', 'text', 'lcov'],
 };
