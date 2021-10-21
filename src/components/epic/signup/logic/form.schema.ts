@@ -9,5 +9,5 @@ export const schema: yup.SchemaOf<FormModel> = yup.object().shape({
   lastName: yup.string().required(),
   password: yup.string().required(),
   role: yup.string().oneOf(rolesTypes).required(),
-  skills: yup.array(yup.number().required()),
+  skills: yup.array(yup.number()).min(2),
 });

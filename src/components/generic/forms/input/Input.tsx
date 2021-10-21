@@ -7,7 +7,10 @@ interface InputProps<T> extends UseControllerProps<T> {
 }
 
 export function Input<T>(props: InputProps<T>) {
-  const { field, fieldState } = useController(props);
+  const {
+    field: { ref, ...otherFieldProps },
+    fieldState,
+  } = useController(props);
 
   return (
     <TextField
@@ -16,7 +19,8 @@ export function Input<T>(props: InputProps<T>) {
       size="small"
       fullWidth
       error={fieldState.invalid}
-      {...field}
+      {...otherFieldProps}
+      inputRef={ref}
     />
   );
 }

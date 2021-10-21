@@ -15,10 +15,11 @@ export type CheckboxItem = {
   label: string;
 };
 
-interface CheckBoxGroupProps<T> extends UseControllerProps<T> {
+export interface CheckBoxGroupProps<T> extends UseControllerProps<T> {
   label: string;
   items: Array<CheckboxItem>;
 }
+
 export function CheckBoxGroup<T>(props: CheckBoxGroupProps<T>) {
   const { field, fieldState } = useController(props);
   const handleChange = (

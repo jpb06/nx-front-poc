@@ -1,4 +1,6 @@
 import {
+  Alert,
+  CircularProgress,
   FormControl,
   FormHelperText,
   InputLabel,
@@ -13,32 +15,72 @@ export type SelectItem = {
   text: string;
 };
 
-interface SelectProps<T> extends UseControllerProps<T> {
+export interface SelectProps<T> extends UseControllerProps<T> {
   label: string;
   helpText?: string;
-  items: Array<SelectItem>;
+  isLoading: boolean;
+  isError: boolean;
+  error: string | null;
+  data?: SelectItem[];
 }
 
-export function Select<T>(props: SelectProps<T>) {
-  const { field } = useController(props);
+export function Select<T>({
+  label,
+  helpText,
+  isLoading,
+  isError,
+  error,
+  data,
+  ...controllerProps
+}: SelectProps<T>) {
+  const { field, fieldState } = useController(controllerProps);
+  const { name } = controllerProps;
+  const MenuItems = [];
+
+  if (isLoading) {
+    MenuItems.push(
+      <MenuItem key="loading" value="loading" disabled>
+        <CircularProgress />
+      </MenuItem>
+    );
+  } else if (isError) {
+    MenuItems.push(
+      <MenuItem key="error" value="error" disabled>
+        <Alert severity="error">
+          {error ?? 'An error occurred while retrieving the roles'}
+        </Alert>
+      </MenuItem>
+    );
+  } else if (!data || data.length === 0) {
+    MenuItems.push(
+      <MenuItem key="no-data" value="no-data" disabled>
+        <Alert severity="info">No data</Alert>
+      </MenuItem>
+    );
+  } else {
+    MenuItems.push(
+      data.map(({ key, text }) => (
+        <MenuItem key={key} value={key}>
+          {text}
+        </MenuItem>
+      ))
+    );
+  }
 
   return (
-    <FormControl sx={{ width: '100%' }}>
-      <InputLabel id={`${props.name}-select`}>{props.label}</InputLabel>
+    <FormControl fullWidth size="small">
+      <InputLabel id={`${name}-select`}>{label}</InputLabel>
       <MuiSelect
-        labelId={`${props.name}-select`}
-        id={`${props.name}-select-helper`}
-        label={props.label}
+        labelId={`${name}-select`}
+        id={`${name}-select-helper`}
+        label={label}
         size="small"
         {...field}
+        error={!!fieldState.error}
       >
-        {props.items.map(({ key, text }) => (
-          <MenuItem key={key} value={key}>
-            {text}
-          </MenuItem>
-        ))}
+        {MenuItems}
       </MuiSelect>
-      {props.helpText && <FormHelperText>{props.helpText}</FormHelperText>}
+      {helpText && <FormHelperText>{helpText}</FormHelperText>}
     </FormControl>
   );
 }

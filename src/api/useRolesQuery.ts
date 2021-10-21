@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryResult } from 'react-query';
 
 import { delay } from '@logic/delay';
 
@@ -29,5 +29,5 @@ const roles: Array<RoleItem> = [
   },
 ];
 
-export const useRolesQuery = () =>
+export const useRolesQuery = (): UseQueryResult<RoleItem[], string> =>
   useQuery('roles', () => delay().then(() => roles));

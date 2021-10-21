@@ -15,33 +15,19 @@ interface PasswordInputProps<T> extends UseControllerProps<T> {
 }
 
 export function PasswordInput<T>(props: PasswordInputProps<T>) {
-  const { field, fieldState } = useController(props);
+  const {
+    field: { ref, ...otherFieldProps },
+    fieldState,
+  } = useController(props);
 
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
-  const handleClickShowPassword = () => {
-    setShowPassword((curr) => !curr);
-  };
-
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>
-  ) => {
-    event.preventDefault();
-  };
-
   return (
-    <FormControl variant="outlined" sx={{ width: '100%' }}>
-      <InputLabel
-        htmlFor={`outlined-adornment-${props.name}`}
-        sx={{
-          top: -9,
-          color: fieldState.invalid ? 'red' : 'grey',
-        }}
-      >
+    <FormControl variant="outlined" fullWidth size="small">
+      <InputLabel htmlFor={`outlined-adornment-${props.name}`}>
         {props.label}
       </InputLabel>
       <OutlinedInput
-        size="small"
         id={`outlined-adornment-${props.name}`}
         type={showPassword ? 'text' : 'password'}
         error={fieldState.invalid}
@@ -49,8 +35,12 @@ export function PasswordInput<T>(props: PasswordInputProps<T>) {
           <InputAdornment position="end">
             <IconButton
               aria-label="toggle password visibility"
-              onClick={handleClickShowPassword}
-              onMouseDown={handleMouseDownPassword}
+              onClick={() => {
+                setShowPassword(!showPassword);
+              }}
+              onMouseDown={(event) => {
+                event.preventDefault();
+              }}
               edge="end"
             >
               {showPassword ? <VisibilityOff /> : <Visibility />}
@@ -58,7 +48,8 @@ export function PasswordInput<T>(props: PasswordInputProps<T>) {
           </InputAdornment>
         }
         label="Password"
-        {...field}
+        {...otherFieldProps}
+        inputRef={ref}
       />
     </FormControl>
   );

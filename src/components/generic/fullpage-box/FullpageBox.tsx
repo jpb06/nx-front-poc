@@ -19,7 +19,7 @@ export const FullpageBox: React.FC = ({ children }) => (
     justifyContent="center"
     sx={{
       minHeight: '100vh',
-      backgroundImage: 'url("/img/dots.gif")',
+      // backgroundImage: 'url("/img/dots.gif")',
       backgroundSize: 'cover',
       padding: 2,
     }}
