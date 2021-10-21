@@ -1,37 +1,15 @@
-import { yupResolver } from '@hookform/resolvers/yup';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Alert, Box, Grid } from '@mui/material';
 import React from 'react';
-import { useForm } from 'react-hook-form';
 
-import { useSignupMutation } from '@api/useSignupMutation';
 import { Input, PasswordInput } from '@components/generic/forms';
 import { FullpageBox } from '@components/generic/fullpage-box/FullpageBox';
 
 import { Roles, Skills } from './components';
-import { formDefaultValues } from './logic/form.default-values';
-import { schema } from './logic/form.schema';
-import { FormModel } from './types/form-model.type';
-
-const SIMULATE_ERROR_ON_SIGNUP = false;
+import { useSignupForm } from './hooks/useSignupForm';
 
 export const Signup: React.FC = () => {
-  const { control, handleSubmit } = useForm<FormModel>({
-    defaultValues: formDefaultValues,
-    resolver: yupResolver(schema),
-  });
-
-  const {
-    isLoading,
-    isError,
-    error,
-    mutate: signup,
-  } = useSignupMutation({
-    onSuccess: (data) => {
-      // eslint-disable-next-line no-console
-      console.info(JSON.stringify(data, null, 2));
-    },
-  });
+  const { onSubmit, control, isLoading, isError, error } = useSignupForm();
 
   return (
     <FullpageBox>
@@ -44,9 +22,7 @@ export const Signup: React.FC = () => {
           },
         }}
         component="form"
-        onSubmit={handleSubmit((data) => {
-          signup({ error: SIMULATE_ERROR_ON_SIGNUP, ...data });
-        })}
+        onSubmit={onSubmit}
       >
         <Grid
           container
