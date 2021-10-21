@@ -32,3 +32,9 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# VSCode
+.vscode/snipsnap.code-snippets
+
+# ASDF
+.tool-versions
