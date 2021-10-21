@@ -11,7 +11,8 @@
     "start": "next start -p $PORT",
     "lint": "next lint",
     "test": "jest",
-    "test:dev": "jest --watchAll --coverage"
+    "test:dev": "jest --watchAll --coverage",
+    "test:ci": "jest --ci --coverage"
   },
   "dependencies": {
     "@emotion/react": "^11.5.0",
@@ -30,6 +31,7 @@
   },
   "devDependencies": {
     "@emotion/jest": "^11.5.0",
+    "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^12.1.2",
     "@types/jest": "^27.0.2",
     "@types/jest-when": "^2.7.3",
@@ -44,6 +46,7 @@
     "eslint-plugin-jest-dom": "^3.9.2",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
+    "jest": "^27.3.1",
     "jest-watch-typeahead": "^1.0.0",
     "jest-when": "^3.4.1",
     "prettier": "^2.4.1",
