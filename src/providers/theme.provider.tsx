@@ -1,7 +1,7 @@
 import { ThemeProvider as MUThemeProvider } from '@mui/material/styles';
 import { PropsWithChildren } from 'react';
 
-import { theme } from '@styles/create-theme';
+import { theme } from '@theme';
 
 type Props = Record<never, never>;
 

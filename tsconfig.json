@@ -26,7 +26,8 @@
       "@logic/*": ["logic/*"],
       "@type/*": ["types/*"],
       "@tests/*": ["tests-related/*"],
-      "@styles/*": ["styles/*"]
+      "@styles/*": ["styles/*"],
+      "@theme": ["styles/app-theme"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

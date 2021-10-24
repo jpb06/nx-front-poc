@@ -4,7 +4,8 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
 
 import { createEmotionCache } from '@logic/create-emotion-cache.logic';
-import { theme } from '@styles/create-theme';
+
+import { theme } from '@theme';
 
 export default class MyDocument extends Document {
   render() {
