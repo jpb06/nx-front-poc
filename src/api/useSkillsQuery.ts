@@ -1,30 +1,13 @@
-import { useQuery } from 'react-query';
+import { useQuery, UseQueryResult } from 'react-query';
 
-import { CheckboxItem } from '@components/generic/forms/checkboxes/CheckBoxGroup';
-import { delay } from '@logic/delay';
+import { axiosRequest } from './axios/axios-request';
+import { GetAllRolesError } from './types/dynamic/RolesController/getAllRoles';
+import {
+  GetAllSkillsSuccess,
+  path,
+} from './types/dynamic/SkillsController/getAllSkills';
 
-const skills: Array<CheckboxItem> = [
-  {
-    id: 1,
-    label: 'jest',
-  },
-  {
-    id: 2,
-    label: 'prisma',
-  },
-  {
-    id: 3,
-    label: 'nest',
-  },
-  {
-    id: 4,
-    label: 'react',
-  },
-  {
-    id: 5,
-    label: 'Typescript',
-  },
-];
-
-export const useSkillsQuery = () =>
-  useQuery('skills', () => delay().then(() => skills));
+export const useSkillsQuery = (): UseQueryResult<
+  GetAllSkillsSuccess,
+  GetAllRolesError
+> => useQuery('skills', () => axiosRequest({ url: path, method: 'GET' }));
