@@ -1,7 +1,8 @@
-import { Alert, CircularProgress } from '@mui/material';
 import React from 'react';
 
 import { useSkillsQuery } from '@api/useSkillsQuery';
+import { ErrorBlock } from '@components/generic/feedback/error-block/ErrorBlock';
+import { LoadingBlock } from '@components/generic/feedback/loading-block/LoadingBlock';
 import { CheckBoxGroup, CheckBoxGroupProps } from '@components/generic/forms';
 
 import { FormModel } from '../types/form-model.type';
@@ -15,15 +16,11 @@ export const Skills = (props: SelectRoleProps) => {
   const { data: skills, isError, isLoading } = useSkillsQuery();
 
   if (isLoading) {
-    return <CircularProgress />;
+    return <LoadingBlock name="loading-skills" text="Loading skills ..." />;
   }
 
   if (isError || !skills) {
-    return (
-      <Alert severity="error">
-        An error occurred while retrieving the skills
-      </Alert>
-    );
+    return <ErrorBlock text="An error occurred while retrieving the skills" />;
   }
 
   return (
