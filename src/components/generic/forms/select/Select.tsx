@@ -1,8 +1,5 @@
 import {
-  Alert,
-  CircularProgress,
   FormControl,
-  FormHelperText,
   InputLabel,
   MenuItem,
   Select as MuiSelect,
@@ -17,55 +14,12 @@ export type SelectItem = {
 
 export interface SelectProps<T> extends UseControllerProps<T> {
   label: string;
-  helpText?: string;
-  isLoading: boolean;
-  isError: boolean;
-  error: string | null;
-  data?: SelectItem[];
+  data: SelectItem[];
 }
 
-export function Select<T>({
-  label,
-  helpText,
-  isLoading,
-  isError,
-  error,
-  data,
-  ...controllerProps
-}: SelectProps<T>) {
+export function Select<T>({ label, data, ...controllerProps }: SelectProps<T>) {
   const { field, fieldState } = useController(controllerProps);
   const { name } = controllerProps;
-  const MenuItems = [];
-
-  if (isLoading) {
-    MenuItems.push(
-      <MenuItem key="loading" value="loading" disabled>
-        <CircularProgress />
-      </MenuItem>
-    );
-  } else if (isError) {
-    MenuItems.push(
-      <MenuItem key="error" value="error" disabled>
-        <Alert severity="error">
-          {error ?? 'An error occurred while retrieving the roles'}
-        </Alert>
-      </MenuItem>
-    );
-  } else if (!data || data.length === 0) {
-    MenuItems.push(
-      <MenuItem key="no-data" value="no-data" disabled>
-        <Alert severity="info">No data</Alert>
-      </MenuItem>
-    );
-  } else {
-    MenuItems.push(
-      data.map(({ key, text }) => (
-        <MenuItem key={key} value={key}>
-          {text}
-        </MenuItem>
-      ))
-    );
-  }
 
   return (
     <FormControl fullWidth size="small">
@@ -73,14 +27,17 @@ export function Select<T>({
       <MuiSelect
         labelId={`${name}-select`}
         id={`${name}-select-helper`}
-        label={label}
         size="small"
         {...field}
+        label={label}
         error={!!fieldState.error}
       >
-        {MenuItems}
+        {data.map(({ key, text }) => (
+          <MenuItem key={key} value={key}>
+            {text}
+          </MenuItem>
+        ))}
       </MuiSelect>
-      {helpText && <FormHelperText>{helpText}</FormHelperText>}
     </FormControl>
   );
 }
