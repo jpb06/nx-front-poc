@@ -19,6 +19,7 @@ export function Input<T>(props: InputProps<T>) {
       size="small"
       fullWidth
       error={fieldState.invalid}
+      inputProps={{ 'aria-label': props.label }}
       {...otherFieldProps}
       inputRef={ref}
     />
