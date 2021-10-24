@@ -38,10 +38,10 @@ export const Signup: React.FC = () => {
             <Input control={control} name="lastName" label="Lastname" />
           </Grid>
           <Grid item>
-            <Roles control={control} />
+            <PasswordInput control={control} name="password" label="Password" />
           </Grid>
           <Grid item>
-            <PasswordInput control={control} name="password" label="Password" />
+            <Roles control={control} />
           </Grid>
           <Grid item>
             <Skills control={control} />
