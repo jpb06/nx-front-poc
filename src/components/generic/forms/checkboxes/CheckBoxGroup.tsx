@@ -38,13 +38,13 @@ export function CheckBoxGroup<T>(props: CheckBoxGroupProps<T>) {
   };
 
   return (
-    <FormControl component="fieldset" variant="standard">
+    <FormControl
+      component="fieldset"
+      variant="standard"
+      error={fieldState.invalid}
+    >
       <FormLabel component="legend">Skills</FormLabel>
-      {fieldState.error && (
-        <FormHelperText sx={{ color: 'red' }}>
-          You need to select at least two skills
-        </FormHelperText>
-      )}
+      <FormHelperText>{fieldState.error?.message ?? ' '}</FormHelperText>
       <FormGroup>
         <Grid
           container

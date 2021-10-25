@@ -3,6 +3,7 @@ import {
   InputLabel,
   MenuItem,
   Select as MuiSelect,
+  FormHelperText,
 } from '@mui/material';
 import React from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
@@ -22,7 +23,7 @@ export function Select<T>({ label, data, ...controllerProps }: SelectProps<T>) {
   const { name } = controllerProps;
 
   return (
-    <FormControl fullWidth size="small">
+    <FormControl fullWidth size="small" error={!!fieldState.error}>
       <InputLabel id={`${name}-select`}>{label}</InputLabel>
       <MuiSelect
         labelId={`${name}-select`}
@@ -30,7 +31,6 @@ export function Select<T>({ label, data, ...controllerProps }: SelectProps<T>) {
         size="small"
         {...field}
         label={label}
-        error={!!fieldState.error}
       >
         {data.map(({ key, text }) => (
           <MenuItem key={key} value={key}>
@@ -38,6 +38,7 @@ export function Select<T>({ label, data, ...controllerProps }: SelectProps<T>) {
           </MenuItem>
         ))}
       </MuiSelect>
+      <FormHelperText>{fieldState.error?.message ?? ' '}</FormHelperText>
     </FormControl>
   );
 }

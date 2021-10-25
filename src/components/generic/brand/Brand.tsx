@@ -6,7 +6,7 @@ import { AppColor } from '@theme';
 
 import { withThemeColor } from './Brand.styles';
 
-type BrandProps = {
+export type BrandProps = {
   color: AppColor;
   centered?: boolean;
   withBottomMargin?: boolean;

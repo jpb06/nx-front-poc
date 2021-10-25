@@ -8,8 +8,6 @@ import { formDefaultValues } from './../logic/form.default-values';
 import { schema } from './../logic/form.schema';
 import { FormModel } from './../types/form-model.type';
 
-const SIMULATE_ERROR_ON_SIGNUP = false;
-
 type SignupFormHook = {
   onSubmit: (
     e?: BaseSyntheticEvent<object, any, any> | undefined
@@ -39,7 +37,7 @@ export const useSignupForm = (): SignupFormHook => {
   });
 
   const onSubmit = handleSubmit((data) => {
-    signup({ error: SIMULATE_ERROR_ON_SIGNUP, ...data });
+    signup(data);
   });
 
   return {

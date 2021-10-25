@@ -7,9 +7,6 @@ import {
   path,
 } from './types/dynamic/RolesController/getAllRoles';
 
-export const rolesTypes = ['Dev', 'Devops', 'SquadOwner', 'ChapterOwner'];
-export type Role = typeof rolesTypes[number];
-
 export const useRolesQuery = (): UseQueryResult<
   GetAllRolesSuccess,
   GetAllRolesError

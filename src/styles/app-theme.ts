@@ -30,7 +30,4 @@ export const theme: AppTheme = {
   },
 };
 
-export const getAppColorFor =
-  (color: AppColor) =>
-  (theme: Theme): string =>
-    (theme as AppTheme).appColors[color];
+export const getAppColorFor = (color: AppColor) => theme.appColors[color];

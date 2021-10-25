@@ -6,6 +6,7 @@ import {
   InputAdornment,
   InputLabel,
   OutlinedInput,
+  FormHelperText,
 } from '@mui/material';
 import React from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
@@ -23,14 +24,18 @@ export function PasswordInput<T>(props: PasswordInputProps<T>) {
   const [showPassword, setShowPassword] = React.useState<boolean>(false);
 
   return (
-    <FormControl variant="outlined" fullWidth size="small">
+    <FormControl
+      variant="outlined"
+      fullWidth
+      size="small"
+      error={fieldState.invalid}
+    >
       <InputLabel htmlFor={`outlined-adornment-${props.name}`}>
         {props.label}
       </InputLabel>
       <OutlinedInput
         id={`outlined-adornment-${props.name}`}
         type={showPassword ? 'text' : 'password'}
-        error={fieldState.invalid}
         endAdornment={
           <InputAdornment position="end">
             <IconButton
@@ -51,6 +56,7 @@ export function PasswordInput<T>(props: PasswordInputProps<T>) {
         {...otherFieldProps}
         inputRef={ref}
       />
+      <FormHelperText>{fieldState.error?.message ?? ' '}</FormHelperText>
     </FormControl>
   );
 }

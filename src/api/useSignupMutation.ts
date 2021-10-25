@@ -1,20 +1,11 @@
 import { useMutation, UseMutationOptions } from 'react-query';
 
 import { FormModel } from '@components/epic/signup/types/form-model.type';
-import { delay } from '@logic/delay';
+
+import { signup } from './fakeApi/signup';
 
 export const useSignupMutation = (
-  options?: Omit<
-    UseMutationOptions<FormModel, Error, FormModel & { error?: boolean }>,
-    'mutationFn'
-  >
+  options?: Omit<UseMutationOptions<FormModel, Error, FormModel>, 'mutationFn'>
 ) => {
-  return useMutation(
-    ({ error, ...data }) =>
-      delay(2000).then(() => {
-        if (error) throw new Error('test signup error');
-        return data;
-      }),
-    options
-  );
+  return useMutation(signup, options);
 };
