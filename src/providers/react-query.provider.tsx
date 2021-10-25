@@ -13,10 +13,8 @@ const queryClient = new QueryClient({
 
 type Props = Record<never, never>;
 
-const ReactQueryProvider = ({ children }: PropsWithChildren<Props>) => {
+export const ReactQueryProvider = ({ children }: PropsWithChildren<Props>) => {
   return (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 };
-
-export default ReactQueryProvider;
