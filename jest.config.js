@@ -15,7 +15,7 @@ module.exports = {
     ...pathsToModuleNameMapper(tsconfigPaths, { prefix: '<rootDir>/src' }),
   },
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
-  setupFilesAfterEnv: ['<rootDir>/jest/jest.setup.ts'],
+  setupFilesAfterEnv: ['<rootDir>/jest/jest.setup.js'],
   transformIgnorePatterns: ['/node_modules/'],
   transform: {
     '^.+\\.(ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],

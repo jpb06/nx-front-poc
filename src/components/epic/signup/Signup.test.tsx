@@ -4,12 +4,12 @@ import React from 'react';
 import { mocked } from 'ts-jest/utils';
 
 import { signup } from '@api/fakeApi/signup';
+import { mockedRoles } from '@tests/mocked-data/mocked-roles';
+import { mockedSkills } from '@tests/mocked-data/mocked-skills';
 import { RHFWrapper } from '@tests/wrappers';
 import { ReactQueryWrapper } from '@tests/wrappers/react-query';
 
-import { mockedRoles, mockedSkills } from '@mocks/handlers';
-import { EmotionCacheProvider } from '@tests/../providers';
-
+import { EmotionCacheProvider } from '../../../providers';
 import { Signup } from './Signup';
 import { FormModel } from './types/form-model.type';
 

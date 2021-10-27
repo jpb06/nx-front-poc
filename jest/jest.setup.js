@@ -1,8 +1,7 @@
-import '@testing-library/jest-dom/extend-expect';
-
-import { server } from '../src/mocks/server';
-
+require('@testing-library/jest-dom/extend-expect');
 const { matchers } = require('@emotion/jest');
+
+const { server } = require('../src/tests-related/msw/server');
 
 beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
