@@ -24,7 +24,6 @@
       "@api/*": ["api/*"],
       "@components/*": ["components/*"],
       "@logic/*": ["logic/*"],
-      "@mocks/*": ["mocks/*"],
       "@type/*": ["types/*"],
       "@tests/*": ["tests-related/*"],
       "@styles/*": ["styles/*"],
