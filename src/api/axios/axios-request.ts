@@ -1,5 +1,4 @@
-import { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
-import axios from 'axios';
+import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
 
 type AxiosRequestProps = {
   url: string;
