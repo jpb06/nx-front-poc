@@ -3,7 +3,11 @@
     "target": "ES2015",
     "module": "esnext",
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "baseUrl": "src",
     "moduleResolution": "node",
     "strict": true,
@@ -21,16 +25,43 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true,
     "paths": {
-      "@api/*": ["api/*"],
-      "@components/*": ["components/*"],
-      "@logic/*": ["logic/*"],
-      "@mocks/*": ["mocks/*"],
-      "@type/*": ["types/*"],
-      "@tests/*": ["tests-related/*"],
-      "@styles/*": ["styles/*"],
-      "@theme": ["styles/app-theme"]
-    }
+      "@api/*": [
+        "api/*"
+      ],
+      "@components/*": [
+        "components/*"
+      ],
+      "@logic/*": [
+        "logic/*"
+      ],
+      "@mocks/*": [
+        "mocks/*"
+      ],
+      "@type/*": [
+        "types/*"
+      ],
+      "@tests/*": [
+        "tests-related/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@theme": [
+        "styles/app-theme"
+      ]
+    },
+    "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules", "dist", ".next", "out", "next.config.js"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".next",
+    "out",
+    "next.config.js"
+  ]
 }

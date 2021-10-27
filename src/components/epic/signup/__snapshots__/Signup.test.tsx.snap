@@ -1105,7 +1105,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-36:focus::-ms-input-
       >
         <div
           class="MuiCardMedia-root emotion-2"
-          role="image"
+          role="img"
           style="background-image: url(/img/banner.jpg);"
         />
         <div
