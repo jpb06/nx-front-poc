@@ -3,9 +3,9 @@
  * summary: Gets all skills
  */
 
-import { SkillDto, ApiResponseDto } from './../api-types';
+import { SkillsResultDto, ApiResponseDto } from './../api-types';
 
 export const path = `${process.env.NEXT_PUBLIC_API_URL}/skills`;
 
-export type GetAllSkillsSuccess = Array<SkillDto>;
+export type GetAllSkillsSuccess = SkillsResultDto;
 export type GetAllSkillsError = ApiResponseDto;

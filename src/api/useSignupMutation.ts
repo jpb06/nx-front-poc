@@ -1,11 +1,17 @@
-import { useMutation, UseMutationOptions } from 'react-query';
-
-import { FormModel } from '@components/epic/signup/types/form-model.type';
-
-import { signup } from './fakeApi/signup';
+import { AxiosMutationOptions } from './generic/types/axios-mutation-options.type';
+import { useAxiosMutation } from './generic/useAxiosMutation';
+import {
+  path,
+  RequestBody,
+  SignupError,
+  SignupSuccess,
+} from './types/dynamic/UsersController/signup';
 
 export const useSignupMutation = (
-  options?: Omit<UseMutationOptions<FormModel, Error, FormModel>, 'mutationFn'>
-) => {
-  return useMutation(signup, options);
-};
+  options?: AxiosMutationOptions<SignupSuccess, SignupError, RequestBody>
+) =>
+  useAxiosMutation<SignupSuccess, SignupError, RequestBody>(
+    path,
+    'POST',
+    options
+  );
