@@ -1,5 +1,5 @@
 import LoadingButton from '@mui/lab/LoadingButton';
-import { Alert, Box, Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import React from 'react';
 
 import { Input, PasswordInput } from '@components/generic/forms';
@@ -9,7 +9,7 @@ import { Roles, Skills } from './components';
 import { useSignupForm } from './hooks/useSignupForm';
 
 export const Signup: React.FC = () => {
-  const { onSubmit, control, isLoading, isError, error } = useSignupForm();
+  const { onSubmit, control, isLoading } = useSignupForm();
 
   return (
     <FullpageBox>
@@ -70,11 +70,6 @@ export const Signup: React.FC = () => {
              * A quick solution is to display API error in a Toast to make it automatically disapear after some time
              * If error sent by the API concern one particualr field, you can setError('field_name',error) in onError callback and let react-hook-form handle it for you (But frontend validation error should cover it for you in most of the cases)
              */}
-            {isError && (
-              <Alert severity="error">
-                {error?.message ?? 'An error occurred while saving your data'}
-              </Alert>
-            )}
           </Grid>
         </Grid>
       </Box>
