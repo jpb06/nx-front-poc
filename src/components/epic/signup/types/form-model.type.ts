@@ -1,7 +1,7 @@
 export interface FormModel {
   firstName: string;
   lastName: string;
-  role: string;
+  idRole: number;
   password: string;
-  skills: Array<number>;
+  idSkills: Array<number>;
 }

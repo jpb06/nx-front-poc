@@ -2,11 +2,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { BaseSyntheticEvent } from 'react';
 import { Control, useForm } from 'react-hook-form';
 
+import { SignupError } from '@api/types/dynamic/UsersController/signup';
 import { useSignupMutation } from '@api/useSignupMutation';
 
-import { formDefaultValues } from './../logic/form.default-values';
-import { schema } from './../logic/form.schema';
-import { FormModel } from './../types/form-model.type';
+import { formDefaultValues } from '../logic/form.default-values';
+import { schema } from '../logic/form.schema';
+import { FormModel } from '../types/form-model.type';
 
 type SignupFormHook = {
   onSubmit: (
@@ -15,7 +16,7 @@ type SignupFormHook = {
   control: Control<FormModel, object>;
   isLoading: boolean;
   isError: boolean;
-  error: Error | null;
+  error: SignupError | null;
 };
 
 export const useSignupForm = (): SignupFormHook => {

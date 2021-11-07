@@ -34,7 +34,7 @@ export const Roles = (props: RolesProps) => {
   return (
     <Select
       {...props}
-      name="role"
+      name="idRole"
       label="Role"
       data={roles.map(({ id, name }) => ({ key: id.toString(), text: name }))}
     />

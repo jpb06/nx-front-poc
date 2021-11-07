@@ -26,7 +26,7 @@ export const Skills = (props: SelectRoleProps) => {
   return (
     <CheckBoxGroup
       {...props}
-      name="skills"
+      name="idSkills"
       label="Skills"
       items={skills.map(({ id, name }) => ({ id, label: name }))}
     />
