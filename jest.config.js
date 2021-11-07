@@ -28,9 +28,12 @@ module.exports = {
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
     '!**/*.d.ts',
+    '!**/index.ts',
     '!**/node_modules/**',
     '!src/tests-related/**',
     '!src/pages/**/*.tsx',
+    '!src/**/*.type.ts',
+    '!src/api/types/dynamic/**'
   ],
   coverageReporters: ['json-summary', 'text', 'lcov'],
 };
