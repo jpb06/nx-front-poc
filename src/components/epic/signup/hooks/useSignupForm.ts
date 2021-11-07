@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/router';
 import { BaseSyntheticEvent } from 'react';
 import { Control, useForm } from 'react-hook-form';
 
@@ -24,6 +25,7 @@ export const useSignupForm = (): SignupFormHook => {
     defaultValues: formDefaultValues,
     resolver: yupResolver(schema),
   });
+  const router = useRouter();
 
   const {
     isLoading,
@@ -34,6 +36,7 @@ export const useSignupForm = (): SignupFormHook => {
     onSuccess: (data) => {
       // eslint-disable-next-line no-console
       console.info(JSON.stringify(data, null, 2));
+      router.push('home');
     },
   });
 

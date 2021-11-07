@@ -1,17 +1,18 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { mocked } from 'ts-jest/utils';
 
-import { signup } from '@api/fakeApi/signup';
 import { mockedRoles } from '@tests/mocked-data/mocked-roles';
 import { mockedSkills } from '@tests/mocked-data/mocked-skills';
+import { mockNextRouter } from '@tests/mocks/mock.next.router';
 import { RHFWrapper } from '@tests/wrappers';
 import { ReactQueryWrapper } from '@tests/wrappers/react-query';
 
 import { EmotionCacheProvider } from '../../../providers';
 import { Signup } from './Signup';
 import { FormModel } from './types/form-model.type';
+
+jest.mock('next/router');
 
 const {
   findByText,
@@ -31,10 +32,9 @@ const SignupWrapper: React.FC = ({ children }) => {
   );
 };
 
-jest.mock('@api/fakeApi/signup');
-const mockedSignup = mocked(signup);
-
 describe('Signup component', () => {
+  const { pushMock } = mockNextRouter();
+
   it('should render vanilla html/css in snapshot', () => {
     const { baseElement } = render(<Signup />, { wrapper: SignupWrapper });
 
@@ -45,14 +45,14 @@ describe('Signup component', () => {
     expect.assertions(6);
     render(<Signup />, { wrapper: SignupWrapper });
 
-    expect(getByLabelText('Firstname')).toBeInTheDocument();
-    expect(getByLabelText('Lastname')).toBeInTheDocument();
+    expect(getByLabelText(/firstname/i)).toBeInTheDocument();
+    expect(getByLabelText(/lastname/i)).toBeInTheDocument();
     expect(getByLabelText('Password')).toBeInTheDocument();
 
-    expect(await findByLabelText('Role')).toBeInTheDocument();
+    expect(await findByLabelText(/role/i)).toBeInTheDocument();
     expect(await findByText('Skills')).toBeInTheDocument();
 
-    expect(getByText('Signup')).toBeInTheDocument();
+    expect(getByText(/signup/i)).toBeInTheDocument();
   });
 
   describe('Should display typed value in', () => {
@@ -88,9 +88,9 @@ describe('Signup component', () => {
       const validData: FormModel = {
         firstName: 'firstName',
         lastName: 'lastName',
-        role: role.id.toString(),
+        idRole: role.id,
         password: 'password',
-        skills: skills.map(({ id }) => id),
+        idSkills: skills.map(({ id }) => id),
       };
       render(<Signup />, { wrapper: SignupWrapper });
 
@@ -113,8 +113,9 @@ describe('Signup component', () => {
 
       // Submit
       userEvent.click(signup);
+
       await waitFor(() => {
-        expect(mockedSignup).toHaveBeenCalledWith(validData);
+        expect(pushMock).toHaveBeenCalledWith('home');
       });
     });
   });

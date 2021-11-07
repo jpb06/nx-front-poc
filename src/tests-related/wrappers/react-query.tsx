@@ -1,4 +1,16 @@
-import { QueryClient, QueryClientProvider, setLogger } from 'react-query';
+import { useContext } from 'react';
+import {
+  MutationCache,
+  QueryClient,
+  QueryClientProvider,
+  setLogger,
+} from 'react-query';
+
+import {
+  ShowSnackbarFn,
+  SnackbarContext,
+} from '@components/generic/feedback/snackbar/Snackbar.context';
+import { handleMutationsErrors } from '@logic/handle-mutations-errors';
 
 //https://react-query.tanstack.com/guides/testing#_top
 
@@ -10,19 +22,26 @@ setLogger({
 });
 /*eslint-unable*/
 
-const createTestQueryClient = () =>
-  new QueryClient({
+const createTestQueryClient = (showSnackbar: ShowSnackbarFn) => {
+  const mutationCache = new MutationCache({
+    onError: handleMutationsErrors(showSnackbar),
+  });
+
+  return new QueryClient({
     defaultOptions: {
       queries: {
         retry: false,
         cacheTime: Infinity,
       },
     },
+    mutationCache,
   });
+};
 
 export const ReactQueryWrapper: React.FC = ({ children }) => {
+  const showSnackbar = useContext(SnackbarContext);
   // Create client in render to prevent cache sharing accross the tests
-  const queryClient = createTestQueryClient();
+  const queryClient = createTestQueryClient(showSnackbar);
 
   return (
     <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>

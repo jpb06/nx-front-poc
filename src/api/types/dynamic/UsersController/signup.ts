@@ -3,9 +3,14 @@
  * summary: Registers a user
  */
 
-import { SignupBodyDto, SignupResultDto, BadRequestDto, ApiResponseDto } from './../api-types';
+import {
+  SignupBodyDto,
+  SignupResultDto,
+  BadRequestDto,
+  ApiResponseDto,
+} from './../api-types';
 
-export const path = `${process.env.NEXT_PUBLIC_API_URL}/users`;
+export const path = `${process.env.NEXT_PUBLIC_API_URL}/users/signup`;
 
 export type RequestBody = SignupBodyDto;
 
