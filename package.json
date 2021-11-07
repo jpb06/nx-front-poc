@@ -11,6 +11,7 @@
     "start": "next start -p $PORT",
     "lint": "next lint",
     "test": "jest",
+    "test:watch": "jest --watchAll",
     "test:dev": "jest --watchAll --coverage",
     "test:ci": "jest --ci --coverage",
     "api:sync": "generateTypesFromUrl NEXT_PUBLIC_API_URL -json ./src/api/types/dynamic && ./node_modules/.bin/eslint ./src/api/types/dynamic --fix"
@@ -50,6 +51,7 @@
     "eslint-config-next": "12.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-jest": "^25.2.3",
     "eslint-plugin-jest-dom": "^3.9.2",
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.26.1",
