@@ -22,14 +22,15 @@ export interface CheckBoxGroupProps<T> extends UseControllerProps<T> {
 
 export function CheckBoxGroup<T>(props: CheckBoxGroupProps<T>) {
   const { field, fieldState } = useController(props);
+
+  if (!props.items) {
+    return null;
+  }
+
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean
   ) => {
-    if (!props.items) {
-      return null;
-    }
-
     if (checked) {
       field.onChange([...field.value, event.target.value]);
     } else {
