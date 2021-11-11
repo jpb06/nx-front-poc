@@ -2,7 +2,7 @@ import { TextField } from '@mui/material';
 import React from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 
-interface InputProps<T> extends UseControllerProps<T> {
+export interface InputProps<T> extends UseControllerProps<T> {
   label: string;
 }
 
@@ -19,6 +19,8 @@ export function Input<T>(props: InputProps<T>) {
       size="small"
       fullWidth
       error={fieldState.invalid}
+      helperText={fieldState.error?.message ?? ' '}
+      inputProps={{ 'aria-label': props.label }}
       {...otherFieldProps}
       inputRef={ref}
     />

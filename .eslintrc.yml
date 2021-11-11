@@ -3,6 +3,7 @@ parser: '@typescript-eslint/parser'
 plugins:
   - '@typescript-eslint'
   - jest-dom
+  - jest
   - import
 
 extends:
@@ -13,6 +14,7 @@ extends:
   - plugin:import/typescript
   - next/core-web-vitals
   - prettier
+  - plugin:jest/recommended
 
 env:
   es6: true
@@ -47,7 +49,7 @@ rules:
       alphabetize:
         order: 'asc'
       pathGroups:
-        - pattern: '{@api/**,@components/**,@logic/**,@type/**,@tests/**,@styles/**}'
+        - pattern: '{@api/**,@components/**,@logic/**,@type/**,@tests/**,@styles/**,@theme/**}'
           group: internal
           position: before
       pathGroupsExcludedImportTypes:

@@ -26,8 +26,10 @@
       "@logic/*": ["logic/*"],
       "@type/*": ["types/*"],
       "@tests/*": ["tests-related/*"],
-      "@styles/*": ["styles/*"]
-    }
+      "@styles/*": ["styles/*"],
+      "@theme": ["styles/app-theme"]
+    },
+    "incremental": true
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
   "exclude": ["node_modules", "dist", ".next", "out", "next.config.js"]

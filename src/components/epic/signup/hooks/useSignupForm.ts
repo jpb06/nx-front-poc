@@ -1,14 +1,14 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useRouter } from 'next/router';
 import { BaseSyntheticEvent } from 'react';
 import { Control, useForm } from 'react-hook-form';
 
+import { SignupError } from '@api/swagger-types/UsersController/signup';
 import { useSignupMutation } from '@api/useSignupMutation';
 
-import { formDefaultValues } from './../logic/form.default-values';
-import { schema } from './../logic/form.schema';
-import { FormModel } from './../types/form-model.type';
-
-const SIMULATE_ERROR_ON_SIGNUP = false;
+import { formDefaultValues } from '../logic/form.default-values';
+import { schema } from '../logic/form.schema';
+import { FormModel } from '../types/form-model.type';
 
 type SignupFormHook = {
   onSubmit: (
@@ -17,7 +17,7 @@ type SignupFormHook = {
   control: Control<FormModel, object>;
   isLoading: boolean;
   isError: boolean;
-  error: Error | null;
+  error: SignupError | null;
 };
 
 export const useSignupForm = (): SignupFormHook => {
@@ -25,6 +25,7 @@ export const useSignupForm = (): SignupFormHook => {
     defaultValues: formDefaultValues,
     resolver: yupResolver(schema),
   });
+  const router = useRouter();
 
   const {
     isLoading,
@@ -35,11 +36,12 @@ export const useSignupForm = (): SignupFormHook => {
     onSuccess: (data) => {
       // eslint-disable-next-line no-console
       console.info(JSON.stringify(data, null, 2));
+      router.push('home');
     },
   });
 
   const onSubmit = handleSubmit((data) => {
-    signup({ error: SIMULATE_ERROR_ON_SIGNUP, ...data });
+    signup(data);
   });
 
   return {

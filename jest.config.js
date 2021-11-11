@@ -4,20 +4,19 @@ const {
   compilerOptions: { paths: tsconfigPaths },
 } = require('./tsconfig');
 
-/** @type {import('@jest/types').Config.InitialOptions} */
+/** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 
 module.exports = {
+  preset: 'ts-jest',
   testEnvironment: 'jsdom',
-  roots: ['<rootDir>'],
-  globalSetup: '<rootDir>/jest/jest.setup.env.ts',
+  globalSetup: '<rootDir>/jest/jest.setup.env.js',
   moduleNameMapper: {
-    '\\.(gif|ttf|eot|svg|png)$': '<rootDir>/jest/modules-mappers/file.stub.ts',
+    '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$': 'identity-obj-proxy',
     ...pathsToModuleNameMapper(tsconfigPaths, { prefix: '<rootDir>/src' }),
   },
   testPathIgnorePatterns: ['<rootDir>/.next/', '<rootDir>/node_modules/'],
   setupFilesAfterEnv: ['<rootDir>/jest/jest.setup.js'],
-  moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'jsx'],
-  transformIgnorePatterns: ['[/\\\\]node_modules[/\\\\].+\\.(ts|tsx)$'],
+  transformIgnorePatterns: ['/node_modules/'],
   transform: {
     '^.+\\.(ts|tsx)$': ['babel-jest', { presets: ['next/babel'] }],
   },
@@ -25,11 +24,16 @@ module.exports = {
     'jest-watch-typeahead/filename',
     'jest-watch-typeahead/testname',
   ],
+  snapshotSerializers: ['@emotion/jest/serializer'],
   collectCoverageFrom: [
     'src/**/*.{ts,tsx}',
+    '!**/*.d.ts',
+    '!**/index.ts',
     '!**/node_modules/**',
     '!src/tests-related/**',
     '!src/pages/**/*.tsx',
+    '!src/**/*.type.ts',
+    '!src/api/swagger-types/**'
   ],
   coverageReporters: ['json-summary', 'text', 'lcov'],
 };

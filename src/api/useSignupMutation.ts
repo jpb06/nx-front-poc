@@ -1,20 +1,17 @@
-import { useMutation, UseMutationOptions } from 'react-query';
-
-import { FormModel } from '@components/epic/signup/types/form-model.type';
-import { delay } from '@logic/delay';
+import { AxiosMutationOptions } from './generic/types/axios-mutation-options.type';
+import { useAxiosMutation } from './generic/useAxiosMutation';
+import {
+  path,
+  RequestBody,
+  SignupError,
+  SignupSuccess,
+} from './swagger-types/UsersController/signup';
 
 export const useSignupMutation = (
-  options?: Omit<
-    UseMutationOptions<FormModel, Error, FormModel & { error?: boolean }>,
-    'mutationFn'
-  >
-) => {
-  return useMutation(
-    ({ error, ...data }) =>
-      delay(2000).then(() => {
-        if (error) throw new Error('test signup error');
-        return data;
-      }),
+  options?: AxiosMutationOptions<SignupSuccess, SignupError, RequestBody>
+) =>
+  useAxiosMutation<SignupSuccess, SignupError, RequestBody>(
+    path,
+    'POST',
     options
   );
-};

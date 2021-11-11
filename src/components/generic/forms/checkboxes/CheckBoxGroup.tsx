@@ -17,11 +17,16 @@ export type CheckboxItem = {
 
 export interface CheckBoxGroupProps<T> extends UseControllerProps<T> {
   label: string;
-  items: Array<CheckboxItem>;
+  items?: Array<CheckboxItem>;
 }
 
 export function CheckBoxGroup<T>(props: CheckBoxGroupProps<T>) {
   const { field, fieldState } = useController(props);
+
+  if (!props.items) {
+    return null;
+  }
+
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean
@@ -38,13 +43,13 @@ export function CheckBoxGroup<T>(props: CheckBoxGroupProps<T>) {
   };
 
   return (
-    <FormControl component="fieldset" variant="standard">
+    <FormControl
+      component="fieldset"
+      variant="standard"
+      error={fieldState.invalid}
+    >
       <FormLabel component="legend">Skills</FormLabel>
-      {fieldState.error && (
-        <FormHelperText sx={{ color: 'red' }}>
-          You need to select at least two skills
-        </FormHelperText>
-      )}
+      <FormHelperText>{fieldState.error?.message ?? ' '}</FormHelperText>
       <FormGroup>
         <Grid
           container

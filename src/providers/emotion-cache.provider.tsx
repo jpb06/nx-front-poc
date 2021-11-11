@@ -10,11 +10,9 @@ interface Props {
   emotionCache?: EmotionCache;
 }
 
-const EmotionCacheProvider = ({
+export const EmotionCacheProvider = ({
   children,
   emotionCache = clientSideEmotionCache,
 }: PropsWithChildren<Props>) => {
   return <CacheProvider value={emotionCache}>{children}</CacheProvider>;
 };
-
-export default EmotionCacheProvider;
