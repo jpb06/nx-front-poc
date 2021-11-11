@@ -2,41 +2,34 @@ import React from 'react';
 
 import { useRolesQuery } from '@api/useRolesQuery';
 import { ErrorBlock } from '@components/generic/feedback/error-block/ErrorBlock';
-import { LoadingBlock } from '@components/generic/feedback/loading-block/LoadingBlock';
 import { Select, SelectProps } from '@components/generic/forms';
 
+import { useSignupData } from '../hooks/useSignupData';
 import { FormModel } from '../types/form-model.type';
+import { Loading } from './generic/Loading';
+import { LoadingError } from './generic/LoadingError';
 
 type RolesProps = Omit<SelectProps<FormModel>, 'name' | 'label' | 'data'>;
 
-const Loading = () => (
-  <LoadingBlock
-    name="loading-roles"
-    text="Loading available roles for you ..."
-  />
-);
-
 export const Roles = (props: RolesProps) => {
-  const { isLoading, isError, data: roles, error } = useRolesQuery();
+  const target = 'roles';
+  const { data, error, status } = useSignupData(useRolesQuery);
 
-  if (isLoading) return <Loading />;
-
-  if (isError)
-    return (
-      <ErrorBlock
-        text={error?.message ?? 'An error occured while fetching roles'}
+  return {
+    idle: <Loading target={target} />,
+    loading: <Loading target={target} />,
+    error: <LoadingError target={target} error={error} />,
+    noData: <ErrorBlock text={`No ${target} were fetched`} />,
+    success: (
+      <Select
+        {...props}
+        name="idRole"
+        label="Role"
+        data={data?.map(({ id, name }) => ({
+          key: id.toString(),
+          text: name,
+        }))}
       />
-    );
-
-  if (!roles || roles?.length === 0)
-    return <ErrorBlock text="No roles were fetched" />;
-
-  return (
-    <Select
-      {...props}
-      name="idRole"
-      label="Role"
-      data={roles.map(({ id, name }) => ({ key: id.toString(), text: name }))}
-    />
-  );
+    ),
+  }[status];
 };

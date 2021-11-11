@@ -2,10 +2,12 @@ import React from 'react';
 
 import { useSkillsQuery } from '@api/useSkillsQuery';
 import { ErrorBlock } from '@components/generic/feedback/error-block/ErrorBlock';
-import { LoadingBlock } from '@components/generic/feedback/loading-block/LoadingBlock';
 import { CheckBoxGroup, CheckBoxGroupProps } from '@components/generic/forms';
 
+import { useSignupData } from '../hooks/useSignupData';
 import { FormModel } from '../types/form-model.type';
+import { Loading } from './generic/Loading';
+import { LoadingError } from './generic/LoadingError';
 
 type SelectRoleProps = Omit<
   CheckBoxGroupProps<FormModel>,
@@ -13,22 +15,21 @@ type SelectRoleProps = Omit<
 >;
 
 export const Skills = (props: SelectRoleProps) => {
-  const { data: skills, isError, isLoading } = useSkillsQuery();
+  const target = 'skills';
+  const { data, error, status } = useSignupData(useSkillsQuery);
 
-  if (isLoading) {
-    return <LoadingBlock name="loading-skills" text="Loading skills ..." />;
-  }
-
-  if (isError || !skills) {
-    return <ErrorBlock text="An error occurred while retrieving the skills" />;
-  }
-
-  return (
-    <CheckBoxGroup
-      {...props}
-      name="idSkills"
-      label="Skills"
-      items={skills.map(({ id, name }) => ({ id, label: name }))}
-    />
-  );
+  return {
+    idle: <Loading target={target} />,
+    loading: <Loading target={target} />,
+    error: <LoadingError target={target} error={error} />,
+    noData: <ErrorBlock text={`No ${target} were fetched`} />,
+    success: (
+      <CheckBoxGroup
+        {...props}
+        name="idSkills"
+        label="Skills"
+        items={data?.map(({ id, name }) => ({ id, label: name }))}
+      />
+    ),
+  }[status];
 };
