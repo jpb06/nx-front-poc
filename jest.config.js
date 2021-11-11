@@ -33,7 +33,7 @@ module.exports = {
     '!src/tests-related/**',
     '!src/pages/**/*.tsx',
     '!src/**/*.type.ts',
-    '!src/api/dynamic-types/**'
+    '!src/api/swagger-types/**'
   ],
   coverageReporters: ['json-summary', 'text', 'lcov'],
 };

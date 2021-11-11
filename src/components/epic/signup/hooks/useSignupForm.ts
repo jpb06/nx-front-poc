@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { BaseSyntheticEvent } from 'react';
 import { Control, useForm } from 'react-hook-form';
 
-import { SignupError } from '@api/dynamic-types/UsersController/signup';
+import { SignupError } from '@api/swagger-types/UsersController/signup';
 import { useSignupMutation } from '@api/useSignupMutation';
 
 import { formDefaultValues } from '../logic/form.default-values';

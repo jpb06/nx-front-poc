@@ -1,9 +1,9 @@
+import { useAxiosQuery } from './generic/useAxiosQuery';
 import {
   GetAllRolesError,
   GetAllRolesSuccess,
   path,
-} from './dynamic-types/RolesController/getAllRoles';
-import { useAxiosQuery } from './generic/useAxiosQuery';
+} from './swagger-types/RolesController/getAllRoles';
 
 export const useRolesQuery = () =>
   useAxiosQuery<GetAllRolesSuccess, GetAllRolesError>('roles', path, 'GET');
