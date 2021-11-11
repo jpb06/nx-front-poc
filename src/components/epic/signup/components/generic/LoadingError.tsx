@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ApiResponseDto } from '@api/types/dynamic/api-types';
+import { ApiResponseDto } from '@api/dynamic-types/api-types';
 import { ErrorBlock } from '@components/generic/feedback/error-block/ErrorBlock';
 
 import { GenericTarget } from '../../types/generic-target.type';

@@ -1,11 +1,11 @@
-import { AxiosMutationOptions } from './generic/types/axios-mutation-options.type';
-import { useAxiosMutation } from './generic/useAxiosMutation';
 import {
   path,
   RequestBody,
   SignupError,
   SignupSuccess,
-} from './types/dynamic/UsersController/signup';
+} from './dynamic-types/UsersController/signup';
+import { AxiosMutationOptions } from './generic/types/axios-mutation-options.type';
+import { useAxiosMutation } from './generic/useAxiosMutation';
 
 export const useSignupMutation = (
   options?: AxiosMutationOptions<SignupSuccess, SignupError, RequestBody>

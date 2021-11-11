@@ -1,4 +1,4 @@
-import { ApiResponseDto } from '@api/types/dynamic/api-types';
+import { ApiResponseDto } from '@api/dynamic-types/api-types';
 
 import { QueryStatus } from '../types/query-status.type';
 

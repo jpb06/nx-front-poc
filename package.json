@@ -14,7 +14,7 @@
     "test:watch": "jest --watchAll",
     "test:dev": "jest --watchAll --coverage",
     "test:ci": "jest --ci --coverage",
-    "api:sync": "generateTypesFromUrl NEXT_PUBLIC_API_URL -json ./src/api/types/dynamic && ./node_modules/.bin/eslint ./src/api/types/dynamic --fix"
+    "api:sync": "generateTypesFromUrl NEXT_PUBLIC_API_URL -json ./src/api/dynamic-types && ./node_modules/.bin/eslint ./src/api/dynamic-types --fix"
   },
   "dependencies": {
     "@emotion/react": "^11.5.0",

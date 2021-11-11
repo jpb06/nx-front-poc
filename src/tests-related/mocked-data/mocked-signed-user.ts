@@ -1,4 +1,4 @@
-import { SignedUser } from '@api/types/dynamic/api-types';
+import { SignedUser } from '@api/dynamic-types/api-types';
 
 export const mockedSignedUser: SignedUser = {
   id: '1',

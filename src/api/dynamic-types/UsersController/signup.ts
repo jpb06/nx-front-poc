@@ -8,7 +8,7 @@ import {
   SignupResultDto,
   BadRequestDto,
   ApiResponseDto,
-} from './../api-types';
+} from '../api-types';
 
 export const path = `${process.env.NEXT_PUBLIC_API_URL}/users/signup`;
 
