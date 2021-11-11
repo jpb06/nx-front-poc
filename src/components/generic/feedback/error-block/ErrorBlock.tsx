@@ -6,5 +6,7 @@ type ErrorBlockProps = {
 };
 
 export const ErrorBlock: React.FC<ErrorBlockProps> = ({ text }) => (
-  <Alert severity="error">{text}</Alert>
+  <Alert severity="error" aria-label={text}>
+    {text}
+  </Alert>
 );

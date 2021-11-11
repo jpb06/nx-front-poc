@@ -15,12 +15,16 @@ export type SelectItem = {
 
 export interface SelectProps<T> extends UseControllerProps<T> {
   label: string;
-  data: SelectItem[];
+  data?: SelectItem[];
 }
 
 export function Select<T>({ label, data, ...controllerProps }: SelectProps<T>) {
   const { field, fieldState } = useController(controllerProps);
   const { name } = controllerProps;
+
+  if (!data) {
+    return null;
+  }
 
   return (
     <FormControl fullWidth size="small" error={!!fieldState.error}>
