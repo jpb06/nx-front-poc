@@ -1,18 +1,1 @@
-import { rest } from 'msw';
-
-import { mockedRoles } from '@tests/mocked-data/mocked-roles';
-import { mockedSkills } from '@tests/mocked-data/mocked-skills';
-
-export const handlers = [
-  rest.get('*/roles', (_, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ result: mockedRoles }));
-  }),
-
-  rest.get('*/skills', (_, res, ctx) => {
-    return res(ctx.status(200), ctx.json({ result: mockedSkills }));
-  }),
-
-  rest.post('*/users/signup', (_, res, ctx) => {
-    return res(ctx.status(201), ctx.json({ result: {} }));
-  }),
-];
+export const defaultHandlers = [];
