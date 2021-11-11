@@ -27,7 +27,6 @@ export interface SignedUser {
   id: string;
   firstName: string;
   lastName: string;
-  password: string;
   role: RoleDto;
   skills: Array<string>;
   token: string;
