@@ -2,15 +2,15 @@ import React from 'react';
 
 import { LoadingBlock } from '@components/generic/feedback/loading-block/LoadingBlock';
 
-import { GenericTarget } from '../../types/generic-target.type';
+import { SignupPreloadedDataLabel } from '../../types/signup-preloaded-data-label';
 
 type LoadingProps = {
-  target: GenericTarget;
+  label: SignupPreloadedDataLabel;
 };
 
-export const Loading = ({ target }: LoadingProps) => (
+export const Loading = ({ label }: LoadingProps) => (
   <LoadingBlock
-    name={`loading-${target}`}
-    text={`Loading available ${target} for you ...`}
+    name={`loading-${label}`}
+    text={`Loading available ${label} for you ...`}
   />
 );

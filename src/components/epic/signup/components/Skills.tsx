@@ -15,14 +15,14 @@ type SelectRoleProps = Omit<
 >;
 
 export const Skills = (props: SelectRoleProps) => {
-  const target = 'skills';
+  const label = 'skills';
   const { data, error, status } = useSignupData(useSkillsQuery);
 
   return {
-    idle: <Loading target={target} />,
-    loading: <Loading target={target} />,
-    error: <LoadingError target={target} error={error} />,
-    noData: <ErrorBlock text={`No ${target} were fetched`} />,
+    idle: <Loading label={label} />,
+    loading: <Loading label={label} />,
+    error: <LoadingError label={label} error={error} />,
+    noData: <ErrorBlock text={`No ${label} were fetched`} />,
     success: (
       <CheckBoxGroup
         {...props}

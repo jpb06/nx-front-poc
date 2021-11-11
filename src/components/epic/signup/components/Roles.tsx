@@ -12,14 +12,14 @@ import { LoadingError } from './generic/LoadingError';
 type RolesProps = Omit<SelectProps<FormModel>, 'name' | 'label' | 'data'>;
 
 export const Roles = (props: RolesProps) => {
-  const target = 'roles';
+  const label = 'roles';
   const { data, error, status } = useSignupData(useRolesQuery);
 
   return {
-    idle: <Loading target={target} />,
-    loading: <Loading target={target} />,
-    error: <LoadingError target={target} error={error} />,
-    noData: <ErrorBlock text={`No ${target} were fetched`} />,
+    idle: <Loading label={label} />,
+    loading: <Loading label={label} />,
+    error: <LoadingError label={label} error={error} />,
+    noData: <ErrorBlock text={`No ${label} were fetched`} />,
     success: (
       <Select
         {...props}

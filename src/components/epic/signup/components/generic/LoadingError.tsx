@@ -3,15 +3,15 @@ import React from 'react';
 import { ApiResponseDto } from '@api/swagger-types/api-types';
 import { ErrorBlock } from '@components/generic/feedback/error-block/ErrorBlock';
 
-import { GenericTarget } from '../../types/generic-target.type';
+import { SignupPreloadedDataLabel } from '../../types/signup-preloaded-data-label';
 
 type LoadingErrorProps = {
-  target: GenericTarget;
+  label: SignupPreloadedDataLabel;
   error: ApiResponseDto | null;
 };
 
-export const LoadingError = ({ target, error }: LoadingErrorProps) => (
+export const LoadingError = ({ label, error }: LoadingErrorProps) => (
   <ErrorBlock
-    text={error?.message ?? `An error occured while fetching ${target}`}
+    text={error?.message ?? `An error occured while fetching ${label}`}
   />
 );
