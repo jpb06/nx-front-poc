@@ -1386,7 +1386,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-36:focus::-ms-input-
                     <div
                       class="MuiGrid-root MuiGrid-item emotion-50"
                     >
-                      Loading skills ...
+                      Loading available skills for you ...
                     </div>
                   </div>
                 </div>
