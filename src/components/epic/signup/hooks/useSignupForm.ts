@@ -1,4 +1,4 @@
-import { yupResolver } from '@hookform/resolvers/yup';
+import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/router';
 import { BaseSyntheticEvent } from 'react';
 import { Control, useForm } from 'react-hook-form';
@@ -7,8 +7,7 @@ import { SignupError } from '@api/swagger-types/UsersController/signup';
 import { useSignupMutation } from '@api/useSignupMutation';
 
 import { formDefaultValues } from '../logic/form.default-values';
-import { schema } from '../logic/form.schema';
-import { FormModel } from '../types/form-model.type';
+import { schema, FormModel } from '../logic/form.schema';
 
 type SignupFormHook = {
   onSubmit: (
@@ -23,7 +22,7 @@ type SignupFormHook = {
 export const useSignupForm = (): SignupFormHook => {
   const { control, handleSubmit } = useForm<FormModel>({
     defaultValues: formDefaultValues,
-    resolver: yupResolver(schema),
+    resolver: zodResolver(schema),
   });
   const router = useRouter();
 

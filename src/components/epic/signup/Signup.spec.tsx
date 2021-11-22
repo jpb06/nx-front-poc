@@ -20,7 +20,7 @@ import { ReactQueryWrapper } from '@tests/wrappers/react-query';
 
 import { EmotionCacheProvider } from '../../../providers';
 import { Signup } from './Signup';
-import { FormModel } from './types/form-model.type';
+import { FormModel } from './logic';
 
 jest.mock('next/router');
 
@@ -97,7 +97,8 @@ describe('Signup component', () => {
 
       userEvent.click(signup);
 
-      expect(await findAllByText(/required/i)).toHaveLength(4);
+      expect(await findAllByText(/required/i)).toHaveLength(3);
+      expect(await findByText(/select a role/i)).toBeInTheDocument();
       expect(await findByText(/at least two skills/i)).toBeInTheDocument();
     });
 

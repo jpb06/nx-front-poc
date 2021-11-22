@@ -1,9 +1,9 @@
-import { FormModel } from '../types/form-model.type';
+import { FormModel } from '.';
 
 export const formDefaultValues: FormModel = {
   lastName: '',
   firstName: '',
   password: '',
-  idRole: '' as unknown as number,
+  idRole: -1,
   idSkills: [],
 };

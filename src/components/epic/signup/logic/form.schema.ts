@@ -1,16 +1,11 @@
-import * as yup from 'yup';
+import * as z from 'zod';
 
-import { FormModel } from '../types/form-model.type';
-
-export const schema: yup.SchemaOf<FormModel> = yup.object().shape({
-  firstName: yup.string().required(),
-  lastName: yup.string().required(),
-  password: yup.string().required(),
-  idRole: yup
-    .number()
-    .transform((val) => (isNaN(val) ? undefined : val))
-    .required(),
-  idSkills: yup
-    .array(yup.number().required())
-    .min(2, 'You need to select at least two skills'),
+export const schema = z.object({
+  firstName: z.string().nonempty('This field is required'),
+  lastName: z.string().nonempty('This field is required'),
+  password: z.string().nonempty('This field is required'),
+  idRole: z.number().gte(0, 'You need to select a role'),
+  idSkills: z.number().array().min(2, 'You need to select at least two skills'),
 });
+
+export type FormModel = z.infer<typeof schema>;

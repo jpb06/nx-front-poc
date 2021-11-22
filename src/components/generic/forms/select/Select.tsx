@@ -9,7 +9,7 @@ import React from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 
 export type SelectItem = {
-  key: string;
+  key: number;
   text: string;
 };
 
