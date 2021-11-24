@@ -5,7 +5,7 @@ import { ErrorBlock } from '@components/generic/feedback/error-block/ErrorBlock'
 import { CheckBoxGroup, CheckBoxGroupProps } from '@components/generic/forms';
 
 import { useSignupData } from '../hooks/useSignupData';
-import { FormModel } from '../types/form-model.type';
+import { FormModel } from '../logic';
 import { Loading } from './generic/Loading';
 import { LoadingError } from './generic/LoadingError';
 
