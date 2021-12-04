@@ -1,5 +1,5 @@
 import { AlertColor } from '@mui/material';
-import React, { createContext, useState } from 'react';
+import React, { createContext, SyntheticEvent, useState } from 'react';
 
 import { Snackbar } from './Snackbar';
 
@@ -50,7 +50,7 @@ export const WithSnackbar: React.FC = ({ children }) => {
   };
 
   const handleClose = (
-    _: React.SyntheticEvent | MouseEvent,
+    _: Event | SyntheticEvent<unknown, Event>,
     reason?: string
   ) => {
     if (reason === 'clickaway') {

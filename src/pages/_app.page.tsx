@@ -10,7 +10,7 @@ import {
   EmotionCacheProvider,
   ReactQueryProvider,
   ThemeProvider,
-} from 'providers';
+} from '../providers';
 
 export interface EmotionAppProps extends AppProps {
   emotionCache: EmotionCache;

@@ -536,6 +536,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-20:focus::-ms-input-
 }
 
 .emotion-22 {
+  float: unset;
   display: block;
   width: auto;
   padding: 0;
@@ -545,6 +546,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-20:focus::-ms-input-
   max-width: 0.01px;
   -webkit-transition: max-width 50ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
   transition: max-width 50ms cubic-bezier(0.0, 0, 0.2, 1) 0ms;
+  white-space: nowrap;
 }
 
 .emotion-22>span {
@@ -1174,6 +1176,8 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-36:focus::-ms-input-
                     <label
                       class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary emotion-18"
                       data-shrink="false"
+                      for="mui-1"
+                      id="mui-1-label"
                     >
                       Firstname
                     </label>
@@ -1181,9 +1185,11 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-36:focus::-ms-input-
                       class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall emotion-19"
                     >
                       <input
+                        aria-describedby="mui-1-helper-text"
                         aria-invalid="false"
                         aria-label="Firstname"
                         class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputSizeSmall emotion-20"
+                        id="mui-1"
                         name="firstName"
                         type="text"
                         value=""
@@ -1203,6 +1209,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-36:focus::-ms-input-
                     </div>
                     <p
                       class="MuiFormHelperText-root MuiFormHelperText-sizeSmall MuiFormHelperText-contained emotion-23"
+                      id="mui-1-helper-text"
                     >
                       <span
                         class="notranslate"
@@ -1221,6 +1228,8 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-36:focus::-ms-input-
                     <label
                       class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary emotion-18"
                       data-shrink="false"
+                      for="mui-2"
+                      id="mui-2-label"
                     >
                       Lastname
                     </label>
@@ -1228,9 +1237,11 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-36:focus::-ms-input-
                       class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-sizeSmall emotion-19"
                     >
                       <input
+                        aria-describedby="mui-2-helper-text"
                         aria-invalid="false"
                         aria-label="Lastname"
                         class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputSizeSmall emotion-20"
+                        id="mui-2"
                         name="lastName"
                         type="text"
                         value=""
@@ -1250,6 +1261,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-36:focus::-ms-input-
                     </div>
                     <p
                       class="MuiFormHelperText-root MuiFormHelperText-sizeSmall MuiFormHelperText-contained emotion-23"
+                      id="mui-2-helper-text"
                     >
                       <span
                         class="notranslate"
