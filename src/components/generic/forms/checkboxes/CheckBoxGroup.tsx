@@ -32,7 +32,7 @@ export function CheckBoxGroup<T>(props: CheckBoxGroupProps<T>) {
     checked: boolean
   ) => {
     if (checked) {
-      field.onChange([...field.value, Number(event.target.value)]);
+      field.onChange([...(field.value as Array<unknown>), event.target.value]);
     } else {
       field.onChange(
         (field.value as Array<number>).filter(
