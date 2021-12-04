@@ -2,3 +2,5 @@
 **/out/*
 **/.next/*
 **/coverage/*
+jest.config.js
+next.config.js
