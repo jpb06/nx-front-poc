@@ -9,7 +9,6 @@ export const schema = z.object({
   idSkills: z.number().array().min(2, 'You need to select at least two skills'),
 }).refine(async (val) => {
   await new Promise((r) => setTimeout(r, 1000));
-  console.log("validation result ", val.userName !== "potato");
   return val.userName !== "potato";
 }, {
   message: "username is already taken :(",
