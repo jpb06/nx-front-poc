@@ -10,6 +10,7 @@ import { formDefaultValues } from '../logic/form.default-values';
 import { schema, FormModel } from '../logic/form.schema';
 
 type SignupFormHook = {
+  triggerUserNameValidation: () => void,
   onSubmit: (
     e?: BaseSyntheticEvent<object, any, any> | undefined
   ) => Promise<void>;
@@ -19,10 +20,17 @@ type SignupFormHook = {
   error: SignupError | null;
 };
 
-export const useSignupForm = (): SignupFormHook => {
-  const { control, handleSubmit } = useForm<FormModel>({
+export type UseSignupFormProps = {
+  async: boolean,
+}
+
+export const useSignupForm : (p: UseSignupFormProps) => SignupFormHook = ({
+  async,
+}) => {
+  const { control, trigger, handleSubmit } = useForm<FormModel>({
     defaultValues: formDefaultValues,
-    resolver: zodResolver(schema),
+    mode: "onSubmit",
+    resolver: zodResolver(schema, undefined, { mode: async ? "async" : "sync" }),
   });
   const router = useRouter();
 
@@ -43,7 +51,12 @@ export const useSignupForm = (): SignupFormHook => {
     signup(data);
   });
 
+  const triggerUserNameValidation = () => {
+    trigger("userName");
+  };
+
   return {
+    triggerUserNameValidation,
     onSubmit,
     control,
     isLoading,

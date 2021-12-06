@@ -8,8 +8,14 @@ import { FullpageBox } from '@components/generic/fullpage-box/FullpageBox';
 import { Roles, Skills } from './components';
 import { useSignupForm } from './hooks/useSignupForm';
 
-export const Signup: React.FC = () => {
-  const { onSubmit, control, isLoading } = useSignupForm();
+export type SignupProps = {
+  async?: boolean,
+}
+
+export const Signup: React.FC<SignupProps> = ({
+  async = false,
+}) => {
+  const { onSubmit, triggerUserNameValidation, control, isLoading } = useSignupForm({ async });
 
   return (
     <FullpageBox>
@@ -31,6 +37,9 @@ export const Signup: React.FC = () => {
           alignItems="stretch"
           spacing={2}
         >
+          <Grid item>
+            <Input control={control} name="userName" label="Username" onBlur={triggerUserNameValidation} />
+          </Grid>
           <Grid item>
             <Input control={control} name="firstName" label="Firstname" />
           </Grid>

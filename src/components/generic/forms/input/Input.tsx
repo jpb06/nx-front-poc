@@ -4,6 +4,7 @@ import { useController, UseControllerProps } from 'react-hook-form';
 
 export interface InputProps<T> extends UseControllerProps<T> {
   label: string;
+  onBlur?: () => void;
 }
 
 export function Input<T>(props: InputProps<T>) {
@@ -22,6 +23,7 @@ export function Input<T>(props: InputProps<T>) {
       helperText={fieldState.error?.message ?? ' '}
       inputProps={{ 'aria-label': props.label }}
       {...otherFieldProps}
+      onBlur={props.onBlur}
       inputRef={ref}
     />
   );
