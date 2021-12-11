@@ -1,9 +1,9 @@
 import { ParsedUrlQuery } from 'querystring';
 
+import { mocked } from 'jest-mock';
 import { mockDeep } from 'jest-mock-extended';
 import { MittEmitter } from 'next/dist/shared/lib/mitt';
 import { NextRouter, useRouter } from 'next/router';
-import { mocked } from 'ts-jest/utils';
 
 interface MockedNextRouter {
   pushMock: jest.Mock<unknown, unknown[]>;
