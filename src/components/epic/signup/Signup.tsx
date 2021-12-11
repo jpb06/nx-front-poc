@@ -60,16 +60,6 @@ export const Signup: React.FC = () => {
             >
               Signup
             </LoadingButton>
-            {/**
-             * There is one issue with this pattern :
-             * - Error is handled outside react-hook-form
-             * - If you edit one field, error won't disapear
-             * - Error will disapear on next submit
-             * In some cases, this is a good solution, in some others, not.
-             *
-             * A quick solution is to display API error in a Toast to make it automatically disapear after some time
-             * If error sent by the API concern one particualr field, you can setError('field_name',error) in onError callback and let react-hook-form handle it for you (But frontend validation error should cover it for you in most of the cases)
-             */}
           </Grid>
         </Grid>
       </Box>
