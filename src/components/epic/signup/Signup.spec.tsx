@@ -12,9 +12,7 @@ import { mockedRoles } from '@tests/mocked-data/mocked-roles';
 import { mockedSignedUser } from '@tests/mocked-data/mocked-signed-user';
 import { mockedSkills } from '@tests/mocked-data/mocked-skills';
 import { mockNextRouter } from '@tests/mocks/mock.next.router';
-import { interceptRolesQuery } from '@tests/msw/handlers/roles-query.interceptor';
-import { interceptSignupMutation } from '@tests/msw/handlers/signup-mutation.interceptor';
-import { interceptSkillsQuery } from '@tests/msw/handlers/skills-query.interceptor';
+import { msw } from '@tests/msw';
 import { RHFWrapper } from '@tests/wrappers';
 import { ReactQueryWrapper } from '@tests/wrappers/react-query';
 
@@ -50,8 +48,8 @@ describe('Signup component', () => {
   const { pushMock } = mockNextRouter();
 
   beforeEach(() => {
-    interceptRolesQuery(200, mockedRoles);
-    interceptSkillsQuery(200, mockedSkills);
+    msw.rolesQuery(200, mockedRoles);
+    msw.skillsQuery(200, mockedSkills);
   });
 
   it('should render vanilla html/css in snapshot', () => {
@@ -87,7 +85,7 @@ describe('Signup component', () => {
   });
 
   describe('validation', () => {
-    it('should display error messages due to validation', async () => {
+    it('should display an error message when no role was selected', async () => {
       render(<Signup />, { wrapper: SignupWrapper });
 
       expect(await findByLabelText('Role')).toBeInTheDocument();
@@ -99,11 +97,27 @@ describe('Signup component', () => {
 
       expect(await findAllByText(/required/i)).toHaveLength(3);
       expect(await findByText(/select a role/i)).toBeInTheDocument();
-      expect(await findByText(/at least two skills/i)).toBeInTheDocument();
+    });
+
+    it('should display an error message when more than three skills have been selected', async () => {
+      render(<Signup />, { wrapper: SignupWrapper });
+
+      expect(await findByText('Skills')).toBeInTheDocument();
+
+      userEvent.click(getByText(/jest/i));
+      userEvent.click(getByText(/prisma/i));
+      userEvent.click(getByText(/nest/i));
+      userEvent.click(getByText(/typescript/i));
+
+      const signup = getByText('Signup');
+      userEvent.click(signup);
+
+      expect(await findAllByText(/required/i)).toHaveLength(3);
+      expect(await findByText(/select a role/i)).toBeInTheDocument();
     });
 
     it('should send valid data to the API', async () => {
-      interceptSignupMutation(200, { result: mockedSignedUser });
+      msw.signupMutation(200, { result: mockedSignedUser });
 
       const role = mockedRoles[0];
       const skills = mockedSkills.slice(0, 2);
@@ -142,7 +156,7 @@ describe('Signup component', () => {
     });
 
     it('should display a snackbar with the backend error message when the mutation failed', async () => {
-      interceptSignupMutation(500, { message: 'uncool bro' });
+      msw.signupMutation(500, { message: 'uncool bro' });
 
       const role = mockedRoles[0];
       const skills = mockedSkills.slice(0, 2);
@@ -181,7 +195,7 @@ describe('Signup component', () => {
     });
 
     it('should display a snackbar with a default error message if the backend sent no error message', async () => {
-      interceptSignupMutation(500, {});
+      msw.signupMutation(500, {});
 
       const role = mockedRoles[0];
       const skills = mockedSkills.slice(0, 2);
@@ -230,7 +244,7 @@ describe('Signup component', () => {
     });
 
     it('should display an error when roles could not be fetched', async () => {
-      interceptRolesQuery(500, {});
+      msw.rolesQuery(500, {});
 
       render(<Signup />, { wrapper: SignupWrapper });
 
@@ -244,7 +258,7 @@ describe('Signup component', () => {
     });
 
     it('should display an error when there is no roles', async () => {
-      interceptRolesQuery(200, []);
+      msw.rolesQuery(200, []);
 
       render(<Signup />, { wrapper: SignupWrapper });
 
@@ -264,7 +278,7 @@ describe('Signup component', () => {
     });
 
     it('should display an error when skills could not be fetched', async () => {
-      interceptSkillsQuery(500, {});
+      msw.skillsQuery(500, {});
 
       render(<Signup />, { wrapper: SignupWrapper });
 
@@ -278,7 +292,7 @@ describe('Signup component', () => {
     });
 
     it('should display an error when there is no skills', async () => {
-      interceptSkillsQuery(200, []);
+      msw.skillsQuery(200, []);
 
       render(<Signup />, { wrapper: SignupWrapper });
 
