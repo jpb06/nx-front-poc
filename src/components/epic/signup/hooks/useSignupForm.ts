@@ -32,11 +32,7 @@ export const useSignupForm = (): SignupFormHook => {
     error,
     mutate: signup,
   } = useSignupMutation({
-    onSuccess: (data) => {
-      // eslint-disable-next-line no-console
-      console.info(JSON.stringify(data, null, 2));
-      router.push('home');
-    },
+    onSuccess: () => router.push('home'),
   });
 
   const onSubmit = handleSubmit((data) => {
