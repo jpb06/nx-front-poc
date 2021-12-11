@@ -1114,10 +1114,10 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-36:focus::-ms-input-
           class="MuiCardContent-root emotion-3"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-undefined emotion-4"
+            class="MuiGrid-root MuiGrid-container emotion-4"
           >
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-undefined emotion-5"
+              class="MuiGrid-root MuiGrid-container emotion-5"
             >
               <div
                 class="MuiGrid-root MuiGrid-item emotion-6"
@@ -1145,7 +1145,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-36:focus::-ms-input-
               </div>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-undefined emotion-4"
+              class="MuiGrid-root MuiGrid-container emotion-4"
             >
               <div
                 class="MuiGrid-root MuiGrid-item emotion-11"
@@ -1159,7 +1159,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-36:focus::-ms-input-
           class="MuiCardActions-root MuiCardActions-spacing emotion-12"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-undefined MuiGrid-direction-xs-column emotion-13"
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column emotion-13"
           >
             <form
               class="MuiBox-root emotion-14"

@@ -1,7 +1,5 @@
-import {
-  genericGetUrl,
-  interceptGenericGet,
-} from '@tests/msw/handlers/generic-get.interceptor';
+import { msw } from '@tests/msw';
+import { genericGetUrl } from '@tests/msw/handlers/generic-get.interceptor';
 
 import { axiosRequest } from './axios-request';
 
@@ -10,7 +8,7 @@ describe('axiosRequest function', () => {
   const method = 'GET';
 
   it('should throw on axios errors', async () => {
-    interceptGenericGet(500, data);
+    msw.genericGet(500, data);
 
     await expect(
       axiosRequest({
@@ -21,7 +19,7 @@ describe('axiosRequest function', () => {
   });
 
   it('should throw an error if there is no result', async () => {
-    interceptGenericGet(200, {});
+    msw.genericGet(200, {});
 
     await expect(
       axiosRequest({
@@ -33,7 +31,7 @@ describe('axiosRequest function', () => {
 
   it('should return result', async () => {
     const method = 'GET';
-    interceptGenericGet(200, {
+    msw.genericGet(200, {
       result: data,
     });
 
