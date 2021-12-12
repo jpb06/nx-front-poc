@@ -8,6 +8,9 @@ export const mockedSignedUser: SignedUser = {
     id: 1,
     name: 'Skwat owner',
   },
-  skills: ['nest', 'react'],
+  skills: [
+    { id: 1, name: 'nest' },
+    { id: 1, name: 'react' },
+  ],
   token: 'token',
 };
