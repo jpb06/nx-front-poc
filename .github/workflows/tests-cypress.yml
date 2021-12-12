@@ -4,7 +4,7 @@ on:
       - master
   pull_request:
     types: [opened, synchronize, reopened]
-name: Cypress tests
+name: cypress tests
 jobs:
   tests:
     - name: Check out repository code

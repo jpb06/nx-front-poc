@@ -4,7 +4,7 @@ on:
       - master
   pull_request:
     types: [opened, synchronize, reopened]
-name: Tests
+name: tests
 jobs:
   tests:
     runs-on: ubuntu-latest
