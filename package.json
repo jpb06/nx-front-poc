@@ -74,7 +74,6 @@
   },
   "engines": {
     "node": "16.x",
-    "yarn": "3.x"
-  },
-  "packageManager": "yarn@3.1.0"
+    "yarn": "1.22.x"
+  }
 }
