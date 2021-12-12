@@ -1,4 +1,4 @@
-import { PropsWithChildren, useContext } from 'react';
+import { PropsWithChildren, useContext, useState } from 'react';
 import { MutationCache, QueryClient, QueryClientProvider } from 'react-query';
 
 import {
@@ -28,10 +28,9 @@ type Props = Record<never, never>;
 
 export const ReactQueryProvider = ({ children }: PropsWithChildren<Props>) => {
   const showSnackbar = useContext(SnackbarContext);
+  const [queryClient] = useState(() => getQueryClient(showSnackbar));
 
   return (
-    <QueryClientProvider client={getQueryClient(showSnackbar)}>
-      {children}
-    </QueryClientProvider>
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
   );
 };
