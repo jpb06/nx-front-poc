@@ -28,7 +28,7 @@ export interface SignedUser {
   firstName: string;
   lastName: string;
   role: RoleDto;
-  skills: Array<string>;
+  skills: Array<SkillDto>;
   token: string;
 }
 export interface SignupResultDto {
