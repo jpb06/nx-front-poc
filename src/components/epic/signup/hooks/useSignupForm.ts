@@ -2,6 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/router';
 import { BaseSyntheticEvent } from 'react';
 import { Control, useForm } from 'react-hook-form';
+import { useQueryClient } from 'react-query';
 
 import { SignupError } from '@api/swagger-types/UsersController/signup';
 import { useSignupMutation } from '@api/useSignupMutation';
@@ -20,11 +21,12 @@ type SignupFormHook = {
 };
 
 export const useSignupForm = (): SignupFormHook => {
+  const router = useRouter();
+  const queryClient = useQueryClient();
   const { control, handleSubmit } = useForm<FormModel>({
     defaultValues: formDefaultValues,
     resolver: zodResolver(schema),
   });
-  const router = useRouter();
 
   const {
     isLoading,
@@ -32,7 +34,12 @@ export const useSignupForm = (): SignupFormHook => {
     error,
     mutate: signup,
   } = useSignupMutation({
-    onSuccess: () => router.push('home'),
+    onSuccess: async (data) => {
+      if (data) {
+        queryClient.setQueryData('user-data', (_) => data);
+        await router.push('home');
+      }
+    },
   });
 
   const onSubmit = handleSubmit((data) => {
