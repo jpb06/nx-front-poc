@@ -1,6 +1,9 @@
-import { useQuery } from 'react-query';
-
-import { SignedUser } from './swagger-types/api-types';
+import { useAxiosQuery } from './generic/useAxiosQuery';
+import { ApiResponseDto, SignupResultDto } from './swagger-types/api-types';
 
 export const useUserDataQuery = () =>
-  useQuery<SignedUser | undefined>('user-data', () => undefined);
+  useAxiosQuery<SignupResultDto, ApiResponseDto>(
+    'user-data',
+    'user-data-path',
+    'GET'
+  );
