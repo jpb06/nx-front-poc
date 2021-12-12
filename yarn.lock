@@ -2509,7 +2509,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:^0.21.1, axios@npm:^0.21.4":
+"axios@npm:^0.21.1":
   version: 0.21.4
   resolution: "axios@npm:0.21.4"
   dependencies:
@@ -3046,6 +3046,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chalk@npm:4.1.2, chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1":
+  version: 4.1.2
+  resolution: "chalk@npm:4.1.2"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
+  languageName: node
+  linkType: hard
+
 "chalk@npm:^3.0.0":
   version: 3.0.0
   resolution: "chalk@npm:3.0.0"
@@ -3053,16 +3063,6 @@ __metadata:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
   checksum: 8e3ddf3981c4da405ddbd7d9c8d91944ddf6e33d6837756979f7840a29272a69a5189ecae0ff84006750d6d1e92368d413335eab4db5476db6e6703a1d1e0505
-  languageName: node
-  linkType: hard
-
-"chalk@npm:^4.0.0, chalk@npm:^4.1.0, chalk@npm:^4.1.1, chalk@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "chalk@npm:4.1.2"
-  dependencies:
-    ansi-styles: ^4.1.0
-    supports-color: ^7.1.0
-  checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
   languageName: node
   linkType: hard
 
@@ -7197,7 +7197,7 @@ __metadata:
     react-hook-form: 7.21.1
     react-query: ^3.34.2
     start-server-and-test: ^1.14.0
-    swagger-typescript-types: ^2.1.3
+    swagger-typescript-types: ^2.1.4
     ts-jest: ^27.1.1
     typescript: 4.5.3
     zod: ^3.11.6
@@ -9226,18 +9226,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swagger-typescript-types@npm:^2.1.3":
-  version: 2.1.3
-  resolution: "swagger-typescript-types@npm:2.1.3"
+"swagger-typescript-types@npm:^2.1.4":
+  version: 2.1.4
+  resolution: "swagger-typescript-types@npm:2.1.4"
   dependencies:
     "@apidevtools/openapi-schemas": ^2.1.0
-    axios: ^0.21.4
-    chalk: ^4.1.2
+    axios: ^0.24.0
+    chalk: 4.1.2
     dotenv-flow: ^3.2.0
     fs-extra: ^10.0.0
   bin:
     generateTypesFromUrl: cli/generate-types-from-url.cli.js
-  checksum: 25baa642ee8dd28ae1379156b3103baadfeeeb66ad06871eb7d145cd3ecf0d8a19f4118d9d03fce06744b9c57561dad3c3ac5c05244409e379940cf2be28b687
+  checksum: b7df7db7b5aef806ee113387d9479ea3e3a3f6281f78cd14732362c2964675daadab864a787da78bb4a2bd789ac78c607c4fe1727e170c24f35f7c4b8caaffcc
   languageName: node
   linkType: hard
 
