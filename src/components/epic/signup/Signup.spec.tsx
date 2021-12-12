@@ -1,5 +1,4 @@
 import {
-  render,
   screen,
   waitFor,
   waitForElementToBeRemoved,
@@ -7,16 +6,13 @@ import {
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-import { WithSnackbar } from '@components/generic/feedback/snackbar/Snackbar.context';
 import { mockedRoles } from '@tests/mocked-data/mocked-roles';
 import { mockedSignedUser } from '@tests/mocked-data/mocked-signed-user';
 import { mockedSkills } from '@tests/mocked-data/mocked-skills';
 import { mockNextRouter } from '@tests/mocks/mock.next.router';
 import { msw } from '@tests/msw';
-import { RHFWrapper } from '@tests/wrappers';
-import { ReactQueryWrapper } from '@tests/wrappers/react-query';
+import { render } from '@tests/renders/render';
 
-import { EmotionCacheProvider } from '../../../providers';
 import { Signup } from './Signup';
 import { FormModel } from './logic';
 
@@ -32,18 +28,6 @@ const {
   getByRole,
 } = screen;
 
-const SignupWrapper: React.FC = ({ children }) => {
-  return (
-    <EmotionCacheProvider>
-      <WithSnackbar>
-        <ReactQueryWrapper>
-          <RHFWrapper>{children}</RHFWrapper>
-        </ReactQueryWrapper>
-      </WithSnackbar>
-    </EmotionCacheProvider>
-  );
-};
-
 describe('Signup component', () => {
   const { pushMock } = mockNextRouter();
 
@@ -53,14 +37,14 @@ describe('Signup component', () => {
   });
 
   it('should render vanilla html/css in snapshot', () => {
-    const { baseElement } = render(<Signup />, { wrapper: SignupWrapper });
+    const { baseElement } = render(<Signup />);
 
     expect(baseElement).toMatchSnapshot();
   });
 
   it('should render the signup form', async () => {
     expect.assertions(6);
-    render(<Signup />, { wrapper: SignupWrapper });
+    render(<Signup />);
 
     expect(getByLabelText(/firstname/i)).toBeInTheDocument();
     expect(getByLabelText(/lastname/i)).toBeInTheDocument();
@@ -74,7 +58,7 @@ describe('Signup component', () => {
 
   describe('Should display typed value in', () => {
     it.each([['Firstname'], ['Lastname'], ['Password']])('%s', (label) => {
-      render(<Signup />, { wrapper: SignupWrapper });
+      render(<Signup />);
 
       const inputField = getByLabelText(label);
       const inputValue = `${label}Value`;
@@ -86,7 +70,7 @@ describe('Signup component', () => {
 
   describe('validation', () => {
     it('should display an error message when no role was selected', async () => {
-      render(<Signup />, { wrapper: SignupWrapper });
+      render(<Signup />);
 
       expect(await findByLabelText('Role')).toBeInTheDocument();
       expect(await findByText('Skills')).toBeInTheDocument();
@@ -100,7 +84,7 @@ describe('Signup component', () => {
     });
 
     it('should display an error message when more than three skills have been selected', async () => {
-      render(<Signup />, { wrapper: SignupWrapper });
+      render(<Signup />);
 
       expect(await findByText('Skills')).toBeInTheDocument();
 
@@ -128,7 +112,7 @@ describe('Signup component', () => {
         password: 'password',
         idSkills: skills.map(({ id }) => id),
       };
-      render(<Signup />, { wrapper: SignupWrapper });
+      render(<Signup />);
 
       expect(await findByLabelText('Role')).toBeInTheDocument();
       expect(await findByText('Skills')).toBeInTheDocument();
@@ -168,7 +152,7 @@ describe('Signup component', () => {
         idSkills: skills.map(({ id }) => id),
       };
 
-      render(<Signup />, { wrapper: SignupWrapper });
+      render(<Signup />);
 
       expect(await findByLabelText('Role')).toBeInTheDocument();
       expect(await findByText('Skills')).toBeInTheDocument();
@@ -207,7 +191,7 @@ describe('Signup component', () => {
         idSkills: skills.map(({ id }) => id),
       };
 
-      render(<Signup />, { wrapper: SignupWrapper });
+      render(<Signup />);
 
       expect(await findByLabelText('Role')).toBeInTheDocument();
       expect(await findByText('Skills')).toBeInTheDocument();
@@ -236,7 +220,7 @@ describe('Signup component', () => {
 
   describe('initial data loading', () => {
     it('should display a loading indicator for roles', () => {
-      render(<Signup />, { wrapper: SignupWrapper });
+      render(<Signup />);
 
       expect(
         getByRole('progressbar', { name: /loading-roles/i })
@@ -246,7 +230,7 @@ describe('Signup component', () => {
     it('should display an error when roles could not be fetched', async () => {
       msw.rolesQuery(500, {});
 
-      render(<Signup />, { wrapper: SignupWrapper });
+      render(<Signup />);
 
       await waitForElementToBeRemoved(() =>
         getByRole('progressbar', { name: /loading-roles/i })
@@ -260,7 +244,7 @@ describe('Signup component', () => {
     it('should display an error when there is no roles', async () => {
       msw.rolesQuery(200, []);
 
-      render(<Signup />, { wrapper: SignupWrapper });
+      render(<Signup />);
 
       await waitForElementToBeRemoved(() =>
         getByRole('progressbar', { name: /loading-roles/i })
@@ -270,7 +254,7 @@ describe('Signup component', () => {
     });
 
     it('should display a loading indicator for skills', () => {
-      render(<Signup />, { wrapper: SignupWrapper });
+      render(<Signup />);
 
       expect(
         getByRole('progressbar', { name: /loading-skills/i })
@@ -280,7 +264,7 @@ describe('Signup component', () => {
     it('should display an error when skills could not be fetched', async () => {
       msw.skillsQuery(500, {});
 
-      render(<Signup />, { wrapper: SignupWrapper });
+      render(<Signup />);
 
       await waitForElementToBeRemoved(() =>
         getByRole('progressbar', { name: /loading-skills/i })
@@ -294,7 +278,7 @@ describe('Signup component', () => {
     it('should display an error when there is no skills', async () => {
       msw.skillsQuery(200, []);
 
-      render(<Signup />, { wrapper: SignupWrapper });
+      render(<Signup />);
 
       await waitForElementToBeRemoved(() =>
         getByRole('progressbar', { name: /loading-skills/i })
