@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ApiResponseDto } from '@api/swagger-types/api-types';
-import { ErrorBlock } from '@components/generic/feedback/error-block/ErrorBlock';
+import { ErrorBlock } from '@components/generic/layout/error-block/ErrorBlock';
 
 import { SignupPreloadedDataLabel } from '../../types/signup-preloaded-data-label';
 

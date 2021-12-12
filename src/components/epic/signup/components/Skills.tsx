@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { useSkillsQuery } from '@api/useSkillsQuery';
-import { ErrorBlock } from '@components/generic/feedback/error-block/ErrorBlock';
 import { CheckBoxGroup, CheckBoxGroupProps } from '@components/generic/forms';
+import { ErrorBlock } from '@components/generic/layout/error-block/ErrorBlock';
 
 import { useSignupData } from '../hooks/useSignupData';
 import { FormModel } from '../logic';
