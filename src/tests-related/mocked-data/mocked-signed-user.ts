@@ -10,7 +10,7 @@ export const mockedSignedUser: SignedUser = {
   },
   skills: [
     { id: 1, name: 'nest' },
-    { id: 1, name: 'react' },
+    { id: 2, name: 'react' },
   ],
   token: 'token',
 };
