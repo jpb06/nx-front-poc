@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { useRolesQuery } from '@api/useRolesQuery';
-import { ErrorBlock } from '@components/generic/feedback/error-block/ErrorBlock';
 import { Select, SelectProps } from '@components/generic/forms';
+import { ErrorBlock } from '@components/generic/layout/error-block/ErrorBlock';
 
 import { useSignupData } from '../hooks/useSignupData';
 import { FormModel } from '../logic';

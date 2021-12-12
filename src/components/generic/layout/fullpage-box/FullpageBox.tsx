@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 
-import { Brand } from '../brand/Brand';
+import { Brand } from '../../brand/Brand';
 
 export const FullpageBox: React.FC = ({ children }) => (
   <Grid

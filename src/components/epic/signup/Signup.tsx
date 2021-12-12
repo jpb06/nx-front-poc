@@ -3,7 +3,7 @@ import { Box, Grid } from '@mui/material';
 import React from 'react';
 
 import { Input, PasswordInput } from '@components/generic/forms';
-import { FullpageBox } from '@components/generic/fullpage-box/FullpageBox';
+import { FullpageBox } from '@components/generic/layout/fullpage-box/FullpageBox';
 
 import { Roles, Skills } from './components';
 import { useSignupForm } from './hooks/useSignupForm';
