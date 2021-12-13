@@ -80,7 +80,9 @@ describe('Signup component', () => {
       userEvent.click(signup);
 
       expect(await findAllByText(/required/i)).toHaveLength(3);
-      expect(await findByText(/select a role/i)).toBeInTheDocument();
+      expect(
+        await findByText(/you need to select a role/i)
+      ).toBeInTheDocument();
     });
 
     it('should display an error message when more than three skills have been selected', async () => {
