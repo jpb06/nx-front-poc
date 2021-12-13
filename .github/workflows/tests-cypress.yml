@@ -6,7 +6,7 @@ on:
     types: [opened, synchronize, reopened]
 name: cypress tests
 jobs:
-  tests:
+  cypress-tests:
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
@@ -26,8 +26,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         env:
-          CYPRESS_PORT: 3000
           CYPRESS_NEXT_PUBLIC_API_URL: https://rhf-mui-sandbox-backend.herokuapp.com
         with:
           build: npm run build
-          start: npm start
+          start: npm start:ci
