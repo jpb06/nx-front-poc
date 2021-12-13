@@ -29,4 +29,4 @@ jobs:
           CYPRESS_NEXT_PUBLIC_API_URL: https://rhf-mui-sandbox-backend.herokuapp.com
         with:
           build: npm run build
-          start: npm start:ci
+          start: npm run start:ci
