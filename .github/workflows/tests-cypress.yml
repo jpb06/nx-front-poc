@@ -25,9 +25,9 @@ jobs:
 
       - name: Cypress run
         uses: cypress-io/github-action@v2
-        env: |
-          PORT=3000
-          NEXT_PUBLIC_API_URL=https://rhf-mui-sandbox-backend.herokuapp.com
+        env:
+          CYPRESS_PORT: 3000
+          CYPRESS_NEXT_PUBLIC_API_URL: https://rhf-mui-sandbox-backend.herokuapp.com
         with:
           build: npm run build
           start: npm start
