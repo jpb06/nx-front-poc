@@ -13,10 +13,7 @@
 // the project's config changing)
 
 // eslint-disable-next-line no-unused-vars
-const config: Cypress.PluginConfig = (
-  on: Cypress.PluginEvents,
-  config: Cypress.PluginConfigOptions
-) => {
+const config = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
 };
