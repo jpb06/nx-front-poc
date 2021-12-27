@@ -12,8 +12,11 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true
   },
-  "files": [],
-  "include": [],
+  "files": [
+    "../../../libs/front/tests/src/index.ts",
+    "../../../libs/front/theme/src/index.ts"
+  ],
+  "include": ["**/*.ts", "**/*.tsx"],
   "references": [
     {
       "path": "./tsconfig.lib.json"

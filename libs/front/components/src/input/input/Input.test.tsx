@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react';
 
+import { RHFWrapper } from '@front/tests';
+
 import { Input } from './Input';
 
 const { getAllByText } = screen;

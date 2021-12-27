@@ -13,6 +13,12 @@
     "isolatedModules": true,
     "incremental": true
   },
-  "include": ["**/*.ts", "**/*.tsx", "next-env.d.ts"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "next-env.d.ts",
+    "./../../libs/front/components/src/**/*.ts",
+    "./../../libs/front/components/src/**/*.tsx"
+  ],
   "exclude": ["node_modules"]
 }

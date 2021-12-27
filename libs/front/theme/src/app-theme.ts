@@ -1,8 +1,9 @@
 import { createTheme } from '@mui/material';
 import { amber, cyan, red } from '@mui/material/colors';
+
 import { AppTheme } from './types/app-theme.type';
 
-export const theme: AppTheme = {
+export const appTheme: AppTheme = {
   ...createTheme({
     palette: {
       mode: 'dark',

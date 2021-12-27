@@ -4,14 +4,14 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import React from 'react';
-
-import { mockedRoles } from '@tests/mocked-data/mocked-roles';
 import { mockedSignedUser } from '@tests/mocked-data/mocked-signed-user';
 import { mockedSkills } from '@tests/mocked-data/mocked-skills';
 import { mockNextRouter } from '@tests/mocks/mock.next.router';
 import { msw } from '@tests/msw';
 import { render } from '@tests/renders/render';
+import React from 'react';
+
+import { mockedRoles } from '@front/tests/mocked-data/mocked-roles';
 
 import { Signup } from './Signup';
 import { FormModel } from './logic';

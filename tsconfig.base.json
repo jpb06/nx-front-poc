@@ -18,7 +18,7 @@
       "@front/components/*": ["libs/front/components/src/*"],
       "@front/logic/*": ["libs/front/logic/src/*"],
       "@front/tests/*": ["libs/front/tests/src/*"],
-      "@front/theme": ["libs/front/theme/src/index"]
+      "@front/theme/*": ["libs/front/theme/src/*"]
     }
   },
   "exclude": ["node_modules", "tmp"]
