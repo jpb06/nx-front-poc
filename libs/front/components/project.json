@@ -1,0 +1,29 @@
+{
+  "root": "libs/front/components",
+  "sourceRoot": "libs/front/components/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/front/components/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/front/components"
+      ],
+      "options": {
+        "jestConfig": "libs/front/components/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  }
+}

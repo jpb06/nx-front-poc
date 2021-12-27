@@ -1,84 +1,37 @@
-parser: '@typescript-eslint/parser'
+root: true
 
-parserOptions:
-  project: './tsconfig.json'
+ignorePatterns:
+  - '**/*'
 
 plugins:
-  - '@typescript-eslint'
-  - prettier
-  - jest
-  - jest-dom
-
-extends:
-  - next
-  - plugin:@typescript-eslint/recommended
-  - plugin:prettier/recommended
-  - plugin:jest-dom/recommended
-  - plugin:import/typescript
-  - plugin:jest/recommended
-  - plugin:jest/style
-
-env:
-  es6: true
-  browser: true
-  jest: true
-  node: true
-
-settings:
-  react:
-    version: detect
-
-rules:
-  '@typescript-eslint/explicit-function-return-type': off
-  '@typescript-eslint/explicit-member-accessibility': off
-  '@typescript-eslint/indent': off
-  '@typescript-eslint/member-delimiter-style': off
-  '@typescript-eslint/no-explicit-any': off
-  '@typescript-eslint/no-var-requires': off
-  '@typescript-eslint/no-use-before-define': off
-  '@typescript-eslint/no-unused-vars':
-    - error
-    - argsIgnorePattern: '^_'
-  import/no-unresolved: off
-  import/order:
-    - error
-    - newlines-between: always
-      groups:
-        - builtin
-        - external
-        - internal
-        - [parent, sibling, index]
-      alphabetize:
-        order: 'asc'
-      pathGroups:
-        - pattern: '{@api/**,@components/**,@logic/**,@type/**,@tests/**,@styles/**,@theme/**}'
-          group: internal
-          position: before
-      pathGroupsExcludedImportTypes:
-        - builtin
-  no-console:
-    - error
-    - allow: [warn, error]
-  react/react-in-jsx-scope: off
-  react/display-name: off
-  react/prop-types: off
-  jest/expect-expect:
-    - error
-    - assertFunctionNames:
-        - expect
-        - expect*
-        - waitForElementToBeRemoved
-        - screen.findBy*
+  - '@nrwl/nx'
 
 overrides:
-  - files: cypress/**/*.ts
-    env:
-      mocha: true
-    plugins:
-      - cypress
-    extends:
-      - plugin:cypress/recommended
+  - files:
+      - '*.ts'
+      - '*.tsx'
+      - '*.js'
+      - '*.jsx'
     rules:
-      'jest/expect-expect': off
-      'jest/valid-expect': off
-      'jest/valid-expect-in-promise': off
+      '@nrwl/nx/enforce-module-boundaries':
+        - error
+        - enforceBuildableLibDependency: true
+          allow: []
+          depConstraints:
+            - sourceTag: '*'
+              onlyDependOnLibsWithTags:
+                - '*'
+
+  - files:
+      - '*.ts'
+      - '*.tsx'
+    extends:
+      - plugin:@nrwl/nx/typescript
+    rules: {}
+
+  - files:
+      - '*.js'
+      - '*.jsx'
+    extends:
+      - plugin:@nrwl/nx/javascript
+    rules: {}
