@@ -4,10 +4,10 @@ import { MutationCache, QueryClient, QueryClientProvider } from 'react-query';
 import {
   ShowSnackbarFn,
   SnackbarContext,
-} from '@libs/components/feedback/snackbar/Snackbar.context';
-import { handleMutationsErrors } from '@logic/handle-mutations-errors';
+} from '../feedback/snackbar/Snackbar.context';
+import { handleMutationsErrors } from '../logic/handle-mutations-errors';
 
-const getQueryClient = (showSnackbar: ShowSnackbarFn) => {
+const getQueryClient = (showSnackbar: ShowSnackbarFn): QueryClient => {
   const mutationCache = new MutationCache({
     onError: handleMutationsErrors(showSnackbar),
   });
@@ -26,7 +26,9 @@ const getQueryClient = (showSnackbar: ShowSnackbarFn) => {
 
 type Props = Record<never, never>;
 
-export const ReactQueryProvider = ({ children }: PropsWithChildren<Props>) => {
+export const ReactQueryProvider = ({
+  children,
+}: PropsWithChildren<Props>): JSX.Element => {
   const showSnackbar = useContext(SnackbarContext);
   const [queryClient] = useState(() => getQueryClient(showSnackbar));
 

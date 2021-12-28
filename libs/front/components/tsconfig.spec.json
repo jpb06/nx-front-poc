@@ -10,10 +10,8 @@
     "**/*.spec.ts",
     "**/*.test.tsx",
     "**/*.spec.tsx",
-    "**/*.test.js",
-    "**/*.spec.js",
-    "**/*.test.jsx",
-    "**/*.spec.jsx",
-    "**/*.d.ts"
+    "**/*.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
   ]
 }

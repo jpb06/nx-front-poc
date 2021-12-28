@@ -15,7 +15,7 @@ interface PasswordInputProps<T> extends UseControllerProps<T> {
   label: string;
 }
 
-export function PasswordInput<T>(props: PasswordInputProps<T>) {
+export function PasswordInput<T>(props: PasswordInputProps<T>): JSX.Element {
   const {
     field: { ref, ...otherFieldProps },
     fieldState,

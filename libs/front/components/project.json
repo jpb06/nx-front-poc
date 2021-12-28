@@ -15,6 +15,12 @@
         ]
       }
     },
+    "type-check": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "yarn tsc -p ./libs/front/components/tsconfig.json --noEmit"
+      }
+    },
     "test": {
       "executor": "@nrwl/jest:jest",
       "outputs": [

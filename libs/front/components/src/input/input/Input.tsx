@@ -1,5 +1,4 @@
 import { CircularProgress, InputAdornment, TextField } from '@mui/material';
-import React from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 
 export interface InputProps<T> extends UseControllerProps<T> {
@@ -7,7 +6,7 @@ export interface InputProps<T> extends UseControllerProps<T> {
   loading?: boolean;
 }
 
-export function Input<T>(props: InputProps<T>) {
+export function Input<T>(props: InputProps<T>): JSX.Element {
   const {
     field: { ref, ...otherFieldProps },
     fieldState,

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-import { useUserDataQuery } from '@api/useUserDataQuery';
+import { useUserDataQuery } from '@front/api/useUserDataQuery';
 
 export const useRedirectOnNoUserData = () => {
   const router = useRouter();

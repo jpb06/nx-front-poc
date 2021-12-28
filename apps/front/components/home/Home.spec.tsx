@@ -3,7 +3,6 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-
 import { mockedSignedUser } from '@tests/mocked-data/mocked-signed-user';
 import { mockNextRouter } from '@tests/mocks/mock.next.router';
 import { msw } from '@tests/msw';

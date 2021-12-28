@@ -4,7 +4,6 @@
     "front": "apps/front",
     "front-e2e": "apps/front-e2e",
     "front-components": "libs/front/components",
-    "front-logic": "libs/front/logic",
     "front-tests": "libs/front/tests",
     "front-theme": "libs/front/theme"
   }

@@ -18,7 +18,11 @@ export interface SelectProps<T> extends UseControllerProps<T> {
   data?: SelectItem[];
 }
 
-export function Select<T>({ label, data, ...controllerProps }: SelectProps<T>) {
+export function Select<T>({
+  label,
+  data,
+  ...controllerProps
+}: SelectProps<T>): JSX.Element | null {
   const { field, fieldState } = useController(controllerProps);
   const { name } = controllerProps;
 

@@ -1,26 +1,9 @@
-root: true
-
-parser: '@typescript-eslint/parser'
-
-parserOptions:
-  project: './apps/front/tsconfig.json'
-
 plugins:
-  - '@typescript-eslint'
-  - prettier
-  - jest
   - jest-dom
 
 extends:
+  - '../../.eslintrc.yml'
   - plugin:@nrwl/nx/react-typescript
-  - next
-  - next/core-web-vitals
-  - plugin:@typescript-eslint/recommended
-  - plugin:prettier/recommended
-  - plugin:import/recommended
-  - plugin:import/typescript
-  - plugin:jest/recommended
-  - plugin:jest/style
   - plugin:jest-dom/recommended
 
 env:
@@ -43,36 +26,6 @@ overrides:
       - '*.ts'
       - '*.tsx'
     rules:
-      '@next/next/no-html-link-for-pages':
-        - error
-        - apps/front/pages
-      '@typescript-eslint/explicit-function-return-type': off
-      '@typescript-eslint/explicit-member-accessibility': off
-      '@typescript-eslint/indent': off
-      '@typescript-eslint/member-delimiter-style': off
-      '@typescript-eslint/no-explicit-any': off
-      '@typescript-eslint/no-var-requires': off
-      '@typescript-eslint/no-use-before-define': off
-      '@typescript-eslint/no-unused-vars':
-        - error
-        - argsIgnorePattern: '^_'
-      import/no-unresolved: off
-      import/order:
-        - error
-        - newlines-between: always
-          groups:
-            - builtin
-            - external
-            - internal
-            - [parent, sibling, index]
-          alphabetize:
-            order: 'asc'
-          pathGroups:
-            - pattern: '{@api/**,@front/**,@type/**}'
-              group: internal
-              position: before
-          pathGroupsExcludedImportTypes:
-            - builtin
       no-console:
         - error
         - allow: [warn, error]

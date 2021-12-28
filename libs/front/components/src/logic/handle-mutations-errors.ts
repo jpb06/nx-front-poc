@@ -1,4 +1,4 @@
-import { ShowSnackbarFn } from '@front/components/feedback';
+import { ShowSnackbarFn } from '../feedback/snackbar/Snackbar.context';
 
 export const handleMutationsErrors =
   (showSnackbar: ShowSnackbarFn) => (error: unknown) => {

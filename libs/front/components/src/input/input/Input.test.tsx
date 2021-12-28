@@ -1,7 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import { RHFWrapper } from '@front/tests';
-
+import { RHFWrapper } from '../../test/wrappers/react-hook-form';
 import { Input } from './Input';
 
 const { getAllByText } = screen;

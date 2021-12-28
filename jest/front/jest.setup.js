@@ -1,6 +1,7 @@
 require('@testing-library/jest-dom/extend-expect');
-import { matchers } from '@emotion/jest';
-import { server } from '../msw/server';
+const { matchers } = require('@emotion/jest');
+
+const { server } = require('./../../libs/front/tests/src/msw/server');
 
 beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
 afterEach(() => server.resetHandlers());

@@ -1,7 +1,5 @@
+import { Title } from '@mui/icons-material';
 import { Avatar, CircularProgress, Divider, Grid, List } from '@mui/material';
-
-import { SubTitle, Title } from '@front/components/data-display';
-import { stringAvatar } from '@front/logic/avatar.logic';
 
 import { Skill } from './children/Skill';
 import { useRedirectOnNoUserData } from './hooks/useRedirectOnNoUserData';

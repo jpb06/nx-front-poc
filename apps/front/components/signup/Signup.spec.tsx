@@ -11,7 +11,7 @@ import { msw } from '@tests/msw';
 import { render } from '@tests/renders/render';
 import React from 'react';
 
-import { mockedRoles } from '@front/tests/mocked-data/mocked-roles';
+import { mockedData } from '@front/tests';
 
 import { Signup } from './Signup';
 import { FormModel } from './logic';

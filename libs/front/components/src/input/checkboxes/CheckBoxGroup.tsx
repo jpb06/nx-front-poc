@@ -20,7 +20,9 @@ export interface CheckBoxGroupProps<T> extends UseControllerProps<T> {
   items?: Array<CheckboxItem>;
 }
 
-export function CheckBoxGroup<T>(props: CheckBoxGroupProps<T>) {
+export function CheckBoxGroup<T>(
+  props: CheckBoxGroupProps<T>
+): JSX.Element | null {
   const { field, fieldState } = useController(props);
 
   if (!props.items) {
@@ -30,7 +32,7 @@ export function CheckBoxGroup<T>(props: CheckBoxGroupProps<T>) {
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     checked: boolean
-  ) => {
+  ): void => {
     if (checked) {
       field.onChange([...(field.value as Array<number>), event.target.value]);
     } else {

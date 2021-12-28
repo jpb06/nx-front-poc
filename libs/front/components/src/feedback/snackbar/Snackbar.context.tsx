@@ -42,7 +42,7 @@ export const WithSnackbar: React.FC = ({ children }) => {
     }
   }, [snackPack, messageInfo, open]);
 
-  const showSnackbar = (message: string, severity: AlertColor) => {
+  const showSnackbar = (message: string, severity: AlertColor): void => {
     setSnackPack((prev) => [
       ...prev,
       { message, severity, key: new Date().getTime() },
@@ -52,14 +52,14 @@ export const WithSnackbar: React.FC = ({ children }) => {
   const handleClose = (
     _: Event | SyntheticEvent<unknown, Event>,
     reason?: string
-  ) => {
+  ): void => {
     if (reason === 'clickaway') {
       return;
     }
     setOpen(false);
   };
 
-  const handleExited = () => {
+  const handleExited = (): void => {
     setMessageInfo(undefined);
   };
 

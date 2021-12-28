@@ -1,5 +1,5 @@
 import { Alert, Snackbar as MuiSnackbar } from '@mui/material';
-import React, { SyntheticEvent } from 'react';
+import { SyntheticEvent } from 'react';
 
 import { SnackbarMessage } from './Snackbar.context';
 
@@ -15,7 +15,7 @@ export const Snackbar = ({
   onExited,
   isOpen,
   messageInfo,
-}: SnackbarProps) => (
+}: SnackbarProps): JSX.Element => (
   <MuiSnackbar
     key={messageInfo ? messageInfo.key : undefined}
     open={isOpen}

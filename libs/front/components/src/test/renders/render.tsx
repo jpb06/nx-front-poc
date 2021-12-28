@@ -1,13 +1,12 @@
-import { render as rtlRender } from '@testing-library/react';
+import { render as rtlRender, RenderResult } from '@testing-library/react';
 import React from 'react';
 
-import { WithSnackbar } from '@front/components/feedback';
-
+import { WithSnackbar } from '../../feedback/snackbar/Snackbar.context';
 import { EmotionCacheProvider } from '../../providers';
-import { ReactQueryWrapper } from '../wrappers/react-query';
 import { RHFWrapper } from '../wrappers/react-hook-form';
+import { ReactQueryWrapper } from '../wrappers/react-query';
 
-export const render = (component: JSX.Element) => {
+export const render = (component: JSX.Element): RenderResult => {
   const wrapper: React.FC = ({ children }) => {
     return (
       <EmotionCacheProvider>

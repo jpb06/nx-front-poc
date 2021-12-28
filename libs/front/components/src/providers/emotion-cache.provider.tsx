@@ -1,7 +1,7 @@
 import { CacheProvider, EmotionCache } from '@emotion/react';
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
-import { createEmotionCache } from '@logic/create-emotion-cache.logic';
+import { createEmotionCache } from '../logic/create-emotion-cache.logic';
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -13,6 +13,6 @@ interface Props {
 export const EmotionCacheProvider = ({
   children,
   emotionCache = clientSideEmotionCache,
-}: PropsWithChildren<Props>) => {
-  return <CacheProvider value={emotionCache}>{children}</CacheProvider>;
-};
+}: PropsWithChildren<Props>): JSX.Element => (
+  <CacheProvider value={emotionCache}>{children}</CacheProvider>
+);

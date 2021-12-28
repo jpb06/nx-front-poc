@@ -1,4 +1,4 @@
-const stringToColor = (string: string) => {
+const stringToColor = (string: string): string => {
   let hash = 0;
   let i = 0;
 
@@ -18,7 +18,14 @@ const stringToColor = (string: string) => {
   return color;
 };
 
-export const stringAvatar = (name: string) => {
+type StringAvatarResult = {
+  sx: {
+    bgcolor: string;
+  };
+  children: string;
+};
+
+export const stringAvatar = (name: string): StringAvatarResult => {
   const chunks = name.toUpperCase().split(' ');
 
   return {

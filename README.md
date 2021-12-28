@@ -31,6 +31,9 @@ There are also many [community plugins](https://nx.dev/community) you could add.
 
 ## Generate an application
 
+` nx run front-components:test --skip-nx-cache --verbose`
+` nx run front-components:lint --skip-nx-cache --verbose`
+
 Run `nx g @nrwl/react:app my-app` to generate an application.
 
 > You can use any of the plugins above to generate applications as well.
