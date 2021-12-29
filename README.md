@@ -31,6 +31,11 @@ There are also many [community plugins](https://nx.dev/community) you could add.
 
 ## Generate an application
 
+`nx run back:build --skip-nx-cache --verbose`
+`nx run back:serve --skip-nx-cache --verbose`
+`nx run back:lint --skip-nx-cache --verbose`
+`nx run front:test --skip-nx-cache --verbose`
+
 `nx run front:build --skip-nx-cache --verbose`
 `nx run front:serve --skip-nx-cache --verbose`
 `nx run front:lint --skip-nx-cache --verbose`
