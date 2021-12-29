@@ -4,13 +4,12 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 
-import { WithSnackbar } from '@libs/components/feedback/snackbar/Snackbar.context';
-
+import { WithSnackbar } from '@front/components/feedback';
 import {
   EmotionCacheProvider,
   ReactQueryProvider,
-  ThemeProvider,
-} from '../providers';
+  AppThemeProvider,
+} from '@front/components/providers';
 
 export interface EmotionAppProps extends AppProps {
   emotionCache: EmotionCache;
@@ -27,7 +26,7 @@ const MyApp: React.FC<EmotionAppProps> = ({
         <title>My page</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider>
+      <AppThemeProvider>
         {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
         <CssBaseline />
         <WithSnackbar>
@@ -35,7 +34,7 @@ const MyApp: React.FC<EmotionAppProps> = ({
             <Component {...pageProps} />
           </ReactQueryProvider>
         </WithSnackbar>
-      </ThemeProvider>
+      </AppThemeProvider>
     </EmotionCacheProvider>
   );
 };

@@ -1,6 +1,6 @@
-import * as z from 'zod';
+import * as zod from 'zod';
 
-export const schema = z.object({
+export const schema = zod.object({
   // userName: z
   //   .string()
   //   .nonempty('A username required')
@@ -13,14 +13,14 @@ export const schema = z.object({
   //       message: 'username is already taken :(',
   //     }
   //   ),
-  firstName: z.string().nonempty('A firstName is required'),
-  lastName: z.string().nonempty('A lastName is required'),
-  password: z.string().nonempty('A Password is required'),
-  idRole: z.number().gte(0, 'You need to select a role'),
-  idSkills: z
-    .preprocess((v) => parseInt(z.string().parse(v), 10), z.number())
+  firstName: zod.string().nonempty('A first name is required'),
+  lastName: zod.string().nonempty('A last name is required'),
+  password: zod.string().nonempty('A password is required'),
+  idRole: zod.number().gte(0, 'You need to select a role'),
+  idSkills: zod
+    .preprocess((v) => parseInt(zod.string().parse(v), 10), zod.number())
     .array()
     .max(3, 'You need to select at most three skills'),
 });
 
-export type FormModel = z.infer<typeof schema>;
+export type FormModel = zod.infer<typeof schema>;

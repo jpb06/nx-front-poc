@@ -1,4 +1,4 @@
-export const mockedSkills = [
+export const skills = [
   {
     id: 1,
     name: 'jest',

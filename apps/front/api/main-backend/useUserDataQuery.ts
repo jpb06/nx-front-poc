@@ -1,5 +1,6 @@
-import { useAxiosQuery } from './generic/useAxiosQuery';
-import { ApiResponseDto, SignupResultDto } from './swagger-types/api-types';
+import { ApiResponseDto, SignupResultDto } from '@front/api';
+
+import { useAxiosQuery } from '../generic/useAxiosQuery';
 
 export const useUserDataQuery = () =>
   useAxiosQuery<SignupResultDto, ApiResponseDto>(

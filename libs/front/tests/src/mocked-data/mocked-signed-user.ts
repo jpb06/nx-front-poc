@@ -1,6 +1,6 @@
-import { SignedUser } from '@api/swagger-types/api-types';
+import { SignedUser } from '@front/api';
 
-export const mockedSignedUser: SignedUser = {
+export const signedUser: SignedUser = {
   id: '1',
   firstName: 'Yolo',
   lastName: 'Mc Cool',

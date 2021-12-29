@@ -31,8 +31,18 @@ There are also many [community plugins](https://nx.dev/community) you could add.
 
 ## Generate an application
 
-` nx run front-components:test --skip-nx-cache --verbose`
-` nx run front-components:lint --skip-nx-cache --verbose`
+`nx run front:build --skip-nx-cache --verbose`
+`nx run front:serve --skip-nx-cache --verbose`
+`nx run front:lint --skip-nx-cache --verbose`
+`nx run front:type-check --skip-nx-cache --verbose`
+`nx run front:test --skip-nx-cache --verbose`
+
+`nx run front-e2e:lint --skip-nx-cache --verbose`
+`nx run front-e2e:e2e --skip-nx-cache --verbose`
+
+`nx run front-components:test --skip-nx-cache --verbose`
+`nx run front-components:lint --skip-nx-cache --verbose`
+`nx run front-components:type-check --skip-nx-cache`
 
 Run `nx g @nrwl/react:app my-app` to generate an application.
 

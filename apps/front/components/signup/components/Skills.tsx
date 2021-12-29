@@ -1,9 +1,7 @@
-import React from 'react';
+import { CheckBoxGroup, CheckBoxGroupProps } from '@front/components/input';
+import { ErrorBlock } from '@front/components/layout';
 
-import { useSkillsQuery } from '@api/useSkillsQuery';
-import { CheckBoxGroup, CheckBoxGroupProps } from '@libs/components/forms';
-import { ErrorBlock } from '@libs/components/layout/error-block/ErrorBlock';
-
+import { useSkillsQuery } from '../../../api';
 import { useSignupData } from '../hooks/useSignupData';
 import { FormModel } from '../logic';
 import { Loading } from './generic/Loading';

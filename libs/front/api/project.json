@@ -1,0 +1,19 @@
+{
+  "root": "libs/api",
+  "sourceRoot": "libs/api/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/api/**/*.ts"
+        ]
+      }
+    }
+  },
+  "tags": []
+}

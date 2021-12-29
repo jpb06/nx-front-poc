@@ -5,7 +5,9 @@
   "targets": {
     "build": {
       "executor": "@nrwl/next:build",
-      "outputs": ["{options.outputPath}"],
+      "outputs": [
+        "{options.outputPath}"
+      ],
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/front",
@@ -36,17 +38,29 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/front"],
+      "outputs": [
+        "coverage/apps/front"
+      ],
       "options": {
         "jestConfig": "apps/front/jest.config.js",
         "passWithNoTests": true
       }
     },
+    "type-check": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "yarn tsc -p ./apps/front/tsconfig.json --noEmit --pretty"
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": ["{options.outputFile}"],
+      "outputs": [
+        "{options.outputFile}"
+      ],
       "options": {
-        "lintFilePatterns": ["apps/front/**/*.{ts,tsx,js,jsx}"]
+        "lintFilePatterns": [
+          "apps/front/**/*.{ts,tsx,js,jsx}"
+        ]
       }
     }
   },

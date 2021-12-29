@@ -1,11 +1,12 @@
-import { AxiosMutationOptions } from './generic/types/axios-mutation-options.type';
-import { useAxiosMutation } from './generic/useAxiosMutation';
 import {
   path,
   RequestBody,
   SignupError,
   SignupSuccess,
-} from './swagger-types/UsersController/signup';
+} from '@front/api/users/signup';
+
+import { AxiosMutationOptions } from '../generic/types/axios-mutation-options.type';
+import { useAxiosMutation } from '../generic/useAxiosMutation';
 
 export const useSignupMutation = (
   options?: AxiosMutationOptions<SignupSuccess, SignupError, RequestBody>

@@ -19,9 +19,7 @@ interface MockNextRouterProps {
   route?: string;
 }
 
-export const mockNextRouter = (
-  props?: MockNextRouterProps
-): MockedNextRouter => {
+export const nextRouter = (props?: MockNextRouterProps): MockedNextRouter => {
   const pushMock = jest.fn();
   const replaceMock = jest.fn();
   const backMock = jest.fn();

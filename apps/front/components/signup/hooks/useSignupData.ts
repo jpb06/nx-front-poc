@@ -1,4 +1,4 @@
-import { ApiResponseDto } from '@api/swagger-types/api-types';
+import { ApiResponseDto } from '@front/api';
 
 import { QueryStatus } from '../types/query-status.type';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { LoadingBlock } from '@libs/components/feedback/loading-block/LoadingBlock';
+import { LoadingBlock } from '@front/components/feedback';
 
 import { SignupPreloadedDataLabel } from '../../types/signup-preloaded-data-label';
 

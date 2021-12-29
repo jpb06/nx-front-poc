@@ -1,8 +1,12 @@
 import { Title } from '@mui/icons-material';
 import { Avatar, CircularProgress, Divider, Grid, List } from '@mui/material';
 
+import { SubTitle } from '@front/components/data-display';
+import { FullpageBox } from '@front/components/layout';
+
 import { Skill } from './children/Skill';
 import { useRedirectOnNoUserData } from './hooks/useRedirectOnNoUserData';
+import { stringAvatar } from './logic/avatar.logic';
 
 export const Home = () => {
   const user = useRedirectOnNoUserData();

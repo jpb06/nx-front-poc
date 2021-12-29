@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { useRolesQuery } from '@api/useRolesQuery';
-import { Select, SelectProps } from '@libs/components/forms';
-import { ErrorBlock } from '@libs/components/layout/error-block/ErrorBlock';
+import { Select, SelectProps } from '@front/components/input';
+import { ErrorBlock } from '@front/components/layout';
 
+import { useRolesQuery } from '../../../api';
 import { useSignupData } from '../hooks/useSignupData';
 import { FormModel } from '../logic';
 import { Loading } from './generic/Loading';

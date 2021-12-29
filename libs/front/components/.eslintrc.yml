@@ -4,6 +4,7 @@ plugins:
 extends:
   - '../../../.eslintrc.yml'
   - plugin:@nrwl/nx/react-typescript
+  - plugin:react/recommended
   - plugin:jest-dom/recommended
 
 env:

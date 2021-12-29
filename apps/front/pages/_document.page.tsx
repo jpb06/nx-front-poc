@@ -2,8 +2,8 @@ import createEmotionServer from '@emotion/server/create-instance';
 import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
 
-import { theme } from '@libs/theme';
-import { createEmotionCache } from '@logic/create-emotion-cache.logic';
+import { createEmotionCache } from '@front/components/logic';
+import { appTheme } from '@front/theme';
 
 export default class MyDocument extends Document {
   render() {
@@ -11,7 +11,7 @@ export default class MyDocument extends Document {
       <Html lang="en">
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
+          <meta name="theme-color" content={appTheme.palette.primary.main} />
           <link
             rel="stylesheet"
             href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
@@ -60,7 +60,7 @@ MyDocument.getInitialProps = async (ctx) => {
 
   ctx.renderPage = () =>
     originalRenderPage({
-      // eslint-disable-next-line react/display-name
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       enhanceApp: (App: any) => (props) =>
         <App emotionCache={cache} {...props} />,
     });

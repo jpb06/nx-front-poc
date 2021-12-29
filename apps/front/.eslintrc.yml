@@ -2,15 +2,15 @@ plugins:
   - jest-dom
 
 extends:
-  - '../../.eslintrc.yml'
   - plugin:@nrwl/nx/react-typescript
+  - '../../.eslintrc.yml'
+  - next
+  - next/core-web-vitals
+  - plugin:react/recommended
   - plugin:jest-dom/recommended
 
 env:
-  es6: true
-  browser: true
   jest: true
-  node: true
 
 settings:
   react:
@@ -26,6 +26,9 @@ overrides:
       - '*.ts'
       - '*.tsx'
     rules:
+      '@next/next/no-html-link-for-pages':
+        - error
+        - apps/front/src/pages
       no-console:
         - error
         - allow: [warn, error]
@@ -39,3 +42,5 @@ overrides:
             - expect*
             - waitForElementToBeRemoved
             - screen.findBy*
+      react/no-danger:
+        - error

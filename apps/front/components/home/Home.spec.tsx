@@ -3,17 +3,16 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import { mockedSignedUser } from '@tests/mocked-data/mocked-signed-user';
-import { mockNextRouter } from '@tests/mocks/mock.next.router';
-import { msw } from '@tests/msw';
-import { render } from '@tests/renders/render';
+
+import { render } from '@front/components/tests';
+import { msw, mocks, mockedData } from '@front/tests';
 
 import { Home } from './Home';
 
 jest.mock('next/router');
 
 describe('Signup component', () => {
-  const { pushMock } = mockNextRouter();
+  const { pushMock } = mocks.nextRouter();
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -46,7 +45,7 @@ describe('Signup component', () => {
   });
 
   it('should display user data', async () => {
-    msw.userDataQuery(200, mockedSignedUser);
+    msw.userDataQuery(200, mockedData.signedUser);
 
     render(<Home />);
 

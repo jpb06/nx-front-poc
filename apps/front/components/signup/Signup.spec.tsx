@@ -4,14 +4,10 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { mockedSignedUser } from '@tests/mocked-data/mocked-signed-user';
-import { mockedSkills } from '@tests/mocked-data/mocked-skills';
-import { mockNextRouter } from '@tests/mocks/mock.next.router';
-import { msw } from '@tests/msw';
-import { render } from '@tests/renders/render';
 import React from 'react';
 
-import { mockedData } from '@front/tests';
+import { render } from '@front/components/tests';
+import { mockedData, mocks, msw } from '@front/tests';
 
 import { Signup } from './Signup';
 import { FormModel } from './logic';
@@ -29,11 +25,11 @@ const {
 } = screen;
 
 describe('Signup component', () => {
-  const { pushMock } = mockNextRouter();
+  const { pushMock } = mocks.nextRouter();
 
   beforeEach(() => {
-    msw.rolesQuery(200, mockedRoles);
-    msw.skillsQuery(200, mockedSkills);
+    msw.rolesQuery(200, mockedData.roles);
+    msw.skillsQuery(200, mockedData.skills);
   });
 
   it('should render vanilla html/css in snapshot', () => {
@@ -103,10 +99,10 @@ describe('Signup component', () => {
     });
 
     it('should send valid data to the API', async () => {
-      msw.signupMutation(200, { result: mockedSignedUser });
+      msw.signupMutation(200, { result: mockedData.signedUser });
 
-      const role = mockedRoles[0];
-      const skills = mockedSkills.slice(0, 2);
+      const role = mockedData.roles[0];
+      const skills = mockedData.skills.slice(0, 2);
       const validData: FormModel = {
         firstName: 'firstName',
         lastName: 'lastName',
@@ -144,8 +140,8 @@ describe('Signup component', () => {
     it('should display a snackbar with the backend error message when the mutation failed', async () => {
       msw.signupMutation(500, { message: 'uncool bro' });
 
-      const role = mockedRoles[0];
-      const skills = mockedSkills.slice(0, 2);
+      const role = mockedData.roles[0];
+      const skills = mockedData.skills.slice(0, 2);
       const validData: FormModel = {
         firstName: 'firstName',
         lastName: 'lastName',
@@ -183,8 +179,8 @@ describe('Signup component', () => {
     it('should display a snackbar with a default error message if the backend sent no error message', async () => {
       msw.signupMutation(500, {});
 
-      const role = mockedRoles[0];
-      const skills = mockedSkills.slice(0, 2);
+      const role = mockedData.roles[0];
+      const skills = mockedData.skills.slice(0, 2);
       const validData: FormModel = {
         firstName: 'firstName',
         lastName: 'lastName',

@@ -1,7 +1,7 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import Image from 'next/image';
 
-import { SkillDto } from '@api/swagger-types/api-types';
+import { SkillDto } from '@front/api';
 
 import { getSkillIconPath } from '../logic/getSkillIconPath';
 

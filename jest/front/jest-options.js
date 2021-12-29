@@ -5,12 +5,16 @@ const {
 } = require('../../tsconfig.base');
 
 const getJestOptions = (coverageDirectory) => {
+  const pathLevel = Array(coverageDirectory.split('/').length)
+    .fill('..')
+    .join('/');
+
   /**
    * @type {import('ts-jest/dist/types').InitialOptionsTsJest}
    **/
   const options = {
     displayName: 'front',
-    preset: '../../../jest/jest.preset.js',
+    preset: `${pathLevel}/jest/jest.preset.js`,
     moduleNameMapper: {
       '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$': 'identity-obj-proxy',
       ...pathsToModuleNameMapper(tsconfigPaths, { prefix: '.' }),
@@ -21,9 +25,9 @@ const getJestOptions = (coverageDirectory) => {
     },
     transformIgnorePatterns: ['/node_modules/'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],
-    coverageDirectory: `../../../coverage/${coverageDirectory}`,
-    globalSetup: '../../../jest/front/jest.setup-env.js',
-    setupFilesAfterEnv: ['../../../jest/front/jest.setup.js'],
+    coverageDirectory: `${pathLevel}/coverage/${coverageDirectory}`,
+    globalSetup: `${pathLevel}/jest/front/jest.setup-env.js`,
+    setupFilesAfterEnv: [`${pathLevel}/jest/front/jest.setup.js`],
     watchPlugins: [
       'jest-watch-typeahead/filename',
       'jest-watch-typeahead/testname',

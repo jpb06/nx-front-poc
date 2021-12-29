@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ApiResponseDto } from '@api/swagger-types/api-types';
-import { ErrorBlock } from '@libs/components/layout/error-block/ErrorBlock';
+import { ApiResponseDto } from '@front/api';
+import { ErrorBlock } from '@front/components/layout';
 
 import { SignupPreloadedDataLabel } from '../../types/signup-preloaded-data-label';
 

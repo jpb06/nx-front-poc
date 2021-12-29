@@ -1,5 +1,4 @@
-import { msw } from '@tests/msw';
-import { genericGetUrl } from '@tests/msw/handlers/generic-get.interceptor';
+import { msw } from '@front/tests';
 
 import { axiosRequest } from './axios-request';
 
@@ -12,7 +11,7 @@ describe('axiosRequest function', () => {
 
     await expect(
       axiosRequest({
-        url: genericGetUrl,
+        url: msw.genericGetUrl,
         method,
       })
     ).rejects.toStrictEqual(data);
@@ -23,10 +22,10 @@ describe('axiosRequest function', () => {
 
     await expect(
       axiosRequest({
-        url: genericGetUrl,
+        url: msw.genericGetUrl,
         method,
       })
-    ).rejects.toThrow(`${method} ${genericGetUrl} returned no result`);
+    ).rejects.toThrow(`${method} ${msw.genericGetUrl} returned no result`);
   });
 
   it('should return result', async () => {
@@ -36,7 +35,7 @@ describe('axiosRequest function', () => {
     });
 
     const result = await axiosRequest({
-      url: genericGetUrl,
+      url: msw.genericGetUrl,
       method,
     });
 

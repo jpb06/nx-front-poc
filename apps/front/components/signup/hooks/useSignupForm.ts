@@ -4,15 +4,15 @@ import { BaseSyntheticEvent } from 'react';
 import { Control, useForm } from 'react-hook-form';
 import { useQueryClient } from 'react-query';
 
-import { SignupError } from '@api/swagger-types/UsersController/signup';
-import { useSignupMutation } from '@api/useSignupMutation';
+import { SignupError } from '@front/api/users/signup';
 
+import { useSignupMutation } from '../../../api';
 import { formDefaultValues } from '../logic/form.default-values';
 import { schema, FormModel } from '../logic/form.schema';
 
 type SignupFormHook = {
   onSubmit: (
-    e?: BaseSyntheticEvent<object, any, any> | undefined
+    e?: BaseSyntheticEvent<object, unknown, unknown> | undefined
   ) => Promise<void>;
   control: Control<FormModel, object>;
   isLoading: boolean;
