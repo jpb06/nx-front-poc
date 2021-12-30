@@ -15,7 +15,15 @@ overrides:
   - files:
       - '*.ts'
       - '*.tsx'
-    rules: {}
+    rules:
+      '@nrwl/nx/enforce-module-boundaries': 
+        - error
+        - enforceBuildableLibDependency: true
+          allow: []
+          depConstraints:
+          - sourceTag: "*"
+            onlyDependOnLibsWithTags:
+            - "*"
 
   - files:
       - '*.js'

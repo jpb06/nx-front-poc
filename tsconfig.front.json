@@ -1,6 +1,7 @@
 {
   "extends": "./tsconfig.base.json",
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "@api": ["libs/front/api/src/main-backend/api-types.ts"],
       "@api/roles/get-all": [

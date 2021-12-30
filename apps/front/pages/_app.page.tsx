@@ -4,12 +4,12 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 
-import { WithSnackbar } from '@front/components/feedback';
+import { WithSnackbar } from '@components/feedback';
 import {
   EmotionCacheProvider,
   ReactQueryProvider,
   AppThemeProvider,
-} from '@front/components/providers';
+} from '@components/providers';
 
 export interface EmotionAppProps extends AppProps {
   emotionCache: EmotionCache;

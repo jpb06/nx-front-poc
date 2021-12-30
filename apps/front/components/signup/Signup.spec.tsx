@@ -6,8 +6,8 @@ import {
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
-import { render } from '@front/components/tests';
-import { mockedData, mocks, msw } from '@front/tests';
+import { render } from '@components/tests';
+import { mockedData, mocks, msw } from '@tests';
 
 import { Signup } from './Signup';
 import { FormModel } from './logic';

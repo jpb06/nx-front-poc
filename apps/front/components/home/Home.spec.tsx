@@ -4,8 +4,8 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 
-import { render } from '@front/components/tests';
-import { msw, mocks, mockedData } from '@front/tests';
+import { render } from '@components/tests';
+import { msw, mocks, mockedData } from '@tests';
 
 import { Home } from './Home';
 

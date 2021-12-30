@@ -1,4 +1,4 @@
-import { msw } from '@front/tests';
+import { msw } from '@tests';
 
 import { axiosRequest } from './axios-request';
 

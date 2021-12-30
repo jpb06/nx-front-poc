@@ -2,8 +2,8 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { Box, Grid } from '@mui/material';
 import React from 'react';
 
-import { Input, PasswordInput } from '@front/components/input';
-import { FullpageBox } from '@front/components/layout';
+import { Input, PasswordInput } from '@components/input';
+import { FullpageBox } from '@components/layout';
 
 import { Roles, Skills } from './components';
 import { useSignupForm } from './hooks/useSignupForm';

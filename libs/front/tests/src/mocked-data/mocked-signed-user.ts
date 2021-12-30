@@ -1,4 +1,4 @@
-import { SignedUser } from '@front/api';
+import { SignedUser } from '@api';
 
 export const signedUser: SignedUser = {
   id: '1',

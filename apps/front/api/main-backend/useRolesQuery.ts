@@ -1,8 +1,4 @@
-import {
-  GetAllRolesError,
-  GetAllRolesSuccess,
-  path,
-} from '@front/api/roles/get-all';
+import { GetAllRolesError, GetAllRolesSuccess, path } from '@api/roles/get-all';
 
 import { useAxiosQuery } from '../generic/useAxiosQuery';
 

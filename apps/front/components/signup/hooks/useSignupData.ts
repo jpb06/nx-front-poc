@@ -1,4 +1,4 @@
-import { ApiResponseDto } from '@front/api';
+import { ApiResponseDto } from '@api';
 
 import { QueryStatus } from '../types/query-status.type';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ApiResponseDto } from '@front/api';
-import { ErrorBlock } from '@front/components/layout';
+import { ApiResponseDto } from '@api';
+import { ErrorBlock } from '@components/layout';
 
 import { SignupPreloadedDataLabel } from '../../types/signup-preloaded-data-label';
 

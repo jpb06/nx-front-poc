@@ -18,6 +18,14 @@ overrides:
       - '*.js'
       - '*.jsx'
     rules:
+      '@nrwl/nx/enforce-module-boundaries': 
+        - error
+        - enforceBuildableLibDependency: true
+          allow: []
+          depConstraints:
+          - sourceTag: "*"
+            onlyDependOnLibsWithTags:
+            - "*"
       '@typescript-eslint/no-var-requires': off
       no-undef: off
       'jest/expect-expect': off

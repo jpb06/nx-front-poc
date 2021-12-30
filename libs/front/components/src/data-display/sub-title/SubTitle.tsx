@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 
-import { getAppColorFor } from '@front/theme';
+import { getAppColorFor } from '@theme';
 
 export const SubTitle: React.FC = ({ children }) => (
   <Typography

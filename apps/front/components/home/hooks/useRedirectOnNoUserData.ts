@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-import { SignedUser } from '@front/api';
+import { SignedUser } from '@api';
 
 import { useUserDataQuery } from '../../../api';
 

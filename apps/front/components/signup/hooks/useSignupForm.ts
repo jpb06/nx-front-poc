@@ -4,7 +4,7 @@ import { BaseSyntheticEvent } from 'react';
 import { Control, useForm } from 'react-hook-form';
 import { useQueryClient } from 'react-query';
 
-import { SignupError } from '@front/api/users/signup';
+import { SignupError } from '@api/users/signup';
 
 import { useSignupMutation } from '../../../api';
 import { formDefaultValues } from '../logic/form.default-values';

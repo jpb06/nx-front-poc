@@ -2,7 +2,7 @@ import {
   GetAllSkillsError,
   GetAllSkillsSuccess,
   path,
-} from '@front/api/skills/get-all';
+} from '@api/skills/get-all';
 
 import { useAxiosQuery } from '../generic/useAxiosQuery';
 

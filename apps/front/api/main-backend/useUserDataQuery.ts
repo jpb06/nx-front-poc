@@ -1,4 +1,4 @@
-import { ApiResponseDto, SignupResultDto } from '@front/api';
+import { ApiResponseDto, SignupResultDto } from '@api';
 
 import { useAxiosQuery } from '../generic/useAxiosQuery';
 

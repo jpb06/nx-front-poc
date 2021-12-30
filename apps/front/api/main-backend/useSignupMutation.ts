@@ -3,7 +3,7 @@ import {
   RequestBody,
   SignupError,
   SignupSuccess,
-} from '@front/api/users/signup';
+} from '@api/users/signup';
 
 import { AxiosMutationOptions } from '../generic/types/axios-mutation-options.type';
 import { useAxiosMutation } from '../generic/useAxiosMutation';
