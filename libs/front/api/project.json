@@ -10,7 +10,7 @@
       ],
       "options": {
         "lintFilePatterns": [
-          "libs/api/**/*.ts"
+          "libs/front/api/**/*.ts"
         ]
       }
     }

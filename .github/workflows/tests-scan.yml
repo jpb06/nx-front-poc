@@ -1,7 +1,7 @@
 name: tests
 
-env:
-  NX_CLOUD_DISTRIBUTED_EXECUTION: true
+# env:
+#   NX_CLOUD_DISTRIBUTED_EXECUTION: true
 
 on:
   push:
