@@ -26,6 +26,9 @@ jobs:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
 
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+
       - name: Setup node
         uses: actions/setup-node@v2
         with:
@@ -35,8 +38,10 @@ jobs:
       - name: Installing dependencies
         run: yarn install --frozen-lockfile
 
-      - run: yarn nx affected --target=lint --parallel --max-parallel=3
+      - name: Linting
+        run: yarn nx affected --target=lint --parallel --max-parallel=3
         timeout-minutes: 10
 
-      - run: yarn nx affected --target=test --parallel --max-parallel=3 --codeCoverage
+      - name: Tests
+        run: yarn nx affected --target=test --parallel --max-parallel=3 --codeCoverage
         timeout-minutes: 10
