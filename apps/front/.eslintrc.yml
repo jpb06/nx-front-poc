@@ -3,7 +3,7 @@ plugins:
 
 extends:
   - plugin:@nrwl/nx/react-typescript
-  - '../../.eslintrc.yml'
+  - '../../.eslintrc.front.yml'
   - next
   - next/core-web-vitals
   - plugin:react/recommended

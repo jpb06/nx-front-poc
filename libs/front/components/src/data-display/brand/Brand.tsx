@@ -2,7 +2,7 @@ import { Build } from '@mui/icons-material';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
 
-import { AppColor } from '@front/theme';
+import { AppColor } from '@theme';
 
 import { withThemeColor } from './Brand.styles';
 

@@ -53,23 +53,6 @@ overrides:
       '@typescript-eslint/no-unused-vars':
         - error
         - argsIgnorePattern: '^_'
-      import/no-unresolved: off
-      import/order:
-        - error
-        - newlines-between: always
-          groups:
-            - builtin
-            - external
-            - internal
-            - [parent, sibling, index]
-          alphabetize:
-            order: 'asc'
-          pathGroups:
-            - pattern: '{@theme,@front/**}'
-              group: internal
-              position: before
-          pathGroupsExcludedImportTypes:
-            - builtin
 
   - files:
       - '*.js'

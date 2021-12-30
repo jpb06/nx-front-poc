@@ -14,33 +14,6 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {
-      "@front/api": ["libs/front/api/src/main-backend/api-types.ts"],
-      "@front/api/roles/get-all": [
-        "libs/front/api/src/main-backend/RolesController/getAllRoles.ts"
-      ],
-      "@front/api/skills/get-all": [
-        "libs/front/api/src/main-backend/SkillsController/getAllSkills.ts"
-      ],
-      "@front/api/users/signup": [
-        "libs/front/api/src/main-backend/UsersController/signup.ts"
-      ],
-      "@front/components/data-display": [
-        "libs/front/components/src/data-display/index.ts"
-      ],
-      "@front/components/feedback": [
-        "libs/front/components/src/feedback/index.ts"
-      ],
-      "@front/components/input": ["libs/front/components/src/input/index.ts"],
-      "@front/components/layout": ["libs/front/components/src/layout/index.ts"],
-      "@front/components/logic": ["libs/front/components/src/logic/index.ts"],
-      "@front/components/providers": [
-        "libs/front/components/src/providers/index.ts"
-      ],
-      "@front/components/tests": ["libs/front/components/src/test/index.ts"],
-      "@front/tests": ["libs/front/tests/src/index.ts"],
-      "@front/theme": ["libs/front/theme/src/index.ts"]
-    }
   },
   "exclude": ["node_modules", "tmp"]
 }
