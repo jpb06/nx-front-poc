@@ -46,7 +46,8 @@ jobs:
           mkdir ~/.sonar
           unzip -q /tmp/sonar-scanner-cli/sonar-scanner-cli.zip -d ~/.sonar/native-sonar-scanner
 
-      - run: yarn nx-cloud start-ci-run
+      - name: Starting nx cloud CI
+        run: yarn nx-cloud start-ci-run
 
       - name: Linting
         run: yarn nx affected --target=lint --parallel --max-parallel=3
@@ -61,14 +62,16 @@ jobs:
           shopt -s globstar
           perl -i -p -e 's/(SF:).*(src\/.*)/$1$2/g;' coverage/**/lcov.info
 
-      - run: yarn nx affected --target=sonar --parallel --max-parallel=3
+      - name: Sonar scan
+        run: yarn nx affected --target=sonar --parallel --max-parallel=3
         timeout-minutes: 10
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           NX_CLOUD_DISTRIBUTED_EXECUTION: false
 
-      - run: yarn nx-cloud stop-all-agents
+      - name: Stopping nx cloud CI
+        run: yarn nx-cloud stop-all-agents
   
   agents:
     runs-on: ubuntu-latest
