@@ -1,84 +1,47 @@
+root: true
+
 parser: '@typescript-eslint/parser'
 
 parserOptions:
-  project: './tsconfig.json'
+  project: './tsconfig.base.json'
 
 plugins:
+  - '@nrwl/nx'
   - '@typescript-eslint'
   - prettier
   - jest
-  - jest-dom
 
 extends:
-  - next
+  - eslint:recommended
   - plugin:@typescript-eslint/recommended
   - plugin:prettier/recommended
-  - plugin:jest-dom/recommended
+  - plugin:import/recommended
   - plugin:import/typescript
   - plugin:jest/recommended
   - plugin:jest/style
 
-env:
-  es6: true
-  browser: true
-  jest: true
-  node: true
-
-settings:
-  react:
-    version: detect
-
-rules:
-  '@typescript-eslint/explicit-function-return-type': off
-  '@typescript-eslint/explicit-member-accessibility': off
-  '@typescript-eslint/indent': off
-  '@typescript-eslint/member-delimiter-style': off
-  '@typescript-eslint/no-explicit-any': off
-  '@typescript-eslint/no-var-requires': off
-  '@typescript-eslint/no-use-before-define': off
-  '@typescript-eslint/no-unused-vars':
-    - error
-    - argsIgnorePattern: '^_'
-  import/no-unresolved: off
-  import/order:
-    - error
-    - newlines-between: always
-      groups:
-        - builtin
-        - external
-        - internal
-        - [parent, sibling, index]
-      alphabetize:
-        order: 'asc'
-      pathGroups:
-        - pattern: '{@api/**,@components/**,@logic/**,@type/**,@tests/**,@styles/**,@theme/**}'
-          group: internal
-          position: before
-      pathGroupsExcludedImportTypes:
-        - builtin
-  no-console:
-    - error
-    - allow: [warn, error]
-  react/react-in-jsx-scope: off
-  react/display-name: off
-  react/prop-types: off
-  jest/expect-expect:
-    - error
-    - assertFunctionNames:
-        - expect
-        - expect*
-        - waitForElementToBeRemoved
-        - screen.findBy*
-
 overrides:
-  - files: cypress/**/*.ts
-    env:
-      mocha: true
-    plugins:
-      - cypress
+  - files:
+      - '*.ts'
+      - '*.tsx'
     extends:
-      - plugin:cypress/recommended
+      - plugin:@nrwl/nx/typescript
     rules:
-      'jest/expect-expect': off
-      'jest/valid-expect': off
-      'jest/valid-expect-in-promise': off
+      '@typescript-eslint/explicit-function-return-type': off
+      '@typescript-eslint/explicit-member-accessibility': off
+      '@typescript-eslint/indent': off
+      '@typescript-eslint/member-delimiter-style': off
+      '@typescript-eslint/no-explicit-any':
+        - error
+      '@typescript-eslint/no-var-requires': off
+      '@typescript-eslint/no-use-before-define': off
+      '@typescript-eslint/no-unused-vars':
+        - error
+        - argsIgnorePattern: '^_'
+
+  - files:
+      - '*.js'
+      - '*.jsx'
+    extends:
+      - plugin:@nrwl/nx/javascript
+    rules: {}

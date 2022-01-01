@@ -1,0 +1,54 @@
+plugins:
+  - jest-dom
+
+extends:
+  - plugin:@nrwl/nx/react-typescript
+  - '../../.eslintrc.front.yml'
+  - next
+  - next/core-web-vitals
+  - plugin:react/recommended
+  - plugin:jest-dom/recommended
+
+env:
+  jest: true
+
+settings:
+  react:
+    version: detect
+
+ignorePatterns:
+  - '!**/*.ts'
+  - '!**/*.tsx'
+  - '**/*.js'
+
+overrides:
+  - files:
+      - '*.ts'
+      - '*.tsx'
+    rules:
+      '@nrwl/nx/enforce-module-boundaries': 
+        - error
+        - enforceBuildableLibDependency: true
+          allow: []
+          depConstraints:
+          - sourceTag: "*"
+            onlyDependOnLibsWithTags:
+            - "*"
+      '@next/next/no-html-link-for-pages':
+        - error
+        - apps/front/src/pages
+      no-console:
+        - error
+        - allow: [warn, error]
+      react/react-in-jsx-scope: off
+      react/display-name: off
+      react/prop-types: off
+      jest/expect-expect:
+        - error
+        - assertFunctionNames:
+            - expect
+            - expect*
+            - waitForElementToBeRemoved
+            - screen.findBy*
+      react/no-danger:
+        - error

@@ -1,0 +1,33 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@api": ["libs/front/api/src/main-backend/api-types.ts"],
+      "@api/roles/get-all": [
+        "libs/front/api/src/main-backend/RolesController/getAllRoles.ts"
+      ],
+      "@api/skills/get-all": [
+        "libs/front/api/src/main-backend/SkillsController/getAllSkills.ts"
+      ],
+      "@api/users/signup": [
+        "libs/front/api/src/main-backend/UsersController/signup.ts"
+      ],
+      "@components/data-display": [
+        "libs/front/components/src/data-display/index.ts"
+      ],
+      "@components/feedback": [
+        "libs/front/components/src/feedback/index.ts"
+      ],
+      "@components/input": ["libs/front/components/src/input/index.ts"],
+      "@components/layout": ["libs/front/components/src/layout/index.ts"],
+      "@components/logic": ["libs/front/components/src/logic/index.ts"],
+      "@components/providers": [
+        "libs/front/components/src/providers/index.ts"
+      ],
+      "@components/tests": ["libs/front/components/src/test/index.ts"],
+      "@tests": ["libs/front/tests/src/index.ts"],
+      "@theme": ["libs/front/theme/src/index.ts"]
+    }
+  }
+}

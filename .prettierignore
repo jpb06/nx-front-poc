@@ -1,6 +1,4 @@
-node_modules
-.next
-yarn.lock
-package-lock.json
-public
-coverage
+# Add files here to ignore them from prettier formatting
+
+/dist
+/coverage
