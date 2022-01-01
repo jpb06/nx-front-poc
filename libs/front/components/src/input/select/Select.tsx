@@ -5,7 +5,6 @@ import {
   Select as MuiSelect,
   FormHelperText,
 } from '@mui/material';
-import React from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 
 export type SelectItem = {

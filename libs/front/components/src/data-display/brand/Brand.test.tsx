@@ -1,16 +1,39 @@
-import { render, RenderResult } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 
-import { AppThemeProvider } from '../../providers/app-theme.provider';
-import { Brand, BrandProps } from './Brand';
+import { render } from '../../test';
+import { Brand } from './Brand';
 
-const setup = (props: BrandProps = { color: 'white' }): RenderResult =>
-  render(<Brand {...props} />, { wrapper: AppThemeProvider });
+describe('Brand component', () => {
+  it('should display brand informations', () => {
+    render(<Brand color="white" />);
 
-it('should display brand informations', () => {
-  const { getByText } = setup();
+    expect(screen.getByText('Sandbox')).toBeInTheDocument();
+    expect(
+      screen.getByText('nextjs / react-hook-form / testing-library')
+    ).toBeInTheDocument();
+  });
 
-  expect(getByText('Sandbox')).toBeInTheDocument();
-  expect(
-    getByText('nextjs / react-hook-form / testing-library')
-  ).toBeInTheDocument();
+  it('should display a brand icon', () => {
+    render(<Brand color="white" />);
+
+    expect(screen.getByTestId('BuildIcon')).toBeInTheDocument();
+  });
+
+  it('should display sandbox in small text', () => {
+    render(<Brand color="white" big={false} />);
+
+    expect(screen.getByText('Sandbox')).toHaveClass('MuiTypography-h4');
+  });
+
+  it('should display sandbox in big text', () => {
+    render(<Brand color="white" big />);
+
+    expect(screen.getByText('Sandbox')).toHaveClass('MuiTypography-h6');
+  });
+
+  it('should display centered content', () => {
+    render(<Brand color="white" centered withBottomMargin />);
+
+    expect(screen.getByText('Sandbox')).toBeInTheDocument();
+  });
 });

@@ -1,4 +1,4 @@
-import { CircularProgress, InputAdornment, TextField } from '@mui/material';
+import { TextField } from '@mui/material';
 import { useController, UseControllerProps } from 'react-hook-form';
 
 export interface InputProps<T> extends UseControllerProps<T> {
@@ -21,13 +21,13 @@ export function Input<T>(props: InputProps<T>): JSX.Element {
       error={fieldState.invalid}
       helperText={fieldState.error?.message ?? ' '}
       // inputProps={{ 'aria-label': props.label }}
-      InputProps={{
-        endAdornment: props.loading && (
-          <InputAdornment position="end">
-            <CircularProgress size={18} />
-          </InputAdornment>
-        ),
-      }}
+      // InputProps={{
+      //   endAdornment: props.loading && (
+      //     <InputAdornment position="end">
+      //       <CircularProgress size={18} />
+      //     </InputAdornment>
+      //   ),
+      // }}
       {...otherFieldProps}
       inputRef={ref}
     />

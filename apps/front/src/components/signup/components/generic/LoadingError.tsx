@@ -3,7 +3,7 @@ import React from 'react';
 import { ApiResponseDto } from '@api';
 import { ErrorBlock } from '@components/layout';
 
-import { SignupPreloadedDataLabel } from '../../types/signup-preloaded-data-label';
+import { SignupPreloadedDataLabel } from '../../types/signup-preloaded-data-label.type';
 
 type LoadingErrorProps = {
   label: SignupPreloadedDataLabel;

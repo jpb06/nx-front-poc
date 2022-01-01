@@ -27,7 +27,7 @@ export const Brand: React.FC<BrandProps> = ({
         container
         direction="row"
         justifyContent={centered ? 'center' : 'flex-start'}
-        alignItems={'flex-start'}
+        alignItems="flex-start"
         sx={{ mb: withBottomMargin ? 2 : 0 }}
       >
         <Grid item>
@@ -35,7 +35,7 @@ export const Brand: React.FC<BrandProps> = ({
         </Grid>
         <Grid item>
           <Typography
-            variant={big ? 'h4' : 'h6'}
+            variant={big ? 'h6' : 'h4'}
             sx={{
               flexGrow: 1,
               ...withMainColor,

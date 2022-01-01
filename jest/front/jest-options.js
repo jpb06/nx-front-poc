@@ -4,7 +4,7 @@ const {
   compilerOptions: { paths: tsconfigPaths },
 } = require('../../tsconfig.base');
 
-const getJestOptions = (coverageDirectory) => {
+const getJestOptions = (coverageDirectory, ignoredFilesForCoverage) => {
   const pathLevel = Array(coverageDirectory.split('/').length)
     .fill('..')
     .join('/');
@@ -13,6 +13,7 @@ const getJestOptions = (coverageDirectory) => {
    * @type {import('ts-jest/dist/types').InitialOptionsTsJest}
    **/
   const options = {
+    logHeapUsage: true,
     displayName: 'front',
     preset: `${pathLevel}/jest/jest.preset.js`,
     moduleNameMapper: {
@@ -38,6 +39,7 @@ const getJestOptions = (coverageDirectory) => {
       '!**/*.d.ts',
       '!**/index.ts',
       '!**/*.type.ts',
+      ...ignoredFilesForCoverage,
     ],
     coverageReporters: ['json-summary', 'text', 'lcov'],
   };

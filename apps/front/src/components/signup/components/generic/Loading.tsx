@@ -2,7 +2,7 @@ import React from 'react';
 
 import { LoadingBlock } from '@components/feedback';
 
-import { SignupPreloadedDataLabel } from '../../types/signup-preloaded-data-label';
+import { SignupPreloadedDataLabel } from '../../types/signup-preloaded-data-label.type';
 
 type LoadingProps = {
   label: SignupPreloadedDataLabel;

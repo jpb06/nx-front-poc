@@ -8,7 +8,7 @@ import {
   OutlinedInput,
   FormHelperText,
 } from '@mui/material';
-import React from 'react';
+import { useState } from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 
 interface PasswordInputProps<T> extends UseControllerProps<T> {
@@ -21,7 +21,7 @@ export function PasswordInput<T>(props: PasswordInputProps<T>): JSX.Element {
     fieldState,
   } = useController(props);
 
-  const [showPassword, setShowPassword] = React.useState<boolean>(false);
+  const [showPassword, setShowPassword] = useState<boolean>(false);
 
   return (
     <FormControl
