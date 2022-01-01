@@ -112,13 +112,13 @@ We will be using [Nx](https://nx.dev) to make sure we can use several frontend a
 
 |                 Project                           |           Description                                                     |
 | ------------------------------------------------ | --------------------------------------------------------------------- |
-| 🚀 `front` app  | Our frontend app, containing a signup form |
-| 🚀 `front-e2e` app  | Our end to end testing code using cypress |
-| 🚀 `back` app  | Our backend app, relying on an in-memory dataset|
-| 🧩 `front-api` lib  |Our api types, extracted from the backend swagger|
-| 🧩 `front-components` lib  |Our generic components shared by all our frontend apps|
-| 🧩 `front-tests` lib  |Tests utils for both the front app and the generic components lib|
-| 🧩 `front-theme` lib |The theme common to all our apps|
+| 🚀 [`front`](./apps/front/README.md) app  | Our frontend app, containing a signup form |
+| 🚀 [`front-e2e`](./apps/front-e2e/README.md) app  | Our end to end testing code using cypress |
+| 🚀 [`back`](./apps/back/README.md) app  | Our backend app, relying on an in-memory dataset|
+| 🧩 [`front-api`](./libs/front/api/README.md) lib  |Our api types, extracted from the backend swagger|
+| 🧩 [`front-components`](./libs/front/components/README.md) lib  |Our generic components shared by all our frontend apps|
+| 🧩 [`front-tests`](./libs/front/tests/README.md) lib  |Tests utils for both the front app and the generic components lib|
+| 🧩 [`front-theme`](./libs/front/theme/README.md) lib |The theme common to all our apps|
 
 ## ⚡ CLI
 
