@@ -56,3 +56,31 @@ jobs:
         with:
           branches: master
           coverage-summary-path: ./coverage/lcov.info
+
+      - name: Stopping nx cloud CI
+        run: yarn nx-cloud stop-all-agents
+  
+  agents:
+    runs-on: ubuntu-latest
+    name: Agent 1
+    timeout-minutes: 60
+    
+    strategy:
+      matrix:
+        agent: [1, 2, 3]
+
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version-file: '.node-version'
+          cache: 'yarn'
+            
+      - name: Installing dependencies
+        run: yarn install --frozen-lockfile
+      
+      - name: Start Nx Agent ${{ matrix.agent }}
+        run: yarn nx-cloud start-agent
