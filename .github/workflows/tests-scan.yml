@@ -40,12 +40,6 @@ jobs:
       - name: Installing dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Fetch sonar-scanner
-        run: |
-          curl https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-4.5.0.2216-linux.zip --create-dirs -o /tmp/sonar-scanner-cli/sonar-scanner-cli.zip
-          mkdir ~/.sonar
-          unzip -q /tmp/sonar-scanner-cli/sonar-scanner-cli.zip -d ~/.sonar/native-sonar-scanner
-
       - name: Starting nx cloud CI
         run: yarn nx-cloud start-ci-run
 
@@ -57,18 +51,17 @@ jobs:
         run: yarn nx affected --target=test --parallel --max-parallel=3 --codeCoverage
         timeout-minutes: 10
 
-      - name: Fix lcov paths for sonar
-        run: |
-          shopt -s globstar
-          perl -i -p -e 's/(SF:).*(src\/.*)/$1$2/g;' coverage/**/lcov.info
+      - name: Installing lcov
+        run: sudo apt-get install -y lcov
 
-      - name: Sonar scan
-        run: yarn nx affected --target=sonar --parallel --max-parallel=3
-        timeout-minutes: 10
+      - name: Merge coverage
+        run: find ./coverage -name "lcov.info" | awk '$0="-a "$0' | xargs lcov -o ./coverage/lcov.info
+
+      - name: SonarCloud Scan
+        uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          NX_CLOUD_DISTRIBUTED_EXECUTION: false
 
       - name: Stopping nx cloud CI
         run: yarn nx-cloud stop-all-agents
