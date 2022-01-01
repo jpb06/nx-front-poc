@@ -1,7 +1,9 @@
-# front-theme
+# 🧩 `front-theme` lib 🧩
 
-This library was generated with [Nx](https://nx.dev).
+This library contains code used for testing both `front` and `front-components`.
 
-## Running unit tests
+## ⚡ CLI
 
-Run `nx test front-theme` to execute the unit tests via [Jest](https://jestjs.io).
+|                 Description                           |           Command                                                     |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| ⚠️ Linting the app |`nx run front-theme:lint --skip-nx-cache --verbose`|

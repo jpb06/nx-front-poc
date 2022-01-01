@@ -1,7 +1,12 @@
-# api
+# 🧩 `front-api` lib 🧩
 
-This library was generated with [Nx](https://nx.dev).
+This library contains the types extracted from the backend swagger.
 
-## Running unit tests
+## ⚡ CLI
 
-Run `nx test api` to execute the unit tests via [Jest](https://jestjs.io).
+|                 Description                           |           Command                                                     |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| ⚠️ Linting the app |`nx run front-api:lint --skip-nx-cache --verbose`|
+| ⚙️ generating types |`nx run front-api:generate-types`|
+
+
