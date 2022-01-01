@@ -7,12 +7,12 @@
     "build": "nx build",
     "test": "nx test",
     "lint": "nx lint",
-    "test-dev": "nx test $npm_config_project --watchAll",
-    "test-changes": "nx test $npm_config_project --watch",
-    "test-ci": "nx test $npm_config_project --ci --coverage",
-    "test-all": "nx run-many --target=test --parallel --all",
     "lint-all": "nx run-many --target=lint --parallel --all",
-    "e2e": "nx front-e2e:e2e"
+    "test-dev": "nx test --watchAll --project",
+    "test-changes": "nx test --watch --project",
+    "test-all": "nx run-many --target=test --parallel --all",
+    "e2e": "nx front-e2e:e2e",
+    "dev": "nx run-many --target=serve --parallel --projects"
   },
   "private": true,
   "dependencies": {

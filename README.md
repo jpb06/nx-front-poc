@@ -1,108 +1,166 @@
-# MuiRhfSandbox
+# 🔥 MuiRhfSandbox 🔥
 
-This project was generated using [Nx](https://nx.dev).
+Here is a little POC to help our team move forward on the stack.
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## ⚡ Subjects
 
-🔎 **Smart, Fast and Extensible Build System**
+### 🔶 Forms handling
 
-## Adding capabilities to your workspace
+We are using two libraries to manages forms in our app: [react-hook-form](https://github.com/react-hook-form/react-hook-form) and [zod](https://github.com/colinhacks/zod). The former is a library dedicated to form handling while the latter one is a schema declaration and validation library.
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+Our objective here is to separate the definition and the validation of our data model from the form compositon in the DOM. 
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+#### 🌀 Data model schema
 
-Below are our core plugins:
+A schema definition typically looks like this:
+```typescript
+import * as zod from 'zod';
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
+const schema = zod.object({
+  firstName: zod.string().nonempty('A first name is required'),
+  // ...
+});
+```
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+The cool thing about it is we can easily infer the type of our form data model like so:
 
-## Generate an application
+```typescript
+type FormModel = zod.infer<typeof schema>;
+```
 
-`nx run back:build --skip-nx-cache --verbose`
-`nx run back:serve --skip-nx-cache --verbose`
-`nx run back:lint --skip-nx-cache --verbose`
-`nx run front:test --skip-nx-cache --verbose`
+Then, plugging this schema is easy enough, using a resolver: 
 
-`nx run front:build --skip-nx-cache --verbose`
-`nx run front:serve --skip-nx-cache --verbose`
-`nx run front:lint --skip-nx-cache --verbose`
-`nx run front:type-check --skip-nx-cache --verbose`
-`nx run front:test --skip-nx-cache --verbose`
+```typescript
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 
-`nx run front-e2e:lint --skip-nx-cache --verbose`
-`nx run front-e2e:e2e --skip-nx-cache --verbose`
+const { control, handleSubmit } = useForm<FormModel>({
+  defaultValues: formDefaultValues,
+  resolver: zodResolver(schema),
+});
+```
 
-`nx run front-components:test --skip-nx-cache --verbose`
-`nx run front-components:lint --skip-nx-cache --verbose`
-`nx run front-components:type-check --skip-nx-cache`
+#### 🌀 react
 
-Run `nx g @nrwl/react:app my-app` to generate an application.
+What does it mean for our components then? We will use genericity and `useController` hook to simplify the definition and usage of our generic components. Here is an example:
 
-> You can use any of the plugins above to generate applications as well.
+```typescript
+interface InputProps<T> extends UseControllerProps<T> {
+  label: string;
+  loading?: boolean;
+}
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
+function Input<T>(props: InputProps<T>) {
+  const {
+    field: { ref, ...otherFieldProps },
+    fieldState,
+  } = useController(props);
 
-## Generate a library
+  return (
+    <TextField
+      label={props.label}
+      variant="outlined"
+      size="small"
+      fullWidth
+      error={fieldState.invalid}
+      helperText={fieldState.error?.message ?? ' '}
+      {...otherFieldProps}
+      inputRef={ref}
+    />
+  );
+}
+```
 
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
+Now, using this component is pretty trivial:
 
-> You can also use any of the plugins above to generate libraries as well.
+```typescript
+const MyComponent = () => {
+  const { onSubmit, control, isLoading } = useSignupForm();
 
-Libraries are shareable across libraries and applications. They can be imported from `@mui-rhf-sandbox/mylib`.
+  return (
+    <Box
+        component="form"
+        onSubmit={onSubmit}
+      >
+      <Input control={control} name="firstName" label="Firstname" />
+    </Box>
+  )
+}
+```
 
-## Development server
+### 🔶 Testing
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+We may do three kind of tests:
 
-## Code scaffolding
+#### 🧪 Unit tests
 
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
+These tests validate the behavior of a component in isolation. They are great for generic components and are done using [testing library](https://github.com/testing-library/react-testing-library).
 
-## Build
+#### 🧪 Integration tests
 
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+These tests validate an entire feature and thus ensure several components/hooks/logic work well together and produce the expected outcome. Our point in integration tests is to not mock anything, because any piece of our program being mocked will not be tested, therefore lowering the confidence we can have in our test. Any interaction with a backend will be intercepted using [msw](https://github.com/mswjs/msw).
 
-## Running unit tests
+#### 🧪 End to end tests
 
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+Integration tests are often not enough. We may need end to end testing to validate several features working together. End to end testing is also great to check UI details. We will use [cypress](https://github.com/cypress-io/cypress) to do our e2e. 
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+### 🔶 Managing multiple apps and their shared code
 
-## Running end-to-end tests
+We will be using [Nx](https://nx.dev) to make sure we can use several frontend apps, and to share code between them. Nx also has a cloud service that does pretty cool stuffs. Four libraries were created from code contained in the frontend app: api types, generic components, test related code and the app theme.
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+## ⚡ Projects
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+|                 Project                           |           Description                                                     |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| 🚀 `front` app  | Our frontend app, containing a signup form |
+| 🚀 `front-e2e` app  | Our end to end testing code using cypress |
+| 🚀 `back` app  | Our backend app, relying on an in-memory dataset|
+| 🧩 `front-api` lib  |Our api types, extracted from the backend swagger|
+| 🧩 `front-components` lib  |Our generic components shared by all our frontend apps|
+| 🧩 `front-tests` lib  |Tests utils for both the front app and the generic components lib|
+| 🧩 `front-theme` lib |The theme common to all our apps|
 
-## Understand your workspace
+## ⚡ CLI
 
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
+### 🔶 nx CLI
 
-## Further help
+nx comes with [its own CLI](https://nx.dev/l/n/getting-started/nx-cli). Here is a short list of commands that may be handy:
 
-Visit the [Nx Documentation](https://nx.dev) to learn more.
+| Description                                           | Command                                                               |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| 🆘 Get help!!!| `yarn nx help` |
+| 🚀 Run backend and frontend locally                  | `yarn dev front,back` or `nx run-many --target=serve --projects=front,back --parallel`                                              |
+| ▶️ Run an action on one project                             | `yarn nx run <project>:<action>`           |
+| ▶️ Run an action on all projects                             | `yarn nx run-many --target=<action> --all`           |
+| ▶️ Run an action on a set of projects                         | `yarn nx run-many --target=<action> --projects=<project1>,<project2>`              |
+| ▶️ Run an action only on projects containing changes | `yarn nx affected:<action>`                                              |
+| ✅ Run tests for a project (watch)         | `yarn test-changes <project>` or `yarn nx test --project=<project> --watch`                                        |
+| ✅ Run all tests for a project (watchAll)     | `yarn test-dev <project>` or `yarn nx test --project=<project> --watchAll`                                                |
+| ✅ Run all tests                                  | `yarn test:all` or `nx run-many --target=test --parallel --all`                                                       |
+| 🗃️ Create a new front app or lib                           | `nx g @nrwl/react:app <appname>` or  `nx g @nrwl/react:lib <appname>`                                                  |
+| 🗃️ Create a new backend app or lib                            | `nx g @nrwl/nest:app <appname>` or `nx g @nrwl/nest:lib <appname>`                                                   |
+| 🗃️ Create a vanilla node lib                            | `nx g @nrwl/node:lib <libname>`                                                   |
+| 📊 Dependencies graph                             | `yarn nx dep-graph`                                                   |
 
-## ☁ Nx Cloud
+### 🔶 Actions
 
-### Distributed Computation Caching & Distributed Task Execution
+Actions are defined by project in `project.json` files. Here are a few standard actions:
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
+| Action                                           | Description                                                               |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| 🛠️ build  | Builds the app/lib. Use `--prod` flag for a production build |
+| 🚀 serve  | Runs the app  |
+| ⚠️ lint  | Run the linter against project files  |
+| ✔️ type-check  | Uses `tsc --noEmit` to validate types against project files |
+| ✅ test  | Runs tests |
 
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
+### 🔶 Useful flags
 
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
+| flag                                           | Description                                                               |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| ⬛  `--target=x`  | specifies which action to run |
+| ⬛  `--skip-nx-cache`  | disables nx caching; the command will be ran fully |
+| ⬛  `--verbose`  | prints additional error stack trace on failure
+| ⬛  `--projects=x,x`  | `run-many`: specifies which projects to run the action against |
+| ⬛  `--parallel=x`  | `run-many`: allows x tasks to be ran in parallel |
 
-Visit [Nx Cloud](https://nx.app/) to learn more.
