@@ -53,17 +53,17 @@ jobs:
 
       - name: Installing lcov 
         # Executing this only if coverage has evolved somewhere (nx affected)
-        if: [[ -d ./coverage ]]
+        if: ${{ [[ -d ./coverage ]] }}
         run: sudo apt-get install -y lcov
         
       - name: Merge coverage
         # Executing this only if coverage has evolved somewhere (nx affected)
-        if: [[ -d ./coverage ]]
+        if: ${{ [[ -d ./coverage ]] }}
         run: find ./coverage -name "lcov.info" | awk '$0="-a "$0' | xargs lcov -o ./coverage/lcov.info
 
       - name: SonarCloud Scan
         # Executing this only if coverage has evolved somewhere (nx affected)        
-        if: [[ -d ./coverage ]]
+        if: ${{ [[ -d ./coverage ]] }}
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
