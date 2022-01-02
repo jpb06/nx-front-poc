@@ -8,7 +8,7 @@ export function RHFWrapper<
   children,
   ...props
 }: React.PropsWithChildren<UseFormProps<TFieldValues, TContext>>): JSX.Element {
-  const { control, handleSubmit } = useForm({ ...props });
+  const { control } = useForm({ ...props });
 
   return (
     <>
