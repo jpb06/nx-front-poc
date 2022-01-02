@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
+    "heroku-postbuild": "nx build $PROJECT_NAME --prod",
     "test": "nx test",
     "lint": "nx lint",
     "lint-all": "nx run-many --target=lint --parallel --all",
@@ -106,5 +107,9 @@
     "swagger-typescript-types": "^2.1.4",
     "ts-jest": "^27.1.2",
     "typescript": "~4.5.4"
+  },
+  "engines": {
+    "node": "16.x",
+    "yarn": "1.x"
   }
 }
