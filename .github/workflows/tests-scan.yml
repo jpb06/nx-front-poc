@@ -48,7 +48,7 @@ jobs:
         timeout-minutes: 10
 
       - name: Tests
-        run: yarn nx affected --target=test --parallel --max-parallel=3 --codeCoverage
+        run: yarn nx run-many --target=test --all --codeCoverage #yarn nx affected --target=test --parallel --max-parallel=3 --codeCoverage
         timeout-minutes: 10
 
       - name: Installing lcov
