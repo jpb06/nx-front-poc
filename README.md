@@ -167,7 +167,7 @@ nx comes with [its own CLI](https://nx.dev/l/n/getting-started/nx-cli). Here is 
 | ▶️ Run an action only on projects containing changes | `yarn nx affected:<action>`                                              |
 | ✅ Run tests for a project (watch)         | `yarn test-changes <project>` or `yarn nx test --project=<project> --watch`                                        |
 | ✅ Run all tests for a project (watchAll)     | `yarn test-dev <project>` or `yarn nx test --project=<project> --watchAll`                                                |
-| ✅ Run all tests                                  | `yarn test:all` or `nx run-many --target=test --parallel --all`                                                       |
+| ✅ Run all tests                                  | `yarn test-all` or `nx run-many --target=test --parallel --all`                                                       |
 | 🗃️ Create a new front app or lib                           | `nx g @nrwl/react:app <appname>` or  `nx g @nrwl/react:lib <appname>`                                                  |
 | 🗃️ Create a new backend app or lib                            | `nx g @nrwl/nest:app <appname>` or `nx g @nrwl/nest:lib <appname>`                                                   |
 | 🗃️ Create a vanilla node lib                            | `nx g @nrwl/node:lib <libname>`                                                   |
