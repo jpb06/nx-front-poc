@@ -1,5 +1,8 @@
 # 🔥 MuiRhfSandbox 🔥
 
+[![Front deployment](https://img.shields.io/github/deployments/jpb06/mui-rhf-sandbox/production?label=front%20deploy&logo=vercel&logoColor=white)](https://mui-rhf-sandbox.vercel.app/)
+[![Back deployment](https://img.shields.io/github/deployments/jpb06/mui-rhf-sandbox/rhf-mui-nx-sandbox-back?label=back%20deploy&logo=heroku&logoColor=dodgerblue)](https://rhf-mui-nx-sandbox-back.herokuapp.com/)
+![Github workflow](https://img.shields.io/github/workflow/status/jpb06/mui-rhf-sandbox/tests%20and%20sonarcloud%20scan?label=last%20workflow&logo=github-actions)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=jpb06_mui-rhf-sandbox&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=jpb06_mui-rhf-sandbox)
 [![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=jpb06_mui-rhf-sandbox&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=jpb06_mui-rhf-sandbox)
 [![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=jpb06_mui-rhf-sandbox&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=jpb06_mui-rhf-sandbox)
@@ -10,8 +13,25 @@
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=jpb06_mui-rhf-sandbox&metric=bugs)](https://sonarcloud.io/summary/new_code?id=jpb06_mui-rhf-sandbox)
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=jpb06_mui-rhf-sandbox&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=jpb06_mui-rhf-sandbox)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=jpb06_mui-rhf-sandbox&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=jpb06_mui-rhf-sandbox)
+![Last commit](https://img.shields.io/github/last-commit/jpb06/mui-rhf-sandbox?logo=git)
 
 Here is a little POC to help our team move forward on the stack.
+
+## ⚡ Getting started
+
+```bash
+# using fnm to set node version - https://github.com/Schniz/fnm
+fnm use
+
+# Installing dependencies
+yarn
+
+# starting backend and frontend in parallel
+yarn dev front,back
+
+# run all tests
+yarn test:all
+```
 
 ## ⚡ Subjects
 
