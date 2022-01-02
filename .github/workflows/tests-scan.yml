@@ -48,7 +48,7 @@ jobs:
         timeout-minutes: 10
 
       - name: Tests
-        run: yarn test-all --skip-nx-cache # yarn nx affected --target=test --parallel --max-parallel=3 --codeCoverage
+        run: yarn test-all --skip-nx-cache --codeCoverage # yarn nx affected --target=test --parallel --max-parallel=3 --codeCoverage
         timeout-minutes: 10
 
       - name: Check if coverage folder exists
