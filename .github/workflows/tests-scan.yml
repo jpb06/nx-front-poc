@@ -1,4 +1,4 @@
-name: tests
+name: tests and sonarcloud scan
 
 env:
   NX_CLOUD_DISTRIBUTED_EXECUTION: true
@@ -55,7 +55,7 @@ jobs:
         # Executing this only if coverage has evolved somewhere (nx affected)
         if: ${{ [ -d ./coverage ] }}
         run: 'sudo apt-get install -y lcov'
-
+        
       - name: Merge coverage
         # Executing this only if coverage has evolved somewhere (nx affected)
         if: ${{ [ -d ./coverage ] }}
