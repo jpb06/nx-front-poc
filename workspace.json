@@ -4,9 +4,8 @@
     "back": "apps/back",
     "front": "apps/front",
     "front-api": "libs/front/api",
-    "front-components": "libs/front/components",
+    "front-components": "libs/front-components",
     "front-e2e": "apps/front-e2e",
-    "front-tests": "libs/front/tests",
-    "front-theme": "libs/front/theme"
+    "front-tests": "libs/front/tests"
   }
 }

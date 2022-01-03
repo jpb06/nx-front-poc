@@ -3,13 +3,12 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
-
-import { WithSnackbar } from '@components/feedback';
 import {
+  WithSnackbar,
   EmotionCacheProvider,
   ReactQueryProvider,
   AppThemeProvider,
-} from '@components/providers';
+} from '@components';
 
 export interface EmotionAppProps extends AppProps {
   emotionCache: EmotionCache;

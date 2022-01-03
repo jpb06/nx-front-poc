@@ -1,0 +1,43 @@
+{
+  "root": "libs/front/component-library",
+  "sourceRoot": "libs/front/component-library/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/front-components/**/*.{ts,tsx,js,jsx}"
+        ]
+      }
+    },
+    "type-check": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "yarn tsc -p ./libs/front-components/tsconfig.lib.json --noEmit --pretty"
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": [
+        "coverage/libs/front-components"
+      ],
+      "options": {
+        "jestConfig": "libs/front-components/jest.config.js",
+        "passWithNoTests": true
+      }
+    },
+    "sonar": {
+      "builder": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "sonar-scanner",
+        "cwd": "libs/front-components"
+      }
+    }
+  }
+}
