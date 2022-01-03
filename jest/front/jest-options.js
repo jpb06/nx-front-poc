@@ -22,7 +22,20 @@ const getJestOptions = (coverageDirectory, ignoredFilesForCoverage) => {
     },
     transform: {
       '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nrwl/react/plugins/jest',
-      '^.+\\.[tj]sx?$': ['babel-jest', { presets: ['@nrwl/next/babel'] }],
+      '^.+\\.[tj]sx?$': [
+        'babel-jest',
+        {
+          presets: ['@nrwl/next/babel'],
+          plugins: [
+            ['@babel/plugin-proposal-class-properties', { loose: true }],
+            ['@babel/plugin-proposal-private-methods', { loose: true }],
+            [
+              '@babel/plugin-proposal-private-property-in-object',
+              { loose: true },
+            ],
+          ],
+        },
+      ],
     },
     transformIgnorePatterns: ['/node_modules/'],
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx'],

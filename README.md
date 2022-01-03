@@ -137,7 +137,7 @@ Integration tests are often not enough. We may need end to end testing to valida
 
 ### 🔶 Managing multiple apps and their shared code
 
-We will be using [Nx](https://nx.dev) to make sure we can use several frontend apps, and to share code between them. Nx also has a cloud service that does pretty cool stuffs. Four libraries were created from code contained in the frontend app: api types, generic components, test related code and the app theme.
+We will be using [Nx](https://nx.dev) to make sure we can use several frontend apps, and to share code between them. Nx also has a cloud service that does pretty cool stuffs. Four libraries were created from code contained in the frontend app: api types, generic components and test related code.
 
 ## ⚡ Projects
 
@@ -147,9 +147,8 @@ We will be using [Nx](https://nx.dev) to make sure we can use several frontend a
 | 🚀 [`front-e2e`](./apps/front-e2e/README.md) app  | Our end to end testing code using cypress |
 | 🚀 [`back`](./apps/back/README.md) app  | Our backend app, relying on an in-memory dataset|
 | 🧩 [`front-api`](./libs/front/api/README.md) lib  |Our api types, extracted from the backend swagger|
-| 🧩 [`front-components`](./libs/front/components/README.md) lib  |Our generic components shared by all our frontend apps|
+| 🧩 [`front-components`](./libs/front/components/README.md) lib  |Our generic components and the MUI theme shared by all our frontend apps|
 | 🧩 [`front-tests`](./libs/front/tests/README.md) lib  |Tests utils for both the front app and the generic components lib|
-| 🧩 [`front-theme`](./libs/front/theme/README.md) lib |The theme common to all our apps|
 
 ## ⚡ CLI
 
