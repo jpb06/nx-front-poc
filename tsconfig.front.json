@@ -26,8 +26,8 @@
         "libs/front/components/src/providers/index.ts"
       ],
       "@components/tests": ["libs/front/components/src/test/index.ts"],
+      "@components/theme": ["libs/front/components/src/theme/index.ts"],
       "@tests": ["libs/front/tests/src/index.ts"],
-      "@theme": ["libs/front/theme/src/index.ts"]
     }
   }
 }
