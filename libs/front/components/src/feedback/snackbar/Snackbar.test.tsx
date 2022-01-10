@@ -3,8 +3,8 @@ import { screen, waitForElementToBeRemoved } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useContext } from 'react';
 
-import { SnackbarContext, WithSnackbar } from '..';
 import { render } from '../../test';
+import { SnackbarContext, WithSnackbar } from './Snackbar.context';
 
 const SnackbarWrapper: React.FC = () => (
   <WithSnackbar>

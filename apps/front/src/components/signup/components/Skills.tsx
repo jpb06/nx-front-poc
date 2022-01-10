@@ -1,5 +1,4 @@
-import { CheckBoxGroup, CheckBoxGroupProps } from '@components/input';
-import { ErrorBlock } from '@components/layout';
+import { CheckBoxGroup, CheckBoxGroupProps, ErrorBlock } from '@components';
 
 import { useSkillsQuery } from '../../../api';
 import { useSignupData } from '../hooks/useSignupData';

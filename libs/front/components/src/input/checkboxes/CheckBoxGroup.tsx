@@ -49,6 +49,7 @@ export function CheckBoxGroup<T>(
       component="fieldset"
       variant="standard"
       error={fieldState.invalid}
+      sx={{ width: '100%' }}
     >
       <FormLabel component="legend">Skills</FormLabel>
       <FormHelperText>{fieldState.error?.message ?? ' '}</FormHelperText>
@@ -60,7 +61,7 @@ export function CheckBoxGroup<T>(
           alignItems="flex-start"
         >
           {props.items.map(({ id, label }) => (
-            <Grid item xs={4} key={id}>
+            <Grid item xs={12} sm={6} md={3} key={id}>
               <FormControlLabel
                 control={<Checkbox value={id} onChange={handleChange} />}
                 label={label}

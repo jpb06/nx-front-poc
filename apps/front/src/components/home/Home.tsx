@@ -1,8 +1,7 @@
 import { Title } from '@mui/icons-material';
 import { Avatar, CircularProgress, Divider, Grid, List } from '@mui/material';
 
-import { SubTitle } from '@components/data-display';
-import { FullpageBox } from '@components/layout';
+import { SubTitle, FullpageBox } from '@components';
 
 import { Skill } from './children/Skill';
 import { useRedirectOnNoUserData } from './hooks/useRedirectOnNoUserData';

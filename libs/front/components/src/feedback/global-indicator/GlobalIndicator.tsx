@@ -1,20 +1,16 @@
 import { Box, SvgIconTypeMap } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
-import { cyan } from '@mui/material/colors';
 import { alpha } from '@mui/material/styles';
-import { keyframes } from '@mui/styled-engine';
 import React from 'react';
 
-interface GlobalIndicatorProps {
+import { spinKeyframe } from '../../logic/keyframes/spin.keyframe';
+import { getAppColorFor } from '../../theme';
+
+export type GlobalIndicatorProps = {
   hasTopMargin: boolean;
   title: string;
   Icon: OverridableComponent<SvgIconTypeMap>;
-}
-
-const spin = keyframes`
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-`;
+};
 
 export const GlobalIndicator: React.FC<GlobalIndicatorProps> = ({
   hasTopMargin,
@@ -26,7 +22,7 @@ export const GlobalIndicator: React.FC<GlobalIndicatorProps> = ({
     component="div"
     sx={{
       textAlign: 'center',
-      color: alpha(cyan[700], 0.8),
+      color: alpha(getAppColorFor('darkCyan'), 0.8),
       marginTop: hasTopMargin ? 15 : 0,
     }}
   >
@@ -34,7 +30,7 @@ export const GlobalIndicator: React.FC<GlobalIndicatorProps> = ({
       sx={{
         height: 100,
         width: 100,
-        animation: `${spin} 2s linear infinite`,
+        animation: `${spinKeyframe} 2s linear infinite`,
       }}
     />
     <Box

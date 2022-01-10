@@ -1,7 +1,6 @@
 import React from 'react';
 
-import { Select, SelectProps } from '@components/input';
-import { ErrorBlock } from '@components/layout';
+import { Select, SelectProps, ErrorBlock } from '@components';
 
 import { useRolesQuery } from '../../../api';
 import { useSignupData } from '../hooks/useSignupData';

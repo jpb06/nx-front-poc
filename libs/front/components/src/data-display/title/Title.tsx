@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material';
 
-import { getAppColorFor } from '@components/theme';
+import { getAppColorFor } from '@theme';
 
 export const Title: React.FC = ({ children }) => (
   <Typography

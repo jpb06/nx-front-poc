@@ -13,20 +13,15 @@
       "@api/users/signup": [
         "libs/front/api/src/main-backend/UsersController/signup.ts"
       ],
-      "@components/data-display": [
-        "libs/front/components/src/data-display/index.ts"
+      "@components": [
+        "libs/front/components/src/index.ts"
       ],
-      "@components/feedback": [
-        "libs/front/components/src/feedback/index.ts"
-      ],
-      "@components/input": ["libs/front/components/src/input/index.ts"],
-      "@components/layout": ["libs/front/components/src/layout/index.ts"],
       "@components/logic": ["libs/front/components/src/logic/index.ts"],
       "@components/providers": [
         "libs/front/components/src/providers/index.ts"
       ],
       "@components/tests": ["libs/front/components/src/test/index.ts"],
-      "@components/theme": ["libs/front/components/src/theme/index.ts"],
+      "@theme": ["libs/front/components/src/theme/index.ts"],
       "@tests": ["libs/front/tests/src/index.ts"],
     }
   }
