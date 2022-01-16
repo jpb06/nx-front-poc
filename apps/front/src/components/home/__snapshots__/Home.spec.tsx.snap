@@ -173,10 +173,10 @@ exports[`Signup component should render vanilla html/css in snapshot 1`] = `
 .emotion-9 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 500;
-  font-size: 1.25rem;
-  line-height: 1.6;
-  letter-spacing: 0.0075em;
+  font-weight: 400;
+  font-size: 2.125rem;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
   color: #ff8f00;
   -webkit-box-flex: 1;
   -webkit-flex-grow: 1;
@@ -302,11 +302,11 @@ exports[`Signup component should render vanilla html/css in snapshot 1`] = `
               <div
                 class="MuiGrid-root MuiGrid-item emotion-6"
               >
-                <h6
-                  class="MuiTypography-root MuiTypography-h6 emotion-9"
+                <h4
+                  class="MuiTypography-root MuiTypography-h4 emotion-9"
                 >
                   Sandbox
-                </h6>
+                </h4>
               </div>
             </div>
             <div
