@@ -4,8 +4,6 @@ plugins:
 extends:
   - plugin:@nrwl/nx/react-typescript
   - '../../.eslintrc.front.yml'
-  - next
-  - next/core-web-vitals
   - plugin:react/recommended
   - plugin:jest-dom/recommended
 
