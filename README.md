@@ -1,4 +1,4 @@
-# 🔥 MuiRhfSandbox 🔥
+# 🔥 mui-rhf-sandbox 🔥
 
 [![Front deployment](https://img.shields.io/github/deployments/jpb06/mui-rhf-sandbox/production?label=front%20deploy&logo=vercel&logoColor=white)](https://mui-rhf-sandbox.vercel.app/)
 [![Back deployment](https://img.shields.io/github/deployments/jpb06/mui-rhf-sandbox/rhf-mui-nx-sandbox-back?label=back%20deploy&logo=heroku&logoColor=dodgerblue)](https://rhf-mui-nx-sandbox-back.herokuapp.com/)
@@ -159,7 +159,7 @@ nx comes with [its own CLI](https://nx.dev/l/n/getting-started/nx-cli). Here is 
 | Description                                           | Command                                                               |
 | ------------------------------------------------ | --------------------------------------------------------------------- |
 | 🆘 Get help!!!| `yarn nx help` |
-| 🚀 Run backend and frontend locally                  | `yarn dev front,back` or `nx run-many --target=serve --projects=front,back --parallel`                                              |
+| 🚀 Run backend and frontend locally                  | `yarn dev "front,back"` or `nx run-many --target=serve --projects="front,back" --parallel`                                              |
 | ▶️ Run an action on one project                             | `yarn nx run <project>:<action>`           |
 | ▶️ Run an action on all projects                             | `yarn nx run-many --target=<action> --all`           |
 | ▶️ Run an action on a set of projects                         | `yarn nx run-many --target=<action> --projects=<project1>,<project2>`              |
