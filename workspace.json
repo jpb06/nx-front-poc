@@ -5,7 +5,6 @@
     "front": "apps/front",
     "front-api": "libs/front/api",
     "front-components": "libs/front/components",
-    "front-components-e2e": "apps/front-components-e2e",
     "front-e2e": "apps/front-e2e",
     "front-tests": "libs/front/tests"
   }
