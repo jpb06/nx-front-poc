@@ -31,13 +31,13 @@ describe('Snackbar component', () => {
     ['info', 'InfoOutlinedIcon'],
     ['success', 'SuccessOutlinedIcon'],
     ['warning', 'ReportProblemOutlinedIcon'],
-  ])('%s', (severity, iconId) => {
+  ])('%s', async (severity, iconId) => {
     render(<SnackbarWrapper />);
 
     const button = screen.getByRole('button', { name: severity });
     userEvent.click(button);
 
-    expect(screen.getByText(`${severity} message`)).toBeInTheDocument();
+    await screen.findByText(`${severity} message`);
     expect(screen.getByTestId(iconId)).toBeInTheDocument();
   });
 
@@ -46,7 +46,7 @@ describe('Snackbar component', () => {
 
     userEvent.click(screen.getByRole('button', { name: 'warning' }));
 
-    expect(screen.getByText('warning message')).toBeInTheDocument();
+    await screen.findByText('warning message');
     expect(screen.getByTestId('ReportProblemOutlinedIcon')).toBeInTheDocument();
 
     userEvent.click(screen.getByRole('button', { name: 'error' }));
@@ -60,7 +60,7 @@ describe('Snackbar component', () => {
 
     userEvent.click(screen.getByRole('button', { name: 'warning' }));
 
-    expect(screen.getByText('warning message')).toBeInTheDocument();
+    await screen.findByText('warning message');
     expect(screen.getByTestId('ReportProblemOutlinedIcon')).toBeInTheDocument();
 
     userEvent.click(screen.getByRole('button', { name: 'Close' }));
