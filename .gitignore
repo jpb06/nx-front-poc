@@ -34,6 +34,9 @@ yarn-error.log
 testem.log
 /typings
 
+# TypeScript incremental compilation cache
+*.tsbuildinfo
+
 # System Files
 .DS_Store
 Thumbs.db

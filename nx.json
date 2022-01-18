@@ -20,6 +20,7 @@
         "cacheableOperations": [
           "build",
           "lint",
+          "type-check",
           "test",
           "e2e"
         ],

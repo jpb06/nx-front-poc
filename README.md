@@ -24,13 +24,13 @@ Here is a little POC to help our team move forward on the stack.
 fnm use
 
 # Installing dependencies
-yarn
+pnpm i
 
 # starting backend and frontend in parallel
-yarn dev front,back
+pnpm dev "front,back"
 
 # run all tests
-yarn test:all
+pnpm test:all
 ```
 
 ## ⚡ Managing multiple apps and their shared code
@@ -64,19 +64,19 @@ nx comes with [its own CLI](https://nx.dev/l/n/getting-started/nx-cli). Here is 
 
 | Description                                           | Command                                                               |
 | ------------------------------------------------ | --------------------------------------------------------------------- |
-| 🆘 Get help!!!| `yarn nx help` |
-| 🚀 Run backend and frontend locally                  | `yarn dev "front,back"` or `nx run-many --target=serve --projects="front,back" --parallel`                                              |
-| ▶️ Run an action on one project                             | `yarn nx run <project>:<action>`           |
-| ▶️ Run an action on all projects                             | `yarn nx run-many --target=<action> --all`           |
-| ▶️ Run an action on a set of projects                         | `yarn nx run-many --target=<action> --projects=<project1>,<project2>`              |
-| ▶️ Run an action only on projects containing changes | `yarn nx affected:<action>`                                              |
-| ✅ Run tests for a project (watch)         | `yarn test-changes <project>` or `yarn nx test --project=<project> --watch`                                        |
-| ✅ Run all tests for a project (watchAll)     | `yarn test-dev <project>` or `yarn nx test --project=<project> --watchAll`                                                |
-| ✅ Run all tests                                  | `yarn test-all` or `nx run-many --target=test --parallel --all`                                                       |
-| 🗃️ Create a new front app or lib                           | `nx g @nrwl/react:app <appname>` or  `nx g @nrwl/react:lib <appname>`                                                  |
-| 🗃️ Create a new backend app or lib                            | `nx g @nrwl/nest:app <appname>` or `nx g @nrwl/nest:lib <appname>`                                                   |
-| 🗃️ Create a vanilla node lib                            | `nx g @nrwl/node:lib <libname>`                                                   |
-| 📊 Dependencies graph                             | `yarn nx dep-graph`                                                   |
+| 🆘 Get help!!!| `pnpm nx help` |
+| 🚀 Run backend and frontend locally                  | `pnpm dev "front,back"` or `nx run-many --target=serve --projects="front,back" --parallel`                                              |
+| ▶️ Run an action on one project                             | `pnpm nx run <project>:<action>`           |
+| ▶️ Run an action on all projects                             | `pnpm nx run-many --target=<action> --all`           |
+| ▶️ Run an action on a set of projects                         | `pnpm nx run-many --target=<action> --projects=<project1>,<project2>`              |
+| ▶️ Run an action only on projects containing changes | `pnpm nx affected:<action>`                                              |
+| ✅ Run tests for a project (watch)         | `pnpm test-changes <project>` or `pnpm nx test --project=<project> --watch`                                        |
+| ✅ Run all tests for a project (watchAll)     | `pnpm test-dev <project>` or `pnpm nx test --project=<project> --watchAll`                                                |
+| ✅ Run all tests                                  | `pnpm test-all` or `pnpm nx run-many --target=test --parallel --all`                                                       |
+| 🗃️ Create a new front app or lib                           | `pnpm nx g @nrwl/react:app <appname>` or  `pnpm nx g @nrwl/react:lib <appname>`                                                  |
+| 🗃️ Create a new backend app or lib                            | `pnpm nx g @nrwl/nest:app <appname>` or `pnpm nx g @nrwl/nest:lib <appname>`                                                   |
+| 🗃️ Create a vanilla node lib                            | `pnpm nx g @nrwl/node:lib <libname>`                                                   |
+| 📊 Dependencies graph                             | `pnpm nx dep-graph`                                                   |
 
 ### 🔶 Actions
 
@@ -89,6 +89,7 @@ Actions are defined by project in `project.json` files. Here are a few standard 
 | ⚠️ lint  | Run the linter against project files  |
 | ✔️ type-check  | Uses `tsc --noEmit` to validate types against project files |
 | ✅ test  | Runs tests |
+| ☑️ e2e  | Runs end to end tests |
 
 ### 🔶 Useful flags
 
