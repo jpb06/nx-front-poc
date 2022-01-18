@@ -4,6 +4,7 @@ specifiers:
   '@babel/core': 7.16.7
   '@babel/plugin-proposal-private-property-in-object': ^7.16.7
   '@babel/preset-typescript': 7.16.7
+  '@emotion/cache': ^11.7.1
   '@emotion/jest': ^11.7.1
   '@emotion/react': ^11.7.1
   '@emotion/server': ^11.4.0
@@ -12,6 +13,7 @@ specifiers:
   '@mui/icons-material': ^5.2.5
   '@mui/lab': ^5.0.0-alpha.64
   '@mui/material': ^5.2.8
+  '@mui/system': ^5.3.0
   '@nestjs/common': ^8.2.5
   '@nestjs/config': ^1.1.6
   '@nestjs/core': ^8.2.5
@@ -76,6 +78,7 @@ specifiers:
   eslint-plugin-react-hooks: 4.3.0
   fs-extra: ^10.0.0
   jest: 27.4.7
+  jest-mock: ^27.4.6
   jest-mock-extended: ^2.0.4
   jest-watch-typeahead: ^1.0.0
   jotai: ^1.5.2
@@ -104,6 +107,7 @@ specifiers:
   zod: ^3.11.6
 
 dependencies:
+  '@emotion/cache': 11.7.1
   '@emotion/react': 11.7.1_b3e67f1b1cc68ee82c343add0615c039
   '@emotion/server': 11.4.0
   '@emotion/styled': 11.6.0_023218a630dedcfdc5aa065bf93ff9d7
@@ -111,6 +115,7 @@ dependencies:
   '@mui/icons-material': 5.3.0_f7153a14dc0eae8cfac34c81a09a926d
   '@mui/lab': 5.0.0-alpha.65_b8ac8309fd08c6cedeb5155a4c18b014
   '@mui/material': 5.3.0_f5341c4d41f1e34c3a73251df9f98a19
+  '@mui/system': 5.3.0_bcb8cb45f4440c38ab7df0ee3f383339
   '@nestjs/common': 8.2.5_e2dd7264172553abc41c1a07952dd8ca
   '@nestjs/config': 1.1.6_4d34bcc4311a780925020c9f901d5309
   '@nestjs/core': 8.2.5_2d391bccf7bae46d184f78881868b795
@@ -197,6 +202,7 @@ devDependencies:
   eslint-plugin-react: 7.28.0_eslint@8.7.0
   eslint-plugin-react-hooks: 4.3.0_eslint@8.7.0
   jest: 27.4.7
+  jest-mock: 27.4.6
   jest-mock-extended: 2.0.4_jest@27.4.7+typescript@4.5.4
   jest-watch-typeahead: 1.0.0_jest@27.4.7
   msw: 0.36.4
