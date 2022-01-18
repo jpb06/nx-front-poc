@@ -2,7 +2,7 @@ import { Build } from '@mui/icons-material';
 import { Grid, Typography } from '@mui/material';
 import React from 'react';
 
-import { AppColor } from '@components/theme';
+import { AppColor } from '@theme';
 
 import { withThemeColor } from './Brand.styles';
 
@@ -21,12 +21,14 @@ export const Brand: React.FC<BrandProps> = ({
 }) => {
   const withMainColor = withThemeColor(color);
 
+  const justifyContent = centered ? 'center' : 'flex-start';
+
   return (
     <>
       <Grid
         container
         direction="row"
-        justifyContent={centered ? 'center' : 'flex-start'}
+        justifyContent={justifyContent}
         alignItems="flex-start"
         sx={{ mb: withBottomMargin ? 2 : 0 }}
       >
@@ -35,7 +37,7 @@ export const Brand: React.FC<BrandProps> = ({
         </Grid>
         <Grid item>
           <Typography
-            variant={big ? 'h6' : 'h4'}
+            variant={big ? 'h4' : 'h6'}
             sx={{
               flexGrow: 1,
               ...withMainColor,
@@ -45,7 +47,7 @@ export const Brand: React.FC<BrandProps> = ({
           </Typography>
         </Grid>
       </Grid>
-      <Grid container justifyContent="center">
+      <Grid container justifyContent={justifyContent}>
         <Grid
           item
           sx={{

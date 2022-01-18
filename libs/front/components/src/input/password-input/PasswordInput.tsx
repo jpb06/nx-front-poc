@@ -11,7 +11,7 @@ import {
 import { useState } from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 
-interface PasswordInputProps<T> extends UseControllerProps<T> {
+export interface PasswordInputProps<T> extends UseControllerProps<T> {
   label: string;
 }
 

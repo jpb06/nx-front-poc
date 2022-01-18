@@ -1,5 +1,8 @@
 extends:
   - './.eslintrc.yml'
+  - plugin:import/typescript
+  - next
+  - next/core-web-vitals
 
 overrides:
   - files:
@@ -18,7 +21,7 @@ overrides:
           alphabetize:
             order: 'asc'
           pathGroups:
-            - pattern: '{@api,@api/**,@components/**,@tests,@theme}'
+            - pattern: '{@api,@api/**,@components,@components/**,@tests,@theme}'
               group: internal
               position: before
           pathGroupsExcludedImportTypes:

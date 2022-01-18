@@ -1,7 +1,7 @@
 import { Alert } from '@mui/material';
 import React from 'react';
 
-type ErrorBlockProps = {
+export type ErrorBlockProps = {
   text: string;
 };
 

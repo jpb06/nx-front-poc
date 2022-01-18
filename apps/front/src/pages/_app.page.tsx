@@ -4,7 +4,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
 
-import { WithSnackbar } from '@components/feedback';
+import { WithSnackbar } from '@components';
 import {
   EmotionCacheProvider,
   ReactQueryProvider,

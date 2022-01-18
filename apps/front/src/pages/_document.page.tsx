@@ -3,7 +3,7 @@ import Document, { Html, Head, Main, NextScript } from 'next/document';
 import React from 'react';
 
 import { createEmotionCache } from '@components/logic';
-import { appTheme } from '@components/theme';
+import { appTheme } from '@theme';
 
 export default class MyDocument extends Document {
   render() {
