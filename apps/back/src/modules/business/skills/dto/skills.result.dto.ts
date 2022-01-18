@@ -1,12 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose, Type } from 'class-transformer';
 
-import { SkillDto } from './skill.dto';
+import { SkillCategoryDto } from './skill.dto';
 
 @Exclude()
 export class SkillsResultDto {
   @Expose()
-  @ApiProperty({ isArray: true, type: SkillDto })
-  @Type(() => SkillDto)
-  result: Array<SkillDto>;
+  @ApiProperty({ isArray: true, type: SkillCategoryDto })
+  @Type(() => SkillCategoryDto)
+  result: Array<SkillCategoryDto>;
 }

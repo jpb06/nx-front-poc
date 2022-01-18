@@ -1,7 +1,6 @@
-import { Title } from '@mui/icons-material';
 import { Avatar, CircularProgress, Divider, Grid, List } from '@mui/material';
 
-import { SubTitle, FullpageBox } from '@components';
+import { Title, SubTitle, FullpageBox } from '@components';
 
 import { Skill } from './children/Skill';
 import { useRedirectOnNoUserData } from './hooks/useRedirectOnNoUserData';
@@ -39,7 +38,8 @@ export const Home = () => {
         </Grid>
       </Grid>
       <Grid item>
-        <Title>{`${user.firstName} ${user.lastName}`}</Title>
+        <Title>{user.userName}</Title>
+        <SubTitle>{`${user.firstName} ${user.lastName}`}</SubTitle>
       </Grid>
       <Grid>
         <SubTitle>You are a {user.role.name}</SubTitle>
@@ -51,14 +51,16 @@ export const Home = () => {
           mb: 2,
         }}
       />
-      <Grid item>
-        <SubTitle>Your skills are</SubTitle>
-        <List dense>
-          {user.skills.map((skill) => (
-            <Skill key={skill.id} {...skill} />
-          ))}
-        </List>
-      </Grid>
+      {user.skills.length > 0 && (
+        <Grid item>
+          <SubTitle>Your skills are</SubTitle>
+          <List dense>
+            {user.skills.map((skill) => (
+              <Skill key={skill.id} {...skill} />
+            ))}
+          </List>
+        </Grid>
+      )}
     </FullpageBox>
   );
 };

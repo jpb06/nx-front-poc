@@ -3,7 +3,7 @@ import { Controller, Get } from '@nestjs/common';
 import { ApiRoute } from '../../../decorators/api-route';
 import { transformTo } from '../../../util/transform-to';
 import { RolesStoreService } from '../../dal/stores/roles-store.service';
-import { RolesResultDto } from './roles/roles.result.dto';
+import { RolesResultDto } from './dto/roles-result.dto';
 
 @Controller('roles')
 export class RolesController {

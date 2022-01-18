@@ -33,6 +33,9 @@ const createTestQueryClient = (showSnackbar: ShowSnackbarFn) => {
         retry: false,
         cacheTime: Infinity,
       },
+      mutations: {
+        retry: false
+      }
     },
     mutationCache,
   });

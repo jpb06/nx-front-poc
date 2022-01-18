@@ -1,7 +1,18 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { ArrayMaxSize, IsArray, IsNumber, IsString } from 'class-validator';
+import {
+  ArrayMaxSize,
+  IsArray,
+  IsNumber,
+  IsOptional,
+  IsString,
+} from 'class-validator';
 
 export class SignupBodyDto {
+  @ApiProperty({ required: false })
+  @IsString()
+  @IsOptional()
+  userName?: string;
+
   @ApiProperty()
   @IsString()
   firstName: string;

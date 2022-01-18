@@ -21,7 +21,7 @@ overrides:
           alphabetize:
             order: 'asc'
           pathGroups:
-            - pattern: '{@api,@api/**,@components,@components/**,@tests,@theme}'
+            - pattern: '{@api,@api/**,@components,@components/**,@tests,@theme,@translations}'
               group: internal
               position: before
           pathGroupsExcludedImportTypes:

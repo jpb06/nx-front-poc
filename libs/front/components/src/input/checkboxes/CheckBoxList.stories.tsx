@@ -7,11 +7,11 @@ import { useForm } from 'react-hook-form';
 import * as zod from 'zod';
 
 import { SnackbarContext, WithSnackbar } from '../..';
-import { CheckBoxGroup, CheckBoxGroupProps } from './CheckBoxGroup';
+import { CheckBoxList, CheckBoxListProps } from './CheckBoxList';
 
 export default {
-  component: CheckBoxGroup,
-  title: 'input/CheckBoxGroup',
+  component: CheckBoxList,
+  title: 'input/CheckBoxList',
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -25,11 +25,6 @@ export default {
       },
     },
     defaultValue: {
-      table: {
-        disable: true,
-      },
-    },
-    label: {
       table: {
         disable: true,
       },
@@ -54,18 +49,39 @@ export default {
         disable: true,
       },
     },
+    items: {
+      table: {
+        disable: true,
+      },
+    },
   },
-} as ComponentMeta<typeof CheckBoxGroup>;
+} as ComponentMeta<typeof CheckBoxList>;
 
-const schema = zod.object({
-  idSkills: zod
-    .preprocess((v) => parseInt(zod.string().parse(v), 10), zod.number())
-    .array()
-    .min(1, 'You need to select at least one skill'),
-});
+const schema = zod
+  .object({
+    idSkills: zod
+      .preprocess((v) => parseInt(zod.string().parse(v), 10), zod.number())
+      .array()
+      .min(1, 'atLeastOneSkill'),
+  })
+  .superRefine(({ idSkills }, ctx) => {
+    const invalidSkills = [6, 8];
+
+    const selectedInvalidSkills = idSkills.filter((id) =>
+      invalidSkills.includes(id)
+    );
+    if (selectedInvalidSkills.length > 0) {
+      ctx.addIssue({
+        code: zod.ZodIssueCode.custom,
+        message: selectedInvalidSkills.join(','),
+        path: ['idSkills'],
+        fatal: true,
+      });
+    }
+  });
 type FormModel = zod.infer<typeof schema>;
 
-const Form = () => {
+const Form: React.FC<CheckBoxListProps<FormModel>> = ({ isLoading, label }) => {
   const showSnackbar = useContext(SnackbarContext);
   const { control, handleSubmit } = useForm<FormModel>({
     defaultValues: { idSkills: [] },
@@ -92,26 +108,41 @@ const Form = () => {
         spacing={2}
       >
         <Grid item>
-          <CheckBoxGroup
+          <CheckBoxList
             control={control}
             name="idSkills"
-            label="Skills"
+            label={label}
+            isLoading={isLoading}
             items={[
               {
                 id: 1,
-                label: 'jest',
+                name: 'Soft skills',
+                skills: [
+                  { id: 6, name: 'Communication' },
+                  { id: 8, name: 'Information sharing' },
+                ],
               },
               {
                 id: 2,
-                label: 'react',
+                name: 'Management',
+                skills: [
+                  {
+                    id: 7,
+                    name: 'Project drive',
+                  },
+                  { id: 9, name: 'Reporting' },
+                  { id: 11, name: 'Roadmap definition' },
+                ],
               },
               {
-                id: 2,
-                label: 'Typescript',
-              },
-              {
-                id: 2,
-                label: 'nest',
+                id: 3,
+                name: 'Tech',
+                skills: [
+                  { id: 1, name: 'jest' },
+                  { id: 4, name: 'react' },
+                  { id: 5, name: 'Typescript' },
+                  { id: 10, name: 'Github actions' },
+                ],
               },
             ]}
           />
@@ -132,11 +163,14 @@ const Form = () => {
   );
 };
 
-const Template: Story<CheckBoxGroupProps<FormModel>> = (_) => (
+const Template: Story<CheckBoxListProps<FormModel>> = (args) => (
   <WithSnackbar>
-    <Form />
+    <Form {...args} />
   </WithSnackbar>
 );
 
 export const Primary = Template.bind({});
-Primary.args = {};
+Primary.args = {
+  isLoading: false,
+  label: 'Skills',
+};

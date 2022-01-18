@@ -7,8 +7,10 @@ import {
 } from '@mui/material';
 import { useController, UseControllerProps } from 'react-hook-form';
 
+import { t } from '@translations';
+
 export type SelectItem = {
-  key: number;
+  key?: number;
   text: string;
 };
 
@@ -22,7 +24,10 @@ export function Select<T>({
   data,
   ...controllerProps
 }: SelectProps<T>): JSX.Element | null {
-  const { field, fieldState } = useController(controllerProps);
+  const {
+    field: { value, onChange, ...othersProps },
+    fieldState,
+  } = useController(controllerProps);
   const { name } = controllerProps;
 
   if (!data) {
@@ -36,16 +41,20 @@ export function Select<T>({
         labelId={`${name}-select`}
         id={`${name}-select-helper`}
         size="small"
-        {...field}
+        onChange={(e) => {
+          onChange(e.target.value === '' ? undefined : e.target.value);
+        }}
+        value={value || ''}
+        {...othersProps}
         label={label}
       >
         {data.map(({ key, text }) => (
-          <MenuItem key={key} value={key}>
+          <MenuItem key={key ?? -1} value={key}>
             {text}
           </MenuItem>
         ))}
       </MuiSelect>
-      <FormHelperText>{fieldState.error?.message ?? ' '}</FormHelperText>
+      <FormHelperText>{t(fieldState.error?.message)}</FormHelperText>
     </FormControl>
   );
 }

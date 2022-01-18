@@ -35,7 +35,11 @@ export class UsersController {
 
     const skills = await this.skillsStore.getAll();
     const invalidSkills = data.idSkills.filter(
-      (el) => !skills.map((sk) => sk.id).includes(el)
+      (el) =>
+        !skills
+          .flatMap((el) => el.skills)
+          .map((sk) => sk.id)
+          .includes(el)
     );
     if (invalidSkills.length > 0) {
       throw new BadRequestException(
@@ -55,7 +59,9 @@ export class UsersController {
     return transformTo(SignupResultDto, {
       ...user,
       role: userRole,
-      skills: skills.filter((el) => data.idSkills.includes(el.id)),
+      skills: skills
+        .flatMap((el) => el.skills)
+        .filter((el) => data.idSkills.includes(el.id)),
       token,
     });
   }

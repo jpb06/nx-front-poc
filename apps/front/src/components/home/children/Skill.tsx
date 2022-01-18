@@ -1,9 +1,8 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import Image from 'next/image';
 
 import { SkillDto } from '@api';
 
-import { getSkillIconPath } from '../logic/getSkillIconPath';
+import { SkillIcon } from './SkillIcon';
 
 export const Skill = ({ id, name }: SkillDto) => (
   <ListItem key={id}>
@@ -12,7 +11,7 @@ export const Skill = ({ id, name }: SkillDto) => (
         minWidth: 40,
       }}
     >
-      <Image src={getSkillIconPath(id)} alt="jest" height={30} width={30} />
+      <SkillIcon idSkill={id} />
     </ListItemIcon>
     <ListItemText primary={name} />
   </ListItem>
