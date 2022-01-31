@@ -246,3 +246,60 @@ export const customErrorMap = (
 ```
 
 ### 🔶 Complex validation
+
+Sometimes, we may have to do complex validation based on several fields. For example, we may have a password field using two inputs to ensure user has made no typo.
+
+We have two functions we can use in our schema definion to do this: `refine` and `superRefine`, which basically do the same thing but with small variations.
+
+#### 🌀 `refine`
+
+Refine is great for simple use cases:
+
+```typescript
+const passwordForm = zod
+  .object({
+    password: zod.string(),
+    confirmPassword: zod.string(),
+  })
+  .refine(({ password, confirmPassword }) => password === confirmPassword, {
+    // Our custom error message
+    message: "Passwords do not match!",
+    // The impacted field; in this example, the error message will be displayed for the `confirmPassword` input
+    path: ["confirmPassword"],
+  });
+```
+
+Do note you can also use `refine` on single fields:
+
+```typescript
+const schema = zod.string().refine((val) => val.length <= 255, {
+  message: "String can't be more than 255 characters",
+});
+```
+
+#### 🌀 `superRefine`
+
+This function allows us to do more complex stuff; we can also chain superRefine functions:
+
+```typescript
+const schema = zod.array(zod.string()).superRefine((val, ctx) => {
+  if (val.length > 3) {
+    ctx.addIssue({
+      code: zod.ZodIssueCode.too_big,
+      maximum: 3,
+      type: "array",
+      inclusive: true,
+      message: "Too many items 😡",
+    });
+  }
+
+  if (val.length !== new Set(val).size) {
+    ctx.addIssue({
+      code: zod.ZodIssueCode.custom,
+      message: `No duplicated allowed.`,
+    });
+  }
+});
+```
+
+We can use asynchrony within `superRefine`. [Here](./../apps/front/src/components/signup/hooks/useSignupFormSchema.ts) is an example. We have a role dropdown and a skills selector. Skills availability depend on the role selected. So, we will do a XHR to check the skills available for that role.
