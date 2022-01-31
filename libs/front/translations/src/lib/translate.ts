@@ -10,5 +10,5 @@ export const t = (key?: string): string => {
     throw new Error(`No translation for key '${key}'`);
   }
 
-  return langEn[key];
+  return (langEn as never)[key];
 };
