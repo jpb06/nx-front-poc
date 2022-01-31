@@ -220,49 +220,49 @@ describe('Signup component', () => {
       getByText(/oh no! something terrible happened/i);
     });
 
-    it('should display an error message when more than three skills have been selected', async () => {
-      msw.areSkillsAvailableForRoleMutation(200, { result: [] });
+    // it('should display an error message when more than three skills have been selected', async () => {
+    //   msw.areSkillsAvailableForRoleMutation(200, { result: [] });
 
-      const role = mockedData.roles[3];
-      const validData = {
-        firstName: 'firstName',
-        lastName: 'lastName',
-        password: 'password',
-      };
+    //   const role = mockedData.roles[3];
+    //   const validData = {
+    //     firstName: 'firstName',
+    //     lastName: 'lastName',
+    //     password: 'password',
+    //   };
 
-      render(<Signup />);
+    //   render(<Signup />);
 
-      expect(await findByLabelText('Role')).toBeInTheDocument();
-      expect(await findByText('Skills')).toBeInTheDocument();
+    //   expect(await findByLabelText('Role')).toBeInTheDocument();
+    //   expect(await findByText('Skills')).toBeInTheDocument();
 
-      // Set data
-      userEvent.type(getByLabelText('Firstname'), validData.firstName);
-      userEvent.type(getByLabelText('Lastname'), validData.lastName);
-      userEvent.type(getByLabelText('Password'), validData.password);
+    //   // Set data
+    //   userEvent.type(getByLabelText('Firstname'), validData.firstName);
+    //   userEvent.type(getByLabelText('Lastname'), validData.lastName);
+    //   userEvent.type(getByLabelText('Password'), validData.password);
 
-      userEvent.click(getByLabelText('Role'));
-      userEvent.click(getByText(role.name));
+    //   userEvent.click(getByLabelText('Role'));
+    //   userEvent.click(getByText(role.name));
 
-      userEvent.click(getByRole('button', { name: /tech/i }));
-      const jest = await findByRole('checkbox', { name: /jest/i });
-      userEvent.click(jest);
-      const react = await findByRole('checkbox', { name: /react/i });
-      userEvent.click(react);
-      const typescript = await findByRole('checkbox', { name: /typescript/i });
-      userEvent.click(typescript);
+    //   userEvent.click(getByRole('button', { name: /tech/i }));
+    //   const jest = await findByRole('checkbox', { name: /jest/i });
+    //   userEvent.click(jest);
+    //   const react = await findByRole('checkbox', { name: /react/i });
+    //   userEvent.click(react);
+    //   const typescript = await findByRole('checkbox', { name: /typescript/i });
+    //   userEvent.click(typescript);
 
-      userEvent.click(getByRole('button', { name: /management/i }));
-      const roadmapDefinition = await findByRole('checkbox', {
-        name: /roadmap definition/i,
-      });
-      userEvent.click(roadmapDefinition);
+    //   userEvent.click(getByRole('button', { name: /management/i }));
+    //   const roadmapDefinition = await findByRole('checkbox', {
+    //     name: /roadmap definition/i,
+    //   });
+    //   userEvent.click(roadmapDefinition);
 
-      const signup = getByText('Signup');
-      userEvent.click(signup);
+    //   const signup = getByText('Signup');
+    //   userEvent.click(signup);
 
-      await screen.findByText(/you need to select at most three skills/i);
-      expect(pushMock).not.toHaveBeenCalled();
-    });
+    //   await screen.findByText(/you need to select at most three skills/i);
+    //   expect(pushMock).not.toHaveBeenCalled();
+    // });
 
     it('should not submit the form if skills are invalid for the selected role', async () => {
       msw.areSkillsAvailableForRoleMutation(201, [6, 8]);
