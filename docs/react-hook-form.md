@@ -1,6 +1,6 @@
 ## ⚡ Forms handling
 
-We are using two libraries to manage forms in our app: [react-hook-form](https://github.com/react-hook-form/react-hook-form) and [zod](https://github.com/colinhacks/zod). The former is a library dedicated to form handling while the latter is a schema declaration and validation library.
+We are using two libraries to manage forms in our app: [react-hook-form](https://github.com/react-hook-form/react-hook-form) and [zod](https://github.com/colinhacks/zod). The former is a library dedicated to form handling while the latter is a schema declaration and parsing library.
 
 Our objective here is to separate the definition and the validation of our data model from the definition of our form in the DOM.
 
@@ -43,9 +43,9 @@ Using our schema is easy enough, using a resolver:
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-formDefaultValues = {
+const formDefaultValues : Partial<FormModel> = {
   name: '',
-  age: 0,
+  age: 0, // I am a bit concerned about this as Im not sure its a good idea to default form values to invalid values.
   idHobbies: [],
 };
 
