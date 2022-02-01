@@ -45,7 +45,7 @@ import { useForm } from 'react-hook-form';
 
 const formDefaultValues : Partial<FormModel> = {
   name: '',
-  age: 0, // I am a bit concerned about this as Im not sure its a good idea to default form values to invalid values.
+  age: '',
   idHobbies: [],
 };
 
@@ -243,6 +243,28 @@ export const customErrorMap = (
   // Otherwise, let's use the raw code (untranslated) or a generic translation key instead 
   return { message: issue.code || 'genericError' };
 };
+```
+
+We can simplify further by creating a function that will return a custom `zodResolver`:
+
+```typescript
+export const formResolver: Resolver = (
+  schema,
+  schemaOptions,
+  factoryOptions
+) => zodResolver(
+  schema,
+  { ...schemaOptions, errorMap: customErrorMap },
+  factoryOptions
+)
+```
+
+This simplifies the definition of our forms:
+
+```typescript
+const { control, handleSubmit } = useForm<FormModel>({
+  resolver: formResolver(schema)
+});
 ```
 
 ### 🔶 Complex validation
