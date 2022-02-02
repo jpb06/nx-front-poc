@@ -221,6 +221,8 @@ describe('Signup component', () => {
     });
 
     it('should display an error message when more than three skills have been selected', async () => {
+      jest.setTimeout(30000);
+
       msw.areSkillsAvailableForRoleMutation(200, { result: [] });
 
       const role = mockedData.roles[3];
@@ -244,12 +246,14 @@ describe('Signup component', () => {
       userEvent.click(getByText(role.name));
 
       userEvent.click(getByRole('button', { name: /tech/i }));
-      const jest = await findByRole('checkbox', { name: /jest/i });
-      userEvent.click(jest);
-      const react = await findByRole('checkbox', { name: /react/i });
-      userEvent.click(react);
-      const typescript = await findByRole('checkbox', { name: /typescript/i });
-      userEvent.click(typescript);
+      const jestCheckbox = await findByRole('checkbox', { name: /jest/i });
+      userEvent.click(jestCheckbox);
+      const reactCheckbox = await findByRole('checkbox', { name: /react/i });
+      userEvent.click(reactCheckbox);
+      const typescriptCheckbox = await findByRole('checkbox', {
+        name: /typescript/i,
+      });
+      userEvent.click(typescriptCheckbox);
 
       userEvent.click(getByRole('button', { name: /management/i }));
       const roadmapDefinition = await findByRole('checkbox', {
