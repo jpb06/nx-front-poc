@@ -221,7 +221,6 @@ describe('Signup component', () => {
     });
 
     it('should not submit the form if skills are invalid for the selected role', async () => {
-      jest.setTimeout(10000);
       msw.areSkillsAvailableForRoleMutation(201, [6, 8]);
 
       const role = mockedData.roles[0];
@@ -261,8 +260,6 @@ describe('Signup component', () => {
     });
 
     it('should cache skills availibility for role checks', async () => {
-      jest.setTimeout(10000);
-
       let callCount = 0;
       const cb = ({ url }: MockedRequest<DefaultRequestBody>) => {
         const uri = new URL(url).toString();
@@ -333,8 +330,6 @@ describe('Signup component', () => {
   });
 
   it('should display an error message when more than three skills have been selected', async () => {
-    jest.setTimeout(10000);
-
     msw.areSkillsAvailableForRoleMutation(200, { result: [] });
 
     const role = mockedData.roles[3];
