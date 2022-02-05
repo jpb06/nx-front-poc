@@ -56,8 +56,8 @@ jobs:
         timeout-minutes: 10
 
       - name: Tests
-        # run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --codeCoverage
-        run: pnpm exec nx run-many --target=test --all --parallel --max-parallel=3 --codeCoverage
+        run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --codeCoverage
+        # run: pnpm exec nx run-many --target=test --all --parallel --max-parallel=3 --codeCoverage
         timeout-minutes: 10
 
       - name: Check if coverage folder exists
