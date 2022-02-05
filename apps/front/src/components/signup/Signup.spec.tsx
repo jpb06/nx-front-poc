@@ -327,52 +327,52 @@ describe('Signup component', () => {
       expect(callCount).toBe(2);
       server.events.removeListener('request:match', cb);
     });
-  });
 
-  it('should display an error message when more than three skills have been selected', async () => {
-    msw.areSkillsAvailableForRoleMutation(200, { result: [] });
+    it('should display an error message when more than three skills have been selected', async () => {
+      msw.areSkillsAvailableForRoleMutation(200, { result: [] });
 
-    const role = mockedData.roles[3];
-    const validData = {
-      firstName: 'firstName',
-      lastName: 'lastName',
-      password: 'password',
-    };
+      const role = mockedData.roles[3];
+      const validData = {
+        firstName: 'firstName',
+        lastName: 'lastName',
+        password: 'password',
+      };
 
-    render(<Signup />);
+      render(<Signup />);
 
-    expect(await findByLabelText('Role')).toBeInTheDocument();
-    expect(await findByText('Skills')).toBeInTheDocument();
+      expect(await findByLabelText('Role')).toBeInTheDocument();
+      expect(await findByText('Skills')).toBeInTheDocument();
 
-    // Set data
-    userEvent.type(getByLabelText('Firstname'), validData.firstName);
-    userEvent.type(getByLabelText('Lastname'), validData.lastName);
-    userEvent.type(getByLabelText('Password'), validData.password);
+      // Set data
+      userEvent.type(getByLabelText('Firstname'), validData.firstName);
+      userEvent.type(getByLabelText('Lastname'), validData.lastName);
+      userEvent.type(getByLabelText('Password'), validData.password);
 
-    userEvent.click(getByLabelText('Role'));
-    userEvent.click(getByText(role.name));
+      userEvent.click(getByLabelText('Role'));
+      userEvent.click(getByText(role.name));
 
-    userEvent.click(getByRole('button', { name: /tech/i }));
-    const jestCheckbox = await findByRole('checkbox', { name: /jest/i });
-    userEvent.click(jestCheckbox);
-    const reactCheckbox = await findByRole('checkbox', { name: /react/i });
-    userEvent.click(reactCheckbox);
-    const typescriptCheckbox = await findByRole('checkbox', {
-      name: /typescript/i,
+      userEvent.click(getByRole('button', { name: /tech/i }));
+      const jestCheckbox = await findByRole('checkbox', { name: /jest/i });
+      userEvent.click(jestCheckbox);
+      const reactCheckbox = await findByRole('checkbox', { name: /react/i });
+      userEvent.click(reactCheckbox);
+      const typescriptCheckbox = await findByRole('checkbox', {
+        name: /typescript/i,
+      });
+      userEvent.click(typescriptCheckbox);
+
+      userEvent.click(getByRole('button', { name: /management/i }));
+      const roadmapDefinition = await findByRole('checkbox', {
+        name: /roadmap definition/i,
+      });
+      userEvent.click(roadmapDefinition);
+
+      const signup = getByText('Signup');
+      userEvent.click(signup);
+
+      await screen.findByText(/you need to select at most three skills/i);
+      expect(pushMock).not.toHaveBeenCalled();
     });
-    userEvent.click(typescriptCheckbox);
-
-    userEvent.click(getByRole('button', { name: /management/i }));
-    const roadmapDefinition = await findByRole('checkbox', {
-      name: /roadmap definition/i,
-    });
-    userEvent.click(roadmapDefinition);
-
-    const signup = getByText('Signup');
-    userEvent.click(signup);
-
-    await screen.findByText(/you need to select at most three skills/i);
-    expect(pushMock).not.toHaveBeenCalled();
   });
 
   describe('initial data loading', () => {
