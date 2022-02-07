@@ -62,80 +62,75 @@ describe('Signup component', () => {
     );
   });
 
-  describe('validation', () => {
-    beforeEach(() => {
-      msw.rolesQuery(200, mockedData.roles);
-      msw.skillsQuery(200, mockedData.skills);
+  //describe('validation', () => {
+  it('should display an error message when no role was selected', async () => {
+    render(<Signup />);
+
+    expect(await screen.findByLabelText('Role')).toBeInTheDocument();
+    expect(await screen.findByText('Skills')).toBeInTheDocument();
+
+    const signup = screen.getByText('Signup');
+
+    userEvent.click(signup);
+
+    expect(
+      await screen.findByText(/a firstname is required/i)
+    ).toBeInTheDocument();
+    expect(
+      await screen.findByText(/a lastname is required/i)
+    ).toBeInTheDocument();
+    expect(
+      await screen.findByText(/a password is required/i)
+    ).toBeInTheDocument();
+    expect(
+      await screen.findByText(/you need to select a role/i)
+    ).toBeInTheDocument();
+  });
+
+  it('should send valid data to the API', async () => {
+    msw.areSkillsAvailableForRoleMutation(200, { result: [] });
+    msw.signupMutation(200, { result: mockedData.signedUser });
+
+    const role = mockedData.roles[0];
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const skills = mockedData.skills
+      .find((c) => c.id === 3)!
+      .skills.slice(0, 2);
+    const validData: FormModel = {
+      firstName: 'firstName',
+      lastName: 'lastName',
+      idRole: role.id,
+      password: 'password',
+      idSkills: skills.map((s) => s.id),
+    };
+
+    render(<Signup />);
+
+    expect(await screen.findByLabelText('Role')).toBeInTheDocument();
+    expect(await screen.findByText('Skills')).toBeInTheDocument();
+
+    // Set data
+    userEvent.type(screen.getByLabelText('Firstname'), validData.firstName);
+    userEvent.type(screen.getByLabelText('Lastname'), validData.lastName);
+    userEvent.type(screen.getByLabelText('Password'), validData.password);
+
+    userEvent.click(screen.getByLabelText('Role'));
+    userEvent.click(screen.getByText(role.name));
+
+    userEvent.click(screen.getByRole('button', { name: /tech/i }));
+    skills.map(({ name }) => {
+      userEvent.click(screen.getByText(name));
     });
 
-    it('should display an error message when no role was selected', async () => {
-      render(<Signup />);
+    const signup = screen.getByText('Signup');
 
-      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
-      expect(await screen.findByText('Skills')).toBeInTheDocument();
+    // Submit
+    userEvent.click(signup);
 
-      const signup = screen.getByText('Signup');
-
-      userEvent.click(signup);
-
-      expect(
-        await screen.findByText(/a firstname is required/i)
-      ).toBeInTheDocument();
-      expect(
-        await screen.findByText(/a lastname is required/i)
-      ).toBeInTheDocument();
-      expect(
-        await screen.findByText(/a password is required/i)
-      ).toBeInTheDocument();
-      expect(
-        await screen.findByText(/you need to select a role/i)
-      ).toBeInTheDocument();
+    await waitFor(() => {
+      expect(pushMock).toHaveBeenCalledWith('home');
     });
-
-    it('should send valid data to the API', async () => {
-      msw.areSkillsAvailableForRoleMutation(200, { result: [] });
-      msw.signupMutation(200, { result: mockedData.signedUser });
-
-      const role = mockedData.roles[0];
-      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-      const skills = mockedData.skills
-        .find((c) => c.id === 3)!
-        .skills.slice(0, 2);
-      const validData: FormModel = {
-        firstName: 'firstName',
-        lastName: 'lastName',
-        idRole: role.id,
-        password: 'password',
-        idSkills: skills.map((s) => s.id),
-      };
-
-      render(<Signup />);
-
-      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
-      expect(await screen.findByText('Skills')).toBeInTheDocument();
-
-      // Set data
-      userEvent.type(screen.getByLabelText('Firstname'), validData.firstName);
-      userEvent.type(screen.getByLabelText('Lastname'), validData.lastName);
-      userEvent.type(screen.getByLabelText('Password'), validData.password);
-
-      userEvent.click(screen.getByLabelText('Role'));
-      userEvent.click(screen.getByText(role.name));
-
-      userEvent.click(screen.getByRole('button', { name: /tech/i }));
-      skills.map(({ name }) => {
-        userEvent.click(screen.getByText(name));
-      });
-
-      const signup = screen.getByText('Signup');
-
-      // Submit
-      userEvent.click(signup);
-
-      await waitFor(() => {
-        expect(pushMock).toHaveBeenCalledWith('home');
-      });
-    });
+    //  });
 
     it('should display a snackbar with the backend error message when the mutation failed', async () => {
       msw.areSkillsAvailableForRoleMutation(200, { result: [] });

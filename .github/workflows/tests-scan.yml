@@ -22,9 +22,9 @@ jobs:
 
       - name: Check out repository code
         uses: actions/checkout@v2
-        with:
-          # Disabling shallow clone is recommended for improving relevancy of reporting
-          fetch-depth: 0
+        # with:
+        #   # Disabling shallow clone is recommended for improving relevancy of reporting
+        #   fetch-depth: 0
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
@@ -54,13 +54,13 @@ jobs:
       - name: Starting nx cloud CI
         run: pnpm exec nx-cloud start-ci-run
 
-      - name: Linting
-        run: pnpm exec nx affected --target=lint --parallel --max-parallel=3
-        timeout-minutes: 10
+      # - name: Linting
+      #   run: pnpm exec nx affected --target=lint --parallel --max-parallel=3
+      #   timeout-minutes: 10
 
-      - name: Types checking
-        run: pnpm exec nx affected --target=type-check --parallel --max-parallel=3
-        timeout-minutes: 10
+      # - name: Types checking
+      #   run: pnpm exec nx affected --target=type-check --parallel --max-parallel=3
+      #   timeout-minutes: 10
 
       - name: Tests
         run: npx jest ./apps/front/src/components/signup/Signup.spec.tsx
