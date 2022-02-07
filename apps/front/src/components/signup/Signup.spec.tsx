@@ -4,11 +4,11 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-//import { DefaultRequestBody, MockedRequest } from 'msw';
+import { DefaultRequestBody, MockedRequest } from 'msw';
 import React from 'react';
 
 import { render } from '@components/tests';
-import { mockedData, mocks, msw } from '@tests';
+import { mockedData, mocks, msw, server } from '@tests';
 
 import { Signup } from './Signup';
 import { FormModel } from './hooks/useSignupFormSchema';
@@ -260,6 +260,8 @@ describe('Signup component', () => {
     });
 
     it('should display an error message when more than three skills have been selected', async () => {
+      msw.rolesQuery(200, mockedData.roles);
+      msw.skillsQuery(200, mockedData.skills);
       msw.areSkillsAvailableForRoleMutation(200, { result: [] });
 
       const role = mockedData.roles[3];
@@ -306,77 +308,77 @@ describe('Signup component', () => {
       userEvent.click(signup);
 
       await screen.findByText(/you need to select at most three skills/i);
-      await waitFor(() => expect(pushMock).not.toHaveBeenCalled());
+      expect(pushMock).not.toHaveBeenCalled();
     });
 
-    // it('should cache skills availibility for role checks', async () => {
-    //   let callCount = 0;
-    //   const cb = ({ url }: MockedRequest<DefaultRequestBody>) => {
-    //     const uri = new URL(url).toString();
-    //     if (uri.endsWith('/skills/availabiltyForRole')) {
-    //       callCount++;
-    //     }
-    //   };
-    //   server.events.on('request:match', cb);
+    it('should cache skills availibility for role checks', async () => {
+      let callCount = 0;
+      const cb = ({ url }: MockedRequest<DefaultRequestBody>) => {
+        const uri = new URL(url).toString();
+        if (uri.endsWith('/skills/availabiltyForRole')) {
+          callCount++;
+        }
+      };
+      server.events.on('request:match', cb);
 
-    //   msw.areSkillsAvailableForRoleMutation(201, [6]);
+      msw.areSkillsAvailableForRoleMutation(201, [6]);
 
-    //   const role = mockedData.roles[0];
-    //   const validData = {
-    //     firstName: 'firstName',
-    //     lastName: 'lastName',
-    //     password: 'password',
-    //   };
+      const role = mockedData.roles[0];
+      const validData = {
+        firstName: 'firstName',
+        lastName: 'lastName',
+        password: 'password',
+      };
 
-    //   render(<Signup />);
+      render(<Signup />);
 
-    //   expect(await screen.findByLabelText('Role')).toBeInTheDocument();
-    //   expect(await screen.findByText('Skills')).toBeInTheDocument();
+      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
+      expect(await screen.findByText('Skills')).toBeInTheDocument();
 
-    //   // Set data
-    //   userEvent.type(screen.getByLabelText('Firstname'), validData.firstName);
-    //   userEvent.type(screen.getByLabelText('Lastname'), validData.lastName);
-    //   userEvent.type(screen.getByLabelText('Password'), validData.password);
+      // Set data
+      userEvent.type(screen.getByLabelText('Firstname'), validData.firstName);
+      userEvent.type(screen.getByLabelText('Lastname'), validData.lastName);
+      userEvent.type(screen.getByLabelText('Password'), validData.password);
 
-    //   userEvent.click(screen.getByLabelText('Role'));
-    //   userEvent.click(screen.getByText(role.name));
+      userEvent.click(screen.getByLabelText('Role'));
+      userEvent.click(screen.getByText(role.name));
 
-    //   userEvent.click(
-    //     screen.getByRole('checkbox', {
-    //       name: 'Communication',
-    //     })
-    //   );
+      userEvent.click(
+        screen.getByRole('checkbox', {
+          name: 'Communication',
+        })
+      );
 
-    //   const signup = screen.getByText('Signup');
-    //   userEvent.click(signup);
+      const signup = screen.getByText('Signup');
+      userEvent.click(signup);
 
-    //   await screen.findByText('Invalid skills for this role!');
+      await screen.findByText('Invalid skills for this role!');
 
-    //   msw.areSkillsAvailableForRoleMutation(201, []);
+      msw.areSkillsAvailableForRoleMutation(201, []);
 
-    //   userEvent.click(
-    //     screen.getByRole('checkbox', {
-    //       name: 'Communication',
-    //     })
-    //   );
+      userEvent.click(
+        screen.getByRole('checkbox', {
+          name: 'Communication',
+        })
+      );
 
-    //   await waitForElementToBeRemoved(() =>
-    //     screen.queryByText('Invalid skills for this role!')
-    //   );
+      await waitForElementToBeRemoved(() =>
+        screen.queryByText('Invalid skills for this role!')
+      );
 
-    //   msw.areSkillsAvailableForRoleMutation(201, [6]);
+      msw.areSkillsAvailableForRoleMutation(201, [6]);
 
-    //   userEvent.click(
-    //     screen.getByRole('checkbox', {
-    //       name: 'Communication',
-    //     })
-    //   );
+      userEvent.click(
+        screen.getByRole('checkbox', {
+          name: 'Communication',
+        })
+      );
 
-    //   await screen.findByText('Invalid skills for this role!');
+      await screen.findByText('Invalid skills for this role!');
 
-    //   expect(callCount).toBe(2);
-    //   server.events.removeListener('request:match', cb);
-    // });
+      expect(callCount).toBe(2);
+      server.events.removeListener('request:match', cb);
+    });
   });
 
   describe('initial data loading', () => {
