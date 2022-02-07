@@ -4,11 +4,11 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { DefaultRequestBody, MockedRequest } from 'msw';
+//import { DefaultRequestBody, MockedRequest } from 'msw';
 import React from 'react';
 
 import { render } from '@components/tests';
-import { mockedData, mocks, msw, server } from '@tests';
+import { mockedData, mocks, msw } from '@tests';
 
 import { Signup } from './Signup';
 import { FormModel } from './hooks/useSignupFormSchema';
