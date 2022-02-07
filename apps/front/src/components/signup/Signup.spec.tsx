@@ -260,8 +260,6 @@ describe('Signup component', () => {
     });
 
     it('should display an error message when more than three skills have been selected', async () => {
-      msw.rolesQuery(200, mockedData.roles);
-      msw.skillsQuery(200, mockedData.skills);
       msw.areSkillsAvailableForRoleMutation(200, { result: [] });
 
       const role = mockedData.roles[3];
