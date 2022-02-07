@@ -26,10 +26,10 @@ jobs:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
 
-      # - name: Derive appropriate SHAs for base and head for `nx affected` commands
-      #   uses: nrwl/nx-set-shas@v2
-      #   with:
-      #     main-branch-name: master
+      - name: Derive appropriate SHAs for base and head for `nx affected` commands
+        uses: nrwl/nx-set-shas@v2
+        with:
+          main-branch-name: master
 
       # - name: Determine master HEAD commit hash
       #   id: master_head_commit
@@ -51,19 +51,19 @@ jobs:
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
 
-      # - name: Starting nx cloud CI
-      #   run: pnpm exec nx-cloud start-ci-run
+      - name: Starting nx cloud CI
+        run: pnpm exec nx-cloud start-ci-run
 
-      # - name: Linting
-      #   run: pnpm exec nx affected --target=lint --parallel --max-parallel=3
-      #   timeout-minutes: 10
+      - name: Linting
+        run: pnpm exec nx affected --target=lint --parallel --max-parallel=3
+        timeout-minutes: 10
 
-      # - name: Types checking
-      #   run: pnpm exec nx affected --target=type-check --parallel --max-parallel=3
-      #   timeout-minutes: 10
+      - name: Types checking
+        run: pnpm exec nx affected --target=type-check --parallel --max-parallel=3
+        timeout-minutes: 10
 
       - name: Tests
-        run: pnpm jest ./apps/front/src/components/signup/Signup.spec.tsx
+        run: npx jest ./apps/front/src/components/signup/Signup.spec.tsx
         # run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --codeCoverage
         # run: pnpm exec nx run-many --target=test --all --parallel --max-parallel=3 --codeCoverage
         timeout-minutes: 10
@@ -97,34 +97,34 @@ jobs:
       #   run: pnpm exec nx affected --target=e2e --parallel --max-parallel=3 --codeCoverage
       #   timeout-minutes: 10
 
-      # - name: Stopping nx cloud CI
-      #   run: pnpm exec nx-cloud stop-all-agents
+      - name: Stopping nx cloud CI
+        run: pnpm exec nx-cloud stop-all-agents
   
-  # agents:
-  #   runs-on: ubuntu-latest
-  #   name: Agent 1
-  #   timeout-minutes: 60
+  agents:
+    runs-on: ubuntu-latest
+    name: Agent 1
+    timeout-minutes: 60
     
-  #   strategy:
-  #     matrix:
-  #       agent: [1, 2, 3]
+    strategy:
+      matrix:
+        agent: [1, 2, 3]
 
-  #   steps:
-  #     - name: Check out repository code
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
 
-  #     - uses: pnpm/action-setup@v2.0.1
-  #       with:
-  #         version: latest
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: latest
       
-  #     - name: Setup node
-  #       uses: actions/setup-node@v2
-  #       with:
-  #         node-version-file: '.node-version'
-  #         cache: 'pnpm'
+      - name: Setup node
+        uses: actions/setup-node@v2
+        with:
+          node-version-file: '.node-version'
+          cache: 'pnpm'
             
-  #     - name: Installing dependencies
-  #       run: pnpm install --frozen-lockfile
+      - name: Installing dependencies
+        run: pnpm install --frozen-lockfile
       
-  #     - name: Start Nx Agent ${{ matrix.agent }}
-  #       run: pnpm exec nx-cloud start-agent
+      - name: Start Nx Agent ${{ matrix.agent }}
+        run: pnpm exec nx-cloud start-agent

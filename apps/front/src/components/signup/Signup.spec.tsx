@@ -382,6 +382,15 @@ describe('Signup component', () => {
   });
 
   describe('initial data loading', () => {
+    beforeEach(() => {
+      msw.rolesQuery(200, mockedData.roles);
+      msw.skillsQuery(200, mockedData.skills);
+    });
+
+    afterEach(() => {
+      jest.clearAllMocks();
+    });
+
     it('should display a loading indicator for roles', () => {
       render(<Signup />);
 
