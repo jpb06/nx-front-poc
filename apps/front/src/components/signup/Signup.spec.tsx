@@ -305,8 +305,8 @@ describe('Signup component', () => {
       const signup = screen.getByText('Signup');
       userEvent.click(signup);
 
-      // await screen.findByText(/you need to select at most three skills/i);
-      // expect(pushMock).not.toHaveBeenCalled();
+      await screen.findByText(/you need to select at most three skills/i);
+      expect(pushMock).not.toHaveBeenCalled();
     });
 
     it('should cache skills availibility for role checks', async () => {
@@ -343,7 +343,7 @@ describe('Signup component', () => {
 
       userEvent.click(
         screen.getByRole('checkbox', {
-          name: 'Communication',
+          name: /communication/i,
         })
       );
 
@@ -355,8 +355,8 @@ describe('Signup component', () => {
       msw.areSkillsAvailableForRoleMutation(201, []);
 
       userEvent.click(
-        screen.getByRole('checkbox', {
-          name: 'Communication',
+        await screen.findByRole('checkbox', {
+          name: /communication/i,
         })
       );
 
@@ -367,8 +367,8 @@ describe('Signup component', () => {
       msw.areSkillsAvailableForRoleMutation(201, [6]);
 
       userEvent.click(
-        screen.getByRole('checkbox', {
-          name: 'Communication',
+        await screen.findByRole('checkbox', {
+          name: /communication/i,
         })
       );
 
