@@ -22,9 +22,9 @@ jobs:
 
       - name: Check out repository code
         uses: actions/checkout@v2
-        # with:
-        #   # Disabling shallow clone is recommended for improving relevancy of reporting
-        #   fetch-depth: 0
+        with:
+          # Disabling shallow clone is recommended for improving relevancy of reporting
+          fetch-depth: 0
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
