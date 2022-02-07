@@ -259,55 +259,55 @@ describe('Signup component', () => {
       expect(pushMock).not.toHaveBeenCalled();
     });
 
-    it('should display an error message when more than three skills have been selected', async () => {
-      msw.areSkillsAvailableForRoleMutation(200, { result: [] });
+    // it('should display an error message when more than three skills have been selected', async () => {
+    //   msw.areSkillsAvailableForRoleMutation(200, { result: [] });
 
-      const role = mockedData.roles[3];
-      const validData = {
-        firstName: 'firstName',
-        lastName: 'lastName',
-        password: 'password',
-      };
+    //   const role = mockedData.roles[3];
+    //   const validData = {
+    //     firstName: 'firstName',
+    //     lastName: 'lastName',
+    //     password: 'password',
+    //   };
 
-      render(<Signup />);
+    //   render(<Signup />);
 
-      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
-      expect(await screen.findByText('Skills')).toBeInTheDocument();
+    //   expect(await screen.findByLabelText('Role')).toBeInTheDocument();
+    //   expect(await screen.findByText('Skills')).toBeInTheDocument();
 
-      // Set data
-      userEvent.type(screen.getByLabelText('Firstname'), validData.firstName);
-      userEvent.type(screen.getByLabelText('Lastname'), validData.lastName);
-      userEvent.type(screen.getByLabelText('Password'), validData.password);
+    //   // Set data
+    //   userEvent.type(screen.getByLabelText('Firstname'), validData.firstName);
+    //   userEvent.type(screen.getByLabelText('Lastname'), validData.lastName);
+    //   userEvent.type(screen.getByLabelText('Password'), validData.password);
 
-      userEvent.click(screen.getByLabelText('Role'));
-      userEvent.click(screen.getByText(role.name));
+    //   userEvent.click(screen.getByLabelText('Role'));
+    //   userEvent.click(screen.getByText(role.name));
 
-      userEvent.click(screen.getByRole('button', { name: /tech/i }));
-      const jestCheckbox = await screen.findByRole('checkbox', {
-        name: /jest/i,
-      });
-      userEvent.click(jestCheckbox);
-      const reactCheckbox = await screen.findByRole('checkbox', {
-        name: /react/i,
-      });
-      userEvent.click(reactCheckbox);
-      const typescriptCheckbox = await screen.findByRole('checkbox', {
-        name: /typescript/i,
-      });
-      userEvent.click(typescriptCheckbox);
+    //   userEvent.click(screen.getByRole('button', { name: /tech/i }));
+    //   const jestCheckbox = await screen.findByRole('checkbox', {
+    //     name: /jest/i,
+    //   });
+    //   userEvent.click(jestCheckbox);
+    //   const reactCheckbox = await screen.findByRole('checkbox', {
+    //     name: /react/i,
+    //   });
+    //   userEvent.click(reactCheckbox);
+    //   const typescriptCheckbox = await screen.findByRole('checkbox', {
+    //     name: /typescript/i,
+    //   });
+    //   userEvent.click(typescriptCheckbox);
 
-      userEvent.click(screen.getByRole('button', { name: /management/i }));
-      const roadmapDefinition = await screen.findByRole('checkbox', {
-        name: /roadmap definition/i,
-      });
-      userEvent.click(roadmapDefinition);
+    //   userEvent.click(screen.getByRole('button', { name: /management/i }));
+    //   const roadmapDefinition = await screen.findByRole('checkbox', {
+    //     name: /roadmap definition/i,
+    //   });
+    //   userEvent.click(roadmapDefinition);
 
-      const signup = screen.getByText('Signup');
-      userEvent.click(signup);
+    //   const signup = screen.getByText('Signup');
+    //   userEvent.click(signup);
 
-      await screen.findByText(/you need to select at most three skills/i);
-      expect(pushMock).not.toHaveBeenCalled();
-    });
+    //   await screen.findByText(/you need to select at most three skills/i);
+    //   expect(pushMock).not.toHaveBeenCalled();
+    // });
 
     it('should cache skills availibility for role checks', async () => {
       let callCount = 0;
