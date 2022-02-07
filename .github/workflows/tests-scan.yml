@@ -55,15 +55,15 @@ jobs:
         run: pnpm exec nx-cloud start-ci-run
 
       - name: Linting
-        run: pnpm exec nx affected --target=lint --parallel --max-parallel=3 --base=${{ steps.master_head_commit.outputs.hash }} --head=${{ github.event.pull_request.head.sha }}
+        run: pnpm exec nx affected --target=lint --parallel --max-parallel=3
         timeout-minutes: 10
 
       - name: Types checking
-        run: pnpm exec nx affected --target=type-check --parallel --max-parallel=3 --base=${{ steps.master_head_commit.outputs.hash }} --head=${{ github.event.pull_request.head.sha }}
+        run: pnpm exec nx affected --target=type-check --parallel --max-parallel=3
         timeout-minutes: 10
 
       - name: Tests
-        run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --base=${{ steps.master_head_commit.outputs.hash }} --head=${{ github.event.pull_request.head.sha }} --codeCoverage
+        run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --codeCoverage
         # run: pnpm exec nx run-many --target=test --all --parallel --max-parallel=3 --codeCoverage
         timeout-minutes: 10
 
