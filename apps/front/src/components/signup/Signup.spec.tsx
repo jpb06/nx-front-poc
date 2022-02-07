@@ -260,6 +260,7 @@ describe('Signup component', () => {
     });
 
     it('should display an error message when more than three skills have been selected', async () => {
+      jest.setTimeout(25000);
       msw.areSkillsAvailableForRoleMutation(200, { result: [] });
 
       const role = mockedData.roles[3];
@@ -310,6 +311,7 @@ describe('Signup component', () => {
     });
 
     it('should cache skills availibility for role checks', async () => {
+      jest.setTimeout(25000);
       let callCount = 0;
       const cb = ({ url }: MockedRequest<DefaultRequestBody>) => {
         const uri = new URL(url).toString();
