@@ -19,6 +19,7 @@ describe('Signup component', () => {
   const { pushMock } = mocks.nextRouter();
 
   beforeEach(() => {
+    server.resetHandlers();
     msw.rolesQuery(200, mockedData.roles);
     msw.skillsQuery(200, mockedData.skills);
   });
