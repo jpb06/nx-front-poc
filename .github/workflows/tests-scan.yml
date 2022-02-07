@@ -36,10 +36,7 @@ jobs:
         run: echo "::set-output name=hash::$(git rev-parse origin/master)"
       - run: echo "master branch HEAD hash commit is ${{ steps.master_head_commit.outputs.hash }}"
 
-      - name: Determine current branch HEAD commit hash
-        id: current_branch_head_commit
-        run: echo "::set-output name=hash::$(git rev-parse HEAD)"
-      - run: echo "current branch HEAD hash commit is ${{ steps.current_branch_head_commit.outputs.hash }}"
+      - run: echo "current branch HEAD hash commit is ${{ github.event.pull_request.head.sha }}"
 
       - uses: pnpm/action-setup@v2.0.1
         with:
@@ -58,15 +55,15 @@ jobs:
         run: pnpm exec nx-cloud start-ci-run
 
       - name: Linting
-        run: pnpm exec nx affected --target=lint --parallel --max-parallel=3 --base=${{ steps.master_head_commit.outputs.hash }} --head=${{ steps.current_branch_head_commit.outputs.hash }}
+        run: pnpm exec nx affected --target=lint --parallel --max-parallel=3 --base=${{ steps.master_head_commit.outputs.hash }} --head=${{ github.event.pull_request.head.sha }}
         timeout-minutes: 10
 
       - name: Types checking
-        run: pnpm exec nx affected --target=type-check --parallel --max-parallel=3 --base=${{ steps.master_head_commit.outputs.hash }} --head=${{ steps.current_branch_head_commit.outputs.hash }}
+        run: pnpm exec nx affected --target=type-check --parallel --max-parallel=3 --base=${{ steps.master_head_commit.outputs.hash }} --head=${{ github.event.pull_request.head.sha }}
         timeout-minutes: 10
 
       - name: Tests
-        run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --base=${{ steps.master_head_commit.outputs.hash }} --head=${{ steps.current_branch_head_commit.outputs.hash }} --codeCoverage
+        run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --base=${{ steps.master_head_commit.outputs.hash }} --head=${{ github.event.pull_request.head.sha }} --codeCoverage
         # run: pnpm exec nx run-many --target=test --all --parallel --max-parallel=3 --codeCoverage
         timeout-minutes: 10
 
