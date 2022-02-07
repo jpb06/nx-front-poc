@@ -54,17 +54,17 @@ jobs:
       - name: Starting nx cloud CI
         run: pnpm exec nx-cloud start-ci-run
 
-      # - name: Linting
-      #   run: pnpm exec nx affected --target=lint --parallel --max-parallel=3
-      #   timeout-minutes: 10
+      - name: Linting
+        run: pnpm exec nx affected --target=lint --parallel --max-parallel=3
+        timeout-minutes: 10
 
-      # - name: Types checking
-      #   run: pnpm exec nx affected --target=type-check --parallel --max-parallel=3
-      #   timeout-minutes: 10
+      - name: Types checking
+        run: pnpm exec nx affected --target=type-check --parallel --max-parallel=3
+        timeout-minutes: 10
 
       - name: Tests
-        run: npx jest ./apps/front/src/components/signup/Signup.spec.tsx
-        # run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --codeCoverage
+        #run: npx jest ./apps/front/src/components/signup/Signup.spec.tsx
+        run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --codeCoverage
         # run: pnpm exec nx run-many --target=test --all --parallel --max-parallel=3 --codeCoverage
         timeout-minutes: 10
 
