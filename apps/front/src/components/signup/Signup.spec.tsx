@@ -302,12 +302,12 @@ describe('Signup component', () => {
       });
       userEvent.click(roadmapDefinition);
 
-      // const signup = screen.getByText('Signup');
-      // userEvent.click(signup);
+      const signup = screen.getByText('Signup');
+      userEvent.click(signup);
 
-      // await screen.findByText(/you need to select at most three skills/i);
-      // expect(pushMock).not.toHaveBeenCalled();
-    });
+      await screen.findByText(/you need to select at most three skills/i);
+      expect(pushMock).not.toHaveBeenCalled();
+    }, 60000);
 
     it('should cache skills availibility for role checks', async () => {
       let callCount = 0;
