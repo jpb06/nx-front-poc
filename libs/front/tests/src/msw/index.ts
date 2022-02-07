@@ -1,3 +1,4 @@
+import { areSkillsAvailableForRoleMutation } from './handlers/are-skills-available-for-role-mutation.interceptor';
 import { genericGet, genericGetUrl } from './handlers/generic-get.interceptor';
 import { rolesQuery } from './handlers/roles-query.interceptor';
 import { signupMutation } from './handlers/signup-mutation.interceptor';
@@ -11,4 +12,5 @@ export const msw = {
   signupMutation,
   skillsQuery,
   userDataQuery,
+  areSkillsAvailableForRoleMutation,
 };

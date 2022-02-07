@@ -7,7 +7,7 @@ export * from './feedback/loading-block/LoadingBlock';
 export * from './feedback/snackbar/Snackbar';
 export * from './feedback/snackbar/Snackbar.context';
 //
-export * from './input/checkboxes/CheckBoxGroup';
+export * from './input/checkboxes/CheckBoxList';
 export * from './input/input/Input';
 export * from './input/password-input/PasswordInput';
 export * from './input/select/Select';

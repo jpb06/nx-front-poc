@@ -8,7 +8,7 @@ on:
     branches:
       - master
   pull_request:
-    types: [opened, synchronize, reopened]
+    types: [opened, ready_for_review, synchronize, converted_to_draft]
 
 jobs:
   tests:
@@ -26,14 +26,21 @@ jobs:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
 
-      - uses: pnpm/action-setup@v2.0.1
-        with:
-          version: latest
-
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
         uses: nrwl/nx-set-shas@v2
         with:
-            main-branch-name: 'master'
+          main-branch-name: master
+
+      # - name: Determine master HEAD commit hash
+      #   id: master_head_commit
+      #   run: echo "::set-output name=hash::$(git rev-parse origin/master)"
+      # - run: echo "master branch HEAD hash commit is ${{ steps.master_head_commit.outputs.hash }}"
+
+      # - run: echo "current branch HEAD hash commit is ${{ github.event.pull_request.head.sha }}"
+
+      - uses: pnpm/action-setup@v2.0.1
+        with:
+          version: latest
 
       - name: Setup node
         uses: actions/setup-node@v2
@@ -56,7 +63,9 @@ jobs:
         timeout-minutes: 10
 
       - name: Tests
+        #run: npx jest ./apps/front/src/components/signup/Signup.spec.tsx
         run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --codeCoverage
+        # run: pnpm exec nx run-many --target=test --all --parallel --max-parallel=3 --codeCoverage
         timeout-minutes: 10
 
       - name: Check if coverage folder exists

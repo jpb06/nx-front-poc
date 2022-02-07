@@ -1,9 +1,3 @@
-const { pathsToModuleNameMapper } = require('ts-jest');
-
-const {
-  compilerOptions: { paths: tsconfigPaths },
-} = require('../../tsconfig.base');
-
 const getJestOptions = (coverageDirectory, ignoredFilesForCoverage) => {
   const pathLevel = Array(coverageDirectory.split('/').length)
     .fill('..')
@@ -18,7 +12,6 @@ const getJestOptions = (coverageDirectory, ignoredFilesForCoverage) => {
     preset: `${pathLevel}/jest/jest.preset.js`,
     moduleNameMapper: {
       '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$': 'identity-obj-proxy',
-      ...pathsToModuleNameMapper(tsconfigPaths, { prefix: '.' }),
     },
     transform: {
       '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nrwl/react/plugins/jest',
@@ -52,6 +45,7 @@ const getJestOptions = (coverageDirectory, ignoredFilesForCoverage) => {
       '!**/*.d.ts',
       '!**/index.ts',
       '!**/*.type.ts',
+      '!**/*.stories.tsx',
       ...ignoredFilesForCoverage,
     ],
     coverageReporters: ['json-summary', 'text', 'lcov'],

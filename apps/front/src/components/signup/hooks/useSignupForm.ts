@@ -7,8 +7,8 @@ import { useQueryClient } from 'react-query';
 import { SignupError } from '@api/users/signup';
 
 import { useSignupMutation } from '../../../api';
-import { formDefaultValues } from '../logic/form.default-values';
-import { schema, FormModel } from '../logic/form.schema';
+import { customErrorMap } from '../../../logic/forms/customErrorMap';
+import { useFormSchema, FormModel } from './useSignupFormSchema';
 
 type SignupFormHook = {
   onSubmit: (
@@ -23,9 +23,17 @@ type SignupFormHook = {
 export const useSignupForm = (): SignupFormHook => {
   const router = useRouter();
   const queryClient = useQueryClient();
+  const schema = useFormSchema();
   const { control, handleSubmit } = useForm<FormModel>({
-    defaultValues: formDefaultValues,
-    resolver: zodResolver(schema),
+    defaultValues: {
+      lastName: '',
+      firstName: '',
+      password: '',
+      idSkills: [],
+    },
+    resolver: zodResolver(schema, {
+      errorMap: customErrorMap,
+    }),
   });
 
   const {

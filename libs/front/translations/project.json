@@ -1,0 +1,21 @@
+{
+  "root": "libs/front/translations",
+  "sourceRoot": "libs/front/translations/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/front/translations/**/*.ts"]
+      }
+    },
+    "type-check": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "pnpm exec tsc -p ./libs/front/translations/tsconfig.lib.json --noEmit --pretty"
+      }
+    }
+  },
+  "tags": []
+}

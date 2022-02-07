@@ -15,7 +15,7 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=jpb06_mui-rhf-sandbox&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=jpb06_mui-rhf-sandbox)
 ![Last commit](https://img.shields.io/github/last-commit/jpb06/mui-rhf-sandbox?logo=git)
 
-Here is a little POC to help our team move forward on the stack.
+Here is a little POC to help our team move forward with our stack! ✨
 
 ## ⚡ Getting started
 
@@ -27,23 +27,33 @@ fnm use
 pnpm i
 
 # starting backend and frontend in parallel
+pnpm dev front,back
+# on windows 
 pnpm dev "front,back"
 
 # run all tests
-pnpm test:all
+pnpm test-all
+
+# launch cypress tests in watch mode
+pnpm nx run front-e2e:e2e --watch
+
+# launch storybook locally
+pnpm nx run front-components:storybook
 ```
 
 ## ⚡ Managing multiple apps and their shared code
 
-We will be using [Nx](https://nx.dev) to make sure we can use several frontend apps, and to share code between them. Nx also has a cloud service that does pretty cool stuffs. Four libraries were created from code contained in the frontend app: api types, generic components and test related code.
+We will be using [Nx](https://nx.dev) to make sure we can use several frontend apps, and to share code between them. Nx also has a cloud service that does pretty cool stuffs, like caching runs results, allowing us to save a lot of time for parts of the codebase that had no changes.
 
 ## ⚡ Subjects
 
 ### 🔶 [Forms handling](./docs/react-hook-form.md)
 
+### 🔶 [Storybook](./docs/storybook.md)
+
 ### 🔶 [Tests](./docs/tests.md)
 
-### 🔶 [Storybook](./docs/storybook.md)
+### 🔶 [Cypress](./docs/cypress.md)
 
 ## ⚡ Projects
 
@@ -55,6 +65,7 @@ We will be using [Nx](https://nx.dev) to make sure we can use several frontend a
 | 🧩 [`front-api`](./libs/front/api/README.md) lib  |Our api types, extracted from the backend swagger|
 | 🧩 [`front-components`](./libs/front/components/README.md) lib  |Our generic components and the MUI theme shared by all our frontend apps|
 | 🧩 [`front-tests`](./libs/front/tests/README.md) lib  |Tests utils for both the front app and the generic components lib|
+| 🧩 [`front-translations`](./libs/front/translations/README.md) lib  |Stub implementation for the translation of our UI.|
 
 ## ⚡ CLI
 
@@ -100,4 +111,3 @@ Actions are defined by project in `project.json` files. Here are a few standard 
 | ⬛  `--verbose`  | prints additional error stack trace on failure
 | ⬛  `--projects=x,x`  | `run-many`: specifies which projects to run the action against |
 | ⬛  `--parallel=x`  | `run-many`: allows x tasks to be ran in parallel |
-

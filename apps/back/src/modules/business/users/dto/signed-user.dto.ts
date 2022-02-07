@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Exclude, Expose, Type } from 'class-transformer';
 
-import { RoleDto } from '../../roles/roles/role.dto';
+import { RoleDto } from '../../roles/dto/role.dto';
 import { SkillDto } from '../../skills/dto/skill.dto';
 
 @Exclude()
@@ -9,6 +9,12 @@ export class SignedUser {
   @Expose()
   @ApiProperty()
   id: string;
+
+  @Expose()
+  @ApiProperty({
+    required: false,
+  })
+  userName?: string;
 
   @Expose()
   @ApiProperty()

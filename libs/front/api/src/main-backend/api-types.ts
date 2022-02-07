@@ -13,10 +13,23 @@ export interface SkillDto {
   id: number;
   name: string;
 }
+export interface SkillCategoryDto {
+  id: number;
+  name: string;
+  skills: Array<SkillDto>;
+}
 export interface SkillsResultDto {
-  result: Array<SkillDto>;
+  result: Array<SkillCategoryDto>;
+}
+export interface SkillsAvailabilityForRoleBodyDto {
+  idRole: number;
+  idSkills: Array<number>;
+}
+export interface SkillsAvailabilityForRoleResultDto {
+  result: Array<number>;
 }
 export interface SignupBodyDto {
+  userName?: string;
   firstName: string;
   lastName: string;
   password: string;
@@ -25,6 +38,7 @@ export interface SignupBodyDto {
 }
 export interface SignedUser {
   id: string;
+  userName?: string;
   firstName: string;
   lastName: string;
   role: RoleDto;

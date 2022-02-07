@@ -1,0 +1,31 @@
+extends:
+  - '../../../.eslintrc.front.yml'
+
+ignorePatterns:
+  - '!**/*'
+
+overrides:
+  - files:
+      - '*.ts'
+      - '*.tsx'
+      - '*.js'
+      - '*.jsx'
+    rules: {}
+    
+  - files:
+      - '*.ts'
+      - '*.tsx'
+    rules:
+      '@nrwl/nx/enforce-module-boundaries': 
+        - error
+        - enforceBuildableLibDependency: true
+          allow: []
+          depConstraints:
+          - sourceTag: "*"
+            onlyDependOnLibsWithTags:
+            - "*"
+
+  - files:
+      - '*.js'
+      - '*.jsx'
+    rules: {}

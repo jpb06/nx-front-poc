@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig, AxiosResponse, Method } from 'axios';
+import axios, { AxiosRequestConfig, Method } from 'axios';
 
 import { UnWrapResult } from './types/unwrap-result.type';
 
@@ -11,6 +11,11 @@ type AxiosRequestProps = {
 
 type WithResult<T> = { result?: T };
 
+const delay = async (ms: number) =>
+  new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+
 export const axiosRequest = async <TResult>({
   url,
   method,
@@ -18,15 +23,17 @@ export const axiosRequest = async <TResult>({
   config = {},
 }: AxiosRequestProps): Promise<UnWrapResult<TResult> | undefined> => {
   try {
-    const response: AxiosResponse<WithResult<UnWrapResult<TResult>>> =
-      await axios.request({
+    const [response] = await Promise.all([
+      axios.request<WithResult<UnWrapResult<TResult>>>({
         method,
         url,
         data,
         ...config,
-      });
+      }),
+      delay(300), // ensuring every operation takes al least half a sec
+    ]);
 
-    if (!response.data.result) {
+    if (response.data.result === undefined) {
       throw new Error(`${method} ${url} returned no result`);
     }
 

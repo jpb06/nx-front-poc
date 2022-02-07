@@ -7,6 +7,10 @@ import { DbPathService } from './db-path.service';
 
 type Unpacked<T> = T extends (infer U)[] ? U : T;
 
+interface PartialDatabase extends Partial<Database> {
+  [key: string]: unknown[];
+}
+
 @Injectable()
 export class DataPushService {
   constructor(
@@ -32,7 +36,7 @@ export class DataPushService {
     return item;
   }
 
-  private async persistAll(db: Partial<Database>) {
+  private async persistAll(db: PartialDatabase) {
     const data = await this.dataPull.getAll();
 
     const alteredData = Object.entries(data).reduce(

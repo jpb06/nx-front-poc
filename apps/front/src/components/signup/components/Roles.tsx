@@ -4,7 +4,7 @@ import { Select, SelectProps, ErrorBlock } from '@components';
 
 import { useRolesQuery } from '../../../api';
 import { useSignupData } from '../hooks/useSignupData';
-import { FormModel } from '../logic';
+import { FormModel } from '../hooks/useSignupFormSchema';
 import { Loading } from './generic/Loading';
 import { LoadingError } from './generic/LoadingError';
 
@@ -14,7 +14,7 @@ export const Roles = (props: RolesProps) => {
   const label = 'roles';
   const { data, error, status } = useSignupData(useRolesQuery);
 
-  const dataWithEmptyValue = data && [{ id: -1, name: '' }, ...data];
+  const dataWithEmptyValue = data && [{ id: undefined, name: '' }, ...data];
 
   return {
     idle: <Loading label={label} />,

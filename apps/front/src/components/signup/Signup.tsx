@@ -1,3 +1,4 @@
+//import { DevTool } from '@hookform/devtools';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Box, Grid } from '@mui/material';
 import React from 'react';
@@ -30,9 +31,9 @@ export const Signup: React.FC = () => {
           alignItems="stretch"
           spacing={2}
         >
-          {/* <Grid item>
+          <Grid item>
             <Input control={control} name="userName" label="Username" />
-          </Grid> */}
+          </Grid>
           <Grid item>
             <Input control={control} name="firstName" label="Firstname" />
           </Grid>
@@ -64,6 +65,7 @@ export const Signup: React.FC = () => {
             </LoadingButton>
           </Grid>
         </Grid>
+        {/* <DevTool control={control} /> */}
       </Box>
     </FullpageBox>
   );

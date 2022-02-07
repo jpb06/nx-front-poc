@@ -1,6 +1,8 @@
 import { TextField } from '@mui/material';
 import { useController, UseControllerProps } from 'react-hook-form';
 
+import { t } from '@translations';
+
 export interface InputProps<T> extends UseControllerProps<T> {
   label: string;
   loading?: boolean;
@@ -8,7 +10,7 @@ export interface InputProps<T> extends UseControllerProps<T> {
 
 export function Input<T>(props: InputProps<T>): JSX.Element {
   const {
-    field: { ref, ...otherFieldProps },
+    field: { ref, value, onChange, ...otherFieldProps },
     fieldState,
   } = useController(props);
 
@@ -19,7 +21,11 @@ export function Input<T>(props: InputProps<T>): JSX.Element {
       size="small"
       fullWidth
       error={fieldState.invalid}
-      helperText={fieldState.error?.message ?? ' '}
+      helperText={t(fieldState.error?.message)}
+      onChange={(e) => {
+        onChange(e.target.value === '' ? undefined : e.target.value);
+      }}
+      value={value || ''}
       // inputProps={{ 'aria-label': props.label }}
       // InputProps={{
       //   endAdornment: props.loading && (
