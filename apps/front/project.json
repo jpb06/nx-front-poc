@@ -11,7 +11,14 @@
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/front",
-        "outputPath": "dist/apps/front"
+        "outputPath": "dist/apps/front",
+        "assets": [
+          {
+            "input": "libs/front/components/assets",
+            "glob": "**/*",
+            "output": "."
+          }
+        ]
       },
       "configurations": {
         "production": {}
