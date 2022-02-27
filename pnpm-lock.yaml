@@ -23,7 +23,6 @@ specifiers:
   '@nestjs/schematics': ^8.0.7
   '@nestjs/swagger': ^5.2.0
   '@nestjs/testing': ^8.3.1
-  '@next/swc-darwin-arm64': ^11.1.2
   '@nrwl/cli': 13.8.3
   '@nrwl/cypress': 13.8.3
   '@nrwl/eslint-plugin-nx': 13.8.3
@@ -157,7 +156,6 @@ devDependencies:
   '@hookform/devtools': 4.0.2_d47160b47af0799b3ebfdd15b3949f37
   '@nestjs/schematics': 8.0.7_typescript@4.5.5
   '@nestjs/testing': 8.3.1_81bfb54e79f409a20742d878e1eb3272
-  '@next/swc-darwin-arm64': 11.1.2
   '@nrwl/cli': 13.8.3
   '@nrwl/cypress': 13.8.3_f2ed307f9e8871b540dbaeac7c2377bc
   '@nrwl/eslint-plugin-nx': 13.8.3_1af31145c95c13cfd7ff76ae075bd1f7
@@ -2867,13 +2865,6 @@ packages:
     requiresBuild: true
     dev: false
     optional: true
-
-  /@next/swc-darwin-arm64/11.1.2:
-    resolution: {integrity: sha512-hZuwOlGOwBZADA8EyDYyjx3+4JGIGjSHDHWrmpI7g5rFmQNltjlbaefAbiU5Kk7j3BUSDwt30quJRFv3nyJQ0w==}
-    engines: {node: '>= 10'}
-    cpu: [arm64]
-    os: [darwin]
-    dev: true
 
   /@next/swc-darwin-arm64/12.1.0:
     resolution: {integrity: sha512-R8vcXE2/iONJ1Unf5Ptqjk6LRW3bggH+8drNkkzH4FLEQkHtELhvcmJwkXcuipyQCsIakldAXhRbZmm3YN1vXg==}
