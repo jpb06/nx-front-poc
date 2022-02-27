@@ -176,7 +176,7 @@ describe('Signup component', () => {
 
       await screen.findByRole('alert');
       screen.getByText(/uncool bro/i);
-    });
+    }, 60000);
 
     it('should display a snackbar with a default error message if the backend sent no error message', async () => {
       msw.areSkillsAvailableForRoleMutation(200, { result: [] });
