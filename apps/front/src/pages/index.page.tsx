@@ -1,6 +1,6 @@
 import type { NextPage } from 'next';
 
-import { Signup } from '../components/signup/Signup';
+import { Signup } from '../templates/signup-form/SignupForm';
 
 const Home: NextPage = () => <Signup />;
 

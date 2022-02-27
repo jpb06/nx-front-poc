@@ -1,4 +1,4 @@
-import { msw } from '@tests';
+import { msw } from '@tests/msw';
 
 import { axiosRequest } from './axios-request';
 
