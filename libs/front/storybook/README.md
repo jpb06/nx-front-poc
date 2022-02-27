@@ -1,7 +1,17 @@
-# storybook
+# 🧩 `front-storybook` lib 🧩
 
-This library was generated with [Nx](https://nx.dev).
+Our library responsible for building storybook and launching it in dev mode.
 
-## Running unit tests
+## ⚡ CLI
 
-Run `nx test storybook` to execute the unit tests via [Jest](https://jestjs.io).
+|                 Description                           |           Command                                                     |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| 🛠️ Building storybook |`NODE_ENV=production pnpm exec nx run storybook:build`|
+| 🎁 Launching storybook in dev mode |`pnpm exec nx run storybook:dev`|
+
+### 🔶 Useful flags
+
+| flag                                           | Description                                                               |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| ⬛  `--skip-nx-cache`  | disables nx caching; the command will be ran fully |
+| ⬛  `--verbose`  | prints additional error stack trace on failure

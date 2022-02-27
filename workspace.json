@@ -7,6 +7,6 @@
     "front-components": "libs/front/components",
     "front-e2e": "apps/front-e2e",
     "front-translations": "libs/front/translations",
-    "front-storybook": "libs/front/storybook"
+    "storybook": "libs/front/storybook"
   }
 }

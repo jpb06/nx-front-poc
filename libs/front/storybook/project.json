@@ -2,7 +2,7 @@
   "root": "libs/front/storybook",
   "projectType": "library",
   "targets": {
-    "storybook": {
+    "dev": {
       "executor": "@nrwl/storybook:storybook",
       "options": {
         "uiFramework": "@storybook/react",
@@ -17,7 +17,7 @@
         }
       }
     },
-    "build-storybook": {
+    "build": {
       "executor": "@nrwl/storybook:build",
       "outputs": [
         "{options.outputPath}"

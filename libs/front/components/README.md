@@ -6,8 +6,14 @@ Our frontend app, containing a signup form.
 
 |                 Description                           |           Command                                                     |
 | ------------------------------------------------ | --------------------------------------------------------------------- |
-| ⚠️ Linting the app |`nx run front-components:lint --skip-nx-cache --verbose`|
-| ✔️ Type checking using tsc |`nx run front-components:type-check --skip-nx-cache --verbose`|
-| ✅ Launching tests |`nx run front-components:test --skip-nx-cache --verbose`|
+| ⚠️ Linting the app |`nx run front-components:lint`|
+| ✔️ Type checking using tsc |`nx run front-components:type-check`|
+| ✅ Launching tests |`nx run front-components:test`|
+| 🕵️ Run sonarcloud command |`pnpm exec nx run front-components:sonar`|
 
+### 🔶 Useful flags
 
+| flag                                           | Description                                                               |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| ⬛  `--skip-nx-cache`  | disables nx caching; the command will be ran fully |
+| ⬛  `--verbose`  | prints additional error stack trace on failure

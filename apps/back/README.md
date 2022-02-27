@@ -6,9 +6,14 @@ Our backend, relying on an in-memory dataset.
 
 |                 Description                           |           Command                                                     |
 | ------------------------------------------------ | --------------------------------------------------------------------- |
-| 🛠️ Build  |`nx run back:build --skip-nx-cache `|
-| 🚀 Launching backend (port 3001) |`nx run back:serve --skip-nx-cache --verbose`|
-| ⚠️ Linting the app |`nx run back:lint --skip-nx-cache --verbose`|
-| ✅ Launching tests |`nx run back:test --skip-nx-cache --verbose`|
+| 🛠️ Build  |`pnpm exec nx run back:build`|
+| 🚀 Launching backend (port 3001) |`pnpm exec nx run back:serve`|
+| ⚠️ Linting the app |`pnpm exec nx run back:lint`|
+| ✅ Launching tests |`pnpm exec nx run back:test`|
 
+### 🔶 Useful flags
 
+| flag                                           | Description                                                               |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| ⬛  `--skip-nx-cache`  | disables nx caching; the command will be ran fully |
+| ⬛  `--verbose`  | prints additional error stack trace on failure
