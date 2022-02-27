@@ -1,6 +1,6 @@
 import { SignedUser } from '@api';
 
-export const signedUser: SignedUser = {
+export const mockedSignedUser: SignedUser = {
   id: '1',
   firstName: 'Yolo',
   lastName: 'Mc Cool',

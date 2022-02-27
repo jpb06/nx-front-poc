@@ -1,8 +1,8 @@
 import { render as rtlRender, RenderResult } from '@testing-library/react';
 import React from 'react';
 
-import { WithSnackbar } from '../../feedback/snackbar/Snackbar.context';
-import { EmotionCacheProvider } from '../../providers';
+import { EmotionCacheProvider } from '../../molecules/providers';
+import { WithSnackbar } from '../../organisms/feedback/snackbar/Snackbar.context';
 import { RHFWrapper } from '../wrappers/react-hook-form';
 import { ReactQueryWrapper } from '../wrappers/react-query';
 

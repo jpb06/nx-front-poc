@@ -16,16 +16,22 @@
       "@api/users/signup": [
         "libs/front/api/src/main-backend/UsersController/signup.ts"
       ],
-      "@components": [
-        "libs/front/components/src/index.ts"
+      "@components/molecules": [
+        "libs/front/components/src/molecules/index.ts"
+      ],
+      "@components/organisms": [
+        "libs/front/components/src/organisms/index.ts"
       ],
       "@components/logic": ["libs/front/components/src/logic/index.ts"],
       "@components/providers": [
         "libs/front/components/src/providers/index.ts"
       ],
-      "@components/tests": ["libs/front/components/src/test/index.ts"],
+      "@tests": ["libs/front/components/src/test/index.ts"],
+      "@tests/forms": ["libs/front/components/src/test/forms/index.ts"],
+      "@tests/mocked-data": ["libs/front/components/src/test/mocked-data/index.ts"],
+      "@tests/mocks": ["libs/front/components/src/test/mocks/index.ts"],
+      "@tests/msw": ["libs/front/components/src/test/msw/index.ts"],
       "@theme": ["libs/front/components/src/theme/index.ts"],
-      "@tests": ["libs/front/tests/src/index.ts"],
       "@translations": ["libs/front/translations/src/index.ts"]
 
     }
