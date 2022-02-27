@@ -33,7 +33,6 @@
       "@tests/msw": ["libs/front/components/src/test/msw/index.ts"],
       "@theme": ["libs/front/components/src/theme/index.ts"],
       "@translations": ["libs/front/translations/src/index.ts"]
-
     }
   }
 }
