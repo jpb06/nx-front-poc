@@ -62,3 +62,126 @@ Yes! We want to have several frontend applications. And we want to have shared c
 - We will need a library embedding storybook config, so that we only expose a single storybook for all our apps.
 
 ![Diagram](./assets/nx-app-architecture.png)
+
+A few things to mention here.
+
+### 🧿 Components categories
+
+#### 🎁 `molecules` and `organisms` folders
+
+We will these folders at several levels, by order of genericity:
+
+- Shared components library, when components are meant to be used in several applications.
+- Inside the `src` folder of an application, when these components are meant to be used by several user stories in that application.
+- Inside a user story folder within an application, when the components will only be used in this user story.
+
+#### 🎁 `templates` folder
+
+The `templates` folder will contain one folder by user story. We can consider a user story equals a page (1 to 1 relationship with pages), or that a page will be made of several templates.
+
+#### 🎁 `Pages` folder
+
+The `pages` folder comes from nextjs. Each component in this folder will be a page served by next.
+
+### 🧿 Assets
+
+Our shared library may use assets, like images or icons. These files will be stored in the `assets` folder at library root. When starting or building a next app using that library, we will have to copy these assets to the app `public` folder, using the build script in `project.json`:
+
+```json
+{
+  // ...
+  "targets": {
+    // ...
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/front",
+        "outputPath": "dist/apps/front",
+        // Integrating assets outside of the application public folder
+        "assets": [
+          {
+            "input": "libs/front/components/assets",
+            "glob": "**/*",
+            "output": "."
+          }
+        ]
+      },
+      "configurations": {
+        "production": {}
+      }
+    }
+  }
+}
+```
+
+### 🧿 Storybook
+
+We will be using a simple node library to build and launch storybook in dev mode.
+
+Let's first define a `build` and `dev` script in `project.json`:
+
+```json
+{
+  // ...
+  "targets": {
+    // Launching storybook in dev mode
+    "dev": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/react",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/front/storybook/.storybook"
+        }
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    // Building storybook
+    "build": {
+      "executor": "@nrwl/storybook:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "uiFramework": "@storybook/react",
+        "outputPath": "dist/apps/storybook",
+        "config": {
+          "configFolder": "libs/front/storybook/.storybook"
+        }
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
+  }
+}
+```
+
+Then, let's take all the story files in all our apps or our libs, and let's add all the assets to storybook, via `main.js`:
+
+```javascript
+/** @type {import("@storybook/react/types/index").StorybookConfig} */
+const storybookMainConfig = {
+  // ...
+  stories: [
+    '../../../../**/*.stories.mdx',
+    '../../../../**/*.stories.tsx',
+  ],
+  staticDirs: [
+    '../../../../apps/front/public', 
+    '../../../../libs/front/components/assets'
+  ],
+}
+
+module.exports = storybookMainConfig
+```
