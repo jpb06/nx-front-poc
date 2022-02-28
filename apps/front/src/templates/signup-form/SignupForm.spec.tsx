@@ -33,25 +33,22 @@ describe('Signup component', () => {
     jest.clearAllMocks();
   });
 
-  it('should render vanilla html/css in snapshot', () => {
-    const { baseElement } = render(<Signup />);
+  describe('snapshots', ()=> {
+    it('should match snapshot when roles and skills are loading', async () => {
+      const { baseElement } = render(<Signup />);
+  
+      expect(baseElement).toMatchSnapshot();
+    });
 
-    expect(baseElement).toMatchSnapshot();
-  });
+    it('should match snapshot when initial data (skills & role) has loaded', async () => {
+      const { baseElement } = render(<Signup />);
 
-  it('should render the signup form', async () => {
-    expect.assertions(6);
-    render(<Signup />);
+      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
+      expect(await screen.findByText('Skills')).toBeInTheDocument();
 
-    expect(screen.getByLabelText(/firstname/i)).toBeInTheDocument();
-    expect(screen.getByLabelText(/lastname/i)).toBeInTheDocument();
-    expect(screen.getByLabelText('Password')).toBeInTheDocument();
-
-    expect(await screen.findByLabelText(/role/i)).toBeInTheDocument();
-    expect(await screen.findByText('Skills')).toBeInTheDocument();
-
-    expect(screen.getByText(/signup/i)).toBeInTheDocument();
-  });
+      expect(baseElement).toMatchSnapshot();
+    });
+  })
 
   describe('Should display typed value in', () => {
     it.each([['Username'], ['Firstname'], ['Lastname'], ['Password']])(
@@ -175,7 +172,7 @@ describe('Signup component', () => {
       userEvent.click(signup);
 
       await screen.findByRole('alert');
-      screen.getByText(/uncool bro/i);
+      expect(screen.getByText(/uncool bro/i)).toBeInTheDocument();
     }, 60000);
 
     it('should display a snackbar with a default error message if the backend sent no error message', async () => {
@@ -217,7 +214,7 @@ describe('Signup component', () => {
       userEvent.click(signup);
 
       await screen.findByRole('alert');
-      screen.getByText(/oh no! something terrible happened/i);
+      expect(screen.getByText(/oh no! something terrible happened/i)).toBeInTheDocument();
     });
 
     it('should not submit the form if skills are invalid for the selected role', async () => {
@@ -379,7 +376,21 @@ describe('Signup component', () => {
     });
   });
 
-  describe('initial data loading', () => {
+  describe('initial data loading', () => {  
+    it('should render form elements', async () => {
+      expect.assertions(6);
+      render(<Signup />);
+  
+      expect(screen.getByLabelText(/firstname/i)).toBeInTheDocument();
+      expect(screen.getByLabelText(/lastname/i)).toBeInTheDocument();
+      expect(screen.getByLabelText('Password')).toBeInTheDocument();
+  
+      expect(await screen.findByLabelText(/role/i)).toBeInTheDocument();
+      expect(await screen.findByText('Skills')).toBeInTheDocument();
+  
+      expect(screen.getByText(/signup/i)).toBeInTheDocument();
+    });
+
     it('should display a loading indicator for roles', () => {
       render(<Signup />);
 

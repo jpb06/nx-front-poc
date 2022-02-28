@@ -1,6 +1,815 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Signup component should render vanilla html/css in snapshot 1`] = `
+exports[`Signup component snapshots should match snapshot when displaying user data 1`] = `
+.emotion-0 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  min-height: 100vh;
+  -webkit-background-size: cover;
+  background-size: cover;
+  padding: 16px;
+}
+
+.emotion-0>.MuiGrid-item {
+  max-width: none;
+}
+
+.emotion-1 {
+  background-color: #1e1e3a;
+  color: #fff;
+  -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+  box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
+  overflow: hidden;
+  width: 100%;
+  padding-bottom: 16px;
+  background-color: rgba(18, 18, 18, 0.88);
+  border-radius: 16px;
+  max-width: 700px;
+}
+
+.emotion-2 {
+  display: block;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  -webkit-background-position: center;
+  background-position: center;
+  height: 150px;
+}
+
+.emotion-3 {
+  padding: 16px;
+}
+
+.emotion-3:last-child {
+  padding-bottom: 24px;
+}
+
+.emotion-4 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-5 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: flex-start;
+  -webkit-box-align: flex-start;
+  -ms-flex-align: flex-start;
+  align-items: flex-start;
+  margin-bottom: 0px;
+}
+
+.emotion-6 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-7 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+  color: #ff8f00;
+}
+
+.emotion-9 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 2.125rem;
+  line-height: 1.235;
+  letter-spacing: 0.00735em;
+  color: #ff8f00;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+
+.emotion-11 {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  font-size: 12px;
+  color: #0097a7;
+}
+
+.emotion-12 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 8px;
+  padding-top: 0px;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.emotion-12>:not(:first-of-type) {
+  margin-left: 8px;
+}
+
+.emotion-13 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-13>.MuiGrid-item {
+  max-width: none;
+}
+
+.emotion-16 {
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-size: 1.25rem;
+  line-height: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #121212;
+  background-color: #757575;
+  width: 80px;
+  height: 80px;
+  margin-bottom: 16px;
+  font-size: xx-large;
+}
+
+.emotion-18 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.334;
+  letter-spacing: 0em;
+  color: #0097a7;
+}
+
+.emotion-19 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 1rem;
+  line-height: 1.5;
+  letter-spacing: 0.00938em;
+  color: #ff8f00;
+  text-align: center;
+}
+
+.emotion-20 {
+  box-sizing: border-box;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.emotion-22 {
+  margin: 0;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  border-width: 0;
+  border-style: solid;
+  border-color: rgba(255, 255, 255, 0.12);
+  border-bottom-width: thin;
+  width: 90%;
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+
+.emotion-25 {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.emotion-26 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  position: relative;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+.emotion-26.Mui-focusVisible {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.emotion-26.Mui-selected {
+  background-color: rgba(0, 96, 100, 0.16);
+}
+
+.emotion-26.Mui-selected.Mui-focusVisible {
+  background-color: rgba(0, 96, 100, 0.28);
+}
+
+.emotion-26.Mui-disabled {
+  opacity: 0.38;
+}
+
+.emotion-27 {
+  min-width: 56px;
+  color: #fff;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  display: -webkit-inline-box;
+  display: -webkit-inline-flex;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  min-width: 40px;
+}
+
+.emotion-28 {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 1em;
+  height: 1em;
+  display: inline-block;
+  fill: currentColor;
+  -webkit-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  -webkit-transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  transition: fill 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  font-size: 1.5rem;
+  color: #000000;
+  width: 30px;
+  height: 30px;
+}
+
+.emotion-29 {
+  -webkit-flex: 1 1 auto;
+  -ms-flex: 1 1 auto;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.emotion-30 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  display: block;
+}
+
+<body>
+  <div>
+    <div
+      class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column emotion-0"
+    >
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiCard-root emotion-1"
+      >
+        <div
+          class="MuiCardMedia-root emotion-2"
+          role="img"
+          style="background-image: url(/img/banner.jpg);"
+        />
+        <div
+          class="MuiCardContent-root emotion-3"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container emotion-4"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container emotion-5"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item emotion-6"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-7"
+                  data-testid="BuildIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="m22.7 19-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z"
+                  />
+                </svg>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item emotion-6"
+              >
+                <h4
+                  class="MuiTypography-root MuiTypography-h4 emotion-9"
+                >
+                  Sandbox
+                </h4>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-container emotion-4"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item emotion-11"
+              >
+                nextjs / react-hook-form / testing-library
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="MuiCardActions-root MuiCardActions-spacing emotion-12"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column emotion-13"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column emotion-13"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item emotion-6"
+              >
+                <div
+                  class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault emotion-16"
+                >
+                  YM
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item emotion-6"
+            >
+              <h5
+                class="MuiTypography-root MuiTypography-h5 emotion-18"
+              >
+                Owowo Mcfly
+              </h5>
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-19"
+              >
+                Yolo Mc Cool
+              </p>
+            </div>
+            <div
+              class="MuiGrid-root emotion-20"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-19"
+              >
+                You are a 
+                Skwat owner
+              </p>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth emotion-22"
+            />
+            <div
+              class="MuiGrid-root MuiGrid-item emotion-6"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 emotion-19"
+              >
+                Your skills are
+              </p>
+              <ul
+                class="MuiList-root MuiList-padding MuiList-dense emotion-25"
+              >
+                <li
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-26"
+                >
+                  <div
+                    class="MuiListItemIcon-root emotion-27"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-28"
+                      data-testid="RecordVoiceOverIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        cx="9"
+                        cy="9"
+                        r="4"
+                      />
+                      <path
+                        d="M9 15c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4zm7.76-9.64-1.68 1.69c.84 1.18.84 2.71 0 3.89l1.68 1.69c2.02-2.02 2.02-5.07 0-7.27zM20.07 2l-1.63 1.63c2.77 3.02 2.77 7.56 0 10.74L20.07 16c3.9-3.89 3.91-9.95 0-14z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense emotion-29"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-30"
+                    >
+                      Communication
+                    </span>
+                  </div>
+                </li>
+                <li
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-26"
+                >
+                  <div
+                    class="MuiListItemIcon-root emotion-27"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-28"
+                      data-testid="QuestionAnswerIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense emotion-29"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-30"
+                    >
+                      Information sharing
+                    </span>
+                  </div>
+                </li>
+                <li
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-26"
+                >
+                  <div
+                    class="MuiListItemIcon-root emotion-27"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-28"
+                      data-testid="TwoWheelerIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M20 11c-.18 0-.36.03-.53.05L17.41 9H20V6l-3.72 1.86L13.41 5H9v2h3.59l2 2H11l-4 2-2-2H0v2h4c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4l2 2h3l3.49-6.1 1.01 1.01c-.91.73-1.5 1.84-1.5 3.09 0 2.21 1.79 4 4 4s4-1.79 4-4-1.79-4-4-4zM4 17c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm16 0c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense emotion-29"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-30"
+                    >
+                      Project drive
+                    </span>
+                  </div>
+                </li>
+                <li
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-26"
+                >
+                  <div
+                    class="MuiListItemIcon-root emotion-27"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-28"
+                      data-testid="AssessmentIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense emotion-29"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-30"
+                    >
+                      Reporting
+                    </span>
+                  </div>
+                </li>
+                <li
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-26"
+                >
+                  <div
+                    class="MuiListItemIcon-root emotion-27"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-28"
+                      data-testid="LoyaltyIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="m21.41 11.58-9-9C12.05 2.22 11.55 2 11 2H4c-1.1 0-2 .9-2 2v7c0 .55.22 1.05.59 1.42l9 9c.36.36.86.58 1.41.58.55 0 1.05-.22 1.41-.59l7-7c.37-.36.59-.86.59-1.41 0-.55-.23-1.06-.59-1.42zM5.5 7C4.67 7 4 6.33 4 5.5S4.67 4 5.5 4 7 4.67 7 5.5 6.33 7 5.5 7zm11.77 8.27L13 19.54l-4.27-4.27C8.28 14.81 8 14.19 8 13.5c0-1.38 1.12-2.5 2.5-2.5.69 0 1.32.28 1.77.74l.73.72.73-.73c.45-.45 1.08-.73 1.77-.73 1.38 0 2.5 1.12 2.5 2.5 0 .69-.28 1.32-.73 1.77z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense emotion-29"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-30"
+                    >
+                      Roadmap definition
+                    </span>
+                  </div>
+                </li>
+                <li
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-26"
+                >
+                  <div
+                    class="MuiListItemIcon-root emotion-27"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                    >
+                      <span
+                        style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                      >
+                        <img
+                          alt=""
+                          aria-hidden="true"
+                          src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e"
+                          style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                        />
+                      </span>
+                      <img
+                        alt="jest"
+                        data-nimg="intrinsic"
+                        decoding="async"
+                        src="/svg/jest.svg"
+                        srcset="/svg/jest.svg 1x, /svg/jest.svg 2x"
+                        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                      />
+                      <noscript />
+                    </span>
+                  </div>
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense emotion-29"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-30"
+                    >
+                      jest
+                    </span>
+                  </div>
+                </li>
+                <li
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-26"
+                >
+                  <div
+                    class="MuiListItemIcon-root emotion-27"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                    >
+                      <span
+                        style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                      >
+                        <img
+                          alt=""
+                          aria-hidden="true"
+                          src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e"
+                          style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                        />
+                      </span>
+                      <img
+                        alt="react"
+                        data-nimg="intrinsic"
+                        decoding="async"
+                        src="/svg/react.svg"
+                        srcset="/svg/react.svg 1x, /svg/react.svg 2x"
+                        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                      />
+                      <noscript />
+                    </span>
+                  </div>
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense emotion-29"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-30"
+                    >
+                      react
+                    </span>
+                  </div>
+                </li>
+                <li
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-26"
+                >
+                  <div
+                    class="MuiListItemIcon-root emotion-27"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                    >
+                      <span
+                        style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                      >
+                        <img
+                          alt=""
+                          aria-hidden="true"
+                          src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2730%27%20height=%2730%27/%3e"
+                          style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                        />
+                      </span>
+                      <img
+                        alt="typescript"
+                        data-nimg="intrinsic"
+                        decoding="async"
+                        src="/svg/typescript.svg"
+                        srcset="/svg/typescript.svg 1x, /svg/typescript.svg 2x"
+                        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                      />
+                      <noscript />
+                    </span>
+                  </div>
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense emotion-29"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-30"
+                    >
+                      Typescript
+                    </span>
+                  </div>
+                </li>
+                <li
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-26"
+                >
+                  <div
+                    class="MuiListItemIcon-root emotion-27"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-28"
+                      data-testid="GitHubIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 1.27a11 11 0 00-3.48 21.46c.55.09.73-.28.73-.55v-1.84c-3.03.64-3.67-1.46-3.67-1.46-.55-1.29-1.28-1.65-1.28-1.65-.92-.65.1-.65.1-.65 1.1 0 1.73 1.1 1.73 1.1.92 1.65 2.57 1.2 3.21.92a2 2 0 01.64-1.47c-2.47-.27-5.04-1.19-5.04-5.5 0-1.1.46-2.1 1.2-2.84a3.76 3.76 0 010-2.93s.91-.28 3.11 1.1c1.8-.49 3.7-.49 5.5 0 2.1-1.38 3.02-1.1 3.02-1.1a3.76 3.76 0 010 2.93c.83.74 1.2 1.74 1.2 2.94 0 4.21-2.57 5.13-5.04 5.4.45.37.82.92.82 2.02v3.03c0 .27.1.64.73.55A11 11 0 0012 1.27"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="MuiListItemText-root MuiListItemText-dense emotion-29"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-30"
+                    >
+                      Github actions
+                    </span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+`;
+
+exports[`Signup component snapshots should match snapshot when loading 1`] = `
 @keyframes animation-0 {
   0% {
     -webkit-transform: rotate(0deg);
@@ -67,16 +876,17 @@ exports[`Signup component should render vanilla html/css in snapshot 1`] = `
 }
 
 .emotion-1 {
-  background-color: #fff;
-  color: rgba(0, 0, 0, 0.87);
+  background-color: #1e1e3a;
+  color: #fff;
   -webkit-transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
   border-radius: 4px;
   box-shadow: 0px 2px 1px -1px rgba(0,0,0,0.2),0px 1px 1px 0px rgba(0,0,0,0.14),0px 1px 3px 0px rgba(0,0,0,0.12);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05));
   overflow: hidden;
   width: 100%;
   padding-bottom: 16px;
-  background-color: rgba(255, 255, 255, 0.88);
+  background-color: rgba(18, 18, 18, 0.88);
   border-radius: 16px;
   max-width: 700px;
 }
@@ -245,7 +1055,7 @@ exports[`Signup component should render vanilla html/css in snapshot 1`] = `
 
 .emotion-14 {
   display: inline-block;
-  color: #1976d2;
+  color: #006064;
   -webkit-animation: animation-0 1.4s linear infinite;
   animation: animation-0 1.4s linear infinite;
 }
