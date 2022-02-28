@@ -33,10 +33,10 @@ describe('Signup component', () => {
     jest.clearAllMocks();
   });
 
-  describe('snapshots', ()=> {
+  describe('snapshots', () => {
     it('should match snapshot when roles and skills are loading', async () => {
       const { baseElement } = render(<Signup />);
-  
+
       expect(baseElement).toMatchSnapshot();
     });
 
@@ -48,7 +48,7 @@ describe('Signup component', () => {
 
       expect(baseElement).toMatchSnapshot();
     });
-  })
+  });
 
   describe('Should display typed value in', () => {
     it.each([['Username'], ['Firstname'], ['Lastname'], ['Password']])(
@@ -214,7 +214,9 @@ describe('Signup component', () => {
       userEvent.click(signup);
 
       await screen.findByRole('alert');
-      expect(screen.getByText(/oh no! something terrible happened/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/oh no! something terrible happened/i)
+      ).toBeInTheDocument();
     });
 
     it('should not submit the form if skills are invalid for the selected role', async () => {
@@ -376,18 +378,18 @@ describe('Signup component', () => {
     });
   });
 
-  describe('initial data loading', () => {  
+  describe('initial data loading', () => {
     it('should render form elements', async () => {
       expect.assertions(6);
       render(<Signup />);
-  
+
       expect(screen.getByLabelText(/firstname/i)).toBeInTheDocument();
       expect(screen.getByLabelText(/lastname/i)).toBeInTheDocument();
       expect(screen.getByLabelText('Password')).toBeInTheDocument();
-  
+
       expect(await screen.findByLabelText(/role/i)).toBeInTheDocument();
       expect(await screen.findByText('Skills')).toBeInTheDocument();
-  
+
       expect(screen.getByText(/signup/i)).toBeInTheDocument();
     });
 
