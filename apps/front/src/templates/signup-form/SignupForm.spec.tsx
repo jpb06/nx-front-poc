@@ -375,7 +375,7 @@ describe('Signup component', () => {
 
       expect(callCount).toBe(2);
       server.events.removeListener('request:match', cb);
-    });
+    }, 60000);
   });
 
   describe('initial data loading', () => {
