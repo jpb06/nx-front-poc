@@ -69,7 +69,7 @@ A few things to mention here.
 
 #### 🎁 `molecules` and `organisms` folders
 
-We will these folders at several levels, by order of genericity:
+We will have these folders at several levels, by order of genericity:
 
 - Shared components library, when components are meant to be used in several applications.
 - Inside the `src` folder of an application, when these components are meant to be used by several user stories in that application.
