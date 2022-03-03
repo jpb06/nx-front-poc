@@ -4,7 +4,7 @@ import { LoadingBlock, LoadingBlockProps } from './LoadingBlock';
 
 export default {
   component: LoadingBlock,
-  title: 'feedback/LoadingBlock',
+  title: 'Shared/molecules/LoadingBlock',
 } as ComponentMeta<typeof LoadingBlock>;
 
 const Template: Story<LoadingBlockProps> = (args) => <LoadingBlock {...args} />;

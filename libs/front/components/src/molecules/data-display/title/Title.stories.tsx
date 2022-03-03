@@ -4,7 +4,7 @@ import { Title } from './Title';
 
 export default {
   component: Title,
-  title: 'data-display/Title',
+  title: 'Shared/molecules/Title',
 } as ComponentMeta<typeof Title>;
 
 const Template: Story = (_) => <Title>React</Title>;

@@ -4,7 +4,7 @@ import { SubTitle } from './SubTitle';
 
 export default {
   component: SubTitle,
-  title: 'data-display/SubTitle',
+  title: 'Shared/molecules/SubTitle',
 } as ComponentMeta<typeof SubTitle>;
 
 const Template: Story = (_) => <SubTitle>Typescript</SubTitle>;
