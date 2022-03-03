@@ -68,6 +68,7 @@ Seriously, read these please 🥲
 | 🧩 [`front-api`](./libs/front/api/README.md) lib  |Our api types, extracted from the backend swagger|
 | 🧩 [`front-components`](./libs/front/components/README.md) lib  |Our generic components and the MUI theme shared by all our frontend apps|
 | 🧩 [`front-translations`](./libs/front/translations/README.md) lib  |Stub implementation for the translation of our UI.|
+| 🧩 [`storybook`](./libs/front/storybook/README.md) lib  |Library centralizing the configuration necessary to build and run storybook.|
 
 ## ⚡ cli
 
