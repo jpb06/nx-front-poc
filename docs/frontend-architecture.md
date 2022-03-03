@@ -1,4 +1,4 @@
-# ⚡ Frontend architecture
+# ⚡ Frontend architecture - working with an application containing many components
 
 Our goal here is to classify components in order to know easily how we should test them: some components are simple and may only need a few unit tests to get the team confident about their robustessness. On the other hand, others may be quite complex, embedding interactions with the outside world, or complex logic for example.
 
@@ -32,9 +32,11 @@ It also can help us refine our estimations when we want to know how complex a us
 
 Using storybook, we can easily demonstrate how well is advancing the user story, and validate distinct parts of the user story with product team.
 
-# ⚡ Cool! But what does it mean concretely?
+# ⚡ Cool, but what does it mean concretely?
 
-Let's reflect on the classification we want to use. Here is a proposal:
+## 🔶 Classifying our components
+
+Let's reflect on the classification we want to use and how it would impact our folders structure. Here is a proposal:
 
 | Category  | Description                                                                                                                                                                                                          |
 | --------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -44,7 +46,7 @@ Let's reflect on the classification we want to use. Here is a proposal:
 | Templates | We may want to create a 1-1 relationship between user stories and **Templates**. In that context, templates would be the root component of an entire page, made from several organisms                               |
 | Pages     | Finally **Pages** would pretty much be nextjs pages...                                                                                                                                                               |
 
-## 🔶 Defining a decision tree to classify components
+## 🔶 Defining a decision tree to identify components types
 
 With this in mind, we can now think about a decision tree to identify the type of every component. We will also take advantage of this to define a few things:
 
