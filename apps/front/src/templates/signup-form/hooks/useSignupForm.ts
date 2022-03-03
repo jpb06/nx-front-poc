@@ -4,9 +4,9 @@ import { BaseSyntheticEvent } from 'react';
 import { Control, useForm } from 'react-hook-form';
 import { useQueryClient } from 'react-query';
 
-import { SignupError } from '@api/users/signup';
+import { useSignupMutation } from '@api';
+import { SignupError } from '@api/types/signup';
 
-import { useSignupMutation } from '../../../api';
 import { customErrorMap } from '../logic/customErrorMap';
 import { useSignupFormSchema, FormModel } from './useSignupFormSchema';
 

@@ -7,14 +7,14 @@ import userEvent from '@testing-library/user-event';
 import { DefaultRequestBody, MockedRequest } from 'msw';
 import React from 'react';
 
-import { render } from '@tests';
+import { msw } from '@api/msw';
+import { mswServer, render } from '@tests';
 import {
   mockedRoles,
   mockedSignedUser,
   mockedSkills,
 } from '@tests/mocked-data';
 import { nextRouterMock } from '@tests/mocks';
-import { msw, server } from '@tests/msw';
 
 import { Signup } from './SignupForm';
 import { FormModel } from './hooks/useSignupFormSchema';
@@ -172,7 +172,9 @@ describe('Signup component', () => {
       userEvent.click(signup);
 
       await screen.findByRole('alert');
-      expect(screen.getByText(/uncool bro/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/oh no! something terrible happened .../i)
+      ).toBeInTheDocument();
     }, 60000);
 
     it('should display a snackbar with a default error message if the backend sent no error message', async () => {
@@ -316,8 +318,8 @@ describe('Signup component', () => {
           callCount++;
         }
       };
-      server.events.on('request:match', cb);
 
+      mswServer.events.on('request:match', cb);
       msw.areSkillsAvailableForRoleMutation(201, [6]);
 
       const role = mockedRoles[0];
@@ -374,7 +376,7 @@ describe('Signup component', () => {
       await screen.findByText('Invalid skills for this role!');
 
       expect(callCount).toBe(2);
-      server.events.removeListener('request:match', cb);
+      mswServer.events.removeListener('request:match', cb);
     }, 60000);
   });
 

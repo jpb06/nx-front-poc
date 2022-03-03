@@ -1,8 +1,8 @@
 import React from 'react';
 
+import { useRolesQuery } from '@api';
 import { Select, SelectProps, ErrorBlock } from '@components/molecules';
 
-import { useRolesQuery } from '../../../../api';
 import { FormModel } from '../../hooks/useSignupFormSchema';
 import { useSignupData } from '../hooks/useSignupData';
 import { LoadingError } from '../molecules/loading-error/LoadingError';

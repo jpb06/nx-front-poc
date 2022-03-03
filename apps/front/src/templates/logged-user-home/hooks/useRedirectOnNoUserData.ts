@@ -1,9 +1,8 @@
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-import { SignedUser } from '@api';
-
-import { useUserDataQuery } from '../../../api';
+import { useUserDataQuery } from '@api';
+import { SignedUser } from '@api/types';
 
 export const useRedirectOnNoUserData = (): SignedUser | undefined => {
   const router = useRouter();

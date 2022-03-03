@@ -3,18 +3,11 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@api": ["libs/front/api/src/main-backend/api-types.ts"],
-      "@api/roles/get-all": [
-        "libs/front/api/src/main-backend/RolesController/getAllRoles.ts"
-      ],
-      "@api/skills/get-all": [
-        "libs/front/api/src/main-backend/SkillsController/getAllSkills.ts"
-      ],
-      "@api/skills/areSkillsAvailableForRole": [
-        "libs/front/api/src/main-backend/SkillsController/areSkillsAvailableForRole.ts"
-      ],
-      "@api/users/signup": [
-        "libs/front/api/src/main-backend/UsersController/signup.ts"
+      "@api": ["libs/front/api/src/main-backend/calls/index.ts"],
+      "@api/types": ["libs/front/api/src/main-backend/specs/api-types.ts"],
+      "@api/types/signup": ["libs/front/api/src/main-backend/specs/UsersController/signup.ts"],
+      "@api/msw": [
+        "libs/front/api/src/main-backend/msw-handlers/index.ts"
       ],
       "@components/molecules": [
         "libs/front/components/src/molecules/index.ts"
@@ -30,7 +23,6 @@
       "@tests/forms": ["libs/front/components/src/test/forms/index.ts"],
       "@tests/mocked-data": ["libs/front/components/src/test/mocked-data/index.ts"],
       "@tests/mocks": ["libs/front/components/src/test/mocks/index.ts"],
-      "@tests/msw": ["libs/front/components/src/test/msw/index.ts"],
       "@theme": ["libs/front/components/src/theme/index.ts"],
       "@translations": ["libs/front/translations/src/index.ts"]
     }

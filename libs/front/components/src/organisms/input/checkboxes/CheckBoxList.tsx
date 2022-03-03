@@ -14,7 +14,7 @@ import {
 import React, { useState } from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 
-import { SkillCategoryDto } from '@api';
+import { SkillCategoryDto } from '@api/types';
 import { t } from '@translations';
 
 import { getInvalidFields } from './logic/getInvalidFields';

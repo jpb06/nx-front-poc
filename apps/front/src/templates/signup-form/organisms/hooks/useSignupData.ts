@@ -1,6 +1,6 @@
 import { QueryStatus as Status } from 'react-query';
 
-import { ApiResponseDto } from '@api';
+import { ApiResponseDto } from '@api/types';
 
 type QueryStatus = Status | 'noData';
 

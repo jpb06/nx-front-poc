@@ -1,10 +1,10 @@
 import React from 'react';
 import { useIsMutating } from 'react-query';
 
+import { useSkillsQuery } from '@api';
 import { ErrorBlock } from '@components/molecules';
 import { CheckBoxList, CheckBoxListProps } from '@components/organisms';
 
-import { useSkillsQuery } from '../../../../api';
 import { FormModel } from '../../hooks/useSignupFormSchema';
 import { useSignupData } from '../hooks/useSignupData';
 import { LoadingError } from '../molecules/loading-error/LoadingError';

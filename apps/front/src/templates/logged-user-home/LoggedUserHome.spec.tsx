@@ -5,10 +5,10 @@ import {
 } from '@testing-library/react';
 import { mocked } from 'jest-mock';
 
+import { msw } from '@api/msw';
 import { render } from '@tests';
 import { mockedSignedUser } from '@tests/mocked-data';
 import { nextRouterMock } from '@tests/mocks';
-import { msw } from '@tests/msw';
 
 import { LoggedUserHome } from './LoggedUserHome';
 import { getRandomColor } from './molecules/user-skills/skill-icon/logic/getRandomColor';

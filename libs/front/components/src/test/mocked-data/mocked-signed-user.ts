@@ -1,4 +1,4 @@
-import { SignedUser } from '@api';
+import { SignedUser } from '@api/types';
 
 export const mockedSignedUser: SignedUser = {
   id: '1',

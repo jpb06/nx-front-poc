@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ApiResponseDto } from '@api';
+import { ApiResponseDto } from '@api/types';
 import { ErrorBlock } from '@components/molecules';
 
 import { SignupPreloadedDataLabel } from '../types/signup-preloaded-data-label.type';

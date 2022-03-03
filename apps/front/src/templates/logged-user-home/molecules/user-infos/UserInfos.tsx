@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 
-import { SignedUser } from '@api';
+import { SignedUser } from '@api/types';
 import { SubTitle, Title } from '@components/molecules';
 
 export type UserInfosProps = Pick<

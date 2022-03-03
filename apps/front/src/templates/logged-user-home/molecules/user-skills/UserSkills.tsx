@@ -1,6 +1,6 @@
 import { Grid, List } from '@mui/material';
 
-import { SignedUser } from '@api';
+import { SignedUser } from '@api/types';
 import { SubTitle } from '@components/molecules';
 
 import { Skill } from './skill/Skill';

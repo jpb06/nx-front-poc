@@ -1,9 +1,9 @@
 import { useQueryClient } from 'react-query';
 import * as zod from 'zod';
 
+import { useAreSkillsAvailableForRoleMutation } from '@api';
 import { TranslationsKey } from '@translations';
 
-import { useAreSkillsAvailableForRoleMutation } from '../../../api/main-backend/useAreSkillsAvailableForRoleMutation';
 import { FormModel } from './useSignupFormSchema';
 
 type SkillsAvailabilityForRoleRefinementPredicate = Pick<
