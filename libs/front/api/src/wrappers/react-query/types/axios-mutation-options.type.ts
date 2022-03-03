@@ -1,6 +1,6 @@
 import { UseMutationOptions } from 'react-query';
 
-import { UnWrapResult } from './unwrap-result.type';
+import { UnWrapResult } from '../../axios/types/unwrap-result.type';
 
 export type AxiosMutationOptions<TData, TError, TVariables> = Omit<
   UseMutationOptions<UnWrapResult<TData> | undefined, TError, TVariables>,

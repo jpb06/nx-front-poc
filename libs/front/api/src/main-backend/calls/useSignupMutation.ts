@@ -1,12 +1,11 @@
+import { AxiosMutationOptions } from '../../wrappers/react-query/types/axios-mutation-options.type';
+import { useAxiosMutation } from '../../wrappers/react-query/useAxiosMutation';
 import {
   path,
   RequestBody,
   SignupError,
   SignupSuccess,
-} from '@api/users/signup';
-
-import { AxiosMutationOptions } from '../generic/types/axios-mutation-options.type';
-import { useAxiosMutation } from '../generic/useAxiosMutation';
+} from './../specs/UsersController/signup';
 
 export const useSignupMutation = (
   options?: AxiosMutationOptions<SignupSuccess, SignupError, RequestBody>

@@ -1,12 +1,11 @@
+import { AxiosMutationOptions } from '../../wrappers/react-query/types/axios-mutation-options.type';
+import { useAxiosMutation } from '../../wrappers/react-query/useAxiosMutation';
 import {
   path,
   AreSkillsAvailableForRoleError,
   AreSkillsAvailableForRoleSuccess,
   RequestBody,
-} from '@api/skills/areSkillsAvailableForRole';
-
-import { AxiosMutationOptions } from '../generic/types/axios-mutation-options.type';
-import { useAxiosMutation } from '../generic/useAxiosMutation';
+} from './../specs/SkillsController/areSkillsAvailableForRole';
 
 export const useAreSkillsAvailableForRoleMutation = (
   options?: AxiosMutationOptions<

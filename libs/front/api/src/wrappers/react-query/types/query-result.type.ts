@@ -1,6 +1,6 @@
 import { QueryObserverResult } from 'react-query';
 
-import { UnWrapResult } from './unwrap-result.type';
+import { UnWrapResult } from '../../axios/types/unwrap-result.type';
 
 export type QueryResult<TSuccess, TError> = QueryObserverResult<
   UnWrapResult<TSuccess>,

@@ -1,10 +1,10 @@
 import { Method } from 'axios';
 import { useMutation } from 'react-query';
 
-import { axiosRequest } from './axios-request';
+import { axiosRequest } from '../axios/axios-request';
+import { UnWrapResult } from '../axios/types/unwrap-result.type';
 import { AxiosMutationOptions } from './types/axios-mutation-options.type';
 import { MutationResult } from './types/mutation-result.type';
-import { UnWrapResult } from './types/unwrap-result.type';
 
 export const useAxiosMutation = <TData, TError, TVariables>(
   url: string,
