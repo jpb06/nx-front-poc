@@ -1,4 +1,4 @@
-# 🧩 `front-storybook` lib 🧩
+# 🧩 `storybook` lib 🧩
 
 Our library responsible for building storybook and launching it in dev mode.
 
