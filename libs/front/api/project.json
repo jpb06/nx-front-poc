@@ -17,7 +17,7 @@
     "generate-types": {
       "builder": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "generateTypesFromUrl NEXT_PUBLIC_API_URL -json ./libs/front/api/src/main-backend && eslint ./libs/front/api/src/main-backend --fix"
+        "command": "generateTypesFromUrl NEXT_PUBLIC_API_URL -json ./libs/front/api/src/main-backend/specs && eslint ./libs/front/api/src/main-backend/specs --fix"
       }
     }
   },

@@ -6,4 +6,8 @@ import {
 } from './../specs/RolesController/getAllRoles';
 
 export const useRolesQuery = () =>
-  useAxiosQuery<GetAllRolesSuccess, GetAllRolesError>('roles', path, 'GET');
+  useAxiosQuery<GetAllRolesSuccess, GetAllRolesError>({
+    key: 'roles',
+    url: path,
+    method: 'GET',
+  });
