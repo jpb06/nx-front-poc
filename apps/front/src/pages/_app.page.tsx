@@ -23,7 +23,7 @@ const MyApp: React.FC<EmotionAppProps> = ({
   return (
     <EmotionCacheProvider emotionCache={emotionCache}>
       <Head>
-        <title>My page</title>
+        <title>Sandbox</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <AppThemeProvider>
