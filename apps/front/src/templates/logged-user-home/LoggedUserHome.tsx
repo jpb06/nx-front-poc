@@ -1,29 +1,24 @@
-import { Divider } from '@mui/material';
+import { User } from '@api/types';
 
-import { FullpageBox } from '@components/organisms';
-
+import { FullpageLoader } from '../../molecules';
 import { useRedirectOnNoUserData } from './hooks/useRedirectOnNoUserData';
-import { FullpageLoader, UserAvatar, UserInfos, UserSkills } from './molecules';
+import { UserProfileLoadingError } from './molecules/user-profile-loading-error/UserProfileLoadingError';
+import { UserProfile } from './organisms/UserProfile';
 
 export const LoggedUserHome = () => {
-  const user = useRedirectOnNoUserData();
-
-  if (!user) {
-    return <FullpageLoader />;
-  }
+  const { user, status } = useRedirectOnNoUserData();
 
   return (
-    <FullpageBox>
-      <UserAvatar {...user} />
-      <UserInfos {...user} />
-      <Divider
-        sx={{
-          width: '90%',
-          mt: 2,
-          mb: 2,
-        }}
-      />
-      <UserSkills {...user} />
-    </FullpageBox>
+    <>
+      {
+        {
+          idle: <FullpageLoader />,
+          redirecting: <FullpageLoader />,
+          loading: <FullpageLoader />,
+          error: <UserProfileLoadingError />,
+          success: <UserProfile user={user as User} />,
+        }[status]
+      }
+    </>
   );
 };

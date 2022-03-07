@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { BaseSyntheticEvent } from 'react';
 import { Control, useForm } from 'react-hook-form';
 import { useQueryClient } from 'react-query';
+import useLocalStorageState from 'use-local-storage-state';
 
 import { useSignupMutation } from '@api';
 import { SignupError } from '@api/types/signup';
@@ -36,6 +37,10 @@ export const useSignupForm = (): SignupFormHook => {
     }),
   });
 
+  const [, setToken] = useLocalStorageState('token', {
+    ssr: true,
+  });
+
   const {
     isLoading,
     isError,
@@ -44,6 +49,7 @@ export const useSignupForm = (): SignupFormHook => {
   } = useSignupMutation({
     onSuccess: async (data) => {
       if (data) {
+        setToken(data.token);
         queryClient.setQueryData('user-data', (_) => data);
         await router.push('home');
       }

@@ -15,11 +15,17 @@ export const UserInfos: React.FC<UserInfosProps> = ({
   role,
 }) => (
   <>
-    <Grid item>
+    <Grid
+      item
+      container
+      direction="column"
+      justifyContent="center"
+      alignItems="center"
+    >
       <Title>{userName}</Title>
       <SubTitle>{`${firstName} ${lastName}`}</SubTitle>
     </Grid>
-    <Grid>
+    <Grid item>
       <SubTitle>You are a {role.name}</SubTitle>
     </Grid>
   </>

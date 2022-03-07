@@ -1,18 +1,43 @@
 import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { QueryStatus } from 'react-query';
+// import useLocalStorageState from 'use-local-storage-state';
 
 import { useUserDataQuery } from '@api';
-import { SignedUser } from '@api/types';
+import { User } from '@api/types';
+import { delay, isLocalStorageAvailable } from '@logic';
 
-export const useRedirectOnNoUserData = (): SignedUser | undefined => {
+type UserDataStatus = QueryStatus | 'redirecting';
+
+type UserDataResult = {
+  user?: User;
+  status: UserDataStatus;
+};
+
+export const useRedirectOnNoUserData = (): UserDataResult => {
   const router = useRouter();
-  const { isLoading, data: user } = useUserDataQuery();
+  const { status, data: user } = useUserDataQuery();
+  const [isRedirecting, setIsRedirecting] = useState(false);
+
+  // const [token] = useLocalStorageState<string>('token', {
+  //   ssr: true,
+  // });
+  // const isFirstRender = useRef(true);
 
   useEffect(() => {
-    if (!isLoading && !user) {
-      router.push('/');
-    }
-  }, [router, isLoading, user]);
+    const redirect = async () => {
+      if (isLocalStorageAvailable()) {
+        const token = localStorage.getItem('token');
+        if (token === null) {
+          setIsRedirecting(true);
+          await delay(2000);
+          await router.push('/');
+        }
+      }
+    };
 
-  return user;
+    redirect();
+  }, [router]);
+
+  return { user, status: isRedirecting ? 'redirecting' : status };
 };
