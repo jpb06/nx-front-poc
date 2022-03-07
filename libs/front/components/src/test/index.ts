@@ -1,7 +1,6 @@
 import { applyHandlerToServer } from './msw/handlers/applyHandlerToServer';
 import { genericGetHandler } from './msw/handlers/generic-get.handler';
 import { genericPostHandler } from './msw/handlers/generic-post.handler';
-import { server } from './msw/server';
 
 export * from './renders/render';
 export * from './wrappers/react-hook-form';
@@ -12,5 +11,3 @@ export const mswHandlers = {
   genericGetHandler,
   genericPostHandler,
 };
-
-export const mswServer = server;

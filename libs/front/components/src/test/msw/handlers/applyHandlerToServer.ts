@@ -5,8 +5,8 @@ export const applyHandlerToServer = (
   useServer: boolean
 ) => {
   if (useServer) {
-    const { server } = require('./../server');
-    return server.use(handler);
+    const { mswServer } = require('./../mswServer');
+    return mswServer.use(handler);
   }
 
   return handler;
