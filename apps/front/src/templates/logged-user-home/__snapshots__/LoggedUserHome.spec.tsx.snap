@@ -247,6 +247,35 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   font-size: xx-large;
 }
 
+.emotion-17 {
+  box-sizing: border-box;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex-wrap: wrap;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 100%;
+  margin: 0;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-17>.MuiGrid-item {
+  max-width: none;
+}
+
 .emotion-18 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
@@ -266,13 +295,6 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   letter-spacing: 0.00938em;
   color: #ff8f00;
   text-align: center;
-}
-
-.emotion-20 {
-  box-sizing: border-box;
-  -webkit-flex-direction: row;
-  -ms-flex-direction: row;
-  flex-direction: row;
 }
 
 .emotion-22 {
@@ -469,7 +491,7 @@ exports[`Signup component snapshots should match snapshot when displaying user d
               </div>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-item emotion-6"
+              class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-direction-xs-column emotion-17"
             >
               <h5
                 class="MuiTypography-root MuiTypography-h5 emotion-18"
@@ -483,7 +505,7 @@ exports[`Signup component snapshots should match snapshot when displaying user d
               </p>
             </div>
             <div
-              class="MuiGrid-root emotion-20"
+              class="MuiGrid-root MuiGrid-item emotion-6"
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 emotion-19"

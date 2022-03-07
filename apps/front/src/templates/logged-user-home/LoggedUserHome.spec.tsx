@@ -6,13 +6,15 @@ import {
 import { mocked } from 'jest-mock';
 
 import { msw } from '@api/msw';
+import { isLocalStorageAvailable } from '@logic';
 import { render } from '@tests';
-import { mockedSignedUser } from '@tests/mocked-data';
+import { mockedUser } from '@tests/mocked-data';
 import { nextRouterMock } from '@tests/mocks';
 
 import { LoggedUserHome } from './LoggedUserHome';
 import { getRandomColor } from './molecules/user-skills/skill-icon/logic/getRandomColor';
 
+jest.mock('@logic');
 jest.mock('next/router');
 jest.mock('./molecules/user-skills/skill-icon/logic/getRandomColor');
 
@@ -21,6 +23,9 @@ describe('Signup component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+
+    mocked(isLocalStorageAvailable).mockReturnValue(true);
+    localStorage.setItem('token', '"token"');
   });
 
   beforeAll(() => {
@@ -37,12 +42,12 @@ describe('Signup component', () => {
     });
 
     it('should match snapshot when displaying user data', async () => {
-      msw.userDataQuery(200, mockedSignedUser);
+      msw.userDataQuery(200, mockedUser);
 
       const { baseElement } = render(<LoggedUserHome />);
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
-      await screen.findByText(`${mockedSignedUser.userName}`);
+      await screen.findByText(`${mockedUser.userName}`);
 
       expect(baseElement).toMatchSnapshot();
     });
@@ -57,8 +62,9 @@ describe('Signup component', () => {
       await screen.findByRole('progressbar');
     });
 
-    it('should redirect to signup if no user data is available', async () => {
+    it('should redirect to signup if no token exists in local storage', async () => {
       msw.userDataQuery(200, undefined);
+      localStorage.clear();
 
       render(<LoggedUserHome />);
 
@@ -70,25 +76,21 @@ describe('Signup component', () => {
 
   describe('data display', () => {
     it('should display user data', async () => {
-      msw.userDataQuery(200, mockedSignedUser);
+      msw.userDataQuery(200, mockedUser);
 
       render(<LoggedUserHome />);
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(
-        screen.getByText(
-          `${mockedSignedUser.firstName} ${mockedSignedUser.lastName}`
-        )
-      ).toBeInTheDocument();
-      expect(
-        screen.getByText(`${mockedSignedUser.userName}`)
-      ).toBeInTheDocument();
+      const { firstName, lastName, userName } = mockedUser;
+
+      expect(screen.getByText(`${firstName} ${lastName}`)).toBeInTheDocument();
+      expect(screen.getByText(`${userName}`)).toBeInTheDocument();
     });
 
     it('should display the communication skill', async () => {
       msw.userDataQuery(200, {
-        ...mockedSignedUser,
+        ...mockedUser,
         skills: [{ id: 6, name: 'Communication', category: 'Soft skills' }],
       });
 
@@ -104,7 +106,7 @@ describe('Signup component', () => {
 
     it('should display the information sharing skill', async () => {
       msw.userDataQuery(200, {
-        ...mockedSignedUser,
+        ...mockedUser,
         skills: [
           { id: 8, name: 'Information sharing', category: 'Soft skills' },
         ],
@@ -122,7 +124,7 @@ describe('Signup component', () => {
 
     it('should display the project drive skill', async () => {
       msw.userDataQuery(200, {
-        ...mockedSignedUser,
+        ...mockedUser,
         skills: [
           {
             id: 7,
@@ -144,7 +146,7 @@ describe('Signup component', () => {
 
     it('should display the reporting skill', async () => {
       msw.userDataQuery(200, {
-        ...mockedSignedUser,
+        ...mockedUser,
         skills: [{ id: 9, name: 'Reporting', category: 'Management' }],
       });
 
@@ -160,7 +162,7 @@ describe('Signup component', () => {
 
     it('should display the roadmap definition skill', async () => {
       msw.userDataQuery(200, {
-        ...mockedSignedUser,
+        ...mockedUser,
         skills: [
           { id: 11, name: 'Roadmap definition', category: 'Management' },
         ],
@@ -178,7 +180,7 @@ describe('Signup component', () => {
 
     it('should display the jest skill', async () => {
       msw.userDataQuery(200, {
-        ...mockedSignedUser,
+        ...mockedUser,
         skills: [{ id: 1, name: 'jest', category: 'Tech' }],
       });
 
@@ -194,7 +196,7 @@ describe('Signup component', () => {
 
     it('should display the react skill', async () => {
       msw.userDataQuery(200, {
-        ...mockedSignedUser,
+        ...mockedUser,
         skills: [{ id: 4, name: 'react', category: 'Tech' }],
       });
 
@@ -210,7 +212,7 @@ describe('Signup component', () => {
 
     it('should display the typescript skill', async () => {
       msw.userDataQuery(200, {
-        ...mockedSignedUser,
+        ...mockedUser,
         skills: [{ id: 5, name: 'Typescript', category: 'Tech' }],
       });
 
@@ -228,7 +230,7 @@ describe('Signup component', () => {
 
     it('should display the github skill', async () => {
       msw.userDataQuery(200, {
-        ...mockedSignedUser,
+        ...mockedUser,
         skills: [{ id: 10, name: 'Github actions', category: 'Tech' }],
       });
 
@@ -243,7 +245,7 @@ describe('Signup component', () => {
     });
 
     it('should not display a skills section', async () => {
-      msw.userDataQuery(200, { ...mockedSignedUser, skills: [] });
+      msw.userDataQuery(200, { ...mockedUser, skills: [] });
 
       render(<LoggedUserHome />);
 

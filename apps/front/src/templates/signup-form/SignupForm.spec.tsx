@@ -8,17 +8,15 @@ import { DefaultRequestBody, MockedRequest } from 'msw';
 import React from 'react';
 
 import { msw } from '@api/msw';
-import { mswServer, render } from '@tests';
-import {
-  mockedRoles,
-  mockedSignedUser,
-  mockedSkills,
-} from '@tests/mocked-data';
+import { render } from '@tests';
+import { mockedRoles, mockedUser, mockedSkills } from '@tests/mocked-data';
 import { nextRouterMock } from '@tests/mocks';
+import { mswServer } from '@tests/mswServer';
 
 import { Signup } from './SignupForm';
 import { FormModel } from './hooks/useSignupFormSchema';
 
+jest.mock('@logic');
 jest.mock('next/router');
 
 describe('Signup component', () => {
@@ -92,7 +90,7 @@ describe('Signup component', () => {
 
     it('should send valid data to the API', async () => {
       msw.areSkillsAvailableForRoleMutation(200, { result: [] });
-      msw.signupMutation(200, { result: mockedSignedUser });
+      msw.signupMutation(200, { result: mockedUser });
 
       const role = mockedRoles[0];
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
