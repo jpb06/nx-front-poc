@@ -49,7 +49,7 @@ describe('snapshots', ()=> {
   });
 
   it('should match snapshot when displaying user data', async () => {
-    msw.userDataQuery(200, mockedSignedUser);
+    msw.userDataQuery(200, mockedUser);
   
     const { baseElement } = render(<LoggedUserHome />);
   
@@ -71,16 +71,16 @@ You can find integration tests in the templates folder:
 
 ```typescript
 it('should display user data', async () => {
-  msw.userDataQuery(200, mockedSignedUser);
+  msw.userDataQuery(200, mockedUser);
   
   render(<LoggedUserHome />);
   
   await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
-  
-  expect(screen.getByText(
-    `${mockedSignedUser.firstName} ${mockedSignedUser.lastName}`
-  )).toBeInTheDocument();
-  expect(screen.getByText(`${mockedSignedUser.userName}`)).toBeInTheDocument();
+
+  const { firstName, lastName, userName } = mockedUser;
+
+  expect(screen.getByText(`${firstName} ${lastName}`)).toBeInTheDocument();
+  expect(screen.getByText(`${userName}`)).toBeInTheDocument();
 });
 ```
 
