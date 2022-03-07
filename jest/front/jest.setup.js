@@ -1,10 +1,12 @@
 require('@testing-library/jest-dom/extend-expect');
 const { matchers } = require('@emotion/jest');
 
-const { server } = require('./../../libs/front/components/src/test/msw/server');
+const {
+  mswServer,
+} = require('./../../libs/front/components/src/test/msw/mswServer');
 
-beforeAll(() => server.listen({ onUnhandledRequest: 'error' }));
-afterEach(() => server.resetHandlers());
-afterAll(() => server.close());
+beforeAll(() => mswServer.listen({ onUnhandledRequest: 'error' }));
+afterEach(() => mswServer.resetHandlers());
+afterAll(() => mswServer.close());
 
 expect.extend(matchers);
