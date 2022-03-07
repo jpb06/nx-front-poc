@@ -1,6 +1,6 @@
-import { SignedUser } from '@api/types';
+import { User } from '@api/types';
 
-export const mockedSignedUser: SignedUser = {
+export const mockedUser: User = {
   id: '1',
   firstName: 'Yolo',
   lastName: 'Mc Cool',
@@ -23,5 +23,4 @@ export const mockedSignedUser: SignedUser = {
     { id: 5, name: 'Typescript' },
     { id: 10, name: 'Github actions' },
   ],
-  token: 'token',
 };
