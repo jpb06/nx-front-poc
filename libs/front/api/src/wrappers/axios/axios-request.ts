@@ -1,5 +1,7 @@
 import axios, { AxiosRequestConfig, Method } from 'axios';
 
+import { delay } from '@logic';
+
 import { UnWrapResult } from './types/unwrap-result.type';
 
 type AxiosRequestProps = {
@@ -10,11 +12,6 @@ type AxiosRequestProps = {
 };
 
 type WithResult<T> = { result?: T };
-
-const delay = async (ms: number) =>
-  new Promise((resolve) => {
-    setTimeout(resolve, ms);
-  });
 
 export const axiosRequest = async <TResult>({
   url,
@@ -30,7 +27,7 @@ export const axiosRequest = async <TResult>({
         data,
         ...config,
       }),
-      delay(300), // ensuring every operation takes al least half a sec
+      delay(500), // ensuring every operation takes al least half a sec
     ]);
 
     if (response.data.result === undefined) {
