@@ -5,11 +5,11 @@ import { FullpageBox } from '@components/organisms';
 
 import { UserAvatar, UserInfos, UserSkills } from './../molecules';
 
-type UserProfile = {
+type UserProfileProps = {
   user: User;
 };
 
-export const UserProfile: React.FC<UserProfile> = ({ user }) => {
+export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
   return (
     <FullpageBox>
       <UserAvatar {...user} />
