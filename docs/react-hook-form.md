@@ -1,10 +1,10 @@
-## ⚡ Forms handling
+# ⚡ Forms handling
 
 We are using two libraries to manage forms in our app: [react-hook-form](https://github.com/react-hook-form/react-hook-form) and [zod](https://github.com/colinhacks/zod). The former is a library dedicated to form handling while the latter is a schema declaration and parsing library.
 
 Our objective here is to separate the definition and the validation of our data model from the definition of our form in the DOM.
 
-### 🔶 Data model schema
+## 🔶 Data model schema
 
 A schema definition typically looks like this:
 
@@ -35,7 +35,7 @@ As you can see, we can combine functions to define constraints on each field. Mo
 
 It is also important to define explictely the type of our model using `zod.ZodSchema<T>` instead of inferring its type using `type FormModel = zod.infer<typeof schema>`. This can save us some headache down the line.
 
-### 🔶 Using our model
+## 🔶 Using our model
 
 Using our schema is easy enough, using a resolver:
 
@@ -97,7 +97,7 @@ export function Input<T>(props: InputProps<T>): JSX.Element {
 }
 ```
 
-### 🔶 react
+## 🔶 react
 
 What does it mean for our components then? We will use genericity and `useController` hook to simplify the definition and usage of our generic components. Here is an example:
 
@@ -161,7 +161,7 @@ const MyComponent = () => {
 }
 ```
 
-### 🔶 Using custom error messages
+## 🔶 Using custom error messages
 
 Since our app is localized, we will have to override the default error messages provided by zod. We can do this easily by providing parameters to zod functions in our schema.
 
@@ -207,7 +207,7 @@ export function Input<T>(props: InputProps<T>): JSX.Element {
 }
 ```
 
-### 🔶 Overriding zod default error messages
+## 🔶 Overriding zod default error messages
 
 While defining messages in the schema gives us fine grained control over the messages we want to display, it may be useful to make sure we always send translated default messages. We can do by passing a function to the errorMap option in `zodResolver` function:
 
@@ -267,13 +267,13 @@ const { control, handleSubmit } = useForm<FormModel>({
 });
 ```
 
-### 🔶 Complex validation
+## 🔶 Complex validation
 
 Sometimes, we may have to do complex validation based on several fields. For example, we may have a password field using two inputs to ensure user has made no typo.
 
 We have two functions we can use in our schema definion to do this: `refine` and `superRefine`, which basically do the same thing but with small variations.
 
-#### 🌀 `refine`
+### 🌀 `refine`
 
 Refine is great for simple use cases:
 
@@ -299,7 +299,7 @@ const schema = zod.string().refine((val) => val.length <= 255, {
 });
 ```
 
-#### 🌀 `superRefine`
+### 🌀 `superRefine`
 
 This function allows us to do more complex stuff; we can also chain superRefine functions:
 

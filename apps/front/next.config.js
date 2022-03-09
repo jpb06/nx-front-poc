@@ -11,7 +11,7 @@ const nextConfig = {
     svgr: false,
   },
   reactStrictMode: true,
-  pageExtensions: ['page.tsx', 'api.ts']
+  pageExtensions: ['page.tsx', 'api.ts'],
 };
 
 module.exports = withNx(nextConfig);

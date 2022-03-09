@@ -3,11 +3,23 @@
   "sourceRoot": "apps/front-e2e/src",
   "projectType": "application",
   "targets": {
+    "serve-for-e2e": {
+      "builder": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "pnpm exec nx run back:serve",
+          "pnpm exec nx run front:serve"
+        ],
+        "parallel": true,
+        "readyWhen": "[ ready ] on http://localhost:3000"
+      }
+    },
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
         "cypressConfig": "apps/front-e2e/cypress.json",
-        "devServerTarget": "front:serve"
+        "devServerTarget": "front-e2e:serve-for-e2e",
+        "baseUrl": "http://localhost:3000"
       },
       "configurations": {
         "production": {
@@ -24,5 +36,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["front"]
+  "implicitDependencies": ["front", "back"]
 }

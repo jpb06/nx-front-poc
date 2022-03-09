@@ -3,30 +3,31 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@api": ["libs/front/api/src/main-backend/api-types.ts"],
-      "@api/roles/get-all": [
-        "libs/front/api/src/main-backend/RolesController/getAllRoles.ts"
+      "@api": ["libs/front/api/src/main-backend/calls/index.ts"],
+      "@api/types": ["libs/front/api/src/main-backend/specs/api-types.ts"],
+      "@api/types/signup": ["libs/front/api/src/main-backend/specs/UsersController/signup.ts"],
+      "@api/msw": [
+        "libs/front/api/src/main-backend/msw-handlers/index.ts"
       ],
-      "@api/skills/get-all": [
-        "libs/front/api/src/main-backend/SkillsController/getAllSkills.ts"
+      "@components/molecules": [
+        "libs/front/components/src/molecules/index.ts"
       ],
-      "@api/skills/areSkillsAvailableForRole": [
-        "libs/front/api/src/main-backend/SkillsController/areSkillsAvailableForRole.ts"
-      ],
-      "@api/users/signup": [
-        "libs/front/api/src/main-backend/UsersController/signup.ts"
-      ],
-      "@components": [
-        "libs/front/components/src/index.ts"
+      "@components/organisms": [
+        "libs/front/components/src/organisms/index.ts"
       ],
       "@components/logic": ["libs/front/components/src/logic/index.ts"],
       "@components/providers": [
         "libs/front/components/src/providers/index.ts"
       ],
-      "@components/tests": ["libs/front/components/src/test/index.ts"],
+      "@logic": ["libs/front/logic/src/index.ts"],
+      "@tests": ["libs/front/components/src/test/index.ts"],
+      "@tests/mswServer": ["libs/front/components/src/test/msw/mswServer.ts"],
+      "@tests/forms": ["libs/front/components/src/test/forms/index.ts"],
+      "@tests/mocked-data": ["libs/front/components/src/test/mocked-data/index.ts"],
+      "@tests/mocks": ["libs/front/components/src/test/mocks/index.ts"],
       "@theme": ["libs/front/components/src/theme/index.ts"],
-      "@tests": ["libs/front/tests/src/index.ts"],
-      "@translations": ["libs/front/translations/src/index.ts"]
+      "@translations": ["libs/front/translations/src/index.ts"],
+      "@storybook": ["libs/front/storybook/src/index.ts"]
 
     }
   }

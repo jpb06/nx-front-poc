@@ -11,7 +11,14 @@
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/front",
-        "outputPath": "dist/apps/front"
+        "outputPath": "dist/apps/front",
+        "assets": [
+          {
+            "input": "libs/front/components/assets",
+            "glob": "**/*",
+            "output": "."
+          }
+        ]
       },
       "configurations": {
         "production": {}
@@ -70,39 +77,6 @@
       "options": {
         "command": "sonar-scanner",
         "cwd": "apps/front"
-      }
-    },
-    "storybook": {
-      "executor": "@nrwl/storybook:storybook",
-      "options": {
-        "uiFramework": "@storybook/react",
-        "port": 4400,
-        "config": {
-          "configFolder": "apps/front/.storybook"
-        }
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
-    "build-storybook": {
-      "executor": "@nrwl/storybook:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "options": {
-        "uiFramework": "@storybook/react",
-        "outputPath": "dist/storybook/front",
-        "config": {
-          "configFolder": "apps/front/.storybook"
-        }
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
       }
     }
   },

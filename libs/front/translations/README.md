@@ -1,7 +1,17 @@
-# front-translations
+# 🧩 `front-translations` lib 🧩
 
-This library was generated with [Nx](https://nx.dev).
+A library containing a translations system mockup for our frontend app.
 
-## Running unit tests
+## ⚡ CLI
 
-Run `nx test front-translations` to execute the unit tests via [Jest](https://jestjs.io).
+|                 Description                           |           Command                                                     |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| ⚠️ Linting the app |`nx run front-translations:lint`|
+| ✔️ Type checking using tsc |`nx run front-translations:type-check`|
+
+### 🔶 Useful flags
+
+| flag                                           | Description                                                               |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| ⬛  `--skip-nx-cache`  | disables nx caching; the command will be ran fully |
+| ⬛  `--verbose`  | prints additional error stack trace on failure

@@ -6,11 +6,11 @@ import {
   setLogger,
 } from 'react-query';
 
+import { handleMutationsErrors } from '../../logic/handle-mutations-errors';
 import {
   ShowSnackbarFn,
   SnackbarContext,
-} from '../../feedback/snackbar/Snackbar.context';
-import { handleMutationsErrors } from '../../logic/handle-mutations-errors';
+} from '../../organisms/feedback/snackbar/Snackbar.context';
 
 //https://react-query.tanstack.com/guides/testing#_top
 

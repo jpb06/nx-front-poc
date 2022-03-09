@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import React from 'react';
 
-import { Home } from '../components/home/Home';
+import { LoggedUserHome } from '../templates/logged-user-home/LoggedUserHome';
 
-const HomePage: NextPage = () => <Home />;
+const HomePage: NextPage = () => <LoggedUserHome />;
 
 export default HomePage;

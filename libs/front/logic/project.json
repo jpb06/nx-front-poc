@@ -1,0 +1,25 @@
+{
+  "root": "libs/front/logic",
+  "sourceRoot": "libs/front/logic/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": [
+        "{options.outputFile}"
+      ],
+      "options": {
+        "lintFilePatterns": [
+          "libs/front/logic/**/*.ts"
+        ]
+      }
+    },
+    "type-check": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "pnpm exec tsc -p ./libs/front/logic/tsconfig.lib.json --noEmit --pretty"
+      }
+    }
+  }
+}

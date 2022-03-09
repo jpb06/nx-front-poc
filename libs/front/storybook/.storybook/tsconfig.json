@@ -1,0 +1,40 @@
+{
+  "extends": "../../../../tsconfig.front.json",
+  "compilerOptions": {
+    "jsx": "preserve",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "isolatedModules": true,
+    "removeComments": false,
+    "preserveConstEnums": true,
+    "types": ["node"],
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "resolveJsonModule": true,
+    "incremental": true
+  },
+  "files": [
+    "../../../../node_modules/@nrwl/react/typings/styled-jsx.d.ts",
+    "../../../../node_modules/@nrwl/react/typings/cssmodule.d.ts",
+    "../../../../node_modules/@nrwl/react/typings/image.d.ts"
+  ],
+  "exclude": [
+    "../../../../**/*.spec.ts",
+    "../../../../**/*.spec.tsx",
+    "../../../../**/*.test.tsx",
+    "../../../../**/*.test.ts"
+  ],
+  "include": [
+    "../../../../apps/front/src/**/*", 
+    "../../../../libs/front/api/src/**/*", 
+    "../../../../libs/front/components/src/**/*", 
+    "../../../../libs/front/translations/src/**/*", 
+    "*.js"
+  ]
+}

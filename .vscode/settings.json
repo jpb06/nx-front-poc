@@ -4,6 +4,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "editor.tabSize": 2,
-  "typescript.preferences.importModuleSpecifier": "project-relative"
+  "editor.tabSize": 2
 }

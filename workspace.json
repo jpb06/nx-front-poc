@@ -5,8 +5,9 @@
     "front": "apps/front",
     "front-api": "libs/front/api",
     "front-components": "libs/front/components",
+    "front-logic": "libs/front/logic",
     "front-e2e": "apps/front-e2e",
-    "front-tests": "libs/front/tests",
-    "front-translations": "libs/front/translations"
+    "front-translations": "libs/front/translations",
+    "storybook": "libs/front/storybook"
   }
 }

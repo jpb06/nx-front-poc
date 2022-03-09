@@ -16,4 +16,10 @@ export class UsersStoreService {
     const id = v4();
     return this.dataPush.persist({ id, ...user }, 'users');
   }
+
+  async getBy(id: string): Promise<User | undefined> {
+    const users = await this.dataPull.getBy('users');
+
+    return users.find((u) => u.id === id);
+  }
 }

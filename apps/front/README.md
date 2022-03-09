@@ -6,10 +6,16 @@ Our frontend app, containing a signup form.
 
 |                 Description                           |           Command                                                     |
 | ------------------------------------------------ | --------------------------------------------------------------------- |
-| 🛠️ Build  |`nx run front:build --skip-nx-cache `|
-| 🚀 Launching frontend (port 4200) |`nx run front:serve --skip-nx-cache --verbose`|
-| ⚠️ Linting the app |`nx run front:lint --skip-nx-cache --verbose`|
-| ✔️ Type checking using tsc |`nx run front:type-check --skip-nx-cache --verbose`|
-| ✅ Launching tests |`nx run front:test --skip-nx-cache --verbose`|
+| 🛠️ Build  |`pnpm exec nx run front:build`|
+| 🚀 Launching frontend (port 3000) |`pnpm exec nx run front:serve`|
+| ⚠️ Linting the app |`pnpm exec nx run front:lint`|
+| ✔️ Type checking using tsc |`pnpm exec nx run front:type-check`|
+| ✅ Launching tests |`pnpm exec nx run front:test`|
+| 🕵️ Run sonarcloud command |`pnpm exec nx run front:sonar`|
 
+### 🔶 Useful flags
 
+| flag                                           | Description                                                               |
+| ------------------------------------------------ | --------------------------------------------------------------------- |
+| ⬛  `--skip-nx-cache`  | disables nx caching; the command will be ran fully |
+| ⬛  `--verbose`  | prints additional error stack trace on failure
