@@ -60,7 +60,6 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
     "@babel/preset-typescript": "7.16.7",
     "@emotion/jest": "^11.8.0",
-    "@gogaille/storybook-addon-next-router": "^4.0.0",
     "@hookform/devtools": "^4.0.2",
     "@nestjs/schematics": "^8.0.8",
     "@nestjs/testing": "^8.4.0",
@@ -123,13 +122,14 @@
     "prettier": "2.5.1",
     "react-test-renderer": "17.0.2",
     "sonarqube-scanner": "^2.8.1",
+    "storybook-addon-next-router": "^3.1.1",
+    "storybook-dark-mode": "^1.0.9",
     "swagger-typescript-types": "^2.1.6",
     "ts-jest": "^27.1.3",
     "typescript": "~4.6.2",
     "url-loader": "^4.1.1"
   },
   "engines": {
-    "node": "16.14.x",
     "yarn": "1.22.x"
   }
 }

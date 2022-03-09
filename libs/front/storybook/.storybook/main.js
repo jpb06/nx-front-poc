@@ -4,22 +4,21 @@ const tsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const storybookMainConfig = {
   addons: [
     '@storybook/addon-essentials',
-    '@storybook/addon-viewport', 
-    '@storybook/addon-links'
+    '@storybook/addon-viewport',
+    '@storybook/addon-links',
+    'storybook-addon-next-router',
+    'storybook-dark-mode',
   ],
-  stories: [
-    '../../../../**/*.stories.mdx',
-    '../../../../**/*.stories.tsx',
-  ],
+  stories: ['../../../../**/*.stories.mdx', '../../../../**/*.stories.tsx'],
   staticDirs: [
-    '../../../../apps/front/public', 
-    '../../../../libs/front/components/assets'
+    '../../../../apps/front/public',
+    '../../../../libs/front/components/assets',
   ],
   webpackFinal: async (config) => {
     config.resolve.plugins = [
       ...(config.resolve.plugins || []),
       new tsconfigPathsPlugin({
-        configFile: "./libs/front/storybook/.storybook/tsconfig.json",
+        configFile: './libs/front/storybook/.storybook/tsconfig.json',
         extensions: config.resolve.extensions,
       }),
     ];
@@ -27,7 +26,7 @@ const storybookMainConfig = {
     return config;
   },
   features: { emotionAlias: false },
-}
+};
 
 // No way to use @nrwl/react/plugins/storybook for now, since it relies on webpack 5. See:
 // https://github.com/mswjs/msw-storybook-addon/issues/58
@@ -36,8 +35,8 @@ const storybookMainConfig = {
 // const storybookMainConfig = {
 //   addons: [
 //     '@storybook/addon-essentials',
-//     '@nrwl/react/plugins/storybook', 
-//     '@storybook/addon-viewport', 
+//     '@nrwl/react/plugins/storybook',
+//     '@storybook/addon-viewport',
 //     '@storybook/addon-links'
 //   ],
 //   core: { builder: 'webpack5' },
@@ -46,12 +45,10 @@ const storybookMainConfig = {
 //     '../../../../**/*.stories.tsx',
 //   ],
 //   staticDirs: [
-//     '../../../../apps/front/public', 
+//     '../../../../apps/front/public',
 //     '../../../../libs/front/components/assets'
 //   ],
 //   features: { emotionAlias: false },
 // }
 
-module.exports = storybookMainConfig
-
-
+module.exports = storybookMainConfig;

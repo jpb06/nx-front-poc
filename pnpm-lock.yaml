@@ -9,7 +9,6 @@ specifiers:
   '@emotion/react': ^11.8.1
   '@emotion/server': ^11.4.0
   '@emotion/styled': ^11.8.1
-  '@gogaille/storybook-addon-next-router': ^4.0.0
   '@hookform/devtools': ^4.0.2
   '@hookform/resolvers': ^2.8.8
   '@mui/icons-material': ^5.5.0
@@ -99,6 +98,8 @@ specifiers:
   regenerator-runtime: 0.13.9
   rxjs: ^7.5.5
   sonarqube-scanner: ^2.8.1
+  storybook-addon-next-router: ^3.1.1
+  storybook-dark-mode: ^1.0.9
   styled-components: 5.3.3
   swagger-typescript-types: ^2.1.6
   swagger-ui-express: ^4.3.0
@@ -154,7 +155,6 @@ devDependencies:
   '@babel/plugin-proposal-private-property-in-object': 7.16.7_@babel+core@7.17.5
   '@babel/preset-typescript': 7.16.7_@babel+core@7.17.5
   '@emotion/jest': 11.8.0_@types+jest@27.4.1
-  '@gogaille/storybook-addon-next-router': 4.0.0_2497320ddf96f1f20239da1a35852ad5
   '@hookform/devtools': 4.0.2_d47160b47af0799b3ebfdd15b3949f37
   '@nestjs/schematics': 8.0.8_typescript@4.6.2
   '@nestjs/testing': 8.4.0_5038ecb39d0fed2140e79e9371a95289
@@ -217,6 +217,8 @@ devDependencies:
   prettier: 2.5.1
   react-test-renderer: 17.0.2_react@17.0.2
   sonarqube-scanner: 2.8.1
+  storybook-addon-next-router: 3.1.1_2497320ddf96f1f20239da1a35852ad5
+  storybook-dark-mode: 1.0.9
   swagger-typescript-types: 2.1.6
   ts-jest: 27.1.3_e0fe88243f0076a0bcfcaf16c62c6e3c
   typescript: 4.6.2
@@ -2035,22 +2037,6 @@ packages:
 
   /@gar/promisify/1.1.3:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
-    dev: true
-
-  /@gogaille/storybook-addon-next-router/4.0.0_2497320ddf96f1f20239da1a35852ad5:
-    resolution: {integrity: sha512-ArjniQINoQ26NUKnbOAN/Ye3guTAQTq9HHUY/X3W6JQm2OWMek6mojMBHXHQzycQ/zFuTMizn+JUa+2C3AmrMA==}
-    engines: {node: '>=10'}
-    peerDependencies:
-      '@storybook/addon-actions': ^6.0.0
-      '@storybook/addons': ^6.0.0
-      next: ^11.2.0
-      react: ^16.8.0 || ^17.0.0
-      react-dom: ^16.8.0 || ^17.0.0
-    dependencies:
-      '@storybook/addon-actions': 6.4.19_b8fdba992ce7d797017dc07106486496
-      next: 12.1.0_33bdac975a6e334c49640fab91e2abb4
-      react: 17.0.2
-      react-dom: 17.0.2_react@17.0.2
     dev: true
 
   /@hookform/devtools/4.0.2_d47160b47af0799b3ebfdd15b3949f37:
@@ -17051,6 +17037,37 @@ packages:
 
   /store2/2.13.1:
     resolution: {integrity: sha512-iJtHSGmNgAUx0b/MCS6ASGxb//hGrHHRgzvN+K5bvkBTN7A9RTpPSf1WSp+nPGvWCJ1jRnvY7MKnuqfoi3OEqg==}
+    dev: true
+
+  /storybook-addon-next-router/3.1.1_2497320ddf96f1f20239da1a35852ad5:
+    resolution: {integrity: sha512-Z14dED37vNXkN7+VY80HhF9itGReWoBAlKREHEk2By/dW7zSSqcSyXYV4bDMXIMAFYHMaA1svcBC1idVG8FhAw==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      '@storybook/addon-actions': ^6.0.0
+      '@storybook/addons': ^6.0.0
+      '@storybook/client-api': ^6.0.0
+      next: ^9.0.0 || ^10.0.0 || ^11.0.0 || ^12.0.0
+      react: ^16.8.0 || ^17.0.0
+      react-dom: ^16.8.0 || ^17.0.0
+    dependencies:
+      '@storybook/addon-actions': 6.4.19_b8fdba992ce7d797017dc07106486496
+      next: 12.1.0_33bdac975a6e334c49640fab91e2abb4
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      tslib: 2.3.1
+    dev: true
+
+  /storybook-dark-mode/1.0.9:
+    resolution: {integrity: sha512-ITPXM2OSaga1zM5blpZy5HxMWAhrAqYi9aJtLgRtSdgoRrxVNAInDRD14TjmObdgLHNWxINoNbnEB+sKETa+iw==}
+    peerDependencies:
+      '@storybook/addons': ^6.0.0
+      '@storybook/api': ^6.0.0
+      '@storybook/components': ^6.0.0
+      '@storybook/core-events': ^6.0.0
+      '@storybook/theming': ^6.0.0
+    dependencies:
+      fast-deep-equal: 3.1.3
+      memoizerific: 1.11.3
     dev: true
 
   /stream-browserify/2.0.2:
