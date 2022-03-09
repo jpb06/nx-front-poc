@@ -84,7 +84,7 @@ specifiers:
   jest-watch-typeahead: ^1.0.0
   jotai: ^1.6.0
   jsonwebtoken: ^8.5.1
-  msw: ^0.39.1
+  msw: 0.38.2
   msw-storybook-addon: ^1.6.1
   next: 12.1.0
   prettier: 2.5.1
@@ -212,8 +212,8 @@ devDependencies:
   jest-mock: 27.5.1
   jest-mock-extended: 2.0.4_jest@27.5.1+typescript@4.6.2
   jest-watch-typeahead: 1.0.0_jest@27.5.1
-  msw: 0.39.1
-  msw-storybook-addon: 1.6.1_f51de79363940e69fd8e9952d176b614
+  msw: 0.38.2
+  msw-storybook-addon: 1.6.1_1efd4f84143376e78bba4b662a86a542
   prettier: 2.5.1
   react-test-renderer: 17.0.2_react@17.0.2
   sonarqube-scanner: 2.8.1
@@ -2435,9 +2435,9 @@ packages:
       set-cookie-parser: 2.4.8
     dev: true
 
-  /@mswjs/interceptors/0.14.1:
-    resolution: {integrity: sha512-E+0qtLySvVC4cIo5vlqDXn7BAtAgyVJe9hJjGorfbbClvTRNWMym9V70jhNB11y9txcd6ZPXbgxf2dMT73jGmw==}
-    engines: {node: '>=16.x'}
+  /@mswjs/interceptors/0.13.6:
+    resolution: {integrity: sha512-28FzF44Q84h9vxQ0XBpEz940KC/q3fzlo+TtaIyfilnJ7+HeIcnVfRM4hkp0/q2Uh466PmgpD4BH7A0F0kCBbQ==}
+    engines: {node: '>=12.x'}
     dependencies:
       '@open-draft/until': 1.0.3
       '@xmldom/xmldom': 0.7.5
@@ -11755,7 +11755,7 @@ packages:
     engines: {node: '>=12.0.0'}
     dependencies:
       ansi-escapes: 4.3.2
-      chalk: 4.1.1
+      chalk: 4.1.2
       cli-cursor: 3.1.0
       cli-width: 3.0.0
       external-editor: 3.1.0
@@ -13921,27 +13921,26 @@ packages:
   /ms/2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
-  /msw-storybook-addon/1.6.1_f51de79363940e69fd8e9952d176b614:
+  /msw-storybook-addon/1.6.1_1efd4f84143376e78bba4b662a86a542:
     resolution: {integrity: sha512-kIKW7xr81TisCKBnDLJc8htReMPbxbP7D/7Cbt7HsIv8v7dEIRA56b2qh11Q585cn6DiW1vuhZ8QiHHBPlE6rQ==}
     peerDependencies:
       msw: ^0.35.0 || ^0.36.0
     dependencies:
       '@storybook/addons': 6.4.19_react-dom@17.0.2+react@17.0.2
       is-node-process: 1.0.1
-      msw: 0.39.1
+      msw: 0.38.2
     transitivePeerDependencies:
       - react
       - react-dom
     dev: true
 
-  /msw/0.39.1:
-    resolution: {integrity: sha512-IiM1F94Ecp3iyHUPpbmEIUcxmNB2HHOmUaEOBsbbHNGnfSg+IGgB3VsXjXOEVPHJCgeoeJc2rJywD7u4wEgOTw==}
-    engines: {node: '>=16.x'}
+  /msw/0.38.2:
+    resolution: {integrity: sha512-gD2vkV/ol3+zaC6AHKlPxB4zvl5mTV1uzhcv+0H6kwlbaiTZe/vVwiEGPeE9mQroAFvh0c8uJmltDebEys28qA==}
     hasBin: true
     requiresBuild: true
     dependencies:
       '@mswjs/cookies': 0.1.7
-      '@mswjs/interceptors': 0.14.1
+      '@mswjs/interceptors': 0.13.6
       '@open-draft/until': 1.0.3
       '@types/cookie': 0.4.1
       '@types/js-levenshtein': 1.1.1
