@@ -12,17 +12,26 @@ export default {
   decorators: reactQueryDecorator,
 } as ComponentMeta<typeof LoggedUserHome>;
 
-const Template: Story = (_) => <LoggedUserHome />;
+const LoggedInTemplate: Story = (_) => {
+  localStorage.setItem('token', '"cool"');
 
-export const NominalCase = Template.bind({});
-NominalCase.args = {};
+  return <LoggedUserHome />;
+};
+
+export const NominalCase = LoggedInTemplate.bind({});
 NominalCase.parameters = {
   msw: {
     handlers: [msw.userDataQuery(200, mockedUser, false)],
   },
 };
 
-export const ErrorCase = Template.bind({});
+const NotLoggedInTemplate: Story = (_) => {
+  localStorage.removeItem('token');
+
+  return <LoggedUserHome />;
+};
+
+export const ErrorCase = NotLoggedInTemplate.bind({});
 ErrorCase.args = {};
 ErrorCase.parameters = {
   msw: {
