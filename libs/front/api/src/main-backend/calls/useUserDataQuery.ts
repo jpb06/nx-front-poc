@@ -1,4 +1,3 @@
-//import useLocalStorageState from 'use-local-storage-state';
 import { isLocalStorageAvailable } from '@logic';
 
 import { useAxiosQuery } from '../../wrappers/react-query/useAxiosQuery';
@@ -20,9 +19,6 @@ const getToken = () => {
 };
 
 export const useUserDataQuery = () => {
-  // const [token] = useLocalStorageState<string>('token', {
-  //   ssr: true,
-  // });
   const token = getToken();
 
   return useAxiosQuery<UserProfileResultDto, ApiResponseDto>({

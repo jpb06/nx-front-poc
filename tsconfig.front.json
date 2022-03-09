@@ -26,7 +26,9 @@
       "@tests/mocked-data": ["libs/front/components/src/test/mocked-data/index.ts"],
       "@tests/mocks": ["libs/front/components/src/test/mocks/index.ts"],
       "@theme": ["libs/front/components/src/theme/index.ts"],
-      "@translations": ["libs/front/translations/src/index.ts"]
+      "@translations": ["libs/front/translations/src/index.ts"],
+      "@storybook": ["libs/front/storybook/src/index.ts"]
+
     }
   }
 }

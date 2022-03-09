@@ -1,7 +1,7 @@
 import { Story, ComponentMeta } from '@storybook/react';
 
 import { msw } from '@api/msw';
-import { ReactQueryWrapper } from '@tests';
+import { reactQueryDecorator } from '@storybook';
 import { mockedUser } from '@tests/mocked-data';
 
 import { LoggedUserHome } from './LoggedUserHome';
@@ -9,13 +9,10 @@ import { LoggedUserHome } from './LoggedUserHome';
 export default {
   component: LoggedUserHome,
   title: 'Front app/User stories/Logger user',
+  decorators: reactQueryDecorator,
 } as ComponentMeta<typeof LoggedUserHome>;
 
-const Template: Story = (_) => (
-  <ReactQueryWrapper>
-    <LoggedUserHome />
-  </ReactQueryWrapper>
-);
+const Template: Story = (_) => <LoggedUserHome />;
 
 export const NominalCase = Template.bind({});
 NominalCase.args = {};

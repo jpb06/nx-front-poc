@@ -1,7 +1,6 @@
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { QueryStatus } from 'react-query';
-// import useLocalStorageState from 'use-local-storage-state';
 
 import { useUserDataQuery } from '@api';
 import { User } from '@api/types';
@@ -18,11 +17,6 @@ export const useRedirectOnNoUserData = (): UserDataResult => {
   const router = useRouter();
   const { status, data: user } = useUserDataQuery();
   const [isRedirecting, setIsRedirecting] = useState(false);
-
-  // const [token] = useLocalStorageState<string>('token', {
-  //   ssr: true,
-  // });
-  // const isFirstRender = useRef(true);
 
   useEffect(() => {
     const redirect = async () => {
