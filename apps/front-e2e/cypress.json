@@ -1,12 +1,15 @@
 {
+  "baseUrl": "https://localhost/",
   "fileServerFolder": ".",
   "fixturesFolder": "./src/fixtures",
   "integrationFolder": "./src/integration",
   "modifyObstructiveCode": false,
+  "pluginsFile": "./src/plugins/index.js",
   "supportFile": "./src/support/index.ts",
-  "pluginsFile": false,
   "video": true,
   "videosFolder": "../../dist/cypress/apps/front-e2e/videos",
   "screenshotsFolder": "../../dist/cypress/apps/front-e2e/screenshots",
-  "chromeWebSecurity": false
+  "chromeWebSecurity": false,
+  "ignoreTestFiles": "*.spec.ts",
+  "testFiles": "**/*.{feature,features}"
 }
