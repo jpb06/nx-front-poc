@@ -1,8 +1,8 @@
-import { Given, When, And, Then } from "cypress-cucumber-preprocessor/steps";
+import { Given, When, And, Then } from 'cypress-cucumber-preprocessor/steps';
 
 Given(/I open the signup page/, () => {
-  cy.visit('/')
-})
+  cy.visit('/');
+});
 
 When(/I fill the signup form/, () => {
   cy.findByLabelText(/lastname/i).type('Mc Bro');
@@ -16,13 +16,12 @@ When(/I fill the signup form/, () => {
 
   cy.findByText('jest').click();
   cy.findByText('react').click();
-
-})
+});
 
 And(/I submit/, () => {
   cy.findByRole('button', { name: /signup/i }).click();
-})
+});
 
 Then(/I am in home page/, () => {
-  cy.location('pathname').should('match', /\/home$/)
-})
+  cy.location('pathname').should('match', /\/home$/);
+});
