@@ -1,6 +1,7 @@
 //import { DevTool } from '@hookform/devtools';
 import LoadingButton from '@mui/lab/LoadingButton';
 import { Box, Grid } from '@mui/material';
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { Input, PasswordInput } from '@components/molecules';
@@ -11,6 +12,7 @@ import { Roles, Skills } from './organisms';
 
 export const Signup: React.FC = () => {
   const { onSubmit, control, isLoading } = useSignupForm();
+  const { t } = useTranslation('signupPage');
 
   return (
     <FullpageBox>
@@ -33,16 +35,32 @@ export const Signup: React.FC = () => {
           spacing={2}
         >
           <Grid item>
-            <Input control={control} name="userName" label="Username" />
+            <Input
+              control={control}
+              name="userName"
+              label={t('form.userName')}
+            />
           </Grid>
           <Grid item>
-            <Input control={control} name="firstName" label="Firstname" />
+            <Input
+              control={control}
+              name="firstName"
+              label={t('form.firstName')}
+            />
           </Grid>
           <Grid item>
-            <Input control={control} name="lastName" label="Lastname" />
+            <Input
+              control={control}
+              name="lastName"
+              label={t('form.lastName')}
+            />
           </Grid>
           <Grid item>
-            <PasswordInput control={control} name="password" label="Password" />
+            <PasswordInput
+              control={control}
+              name="password"
+              label={t('form.password')}
+            />
           </Grid>
           <Grid item>
             <Roles control={control} />
@@ -62,7 +80,7 @@ export const Signup: React.FC = () => {
               variant="contained"
               loading={isLoading}
             >
-              Signup
+              {t('form.submit')}
             </LoadingButton>
           </Grid>
         </Grid>

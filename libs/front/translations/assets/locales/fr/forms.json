@@ -1,0 +1,18 @@
+{
+  "atLeastOneSkill": "Vous devez sélectionner au moins une compétence",
+  "atMostThreeSkills": "Vous ne pouvez sélectionner que trois compétences au maximum",
+  "roleAndSkillsMismatchError": "Ces compétences sont invalides pour le rôle choisi",
+  "firstNameRequired": "Un prénom est requis",
+  "lastNameRequired": "Un nom est requis",
+  "passwordRequired": "Un mot de passe est requis",
+  "roleRequired": "Vous devez sélectionner un rôle",
+  "genericFormError": "Ce champs est requis",
+  "generic": {
+    "information_required": "Cette information est requise",
+    "invalid_date": "Cette date est invalide",
+    "too_small": "Cette valeur est trop petite",
+    "too_big": "Cette valeur est trop grande",
+    "invalid_type": "Type invalide",
+    "incorrect_value": "Value invalide" 
+  }
+}

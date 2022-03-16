@@ -1,6 +1,5 @@
+import { useTranslation } from 'next-i18next';
 import * as zod from 'zod';
-
-import { TranslationsKey } from '@translations';
 
 import { useSignupFormRefinements } from './useSignupFormRefinements';
 
@@ -14,20 +13,17 @@ export type FormModel = {
 };
 
 export const useSignupFormSchema = () => {
-  // Translations keys
-  const firstNameRequired: TranslationsKey = 'firstNameRequired';
-  const lastNameRequired: TranslationsKey = 'lastNameRequired';
-  const passwordRequired: TranslationsKey = 'passwordRequired';
-  const roleRequired: TranslationsKey = 'roleRequired';
-
+  const { t } = useTranslation('forms');
   const { skillsAvailabilityForRole, skillsCount } = useSignupFormRefinements();
+
+  const roleRequired = t('roleRequired');
 
   const schema: zod.ZodSchema<FormModel> = zod
     .object({
       userName: zod.string().optional(),
-      firstName: zod.string().min(1, firstNameRequired),
-      lastName: zod.string().min(1, lastNameRequired),
-      password: zod.string().min(1, passwordRequired),
+      firstName: zod.string().min(1, t('firstNameRequired')),
+      lastName: zod.string().min(1, t('lastNameRequired')),
+      password: zod.string().min(1, t('passwordRequired')),
       idRole: zod
         .number({
           required_error: roleRequired,

@@ -50,6 +50,8 @@ Seriously, read these please 🥲
 
 ### 🔶 [`Frontend architecture`](./docs/frontend-architecture.md)
 
+### 🔶 [`Multi languages support`](./docs/translations.md)
+
 ### 🔶 [`Forms handling`](./docs/react-hook-form.md)
 
 ### 🔶 [`Tests`](./docs/tests.md)

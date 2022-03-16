@@ -63,7 +63,7 @@ const schema = zod
     idSkills: zod
       .preprocess((v) => parseInt(zod.string().parse(v), 10), zod.number())
       .array()
-      .min(1, 'atLeastOneSkill'),
+      .min(1, 'forms:atLeastOneSkill'),
   })
   .superRefine(({ idSkills }, ctx) => {
     const invalidSkills = [6, 8];

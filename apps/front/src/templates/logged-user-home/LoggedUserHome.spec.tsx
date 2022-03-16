@@ -9,21 +9,22 @@ import { msw } from '@api/msw';
 import { isLocalStorageAvailable } from '@logic';
 import { render } from '@tests';
 import { mockedUser } from '@tests/mocked-data';
-import { nextRouterMock } from '@tests/mocks';
+import { mockNextRouter, mockUseTranslation } from '@tests/mocks';
 
 import { LoggedUserHome } from './LoggedUserHome';
 import { getRandomColor } from './molecules/user-skills/skill-icon/logic/getRandomColor';
 
 jest.mock('@logic');
-jest.mock('next/router');
 jest.mock('./molecules/user-skills/skill-icon/logic/getRandomColor');
+jest.mock('next-i18next');
 
 describe('Signup component', () => {
-  const { pushMock } = nextRouterMock();
+  const { pushMock } = mockNextRouter();
 
   beforeEach(() => {
     jest.clearAllMocks();
 
+    mockUseTranslation('en');
     mocked(isLocalStorageAvailable).mockReturnValue(true);
     localStorage.setItem('token', '"token"');
   });
@@ -72,6 +73,19 @@ describe('Signup component', () => {
         expect(pushMock).toHaveBeenCalledTimes(1);
       });
     });
+
+    it('should display an error page when user profile fetching', async () => {
+      msw.userDataQuery(500, undefined);
+      localStorage.setItem('token', '"cool"');
+
+      render(<LoggedUserHome />);
+
+      await screen.findByTestId(/ErrorOutlineIcon/i);
+      expect(screen.getByText(/userInfosPage:ohNo/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:profileLoadingError/i)
+      ).toBeInTheDocument();
+    });
   });
 
   describe('data display', () => {
@@ -98,7 +112,9 @@ describe('Signup component', () => {
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByTestId('RecordVoiceOverIcon')).toBeInTheDocument();
       expect(screen.getByText(/communication/i)).toBeInTheDocument();
@@ -116,7 +132,9 @@ describe('Signup component', () => {
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByTestId('QuestionAnswerIcon')).toBeInTheDocument();
       expect(screen.getByText(/information sharing/i)).toBeInTheDocument();
@@ -138,7 +156,9 @@ describe('Signup component', () => {
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByTestId('TwoWheelerIcon')).toBeInTheDocument();
       expect(screen.getByText(/project drive/i)).toBeInTheDocument();
@@ -154,7 +174,9 @@ describe('Signup component', () => {
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByTestId('AssessmentIcon')).toBeInTheDocument();
       expect(screen.getByText(/reporting/i)).toBeInTheDocument();
@@ -172,7 +194,9 @@ describe('Signup component', () => {
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByTestId('LoyaltyIcon')).toBeInTheDocument();
       expect(screen.getByText(/roadmap definition/i)).toBeInTheDocument();
@@ -188,7 +212,9 @@ describe('Signup component', () => {
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByRole('img', { name: /jest/i })).toBeInTheDocument();
       expect(screen.getByText(/jest/i)).toBeInTheDocument();
@@ -204,7 +230,9 @@ describe('Signup component', () => {
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByRole('img', { name: /react/i })).toBeInTheDocument();
       expect(screen.getByText('react')).toBeInTheDocument();
@@ -220,7 +248,9 @@ describe('Signup component', () => {
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(
         screen.getByRole('img', { name: /typescript/i })
@@ -238,7 +268,9 @@ describe('Signup component', () => {
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByTestId('GitHubIcon')).toBeInTheDocument();
       expect(screen.getByText(/github/i)).toBeInTheDocument();
@@ -251,7 +283,9 @@ describe('Signup component', () => {
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.queryByText(/your skills are/i)).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/userInfosPage:yourSkillsAre/i)
+      ).not.toBeInTheDocument();
     });
   });
 });

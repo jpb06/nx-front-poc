@@ -8,6 +8,7 @@ import { themes } from '@storybook/theming';
 
 import { appTheme } from '@theme';
 
+import { i18n } from './i18next.js'
 import { AppThemeProvider } from './../../components/src/molecules/providers/app-theme.provider';
 
 // Initialize MSW
@@ -32,6 +33,12 @@ export const parameters = {
   darkMode: {
     dark: { ...themes.dark, appBg: 'black' },
     light: { ...themes.normal, appBg: 'lightgrey' },
+  },
+  i18n,
+  locale: 'en',
+  locales: {
+    en: { right: '🇫🇷', title: 'Français' },
+    fr: { right: '🇬🇧', title: 'English' },
   },
 };
 

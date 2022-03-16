@@ -7,10 +7,10 @@ import userEvent from '@testing-library/user-event';
 import * as zod from 'zod';
 
 import { mockedSkills } from '@tests/mocked-data';
-import { TranslationsKey } from '@translations';
 
 import { render } from '../../../test';
 import { FormTestingComponent } from '../../../test/forms/FormTestingComponents';
+import { mockUseTranslation } from '../../../test/mocks/mock.useTranslation';
 import { CheckBoxList } from './CheckBoxList';
 
 type Form = { technos: number[] };
@@ -26,6 +26,10 @@ describe('CheckBoxList component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  beforeAll(() => {
+    mockUseTranslation('en');
   });
 
   it('should display nothing when no items were passed', () => {
@@ -271,12 +275,12 @@ describe('CheckBoxList component', () => {
 
     userEvent.click(screen.getByRole('button', { name: /submit/i }));
 
-    await screen.findByText(/invalid skills for this role!/i);
+    await screen.findByText(/forms:roleAndSkillsMismatchError/i);
     expect(handleSubmit).toHaveBeenCalledTimes(0);
   });
 
   it('should display a custom error message', async () => {
-    const atMostThreeSkills: TranslationsKey = 'atMostThreeSkills';
+    const atMostThreeSkills = 'atMostThreeSkills';
 
     const refinedSchema = zod
       .object({
@@ -327,7 +331,7 @@ describe('CheckBoxList component', () => {
 
     userEvent.click(screen.getByRole('button', { name: /submit/i }));
 
-    await screen.findByText(/you need to select at most three skills/i);
+    await screen.findByText(/forms:atMostThreeSkills/i);
     expect(handleSubmit).toHaveBeenCalledTimes(0);
   });
 

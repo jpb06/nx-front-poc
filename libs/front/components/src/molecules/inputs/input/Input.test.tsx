@@ -4,6 +4,7 @@ import * as zod from 'zod';
 
 import { render } from '../../../test';
 import { FormTestingComponent } from '../../../test/forms/FormTestingComponents';
+import { mockUseTranslation } from '../../../test/mocks/mock.useTranslation';
 import { Input } from './Input';
 
 type Form = {
@@ -14,11 +15,15 @@ describe('Input component', () => {
   const handleSubmit = jest.fn();
   const defaultValues = { name: '' };
   const schema = zod.object({
-    name: zod.string().min(1, 'genericError'),
+    name: zod.string().min(1, 'forms:genericError'),
   });
 
   beforeEach(() => {
     jest.clearAllMocks();
+  });
+
+  beforeAll(() => {
+    mockUseTranslation('en');
   });
 
   it('should render properly', async () => {
@@ -34,7 +39,7 @@ describe('Input component', () => {
 
     userEvent.click(screen.getByRole('button'));
 
-    await screen.findByText(/oh no! an error occurred/i);
+    await screen.findByText(/forms:genericError/i);
   });
 
   it('should allow default values', async () => {

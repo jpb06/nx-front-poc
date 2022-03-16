@@ -4,5 +4,10 @@
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "i18n-ally.localesPaths": [
+    "apps/front/public/locales",
+    "libs/front/translations/assets/locales"
+  ],
+  "i18n-ally.keystyle": "nested"
 }

@@ -3,6 +3,12 @@
   "sourceRoot": "apps/front",
   "projectType": "application",
   "targets": {
+    "copy-locales": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "echo Copying locales... && cp -R ./libs/front/translations/assets/locales ./apps/front/public/"
+      }
+    },
     "build": {
       "executor": "@nrwl/next:build",
       "outputs": [
@@ -20,6 +26,12 @@
           }
         ]
       },
+      "dependsOn": [
+        {
+          "target": "copy-locales",
+          "projects": "self"
+        }
+      ],
       "configurations": {
         "production": {}
       }
@@ -31,6 +43,12 @@
         "dev": true,
         "port": 3000
       },
+      "dependsOn": [
+        {
+          "target": "copy-locales",
+          "projects": "self"
+        }
+      ],
       "configurations": {
         "production": {
           "buildTarget": "front:build:production",

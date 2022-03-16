@@ -1,0 +1,14 @@
+{
+  "loadingAvailableItems": "Chargement des {{items}} ...",
+  "itemsFetchinError": "Une erreur est survenue lors de la récupération des {{items}}",
+  "noItemsFetched": "Aucuns {{items}} ne sont définis",
+  "form": { 
+    "firstName":"Prénom",
+    "lastName":"Nom",
+    "userName":"Username",
+    "password":"Mot de passe",
+    "submit":"S'enregistrer"
+  },
+  "role": "Role",
+  "skills": "Skills"
+}

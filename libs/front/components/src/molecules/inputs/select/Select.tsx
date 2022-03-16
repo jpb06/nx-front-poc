@@ -7,8 +7,6 @@ import {
 } from '@mui/material';
 import { useController, UseControllerProps } from 'react-hook-form';
 
-import { t } from '@translations';
-
 export type SelectItem = {
   key?: number;
   text: string;
@@ -28,6 +26,7 @@ export function Select<T>({
     field: { value, onChange, ...othersProps },
     fieldState,
   } = useController(controllerProps);
+
   const { name } = controllerProps;
 
   if (!data) {
@@ -54,7 +53,7 @@ export function Select<T>({
           </MenuItem>
         ))}
       </MuiSelect>
-      <FormHelperText>{t(fieldState.error?.message)}</FormHelperText>
+      <FormHelperText>{fieldState.error?.message}</FormHelperText>
     </FormControl>
   );
 }

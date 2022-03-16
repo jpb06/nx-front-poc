@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 import React from 'react';
 
+import { LangSelector } from '../../../organisms/lang-selector/LangSelector';
 import { Brand } from '../../data-display/brand/Brand';
 
 export const FullpageBox: React.FC = ({ children }) => (
@@ -19,7 +20,6 @@ export const FullpageBox: React.FC = ({ children }) => (
     justifyContent="center"
     sx={{
       minHeight: '100vh',
-      //backgroundImage: 'url("/img/dots.gif")',
       backgroundSize: 'cover',
       padding: 2,
     }}
@@ -43,6 +43,16 @@ export const FullpageBox: React.FC = ({ children }) => (
       <CardContent>
         <Grid container justifyContent="center" direction="row">
           <Brand color="amber" centered big />
+          <Grid
+            container
+            item
+            direction="row"
+            justifyContent="flex-end"
+            alignItems="center"
+            sx={{ marginTop: 3, marginLeft: 3, marginRight: 3 }}
+          >
+            <LangSelector />
+          </Grid>
         </Grid>
       </CardContent>
       <CardActions
