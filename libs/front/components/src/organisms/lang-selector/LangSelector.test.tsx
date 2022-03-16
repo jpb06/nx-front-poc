@@ -1,17 +1,13 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import { render } from '@tests';
-import { mockNextRouter, mockUseTranslation } from '@tests/mocks';
+import { mockNextRouter } from '@tests/mocks';
+import { render } from '@tests/render';
 
 import { LangSelector } from './LangSelector';
 
 describe('LangSelector component', () => {
   const { pushMock } = mockNextRouter();
-
-  beforeAll(() => {
-    mockUseTranslation('en');
-  });
 
   beforeEach(() => {
     jest.clearAllMocks();

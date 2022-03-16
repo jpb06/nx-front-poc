@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 
-import { render } from '../../../test';
+import { render } from '../../../test/renders';
 import { SubTitle } from './SubTitle';
 
 describe('SubTitle component', () => {

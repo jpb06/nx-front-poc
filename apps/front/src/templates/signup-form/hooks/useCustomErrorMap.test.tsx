@@ -1,15 +1,10 @@
-import { renderHook } from '@testing-library/react-hooks';
 import { ZodIssueOptionalMessage } from 'zod';
 
-import { mockUseTranslation } from '@tests/mocks';
+import { renderHook } from '@tests/render';
 
 import { ErrorMapCtx, useCustomErrorMap } from './useCustomErrorMap';
 
 describe('useCustomErrorMap hook', () => {
-  beforeAll(() => {
-    mockUseTranslation('en');
-  });
-
   it('should return issue message when it is defined', () => {
     const message = 'cool';
     const { result } = renderHook(() =>

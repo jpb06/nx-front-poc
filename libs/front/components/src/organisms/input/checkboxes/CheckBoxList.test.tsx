@@ -8,9 +8,8 @@ import * as zod from 'zod';
 
 import { mockedSkills } from '@tests/mocked-data';
 
-import { render } from '../../../test';
 import { FormTestingComponent } from '../../../test/forms/FormTestingComponents';
-import { mockUseTranslation } from '../../../test/mocks/mock.useTranslation';
+import { render } from '../../../test/renders';
 import { CheckBoxList } from './CheckBoxList';
 
 type Form = { technos: number[] };
@@ -26,10 +25,6 @@ describe('CheckBoxList component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-  });
-
-  beforeAll(() => {
-    mockUseTranslation('en');
   });
 
   it('should display nothing when no items were passed', () => {

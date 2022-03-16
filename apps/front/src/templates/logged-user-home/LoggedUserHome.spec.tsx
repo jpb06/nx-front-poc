@@ -7,16 +7,15 @@ import { mocked } from 'jest-mock';
 
 import { msw } from '@api/msw';
 import { isLocalStorageAvailable } from '@logic';
-import { render } from '@tests';
 import { mockedUser } from '@tests/mocked-data';
-import { mockNextRouter, mockUseTranslation } from '@tests/mocks';
+import { mockNextRouter } from '@tests/mocks';
+import { render } from '@tests/render';
 
 import { LoggedUserHome } from './LoggedUserHome';
 import { getRandomColor } from './molecules/user-skills/skill-icon/logic/getRandomColor';
 
 jest.mock('@logic');
 jest.mock('./molecules/user-skills/skill-icon/logic/getRandomColor');
-jest.mock('next-i18next');
 
 describe('Signup component', () => {
   const { pushMock } = mockNextRouter();
@@ -24,7 +23,6 @@ describe('Signup component', () => {
   beforeEach(() => {
     jest.clearAllMocks();
 
-    mockUseTranslation('en');
     mocked(isLocalStorageAvailable).mockReturnValue(true);
     localStorage.setItem('token', '"token"');
   });

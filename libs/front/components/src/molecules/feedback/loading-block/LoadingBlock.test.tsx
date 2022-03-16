@@ -1,6 +1,6 @@
 import { screen } from '@testing-library/react';
 
-import { render } from '../../../test';
+import { render } from '../../../test/renders';
 import { LoadingBlock } from './LoadingBlock';
 
 describe('LoadingBlock component', () => {

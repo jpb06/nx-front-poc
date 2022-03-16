@@ -1,15 +1,10 @@
 import { screen } from '@testing-library/react';
 
-import { render } from '../../../test';
-import { mockUseTranslation } from '../../../test/mocks/mock.useTranslation';
+import { render } from '../../../test/renders';
 import { FullpageBox } from './FullpageBox';
 
 describe('FullpageBox component', () => {
   const children = 'children';
-
-  beforeAll(() => {
-    mockUseTranslation('en');
-  });
 
   it('should display a banner and a brand', () => {
     render(<FullpageBox>{children}</FullpageBox>);

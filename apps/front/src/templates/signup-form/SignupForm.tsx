@@ -11,8 +11,9 @@ import { useSignupForm } from './hooks/useSignupForm';
 import { Roles, Skills } from './organisms';
 
 export const Signup: React.FC = () => {
-  const { onSubmit, control, isLoading } = useSignupForm();
   const { t } = useTranslation('signupPage');
+
+  const { onSubmit, control, isLoading } = useSignupForm();
 
   return (
     <FullpageBox>

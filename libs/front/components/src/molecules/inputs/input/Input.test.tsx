@@ -2,9 +2,8 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as zod from 'zod';
 
-import { render } from '../../../test';
 import { FormTestingComponent } from '../../../test/forms/FormTestingComponents';
-import { mockUseTranslation } from '../../../test/mocks/mock.useTranslation';
+import { render } from '../../../test/renders';
 import { Input } from './Input';
 
 type Form = {
@@ -20,10 +19,6 @@ describe('Input component', () => {
 
   beforeEach(() => {
     jest.clearAllMocks();
-  });
-
-  beforeAll(() => {
-    mockUseTranslation('en');
   });
 
   it('should render properly', async () => {

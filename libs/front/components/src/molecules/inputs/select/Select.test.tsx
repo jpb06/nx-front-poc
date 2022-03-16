@@ -6,17 +6,12 @@ import {
 import userEvent from '@testing-library/user-event';
 
 import { RHFWrapper as wrapper } from '../../../test';
-import { mockUseTranslation } from '../../../test/mocks/mock.useTranslation';
 import { Select } from './Select';
 
 type Form = { role: string };
 
 describe('Select component', () => {
   const defaultValues = { role: '' };
-
-  beforeAll(() => {
-    mockUseTranslation('en');
-  });
 
   it('should display nothing when no data has been provided', () => {
     render(<Select<Form> name="role" label="Role" />, {

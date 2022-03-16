@@ -1,7 +1,7 @@
 import { Build } from '@mui/icons-material';
 import { screen } from '@testing-library/react';
 
-import { render } from '../../../test';
+import { render } from '../../../test/renders';
 import { GlobalIndicator } from './GlobalIndicator';
 
 describe('GlobalIndicator component', () => {

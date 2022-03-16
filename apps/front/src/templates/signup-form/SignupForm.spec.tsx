@@ -8,17 +8,17 @@ import { DefaultRequestBody, MockedRequest } from 'msw';
 import React from 'react';
 
 import { msw } from '@api/msw';
-import { render } from '@tests';
 import { mockedRoles, mockedUser, mockedSkills } from '@tests/mocked-data';
-import { mockNextRouter, mockUseTranslation } from '@tests/mocks';
+import { mockNextRouter } from '@tests/mocks';
 import { mswServer } from '@tests/mswServer';
+import { render } from '@tests/render';
 
 import { Signup } from './SignupForm';
 import { FormModel } from './hooks/useSignupFormSchema';
 
 jest.mock('@logic');
 jest.mock('next/router');
-jest.mock('next-i18next');
+//jest.mock('next-i18next');
 
 describe('Signup component', () => {
   const { pushMock } = mockNextRouter();
@@ -26,8 +26,6 @@ describe('Signup component', () => {
   beforeEach(() => {
     msw.rolesQuery(200, mockedRoles);
     msw.skillsQuery(200, mockedSkills);
-
-    mockUseTranslation('en');
   });
 
   afterEach(() => {
