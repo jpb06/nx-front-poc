@@ -46,19 +46,19 @@ pnpm exec nx run storybook:dev
 
 Seriously, read these please 🥲
 
-### 🔶 [`nx`](./docs/nx.md)
+### 🔶 [` nx `](./docs/nx.md)
 
-### 🔶 [`Frontend architecture`](./docs/frontend-architecture.md)
+### 🔶 [` Frontend architecture `](./docs/frontend-architecture.md)
 
-### 🔶 [`Multi languages support`](./docs/translations.md)
+### 🔶 [` Multi languages support `](./docs/translations.md)
 
-### 🔶 [`Forms handling`](./docs/react-hook-form.md)
+### 🔶 [` Forms handling `](./docs/react-hook-form.md)
 
-### 🔶 [`Tests`](./docs/tests.md)
+### 🔶 [` Tests `](./docs/tests.md)
 
-### 🔶 [`Storybook`](./docs/storybook.md)
+### 🔶 [` Storybook `](./docs/storybook.md)
 
-### 🔶 [`Cypress`](./docs/cypress.md)
+### 🔶 [` Cypress `](./docs/cypress.md)
 
 ## ⚡ Projects
 

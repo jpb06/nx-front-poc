@@ -266,6 +266,108 @@ Lokalise is maintaining a cool [vscode plugin](https://github.com/lokalise/i18n-
 
 You can use the [webstorm plugin](https://plugins.jetbrains.com/plugin/17212-i18n-ally) instead if you're using that IDE.
 
+## 🔶 Translations and tests
+
+The objective here is to do assertions on translations keys instead of using translated components in our tests. This makes our tests more robust since translations may change while keys rarely evolves.
+We have two ways to handle testing then:
+
+### 🧿 Mocking `useTranslation` hook
+
+We can easily mock `next-i18next` to make sure the `t` function returned by `useTranslation` returns the used key:
+
+```typescript
+type UseTranslationSimplifiedType = (namespace: string) => {
+  t: (key: string) => string;
+};
+
+export const mockUseTranslation = (lang: string) => {
+  const tMock = jest.fn();
+  const changeLangueMock = jest.fn();
+
+  mocked(useTranslation as UseTranslationSimplifiedType).mockImplementation(
+    (namespace) => ({
+      t: tMock.mockImplementation((key) => {
+        return Array.isArray(namespace) ? `${key}` : `${namespace}:${key}`;
+      }),
+      i18n: {
+        changeLanguage: changeLangueMock,
+        language: lang,
+      },
+    })
+  );
+
+  return { tMock, changeLangueMock };
+};
+```
+
+Then in our tests, we have to do a few things:
+
+```typescript
+jest.mock('next-i18next');
+
+describe('MyComponent', () => {
+  beforeAll(() => {
+    mockUseTranslation('en');
+  });
+
+  it('should display a welcome message', () => {
+    render(<FullpageBox>{children}</FullpageBox>);
+
+    expect(screen.getByText(/common:welcome/i)).toBeInTheDocument();
+  });
+});
+```
+
+### 🧿 Pass an i18n context to the render function
+
+Another way is to not mock next-i18next at all. What we will do instead is customizing the `render` function to inject an i18n instance to the components tree:
+
+```typescript
+import { render as rtlRender, RenderResult } from '@testing-library/react';
+import i18n from 'i18next';
+import { I18nextProvider, initReactI18next } from 'react-i18next';
+
+i18n.use(initReactI18next).init({
+  lng: 'en',
+  fallbackLng: 'en',
+  ns: ['common'],
+  defaultNS: 'common',
+  interpolation: {
+    escapeValue: false,
+  },
+  appendNamespaceToMissingKey: true,
+  missingKeyNoValueFallbackToKey: true,
+  resources: { en: {} },
+});
+
+export const render = (component: JSX.Element): RenderResult => {
+  const wrapper: React.FC = ({ children }) => 
+    <I18nextProvider i18n={i18n}>{children}</I18nextProvider> 
+  };
+
+  return rtlRender(component, { wrapper });
+};
+```
+
+Then all we have to is to use this custom render function:
+
+```typescript
+describe('MyComponent', () => {
+  it('should display a welcome message', () => {
+    render(<FullpageBox>{children}</FullpageBox>);
+
+    expect(screen.getByText(/common:welcome/i)).toBeInTheDocument();
+  });
+});
+```
+
+This method is arguably better for integration tests:
+
+- We don't mock anything, so our tests are more robust (everytime you mock something, you lose confidence since a part of your system is bypassed).
+- Tests are simpler since we don't have to mock `next-i18next`
+- Perfs are better
+- We don't have to care about the hooks call order in our compoents: with a `useTranslation` mock, the last call will override the previous mock implementations, so namespace may vary.
+
 ## 🔶 Translations and storybook
 
 In order to load translations, we have to add a `i18next.js` file in `.storybook` folder that will load all the namespaces and configure i18n.
