@@ -1,33 +1,29 @@
-import { ToggleButton, ToggleButtonGroup } from '@mui/material';
+import { Link as MuiLink } from '@mui/material';
 import { useTranslation } from 'next-i18next';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export const LangSelector = () => {
-  const { t, i18n } = useTranslation('common');
-  const router = useRouter();
-
-  const handleLanguageChanged = async (
-    _: React.MouseEvent<HTMLElement>,
-    language: string
-  ) => {
-    if (language !== null) {
-      await i18n.changeLanguage(language);
-      await router.push(router.pathname, '', {
-        locale: language,
-      });
-    }
-  };
+  const { t } = useTranslation('common');
 
   return (
-    <ToggleButtonGroup
-      color="primary"
-      value={i18n.language}
-      exclusive
-      size="small"
-      onChange={handleLanguageChanged}
-    >
-      <ToggleButton value="en">🇬🇧 {t('language.en')}</ToggleButton>
-      <ToggleButton value="fr">🇫🇷 {t('language.fr')}</ToggleButton>
-    </ToggleButtonGroup>
+    <>
+      <Link href="/" locale="en" passHref>
+        <MuiLink
+          variant="body2"
+          sx={{
+            marginRight: 1,
+            textDecoration: 'none',
+          }}
+        >
+          🇬🇧 {t('language.en')}
+        </MuiLink>
+      </Link>
+      |
+      <Link href="/" locale="fr" passHref>
+        <MuiLink variant="body2" sx={{ marginLeft: 1, textDecoration: 'none' }}>
+          🇫🇷 {t('language.fr')}
+        </MuiLink>
+      </Link>
+    </>
   );
 };

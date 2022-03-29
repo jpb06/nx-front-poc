@@ -191,136 +191,46 @@ exports[`Signup component snapshots should match snapshot when displaying user d
 }
 
 .emotion-13 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  border-radius: 4px;
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #006064;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 96, 100, 0.4);
+  margin-right: 8px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
-.emotion-13 .MuiToggleButtonGroup-grouped:not(:first-of-type) {
-  margin-left: -1px;
-  border-left: 1px solid transparent;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.emotion-13 .MuiToggleButtonGroup-grouped:not(:last-of-type) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.emotion-13 .MuiToggleButtonGroup-grouped.Mui-selected+.MuiToggleButtonGroup-grouped.Mui-selected {
-  border-left: 0;
-  margin-left: 0;
+.emotion-13:hover {
+  text-decoration-color: inherit;
 }
 
 .emotion-14 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  position: relative;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  background-color: transparent;
-  outline: 0;
-  border: 0;
   margin: 0;
-  border-radius: 0;
-  padding: 0;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  vertical-align: middle;
-  -moz-appearance: none;
-  -webkit-appearance: none;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #006064;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 96, 100, 0.4);
+  margin-left: 8px;
   -webkit-text-decoration: none;
   text-decoration: none;
-  color: inherit;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 500;
-  font-size: 0.8125rem;
-  line-height: 1.75;
-  letter-spacing: 0.02857em;
-  text-transform: uppercase;
-  border-radius: 4px;
-  padding: 7px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #fff;
-}
-
-.emotion-14::-moz-focus-inner {
-  border-style: none;
-}
-
-.emotion-14.Mui-disabled {
-  pointer-events: none;
-  cursor: default;
-}
-
-@media print {
-  .emotion-14 {
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
-  }
-}
-
-.emotion-14.Mui-disabled {
-  color: rgba(255, 255, 255, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .emotion-14:hover {
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-@media (hover: none) {
-  .emotion-14:hover {
-    background-color: transparent;
-  }
-}
-
-.emotion-14.Mui-selected {
-  color: #006064;
-  background-color: rgba(0, 96, 100, 0.16);
-}
-
-.emotion-14.Mui-selected:hover {
-  background-color: rgba(0, 96, 100, 0.24);
-}
-
-@media (hover: none) {
-  .emotion-14.Mui-selected:hover {
-    background-color: rgba(0, 96, 100, 0.16);
-  }
+  text-decoration-color: inherit;
 }
 
 .emotion-15 {
-  overflow: hidden;
-  pointer-events: none;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: inherit;
-}
-
-.emotion-18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -337,11 +247,11 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   justify-content: center;
 }
 
-.emotion-18>:not(:first-of-type) {
+.emotion-15>:not(:first-of-type) {
   margin-left: 8px;
 }
 
-.emotion-19 {
+.emotion-16 {
   box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
@@ -365,11 +275,11 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   align-items: center;
 }
 
-.emotion-19>.MuiGrid-item {
+.emotion-16>.MuiGrid-item {
   max-width: none;
 }
 
-.emotion-22 {
+.emotion-19 {
   position: relative;
   display: -webkit-box;
   display: -webkit-flex;
@@ -405,7 +315,7 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   font-size: xx-large;
 }
 
-.emotion-23 {
+.emotion-20 {
   box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
@@ -430,11 +340,11 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   align-items: center;
 }
 
-.emotion-23>.MuiGrid-item {
+.emotion-20>.MuiGrid-item {
   max-width: none;
 }
 
-.emotion-24 {
+.emotion-21 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -444,7 +354,7 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   color: #0097a7;
 }
 
-.emotion-25 {
+.emotion-22 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -455,7 +365,7 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   text-align: center;
 }
 
-.emotion-28 {
+.emotion-25 {
   margin: 0;
   -webkit-flex-shrink: 0;
   -ms-flex-negative: 0;
@@ -469,7 +379,7 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   margin-bottom: 16px;
 }
 
-.emotion-31 {
+.emotion-28 {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -478,7 +388,7 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   padding-bottom: 8px;
 }
 
-.emotion-32 {
+.emotion-29 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -503,23 +413,23 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   padding-right: 16px;
 }
 
-.emotion-32.Mui-focusVisible {
+.emotion-29.Mui-focusVisible {
   background-color: rgba(255, 255, 255, 0.12);
 }
 
-.emotion-32.Mui-selected {
+.emotion-29.Mui-selected {
   background-color: rgba(0, 96, 100, 0.16);
 }
 
-.emotion-32.Mui-selected.Mui-focusVisible {
+.emotion-29.Mui-selected.Mui-focusVisible {
   background-color: rgba(0, 96, 100, 0.28);
 }
 
-.emotion-32.Mui-disabled {
+.emotion-29.Mui-disabled {
   opacity: 0.38;
 }
 
-.emotion-33 {
+.emotion-30 {
   min-width: 56px;
   color: #fff;
   -webkit-flex-shrink: 0;
@@ -532,7 +442,7 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   min-width: 40px;
 }
 
-.emotion-34 {
+.emotion-31 {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -552,7 +462,7 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   height: 30px;
 }
 
-.emotion-35 {
+.emotion-32 {
   -webkit-flex: 1 1 auto;
   -ms-flex: 1 1 auto;
   flex: 1 1 auto;
@@ -561,7 +471,7 @@ exports[`Signup component snapshots should match snapshot when displaying user d
   margin-bottom: 4px;
 }
 
-.emotion-36 {
+.emotion-33 {
   margin: 0;
   font-family: "Roboto","Helvetica","Arial",sans-serif;
   font-weight: 400;
@@ -630,69 +540,53 @@ exports[`Signup component snapshots should match snapshot when displaying user d
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-item emotion-12"
             >
-              <div
-                class="MuiToggleButtonGroup-root emotion-13"
-                role="group"
+              <a
+                class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways emotion-13"
+                href="/"
               >
-                <button
-                  aria-pressed="true"
-                  class="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-sizeSmall MuiToggleButton-primary MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal emotion-14"
-                  tabindex="0"
-                  type="button"
-                  value="en"
-                >
-                  🇬🇧 
-                  common:language.en
-                  <span
-                    class="MuiTouchRipple-root emotion-15"
-                  />
-                </button>
-                <button
-                  aria-pressed="false"
-                  class="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-sizeSmall MuiToggleButton-primary MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal emotion-14"
-                  tabindex="0"
-                  type="button"
-                  value="fr"
-                >
-                  🇫🇷 
-                  common:language.fr
-                  <span
-                    class="MuiTouchRipple-root emotion-15"
-                  />
-                </button>
-              </div>
+                🇬🇧 
+                common:language.en
+              </a>
+              |
+              <a
+                class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways emotion-14"
+                href="/"
+              >
+                🇫🇷 
+                common:language.fr
+              </a>
             </div>
           </div>
         </div>
         <div
-          class="MuiCardActions-root MuiCardActions-spacing emotion-18"
+          class="MuiCardActions-root MuiCardActions-spacing emotion-15"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column emotion-19"
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column emotion-16"
           >
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column emotion-19"
+              class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column emotion-16"
             >
               <div
                 class="MuiGrid-root MuiGrid-item emotion-6"
               >
                 <div
-                  class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault emotion-22"
+                  class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault emotion-19"
                 >
                   YM
                 </div>
               </div>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-direction-xs-column emotion-23"
+              class="MuiGrid-root MuiGrid-container MuiGrid-item MuiGrid-direction-xs-column emotion-20"
             >
               <h5
-                class="MuiTypography-root MuiTypography-h5 emotion-24"
+                class="MuiTypography-root MuiTypography-h5 emotion-21"
               >
                 Owowo Mcfly
               </h5>
               <p
-                class="MuiTypography-root MuiTypography-body1 emotion-25"
+                class="MuiTypography-root MuiTypography-body1 emotion-22"
               >
                 Yolo Mc Cool
               </p>
@@ -701,34 +595,34 @@ exports[`Signup component snapshots should match snapshot when displaying user d
               class="MuiGrid-root MuiGrid-item emotion-6"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 emotion-25"
+                class="MuiTypography-root MuiTypography-body1 emotion-22"
               >
                 userInfosPage:youAreARole__roleName=Skwat owner
               </p>
             </div>
             <hr
-              class="MuiDivider-root MuiDivider-fullWidth emotion-28"
+              class="MuiDivider-root MuiDivider-fullWidth emotion-25"
             />
             <div
               class="MuiGrid-root MuiGrid-item emotion-6"
             >
               <p
-                class="MuiTypography-root MuiTypography-body1 emotion-25"
+                class="MuiTypography-root MuiTypography-body1 emotion-22"
               >
                 userInfosPage:yourSkillsAre
               </p>
               <ul
-                class="MuiList-root MuiList-padding MuiList-dense emotion-31"
+                class="MuiList-root MuiList-padding MuiList-dense emotion-28"
               >
                 <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-32"
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-29"
                 >
                   <div
-                    class="MuiListItemIcon-root emotion-33"
+                    class="MuiListItemIcon-root emotion-30"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-34"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-31"
                       data-testid="RecordVoiceOverIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -744,24 +638,24 @@ exports[`Signup component snapshots should match snapshot when displaying user d
                     </svg>
                   </div>
                   <div
-                    class="MuiListItemText-root MuiListItemText-dense emotion-35"
+                    class="MuiListItemText-root MuiListItemText-dense emotion-32"
                   >
                     <span
-                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-36"
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-33"
                     >
                       Communication
                     </span>
                   </div>
                 </li>
                 <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-32"
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-29"
                 >
                   <div
-                    class="MuiListItemIcon-root emotion-33"
+                    class="MuiListItemIcon-root emotion-30"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-34"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-31"
                       data-testid="QuestionAnswerIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -772,24 +666,24 @@ exports[`Signup component snapshots should match snapshot when displaying user d
                     </svg>
                   </div>
                   <div
-                    class="MuiListItemText-root MuiListItemText-dense emotion-35"
+                    class="MuiListItemText-root MuiListItemText-dense emotion-32"
                   >
                     <span
-                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-36"
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-33"
                     >
                       Information sharing
                     </span>
                   </div>
                 </li>
                 <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-32"
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-29"
                 >
                   <div
-                    class="MuiListItemIcon-root emotion-33"
+                    class="MuiListItemIcon-root emotion-30"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-34"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-31"
                       data-testid="TwoWheelerIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -800,24 +694,24 @@ exports[`Signup component snapshots should match snapshot when displaying user d
                     </svg>
                   </div>
                   <div
-                    class="MuiListItemText-root MuiListItemText-dense emotion-35"
+                    class="MuiListItemText-root MuiListItemText-dense emotion-32"
                   >
                     <span
-                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-36"
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-33"
                     >
                       Project drive
                     </span>
                   </div>
                 </li>
                 <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-32"
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-29"
                 >
                   <div
-                    class="MuiListItemIcon-root emotion-33"
+                    class="MuiListItemIcon-root emotion-30"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-34"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-31"
                       data-testid="AssessmentIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -828,24 +722,24 @@ exports[`Signup component snapshots should match snapshot when displaying user d
                     </svg>
                   </div>
                   <div
-                    class="MuiListItemText-root MuiListItemText-dense emotion-35"
+                    class="MuiListItemText-root MuiListItemText-dense emotion-32"
                   >
                     <span
-                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-36"
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-33"
                     >
                       Reporting
                     </span>
                   </div>
                 </li>
                 <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-32"
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-29"
                 >
                   <div
-                    class="MuiListItemIcon-root emotion-33"
+                    class="MuiListItemIcon-root emotion-30"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-34"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-31"
                       data-testid="LoyaltyIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -856,20 +750,20 @@ exports[`Signup component snapshots should match snapshot when displaying user d
                     </svg>
                   </div>
                   <div
-                    class="MuiListItemText-root MuiListItemText-dense emotion-35"
+                    class="MuiListItemText-root MuiListItemText-dense emotion-32"
                   >
                     <span
-                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-36"
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-33"
                     >
                       Roadmap definition
                     </span>
                   </div>
                 </li>
                 <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-32"
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-29"
                 >
                   <div
-                    class="MuiListItemIcon-root emotion-33"
+                    class="MuiListItemIcon-root emotion-30"
                   >
                     <span
                       style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -896,20 +790,20 @@ exports[`Signup component snapshots should match snapshot when displaying user d
                     </span>
                   </div>
                   <div
-                    class="MuiListItemText-root MuiListItemText-dense emotion-35"
+                    class="MuiListItemText-root MuiListItemText-dense emotion-32"
                   >
                     <span
-                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-36"
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-33"
                     >
                       jest
                     </span>
                   </div>
                 </li>
                 <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-32"
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-29"
                 >
                   <div
-                    class="MuiListItemIcon-root emotion-33"
+                    class="MuiListItemIcon-root emotion-30"
                   >
                     <span
                       style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -936,20 +830,20 @@ exports[`Signup component snapshots should match snapshot when displaying user d
                     </span>
                   </div>
                   <div
-                    class="MuiListItemText-root MuiListItemText-dense emotion-35"
+                    class="MuiListItemText-root MuiListItemText-dense emotion-32"
                   >
                     <span
-                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-36"
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-33"
                     >
                       react
                     </span>
                   </div>
                 </li>
                 <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-32"
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-29"
                 >
                   <div
-                    class="MuiListItemIcon-root emotion-33"
+                    class="MuiListItemIcon-root emotion-30"
                   >
                     <span
                       style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -976,24 +870,24 @@ exports[`Signup component snapshots should match snapshot when displaying user d
                     </span>
                   </div>
                   <div
-                    class="MuiListItemText-root MuiListItemText-dense emotion-35"
+                    class="MuiListItemText-root MuiListItemText-dense emotion-32"
                   >
                     <span
-                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-36"
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-33"
                     >
                       Typescript
                     </span>
                   </div>
                 </li>
                 <li
-                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-32"
+                  class="MuiListItem-root MuiListItem-dense MuiListItem-gutters MuiListItem-padding emotion-29"
                 >
                   <div
-                    class="MuiListItemIcon-root emotion-33"
+                    class="MuiListItemIcon-root emotion-30"
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-34"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium emotion-31"
                       data-testid="GitHubIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -1004,10 +898,10 @@ exports[`Signup component snapshots should match snapshot when displaying user d
                     </svg>
                   </div>
                   <div
-                    class="MuiListItemText-root MuiListItemText-dense emotion-35"
+                    class="MuiListItemText-root MuiListItemText-dense emotion-32"
                   >
                     <span
-                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-36"
+                      class="MuiTypography-root MuiTypography-body2 MuiListItemText-primary emotion-33"
                     >
                       Github actions
                     </span>
@@ -1247,136 +1141,46 @@ exports[`Signup component snapshots should match snapshot when loading 1`] = `
 }
 
 .emotion-13 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  border-radius: 4px;
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #006064;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 96, 100, 0.4);
+  margin-right: 8px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
 }
 
-.emotion-13 .MuiToggleButtonGroup-grouped:not(:first-of-type) {
-  margin-left: -1px;
-  border-left: 1px solid transparent;
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
-}
-
-.emotion-13 .MuiToggleButtonGroup-grouped:not(:last-of-type) {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-}
-
-.emotion-13 .MuiToggleButtonGroup-grouped.Mui-selected+.MuiToggleButtonGroup-grouped.Mui-selected {
-  border-left: 0;
-  margin-left: 0;
+.emotion-13:hover {
+  text-decoration-color: inherit;
 }
 
 .emotion-14 {
-  display: -webkit-inline-box;
-  display: -webkit-inline-flex;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-align-items: center;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
-  -webkit-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
-  position: relative;
-  box-sizing: border-box;
-  -webkit-tap-highlight-color: transparent;
-  background-color: transparent;
-  outline: 0;
-  border: 0;
   margin: 0;
-  border-radius: 0;
-  padding: 0;
-  cursor: pointer;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-  vertical-align: middle;
-  -moz-appearance: none;
-  -webkit-appearance: none;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #006064;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 96, 100, 0.4);
+  margin-left: 8px;
   -webkit-text-decoration: none;
   text-decoration: none;
-  color: inherit;
-  font-family: "Roboto","Helvetica","Arial",sans-serif;
-  font-weight: 500;
-  font-size: 0.8125rem;
-  line-height: 1.75;
-  letter-spacing: 0.02857em;
-  text-transform: uppercase;
-  border-radius: 4px;
-  padding: 7px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #fff;
-}
-
-.emotion-14::-moz-focus-inner {
-  border-style: none;
-}
-
-.emotion-14.Mui-disabled {
-  pointer-events: none;
-  cursor: default;
-}
-
-@media print {
-  .emotion-14 {
-    -webkit-print-color-adjust: exact;
-    color-adjust: exact;
-  }
-}
-
-.emotion-14.Mui-disabled {
-  color: rgba(255, 255, 255, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .emotion-14:hover {
-  -webkit-text-decoration: none;
-  text-decoration: none;
-  background-color: rgba(255, 255, 255, 0.08);
-}
-
-@media (hover: none) {
-  .emotion-14:hover {
-    background-color: transparent;
-  }
-}
-
-.emotion-14.Mui-selected {
-  color: #006064;
-  background-color: rgba(0, 96, 100, 0.16);
-}
-
-.emotion-14.Mui-selected:hover {
-  background-color: rgba(0, 96, 100, 0.24);
-}
-
-@media (hover: none) {
-  .emotion-14.Mui-selected:hover {
-    background-color: rgba(0, 96, 100, 0.16);
-  }
+  text-decoration-color: inherit;
 }
 
 .emotion-15 {
-  overflow: hidden;
-  pointer-events: none;
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  border-radius: inherit;
-}
-
-.emotion-18 {
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -1393,11 +1197,11 @@ exports[`Signup component snapshots should match snapshot when loading 1`] = `
   justify-content: center;
 }
 
-.emotion-18>:not(:first-of-type) {
+.emotion-15>:not(:first-of-type) {
   margin-left: 8px;
 }
 
-.emotion-19 {
+.emotion-16 {
   box-sizing: border-box;
   display: -webkit-box;
   display: -webkit-flex;
@@ -1421,22 +1225,22 @@ exports[`Signup component snapshots should match snapshot when loading 1`] = `
   align-items: center;
 }
 
-.emotion-19>.MuiGrid-item {
+.emotion-16>.MuiGrid-item {
   max-width: none;
 }
 
-.emotion-20 {
+.emotion-17 {
   display: inline-block;
   color: #006064;
   -webkit-animation: animation-0 1.4s linear infinite;
   animation: animation-0 1.4s linear infinite;
 }
 
-.emotion-21 {
+.emotion-18 {
   display: block;
 }
 
-.emotion-22 {
+.emotion-19 {
   stroke: currentColor;
   stroke-dasharray: 80px,200px;
   stroke-dashoffset: 0;
@@ -1503,57 +1307,41 @@ exports[`Signup component snapshots should match snapshot when loading 1`] = `
             <div
               class="MuiGrid-root MuiGrid-container MuiGrid-item emotion-12"
             >
-              <div
-                class="MuiToggleButtonGroup-root emotion-13"
-                role="group"
+              <a
+                class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways emotion-13"
+                href="/"
               >
-                <button
-                  aria-pressed="true"
-                  class="MuiButtonBase-root MuiToggleButton-root Mui-selected MuiToggleButton-sizeSmall MuiToggleButton-primary MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal emotion-14"
-                  tabindex="0"
-                  type="button"
-                  value="en"
-                >
-                  🇬🇧 
-                  common:language.en
-                  <span
-                    class="MuiTouchRipple-root emotion-15"
-                  />
-                </button>
-                <button
-                  aria-pressed="false"
-                  class="MuiButtonBase-root MuiToggleButton-root MuiToggleButton-sizeSmall MuiToggleButton-primary MuiToggleButtonGroup-grouped MuiToggleButtonGroup-groupedHorizontal emotion-14"
-                  tabindex="0"
-                  type="button"
-                  value="fr"
-                >
-                  🇫🇷 
-                  common:language.fr
-                  <span
-                    class="MuiTouchRipple-root emotion-15"
-                  />
-                </button>
-              </div>
+                🇬🇧 
+                common:language.en
+              </a>
+              |
+              <a
+                class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways emotion-14"
+                href="/"
+              >
+                🇫🇷 
+                common:language.fr
+              </a>
             </div>
           </div>
         </div>
         <div
-          class="MuiCardActions-root MuiCardActions-spacing emotion-18"
+          class="MuiCardActions-root MuiCardActions-spacing emotion-15"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column emotion-19"
+            class="MuiGrid-root MuiGrid-container MuiGrid-direction-xs-column emotion-16"
           >
             <span
-              class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary emotion-20"
+              class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary emotion-17"
               role="progressbar"
               style="width: 40px; height: 40px;"
             >
               <svg
-                class="MuiCircularProgress-svg emotion-21"
+                class="MuiCircularProgress-svg emotion-18"
                 viewBox="22 22 44 44"
               >
                 <circle
-                  class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate emotion-22"
+                  class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate emotion-19"
                   cx="44"
                   cy="44"
                   fill="none"

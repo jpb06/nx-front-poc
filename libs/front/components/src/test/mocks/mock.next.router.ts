@@ -9,6 +9,7 @@ interface MockedNextRouter {
   pushMock: jest.Mock<unknown, unknown[]>;
   replaceMock: jest.Mock<unknown, unknown[]>;
   backMock: jest.Mock<unknown, unknown[]>;
+  prefetchMock: jest.Mock<unknown, unknown[]>;
 }
 
 interface MockNextRouterProps {
@@ -25,11 +26,13 @@ export const mockNextRouter = (
   const pushMock = jest.fn();
   const replaceMock = jest.fn();
   const backMock = jest.fn();
+  const prefetchMock = jest.fn();
 
   mocked(useRouter).mockReturnValue({
     push: pushMock,
     replace: replaceMock,
     back: backMock,
+    prefetchMock: prefetchMock,
     query: props?.query ? props?.query : { slug: props?.slug },
     pathname: props?.pathname,
     events: mockDeep<MittEmitter<unknown>>(),
@@ -37,5 +40,5 @@ export const mockNextRouter = (
     route: props?.route,
   } as unknown as NextRouter);
 
-  return { pushMock, replaceMock, backMock };
+  return { pushMock, replaceMock, backMock, prefetchMock };
 };
