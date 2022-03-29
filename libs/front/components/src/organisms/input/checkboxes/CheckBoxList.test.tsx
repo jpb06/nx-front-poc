@@ -1,15 +1,12 @@
-import {
-  screen,
-  waitFor,
-  waitForElementToBeRemoved,
-} from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as zod from 'zod';
 
+import { SkillCategoryDto } from '@api/types';
 import { mockedSkills } from '@tests/mocked-data';
 
 import { FormTestingComponent } from '../../../test/forms/FormTestingComponents';
-import { render } from '../../../test/renders';
+import { appRender } from '../../../test/renders/appRender';
 import { CheckBoxList } from './CheckBoxList';
 
 type Form = { technos: number[] };
@@ -23,12 +20,13 @@ describe('CheckBoxList component', () => {
       .array(),
   });
 
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  it('should display nothing when no items were passed', () => {
-    render(
+  const render = (
+    schema: unknown,
+    items: SkillCategoryDto[] | undefined,
+    isLoading: boolean
+  ) => ({
+    user: userEvent.setup(),
+    ...appRender(
       <FormTestingComponent<Form>
         onSubmit={handleSubmit}
         schema={schema}
@@ -37,11 +35,20 @@ describe('CheckBoxList component', () => {
         <CheckBoxList<Form>
           name="technos"
           label="technos"
-          isLoading={false}
-          items={[]}
+          isLoading={isLoading}
+          items={items}
         />
-      </FormTestingComponent>
-    );
+      </FormTestingComponent>,
+      { providers: ['form'] }
+    ),
+  });
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  it('should display nothing when no items were passed', () => {
+    render(schema, [], false);
 
     expect(
       screen.queryByRole('navigation', { name: /skills/i })
@@ -51,15 +58,7 @@ describe('CheckBoxList component', () => {
   });
 
   it('should display nothing when no items were provided', () => {
-    render(
-      <FormTestingComponent<Form>
-        onSubmit={handleSubmit}
-        schema={schema}
-        defaultValues={defaultValues}
-      >
-        <CheckBoxList<Form> name="technos" label="technos" isLoading={false} />
-      </FormTestingComponent>
-    );
+    render(schema, undefined, false);
 
     expect(
       screen.queryByRole('navigation', { name: /skills/i })
@@ -69,20 +68,7 @@ describe('CheckBoxList component', () => {
   });
 
   it('should display three categories', () => {
-    render(
-      <FormTestingComponent<Form>
-        onSubmit={handleSubmit}
-        schema={schema}
-        defaultValues={defaultValues}
-      >
-        <CheckBoxList<Form>
-          name="technos"
-          label="technos"
-          isLoading={false}
-          items={mockedSkills}
-        />
-      </FormTestingComponent>
-    );
+    render(schema, mockedSkills, false);
 
     expect(
       screen.getByRole('navigation', { name: /technos/i })
@@ -98,20 +84,7 @@ describe('CheckBoxList component', () => {
   });
 
   it('should display the checkboxes of the first category', () => {
-    render(
-      <FormTestingComponent<Form>
-        onSubmit={handleSubmit}
-        schema={schema}
-        defaultValues={defaultValues}
-      >
-        <CheckBoxList<Form>
-          name="technos"
-          label="technos"
-          isLoading={false}
-          items={mockedSkills}
-        />
-      </FormTestingComponent>
-    );
+    render(schema, mockedSkills, false);
 
     expect(
       screen.getByRole('button', { name: /soft skills/i })
@@ -126,29 +99,29 @@ describe('CheckBoxList component', () => {
   });
 
   it('should switch of category', async () => {
-    render(
-      <FormTestingComponent<Form>
-        onSubmit={handleSubmit}
-        schema={schema}
-        defaultValues={defaultValues}
-      >
-        <CheckBoxList<Form>
-          name="technos"
-          label="technos"
-          isLoading={false}
-          items={mockedSkills}
-        />
-      </FormTestingComponent>
-    );
+    const { user } = render(schema, mockedSkills, false);
+
+    screen.getByRole('checkbox', { name: /communication/i });
+    screen.getByRole('checkbox', { name: /information sharing/i });
+
+    expect(
+      screen.queryByRole('checkbox', { name: /project drive/i })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('checkbox', { name: /reporting/i })
+    ).not.toBeInTheDocument();
+    expect(
+      screen.queryByRole('checkbox', { name: /roadmap definition/i })
+    ).not.toBeInTheDocument();
 
     const managementCategory = screen.getByRole('button', {
       name: /management/i,
     });
-    userEvent.click(managementCategory);
+    await user.click(managementCategory);
 
-    await waitForElementToBeRemoved(
+    expect(
       screen.queryByRole('checkbox', { name: /communication/i })
-    );
+    ).not.toBeInTheDocument();
     expect(
       screen.queryByRole('checkbox', { name: /information sharing/i })
     ).not.toBeInTheDocument();
@@ -165,52 +138,30 @@ describe('CheckBoxList component', () => {
   });
 
   it('should keep selection when switching between categories', async () => {
-    render(
-      <FormTestingComponent<Form>
-        onSubmit={handleSubmit}
-        schema={schema}
-        defaultValues={defaultValues}
-      >
-        <CheckBoxList<Form>
-          name="technos"
-          label="technos"
-          isLoading={false}
-          items={mockedSkills}
-        />
-      </FormTestingComponent>
-    );
+    const { user } = render(schema, mockedSkills, false);
 
-    userEvent.click(screen.getByRole('checkbox', { name: /communication/i }));
+    await user.click(screen.getByRole('checkbox', { name: /communication/i }));
 
     const managementCategory = screen.getByRole('button', {
       name: /management/i,
     });
-    userEvent.click(managementCategory);
-    await waitForElementToBeRemoved(
-      screen.queryByRole('checkbox', { name: /communication/i })
-    );
-
-    userEvent.click(screen.getByRole('checkbox', { name: /reporting/i }));
+    await user.click(managementCategory);
+    await user.click(screen.getByRole('checkbox', { name: /reporting/i }));
 
     const softSkillsCategory = screen.getByRole('button', {
       name: /soft skills/i,
     });
-    userEvent.click(softSkillsCategory);
-    await waitForElementToBeRemoved(
-      screen.queryByRole('checkbox', { name: /reporting/i })
-    );
+    await user.click(softSkillsCategory);
 
     expect(
       screen.getByRole('checkbox', { name: /communication/i })
     ).toBeChecked();
 
-    userEvent.click(managementCategory);
-    await waitForElementToBeRemoved(
-      screen.queryByRole('checkbox', { name: /communication/i })
-    );
+    await user.click(managementCategory);
+
     expect(screen.getByRole('checkbox', { name: /reporting/i })).toBeChecked();
 
-    userEvent.click(screen.getByRole('button', { name: /submit/i }));
+    await user.click(screen.getByRole('button', { name: /submit/i }));
 
     await waitFor(() =>
       expect(handleSubmit).toHaveBeenCalledWith(
@@ -241,34 +192,17 @@ describe('CheckBoxList component', () => {
           });
         }
       });
-    render(
-      <FormTestingComponent<Form>
-        onSubmit={handleSubmit}
-        schema={refinedSchema}
-        defaultValues={defaultValues}
-      >
-        <CheckBoxList<Form>
-          name="technos"
-          label="technos"
-          isLoading={false}
-          items={mockedSkills}
-        />
-      </FormTestingComponent>
-    );
 
-    userEvent.click(screen.getByRole('checkbox', { name: /communication/i }));
+    const { user } = render(refinedSchema, mockedSkills, false);
+
+    await user.click(screen.getByRole('checkbox', { name: /communication/i }));
 
     const managementCategory = screen.getByRole('button', {
       name: /management/i,
     });
-    userEvent.click(managementCategory);
-    await waitForElementToBeRemoved(
-      screen.queryByRole('checkbox', { name: /communication/i })
-    );
-
-    userEvent.click(screen.getByRole('checkbox', { name: /reporting/i }));
-
-    userEvent.click(screen.getByRole('button', { name: /submit/i }));
+    await user.click(managementCategory);
+    await user.click(screen.getByRole('checkbox', { name: /reporting/i }));
+    await user.click(screen.getByRole('button', { name: /submit/i }));
 
     await screen.findByText(/forms:roleAndSkillsMismatchError/i);
     expect(handleSubmit).toHaveBeenCalledTimes(0);
@@ -296,35 +230,23 @@ describe('CheckBoxList component', () => {
           });
         }
       });
-    render(
-      <FormTestingComponent<Form>
-        onSubmit={handleSubmit}
-        schema={refinedSchema}
-        defaultValues={defaultValues}
-      >
-        <CheckBoxList<Form>
-          name="technos"
-          label="technos"
-          isLoading={false}
-          items={mockedSkills}
-        />
-      </FormTestingComponent>
-    );
+    const { user } = render(refinedSchema, mockedSkills, false);
+
+    expect(
+      screen.queryByRole('checkbox', { name: /communication/i })
+    ).toBeInTheDocument();
 
     const techCategory = screen.getByRole('button', {
       name: /tech/i,
     });
-    userEvent.click(techCategory);
-    await waitForElementToBeRemoved(
-      screen.queryByRole('checkbox', { name: /communication/i })
-    );
+    await user.click(techCategory);
 
-    userEvent.click(screen.getByRole('checkbox', { name: /jest/i }));
-    userEvent.click(screen.getByRole('checkbox', { name: /react/i }));
-    userEvent.click(screen.getByRole('checkbox', { name: /typescript/i }));
-    userEvent.click(screen.getByRole('checkbox', { name: /github actions/i }));
+    await user.click(screen.getByRole('checkbox', { name: /jest/i }));
+    await user.click(screen.getByRole('checkbox', { name: /react/i }));
+    await user.click(screen.getByRole('checkbox', { name: /typescript/i }));
+    await user.click(screen.getByRole('checkbox', { name: /github actions/i }));
 
-    userEvent.click(screen.getByRole('button', { name: /submit/i }));
+    await user.click(screen.getByRole('button', { name: /submit/i }));
 
     await screen.findByText(/forms:atMostThreeSkills/i);
     expect(handleSubmit).toHaveBeenCalledTimes(0);
@@ -337,23 +259,10 @@ describe('CheckBoxList component', () => {
         .array(),
     });
 
-    render(
-      <FormTestingComponent<Form>
-        onSubmit={handleSubmit}
-        schema={refinedSchema}
-        defaultValues={defaultValues}
-      >
-        <CheckBoxList<Form>
-          name="technos"
-          label="technos"
-          isLoading={false}
-          items={mockedSkills}
-        />
-      </FormTestingComponent>
-    );
+    const { user } = render(refinedSchema, mockedSkills, false);
 
-    userEvent.click(screen.getByRole('checkbox', { name: /communication/i }));
-    userEvent.click(
+    await user.click(screen.getByRole('checkbox', { name: /communication/i }));
+    await user.click(
       screen.getByRole('checkbox', { name: /information sharing/i })
     );
 
@@ -361,9 +270,9 @@ describe('CheckBoxList component', () => {
       screen.getByRole('checkbox', { name: /communication/i })
     ).toBeChecked();
 
-    userEvent.click(screen.getByRole('checkbox', { name: /communication/i }));
+    await user.click(screen.getByRole('checkbox', { name: /communication/i }));
 
-    userEvent.click(screen.getByRole('button', { name: /submit/i }));
+    await user.click(screen.getByRole('button', { name: /submit/i }));
 
     await waitFor(() =>
       expect(handleSubmit).toHaveBeenCalledWith(
@@ -371,9 +280,9 @@ describe('CheckBoxList component', () => {
       )
     );
 
-    userEvent.click(screen.getByRole('checkbox', { name: /communication/i }));
+    await user.click(screen.getByRole('checkbox', { name: /communication/i }));
 
-    userEvent.click(screen.getByRole('button', { name: /submit/i }));
+    await user.click(screen.getByRole('button', { name: /submit/i }));
 
     await waitFor(() =>
       expect(handleSubmit).toHaveBeenNthCalledWith(
@@ -384,20 +293,7 @@ describe('CheckBoxList component', () => {
   });
 
   it('should display a loading indicator when checking', async () => {
-    render(
-      <FormTestingComponent<Form>
-        onSubmit={handleSubmit}
-        schema={schema}
-        defaultValues={defaultValues}
-      >
-        <CheckBoxList<Form>
-          name="technos"
-          label="technos"
-          isLoading
-          items={mockedSkills}
-        />
-      </FormTestingComponent>
-    );
+    render(schema, mockedSkills, true);
 
     expect(screen.queryByRole('checkbox')).not.toBeInTheDocument();
 

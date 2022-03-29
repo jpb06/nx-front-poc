@@ -3938,7 +3938,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-47:focus::-ms-input-
                     <div
                       class="MuiGrid-root MuiGrid-item emotion-61"
                     >
-                      signupPage:loadingAvailableItems
+                      signupPage:loadingAvailableItems__items=roles
                     </div>
                   </div>
                 </div>
@@ -3967,7 +3967,7 @@ label[data-shrink=false]+.MuiInputBase-formControl .emotion-47:focus::-ms-input-
                     <div
                       class="MuiGrid-root MuiGrid-item emotion-61"
                     >
-                      signupPage:loadingAvailableItems
+                      signupPage:loadingAvailableItems__items=skills
                     </div>
                   </div>
                 </div>

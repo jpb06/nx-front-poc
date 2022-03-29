@@ -703,7 +703,7 @@ exports[`Signup component snapshots should match snapshot when displaying user d
               <p
                 class="MuiTypography-root MuiTypography-body1 emotion-25"
               >
-                userInfosPage:youAreARole
+                userInfosPage:youAreARole__roleName=Skwat owner
               </p>
             </div>
             <hr

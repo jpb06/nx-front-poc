@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import * as zod from 'zod';
 
 import { FormTestingComponent } from '../../../test/forms/FormTestingComponents';
-import { render } from '../../../test/renders';
+import { appRender } from '../../../test/renders/appRender';
 import { Input } from './Input';
 
 type Form = {
@@ -12,9 +12,22 @@ type Form = {
 
 describe('Input component', () => {
   const handleSubmit = jest.fn();
-  const defaultValues = { name: '' };
-  const schema = zod.object({
-    name: zod.string().min(1, 'forms:genericError'),
+
+  const render = (
+    schema: unknown,
+    defaultValues: { name?: string | undefined } | undefined
+  ) => ({
+    user: userEvent.setup(),
+    ...appRender(
+      <FormTestingComponent<Form>
+        onSubmit={handleSubmit}
+        schema={schema}
+        defaultValues={defaultValues}
+      >
+        <Input<Form> name="name" label="Name" />
+      </FormTestingComponent>,
+      { providers: ['form'] }
+    ),
   });
 
   beforeEach(() => {
@@ -22,17 +35,13 @@ describe('Input component', () => {
   });
 
   it('should render properly', async () => {
-    render(
-      <FormTestingComponent<Form>
-        onSubmit={handleSubmit}
-        schema={schema}
-        defaultValues={defaultValues}
-      >
-        <Input<Form> name="name" label="Name" />
-      </FormTestingComponent>
-    );
+    const schema = zod.object({
+      name: zod.string().min(1, 'forms:genericError'),
+    });
 
-    userEvent.click(screen.getByRole('button'));
+    const { user } = render(schema, { name: '' });
+
+    await user.click(screen.getByRole('button'));
 
     await screen.findByText(/forms:genericError/i);
   });
@@ -42,20 +51,12 @@ describe('Input component', () => {
       name: zod.string().optional(),
     });
 
-    render(
-      <FormTestingComponent<Form>
-        onSubmit={handleSubmit}
-        schema={optionalFieldSchema}
-        defaultValues={{ name: undefined }}
-      >
-        <Input<Form> name="name" label="Name" />
-      </FormTestingComponent>
-    );
+    const { user } = render(optionalFieldSchema, { name: undefined });
 
-    userEvent.type(screen.getByRole('textbox'), 'cool');
-    userEvent.clear(screen.getByRole('textbox'));
+    await user.type(screen.getByRole('textbox'), 'cool');
+    await user.clear(screen.getByRole('textbox'));
 
-    userEvent.click(screen.getByRole('button'));
+    await user.click(screen.getByRole('button'));
 
     await waitFor(() =>
       expect(handleSubmit).toHaveBeenCalledWith(
@@ -65,19 +66,14 @@ describe('Input component', () => {
   });
 
   it('should allow required values', async () => {
-    render(
-      <FormTestingComponent<Form>
-        onSubmit={handleSubmit}
-        schema={schema}
-        defaultValues={defaultValues}
-      >
-        <Input<Form> name="name" label="Name" />
-      </FormTestingComponent>
-    );
+    const schema = zod.object({
+      name: zod.string().min(1, 'forms:genericError'),
+    });
+    const { user } = render(schema, { name: '' });
 
-    userEvent.type(screen.getByRole('textbox'), 'cool');
+    await user.type(screen.getByRole('textbox'), 'cool');
 
-    userEvent.click(screen.getByRole('button'));
+    await user.click(screen.getByRole('button'));
 
     await waitFor(() =>
       expect(handleSubmit).toHaveBeenCalledWith(

@@ -9,7 +9,7 @@ import { msw } from '@api/msw';
 import { isLocalStorageAvailable } from '@logic';
 import { mockedUser } from '@tests/mocked-data';
 import { mockNextRouter } from '@tests/mocks';
-import { render } from '@tests/render';
+import { appRender, getInterpolableTranslationAssertKey } from '@tests/render';
 
 import { LoggedUserHome } from './LoggedUserHome';
 import { getRandomColor } from './molecules/user-skills/skill-icon/logic/getRandomColor';
@@ -19,6 +19,9 @@ jest.mock('./molecules/user-skills/skill-icon/logic/getRandomColor');
 
 describe('Signup component', () => {
   const { pushMock } = mockNextRouter();
+
+  const render = () =>
+    appRender(<LoggedUserHome />, { providers: ['reactQuery'] });
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -35,7 +38,7 @@ describe('Signup component', () => {
     it('should match snapshot when loading', () => {
       msw.userDataQuery(200, undefined);
 
-      const { baseElement } = render(<LoggedUserHome />);
+      const { baseElement } = render();
 
       expect(baseElement).toMatchSnapshot();
     });
@@ -43,7 +46,7 @@ describe('Signup component', () => {
     it('should match snapshot when displaying user data', async () => {
       msw.userDataQuery(200, mockedUser);
 
-      const { baseElement } = render(<LoggedUserHome />);
+      const { baseElement } = render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
       await screen.findByText(`${mockedUser.userName}`);
@@ -56,7 +59,7 @@ describe('Signup component', () => {
     it('should display a loading indicator', async () => {
       msw.userDataQuery(200, undefined);
 
-      render(<LoggedUserHome />);
+      render();
 
       await screen.findByRole('progressbar');
     });
@@ -65,7 +68,7 @@ describe('Signup component', () => {
       msw.userDataQuery(200, undefined);
       localStorage.clear();
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitFor(() => {
         expect(pushMock).toHaveBeenCalledTimes(1);
@@ -76,7 +79,7 @@ describe('Signup component', () => {
       msw.userDataQuery(500, undefined);
       localStorage.setItem('token', '"cool"');
 
-      render(<LoggedUserHome />);
+      render();
 
       await screen.findByTestId(/ErrorOutlineIcon/i);
       expect(screen.getByText(/userInfosPage:ohNo/i)).toBeInTheDocument();
@@ -90,7 +93,7 @@ describe('Signup component', () => {
     it('should display user data', async () => {
       msw.userDataQuery(200, mockedUser);
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
@@ -98,6 +101,13 @@ describe('Signup component', () => {
 
       expect(screen.getByText(`${firstName} ${lastName}`)).toBeInTheDocument();
       expect(screen.getByText(`${userName}`)).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          getInterpolableTranslationAssertKey('userInfosPage:youAreARole', [
+            { roleName: 'Skwat owner' },
+          ])
+        )
+      ).toBeInTheDocument();
     });
 
     it('should display the communication skill', async () => {
@@ -106,7 +116,7 @@ describe('Signup component', () => {
         skills: [{ id: 6, name: 'Communication', category: 'Soft skills' }],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
@@ -126,7 +136,7 @@ describe('Signup component', () => {
         ],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
@@ -150,7 +160,7 @@ describe('Signup component', () => {
         ],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
@@ -168,7 +178,7 @@ describe('Signup component', () => {
         skills: [{ id: 9, name: 'Reporting', category: 'Management' }],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
@@ -188,7 +198,7 @@ describe('Signup component', () => {
         ],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
@@ -206,7 +216,7 @@ describe('Signup component', () => {
         skills: [{ id: 1, name: 'jest', category: 'Tech' }],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
@@ -224,7 +234,7 @@ describe('Signup component', () => {
         skills: [{ id: 4, name: 'react', category: 'Tech' }],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
@@ -242,7 +252,7 @@ describe('Signup component', () => {
         skills: [{ id: 5, name: 'Typescript', category: 'Tech' }],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
@@ -262,7 +272,7 @@ describe('Signup component', () => {
         skills: [{ id: 10, name: 'Github actions', category: 'Tech' }],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
@@ -277,7 +287,7 @@ describe('Signup component', () => {
     it('should not display a skills section', async () => {
       msw.userDataQuery(200, { ...mockedUser, skills: [] });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
