@@ -5,17 +5,19 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 const getNamespaces = (webpackContext) =>
   webpackContext
     .keys()
-    .map((path) => path.replace('./', '').replace('.json', ''))
+    .map((path) => path.replace('./', '').replace('.json', ''));
 
-const namespaces = getNamespaces(require.context('./../../translations/assets/locales/en', false, /.json/));
+const namespaces = getNamespaces(
+  require.context('./../../translations/assets/locales/en', false, /.json/)
+);
 const supportedLanguages = ['en', 'fr'];
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    react: { 
-      useSuspense: false 
+    react: {
+      useSuspense: false,
     },
     lng: 'en',
     fallbackLng: 'en',
@@ -27,7 +29,6 @@ i18n
     supportedLngs: supportedLanguages,
   });
 
-
 supportedLanguages.forEach((lang) => {
   let notFoundNamespacesCount = 0;
 
@@ -38,12 +39,12 @@ supportedLanguages.forEach((lang) => {
     } catch (err) {
       notFoundNamespacesCount++;
     }
-  })
+  });
 
   if (notFoundNamespacesCount > 0) {
     console.warn(
       `${notFoundNamespacesCount} namespaces not found for "${lang}"`
-    )
+    );
   }
 });
 

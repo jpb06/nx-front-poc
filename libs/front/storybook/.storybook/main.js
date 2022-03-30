@@ -10,10 +10,7 @@ const storybookMainConfig = {
     'storybook-dark-mode',
     'storybook-react-i18next',
   ],
-  stories: [
-    '../../../../**/*.stories.mdx', 
-    '../../../../**/*.stories.tsx'
-  ],
+  stories: ['../../../../**/*.stories.mdx', '../../../../**/*.stories.tsx'],
   staticDirs: [
     '../../../../apps/front/public',
     '../../../../libs/front/components/assets',
@@ -30,7 +27,7 @@ const storybookMainConfig = {
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       'next-i18next': 'react-i18next',
-    }
+    };
 
     return config;
   },

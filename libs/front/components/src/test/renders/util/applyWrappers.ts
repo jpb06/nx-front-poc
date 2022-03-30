@@ -1,11 +1,14 @@
 import { DeepPartial, UnpackNestedValue } from 'react-hook-form';
 
-import { EmotionCacheProvider } from '../providers/EmotionCacheProvider';
-import { SnackbarProvider } from '../providers/SnackbarProvider';
-import { FormProvider } from './../providers/FormProvider';
-import { I18nProvider, I18nProviderProps } from './../providers/I18nProvider';
-import { ReactQueryProvider } from './../providers/ReactQueryProvider';
-import { ThemeProvider } from './../providers/ThemeProvider';
+import {
+  EmotionCacheProvider,
+  SnackbarProvider,
+  FormProvider,
+  I18nProvider,
+  I18nProviderProps,
+  ReactQueryProvider,
+  ThemeProvider,
+} from './../providers';
 import { wrappersToWrapper } from './wrappersToWrapper';
 
 export type RenderProviders = 'reactQuery' | 'form' | 'snackbar';

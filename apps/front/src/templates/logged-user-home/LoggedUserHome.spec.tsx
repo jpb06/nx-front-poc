@@ -17,7 +17,7 @@ import { getRandomColor } from './molecules/user-skills/skill-icon/logic/getRand
 jest.mock('@logic');
 jest.mock('./molecules/user-skills/skill-icon/logic/getRandomColor');
 
-describe('Signup component', () => {
+describe('Logged user home component', () => {
   const { pushMock } = mockNextRouter();
 
   const render = () =>

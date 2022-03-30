@@ -338,7 +338,7 @@ describe('MyComponent', () => {
   });
 
   it('should display a welcome message', () => {
-    render(<FullpageBox>{children}</FullpageBox>);
+    appRender(<FullpageBox>{children}</FullpageBox>);
 
     expect(screen.getByText(/common:welcome/i)).toBeInTheDocument();
   });
@@ -372,7 +372,7 @@ export const render = (component: JSX.Element): RenderResult => {
     <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
   };
 
-  return rtlRender(component, { wrapper });
+  return rtlappRender(component, { wrapper });
 };
 ```
 
@@ -381,7 +381,7 @@ Then all we have to is to use this custom render function:
 ```typescript
 describe('MyComponent', () => {
   it('should display a welcome message', () => {
-    render(<FullpageBox>{children}</FullpageBox>);
+    appRender(<FullpageBox>{children}</FullpageBox>);
 
     expect(screen.getByText(/common:welcome/i)).toBeInTheDocument();
   });
@@ -424,7 +424,7 @@ And its assorted test:
 ```typescript
 describe('Cool component', () => {
   it('should display yolo', () => {
-    render(<Cool />);
+    appRender(<Cool />);
 
     expect(screen.getByText(/cool:yolo/i)).toBeInTheDocument();
   });
@@ -479,7 +479,7 @@ Instead of getting `cool:yolo` in our component, we will now get `cool:yolo__pre
 ```typescript
 describe('Cool component', () => {
   it('should display yolo', () => {
-    render(<Cool />);
+    appRender(<Cool />);
 
     expect(screen.getByText(/cool:yolo__prefix=Heeho/i)).toBeInTheDocument();
   });
@@ -496,10 +496,12 @@ const getInterpolableTranslationAssertKey = (
   `${key}__${interpolations
     .flatMap((o) => Object.keys(o).map((key) => `${key}=${o[key]}`))
     .join('|')}`;
+```
 
+```typescript
 describe('Cool component', () => {
   it('should display yolo', () => {
-    render(<Cool />);
+    appRender(<Cool />);
 
     expect(
       screen.getByText(
@@ -521,7 +523,14 @@ import { initReactI18next } from 'react-i18next';
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-const namespaces = ['common', 'forms', 'signupPage', 'userInfosPage'];
+const getNamespaces = (webpackContext) =>
+  webpackContext
+    .keys()
+    .map((path) => path.replace('./', '').replace('.json', ''));
+
+const namespaces = getNamespaces(
+  require.context('./../../translations/assets/locales/en', false, /.json/)
+);
 const supportedLanguages = ['en', 'fr'];
 
 i18n
@@ -541,14 +550,23 @@ i18n
     supportedLngs: supportedLanguages,
   });
 
-supportedLngs.forEach((lang) => {
-  ns.forEach((namespace) => {
-    i18n.addResourceBundle(
-      lang,
-      namespace,
-      require(`../../translations/assets/locales//${lang}/${namespace}.json`)
-    );
+supportedLanguages.forEach((lang) => {
+  let notFoundNamespacesCount = 0;
+
+  namespaces.forEach((namespace) => {
+    try {
+      const file = require(`./../../translations/assets/locales/${lang}/${namespace}.json`);
+      i18n.addResourceBundle(lang, namespace, file);
+    } catch (err) {
+      notFoundNamespacesCount++;
+    }
   });
+
+  if (notFoundNamespacesCount > 0) {
+    console.warn(
+      `${notFoundNamespacesCount} namespaces not found for "${lang}"`
+    );
+  }
 });
 
 export { i18n };
@@ -586,9 +604,11 @@ Finally, let's patch `preview.js` to display a language selector in storybook:
 ```javascript
 import { i18n } from './i18next.js'
 
+const finalI18n = i18n.cloneInstance();
+
 export const parameters = {
   [...],
-  i18n,
+  i18n: finalI18n,
   locale: 'en',
   locales: {
     en: { right: '🇫🇷', title: 'Français' },
