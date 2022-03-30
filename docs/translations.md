@@ -110,7 +110,7 @@ Now we need to make sure this task is ran before building the app or launching i
 Firstof, we have to define a `next-i18next.config.js` file at application root:
 
 ```javascript
-const path = require('path')
+const path = require('path');
 
 module.exports = {
   i18n: {
@@ -119,7 +119,7 @@ module.exports = {
   },
   // Here we must specify the path of our namespaces, that will be copied in the public folder.
   localePath: path.resolve(`apps/front/public/locales`),
-}
+};
 ```
 
 ## 🔶 Loading namespaces in pages
@@ -131,17 +131,17 @@ In the following example, we are loading the `common` and `home` namespaces.
 ```typescript
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
-const Home: NextPage = () => <HomeRoot />
+const Home: NextPage = () => <HomeRoot />;
 
 export const getStaticProps: GetStaticProps = async ({
   locale,
 }: GetStaticPropsContext) => {
   return {
     props: {
-      ...(await serverSideTranslations(locale, ['common', 'home'])),
+      ...(await serverSideTranslations(locale || 'en', ['common', 'home'])),
     },
-  }  
-}
+  };
+};
 
 export default Home;
 ```
@@ -150,16 +150,18 @@ export default Home;
 
 ### 🧿 Using only one namespace
 
-Here, we will give only one string to the `useTranslation` function. Here we are loading the `errors` namespace, that contains in this example:
+If the component is only using translations defined in a single namespace, we can directly pass that namespace to the `useTranslation` function. Here we are loading the `errors` namespace, that contains in this example:
 
 ```json
 {
   "genericError": {
     "title": "Oh no!",
-    "message":"An unknown error occured"
+    "message": "An unknown error occured"
   }
 }
 ```
+
+We use `t` function coming from the `useTranslation` hook:
 
 ```tsx
 import { useTranslation } from 'next-i18next';
@@ -196,6 +198,31 @@ export const HomePageError = () => {
 ```
 
 Of course, for this to work, the page using this component must load both `common` and `error` namespaces via `getStaticProps` or `getServerSideProps`.
+
+### 🧿 String interpolation
+
+We may need to inject dynamic values in our translations. This can be done by using the second parameter of our `t` function:
+
+```tsx
+export const HomePage: React.FC<HomePageProps> = ({
+  user: { firstname, lastname },
+}) => {
+  const { t } = useTranslation('home');
+
+  t('welcomeBanner', {
+    date: new Date(),
+    userName: `${firstName} ${lastName}`,
+  });
+};
+```
+
+In the `home.json` namespace file, that key would look like this:
+
+```json
+{
+  "welcomeBanner": "Welcome {{userName}}! Today date is {{date}}"
+}
+```
 
 ### 🧿 Translation keys and intellisense
 
@@ -251,7 +278,7 @@ Well what you will pass here is actually an object if we look at the json file:
 {
   "pageTitle": {
     "signup": "Signup",
-    "home":"Home"
+    "home": "Home"
   }
 }
 ```
@@ -341,8 +368,8 @@ i18n.use(initReactI18next).init({
 });
 
 export const render = (component: JSX.Element): RenderResult => {
-  const wrapper: React.FC = ({ children }) => 
-    <I18nextProvider i18n={i18n}>{children}</I18nextProvider> 
+  const wrapper: React.FC = ({ children }) =>
+    <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
   };
 
   return rtlRender(component, { wrapper });
@@ -368,6 +395,123 @@ This method is arguably better for integration tests:
 - Perfs are better
 - We don't have to care about the hooks call order in our compoents: with a `useTranslation` mock, the last call will override the previous mock implementations, so namespace may vary.
 
+#### ℹ️ Making in depth assertions on keys using interpolation
+
+What if we wanted to make sure dynamic values we inject in translations needing them are used as intended? To give you an idea, here is the problem:
+
+```json
+{
+  "yolo": "{{prefix}} let's go!"
+}
+```
+
+```tsx
+const Cool = () => {
+  const { t } = useTranslation('cool');
+
+  return (
+    <>
+      {t('yolo', {
+        prefix: 'Heeho',
+      })}
+    </>
+  );
+};
+```
+
+And its assorted test:
+
+```typescript
+describe('Cool component', () => {
+  it('should display yolo', () => {
+    render(<Cool />);
+
+    expect(screen.getByText(/cool:yolo/i)).toBeInTheDocument();
+  });
+});
+```
+
+Cool! But wait, we didn't really make sure the component would display `Heeho let's go!`!
+
+One way to solve the problem is to monkey patch the `t` function in the i18n provider we will be using for our tests:
+
+```tsx
+export const I18nProvider = (
+  i18nConfig: I18nProviderProps | undefined = undefined
+): WrapperResult => {
+  // [...]
+
+  // if we provide bundles, no need to monkey patch the t function!
+  if (!i18nConfig?.resourcesBundles) {
+    finalI18n.t = (key, options) => {
+      if (typeof options === 'object') {
+        const interpolations = Object.entries(options)
+          .filter(([key]) => key !== 'lng' && key !== 'lngs' && key !== 'ns')
+          .map(([key, value]) => `${key}=${value}`)
+          .join('|');
+
+        // if useTranslation was called with several namespaces, the key will already contain the namespace
+        const namespace = key.includes(':' as never) ? '' : `${options.ns}:`;
+
+        if (interpolations.length === 0) {
+          return `${namespace}${key}`;
+        }
+
+        return `${namespace}${key}__${interpolations}`;
+      }
+
+      return key;
+    };
+  }
+
+  // [...]
+
+  const wrapper: React.FC = ({ children }) => (
+    <I18nextProvider i18n={finalI18n}>{children}</I18nextProvider>
+  );
+
+  return { wrapper };
+};
+```
+
+Instead of getting `cool:yolo` in our component, we will now get `cool:yolo__prefix=Heeho`. Great! We can now change our test to reflect that:
+
+```typescript
+describe('Cool component', () => {
+  it('should display yolo', () => {
+    render(<Cool />);
+
+    expect(screen.getByText(/cool:yolo__prefix=Heeho/i)).toBeInTheDocument();
+  });
+});
+```
+
+Now this is great and all, but perhaps it would be easier to construct automatically that assertion string:
+
+```typescript
+const getInterpolableTranslationAssertKey = (
+  key: string,
+  interpolations: Array<Record<string, unknown>>
+) =>
+  `${key}__${interpolations
+    .flatMap((o) => Object.keys(o).map((key) => `${key}=${o[key]}`))
+    .join('|')}`;
+
+describe('Cool component', () => {
+  it('should display yolo', () => {
+    render(<Cool />);
+
+    expect(
+      screen.getByText(
+        getInterpolableTranslationAssertKey('cool:yolo', {
+          prefix: 'Heeho',
+        })
+      )
+    ).toBeInTheDocument();
+  });
+});
+```
+
 ## 🔶 Translations and storybook
 
 In order to load translations, we have to add a `i18next.js` file in `.storybook` folder that will load all the namespaces and configure i18n.
@@ -377,20 +521,15 @@ import { initReactI18next } from 'react-i18next';
 import i18n from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-const namespaces = [
-  'common',
-  'forms',
-  'signupPage',
-  'userInfosPage'
-];
+const namespaces = ['common', 'forms', 'signupPage', 'userInfosPage'];
 const supportedLanguages = ['en', 'fr'];
 
 i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    react: { 
-      useSuspense: false 
+    react: {
+      useSuspense: false,
     },
     lng: 'en',
     fallbackLng: 'en',
