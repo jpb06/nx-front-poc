@@ -293,61 +293,18 @@ Lokalise is maintaining a cool [vscode plugin](https://github.com/lokalise/i18n-
 
 You can use the [webstorm plugin](https://plugins.jetbrains.com/plugin/17212-i18n-ally) instead if you're using that IDE.
 
+The plugin will automatically display translated strings:
+
+![Ally](./assets/ally-translated.png)
+
 ## 🔶 Translations and tests
 
-The objective here is to do assertions on translations keys instead of using translated components in our tests. This makes our tests more robust since translations may change while keys rarely evolves.
-We have two ways to handle testing then:
-
-### 🧿 Mocking `useTranslation` hook
-
-We can easily mock `next-i18next` to make sure the `t` function returned by `useTranslation` returns the used key:
-
-```typescript
-type UseTranslationSimplifiedType = (namespace: string) => {
-  t: (key: string) => string;
-};
-
-export const mockUseTranslation = (lang: string) => {
-  const tMock = jest.fn();
-  const changeLangueMock = jest.fn();
-
-  mocked(useTranslation as UseTranslationSimplifiedType).mockImplementation(
-    (namespace) => ({
-      t: tMock.mockImplementation((key) => {
-        return Array.isArray(namespace) ? `${key}` : `${namespace}:${key}`;
-      }),
-      i18n: {
-        changeLanguage: changeLangueMock,
-        language: lang,
-      },
-    })
-  );
-
-  return { tMock, changeLangueMock };
-};
-```
-
-Then in our tests, we have to do a few things:
-
-```typescript
-jest.mock('next-i18next');
-
-describe('MyComponent', () => {
-  beforeAll(() => {
-    mockUseTranslation('en');
-  });
-
-  it('should display a welcome message', () => {
-    appRender(<FullpageBox>{children}</FullpageBox>);
-
-    expect(screen.getByText(/common:welcome/i)).toBeInTheDocument();
-  });
-});
-```
+The objective here is to do assertions on translations keys instead of using translated components in our tests. This makes our tests more robust since translations may change while keys rarely evolve.
+We have two ways to handle testing. The first one is the most robust and it's the one we will be using.
 
 ### 🧿 Pass an i18n context to the render function
 
-Another way is to not mock next-i18next at all. What we will do instead is customizing the `render` function to inject an i18n instance to the components tree:
+A way to solve the problem is to not mock `next-i18next` / `react-i18next` at all. What we will do instead is customizing the `render` function to inject an i18n instance to the components tree :
 
 ```typescript
 import { render as rtlRender, RenderResult } from '@testing-library/react';
@@ -367,16 +324,16 @@ i18n.use(initReactI18next).init({
   resources: { en: {} },
 });
 
-export const render = (component: JSX.Element): RenderResult => {
+export const appRender = (component: JSX.Element): RenderResult => {
   const wrapper: React.FC = ({ children }) =>
     <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
   };
 
-  return rtlappRender(component, { wrapper });
+  return rtlRender(component, { wrapper });
 };
 ```
 
-Then all we have to is to use this custom render function:
+Then all we have to is to use this custom render function. Since we inject no bundles, keys will be returned by the `t` function. This gives us the opportunities to do assertions on keys:
 
 ```typescript
 describe('MyComponent', () => {
@@ -393,11 +350,11 @@ This method is arguably better for integration tests:
 - We don't mock anything, so our tests are more robust (everytime you mock something, you lose confidence since a part of your system is bypassed).
 - Tests are simpler since we don't have to mock `next-i18next`
 - Perfs are better
-- We don't have to care about the hooks call order in our compoents: with a `useTranslation` mock, the last call will override the previous mock implementations, so namespace may vary.
+- We don't have to care about the hooks call order in our components: with a `useTranslation` mock, the last call will override the previous mock implementations, so namespace may vary.
 
-#### ℹ️ Making in depth assertions on keys using interpolation
+#### 📣 `Making in depth assertions on keys using interpolation`
 
-What if we wanted to make sure dynamic values we inject in translations needing them are used as intended? To give you an idea, here is the problem:
+What if we wanted to make sure dynamic values we inject in translations are used as intended? To give you an idea, here is an example of the issue:
 
 ```json
 {
@@ -419,7 +376,7 @@ const Cool = () => {
 };
 ```
 
-And its assorted test:
+And the test:
 
 ```typescript
 describe('Cool component', () => {
@@ -431,7 +388,7 @@ describe('Cool component', () => {
 });
 ```
 
-Cool! But wait, we didn't really make sure the component would display `Heeho let's go!`!
+Cool! But wait, we didn't really ensure the component would display `Heeho let's go!`!
 
 One way to solve the problem is to monkey patch the `t` function in the i18n provider we will be using for our tests:
 
@@ -442,6 +399,7 @@ export const I18nProvider = (
   // [...]
 
   // if we provide bundles, no need to monkey patch the t function!
+  // More about bundles injection later 🙈
   if (!i18nConfig?.resourcesBundles) {
     finalI18n.t = (key, options) => {
       if (typeof options === 'object') {
@@ -510,6 +468,130 @@ describe('Cool component', () => {
         })
       )
     ).toBeInTheDocument();
+  });
+});
+```
+
+#### 📣 `Injecting bundles to the i18n instance`
+
+In some tests, we actually have to do assertions on translated values because internal logic rely on these translations. For example, we may want to display a list of translated values, sorting them by their actual value.
+
+The only way to guarantee that behavior is to work on translated values. We can do that by injecting bundles in our i18n instance:
+
+```typescript
+export type I18nProviderProps = {
+  language: string;
+  resourcesBundles?: Array<ResourceBundle>;
+};
+
+export type ResourceBundle = {
+  namespace: string;
+  resources: Record<string, unknown>;
+};
+
+export const I18nProvider = (
+  i18nConfig: I18nProviderProps | undefined = undefined
+): WrapperResult => {
+  // we have to clone the instance, otherwise our test cases won't be isolated
+  const finalI18n = i18n.cloneInstance();
+
+  // if we provide translations, no need to monkey patch the t function!
+  if (!i18nConfig?.resourcesBundles) {
+    // [...]
+  }
+
+  if (i18nConfig) {
+    finalI18n.language = i18nConfig.language;
+    i18nConfig.resourcesBundles?.forEach(({ namespace, resources }) => {
+      i18n.addResourceBundle(i18nConfig.language, namespace, resources);
+    });
+  }
+
+  const wrapper: React.FC = ({ children }) => (
+    <I18nextProvider i18n={finalI18n}>{children}</I18nextProvider>
+  );
+
+  return { wrapper };
+};
+```
+
+Now we can inject translations:
+
+```typescript
+it('should do stuff', () => {
+  appRender(<MyComponent />, {
+    i18nConfig: {
+      resourcesBundles: [
+        {
+          namespace: 'common.cool',
+          resources: {
+            welcome: 'Hello friendo!',
+          },
+        },
+        {
+          namespace: 'common.forms',
+          resources: {
+            required: 'This field is required',
+            tooLong: 'No more than {{count}} characters please!',
+          },
+        },
+      ],
+      language: 'en',
+    },
+  });
+
+  // Now we can do assertions on translated values
+
+  expect(screen.getByText(/this field is required/i)).toBeInTheDocument();
+  expect(
+    screen.getByText(/no more than 80 characters please!/i)
+  ).toBeInTheDocument();
+});
+```
+
+### 🧿 Mocking `useTranslation` hook
+
+Another way is to mock `next-i18next` to make sure the `t` function returned by `useTranslation` returns the used key. This is a sub optimal solution. Just documenting it here to give some insights about mocking.
+
+```typescript
+type UseTranslationSimplifiedType = (namespace: string) => {
+  t: (key: string) => string;
+};
+
+export const mockUseTranslation = (lang: string) => {
+  const tMock = jest.fn();
+  const changeLangueMock = jest.fn();
+
+  mocked(useTranslation as UseTranslationSimplifiedType).mockImplementation(
+    (namespace) => ({
+      t: tMock.mockImplementation((key) => {
+        return Array.isArray(namespace) ? `${key}` : `${namespace}:${key}`;
+      }),
+      i18n: {
+        changeLanguage: changeLangueMock,
+        language: lang,
+      },
+    })
+  );
+
+  return { tMock, changeLangueMock };
+};
+```
+
+Then in our tests, we have to do a few things:
+
+```typescript
+jest.mock('next-i18next');
+
+describe('MyComponent', () => {
+  beforeAll(() => {
+    mockUseTranslation('en');
+  });
+
+  it('should display a welcome message', () => {
+    appRender(<FullpageBox>{children}</FullpageBox>);
+
+    expect(screen.getByText(/common:welcome/i)).toBeInTheDocument();
   });
 });
 ```

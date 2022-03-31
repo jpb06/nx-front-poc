@@ -103,18 +103,27 @@ const applyWrappers = <TForm>(props?: ApplyWrappersProps<TForm>) => {
 
 ### 🧿 appRender functions
 
-Finally, let's create our custom appRender functions:
+Finally, let's create our custom appRender functions. Since `@testing-library/user-event@14.0.0` we have to call the `userEvent` `setup` function. Let's wrap the user prop in the returned object:
 
 ```typescript
-const appRender = <TForm>(
+export interface AppRenderResult extends RenderResult {
+  user: UserEvent;
+}
+
+export const appRender = <TForm>(
   ui: ReactElement,
   options?: ApplyWrappersProps<TForm>
-): appRenderResult => {
+): AppRenderResult => {
   const wrapper = applyWrappers(options);
 
-  return appRender(ui, {
-    wrapper,
-  });
+  const withUser = {
+    user: userEvent.setup(),
+    ...render(ui, {
+      wrapper,
+    }),
+  };
+
+  return withUser;
 };
 ```
 
