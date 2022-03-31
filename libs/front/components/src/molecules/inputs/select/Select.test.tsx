@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import * as zod from 'zod';
 
 import { FormTestingComponent } from '../../../test/forms/FormTestingComponents';
