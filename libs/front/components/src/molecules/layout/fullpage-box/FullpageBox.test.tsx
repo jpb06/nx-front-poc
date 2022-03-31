@@ -1,15 +1,12 @@
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import React from 'react';
 
 import { appRender } from '../../../test/renders/appRender';
 import { FullpageBox } from './FullpageBox';
 
 describe('FullpageBox component', () => {
-  const render = (children: React.ReactNode) => ({
-    user: userEvent.setup(),
-    ...appRender(<FullpageBox>{children}</FullpageBox>),
-  });
+  const render = (children: React.ReactNode) =>
+    appRender(<FullpageBox>{children}</FullpageBox>);
 
   const children = 'children';
 

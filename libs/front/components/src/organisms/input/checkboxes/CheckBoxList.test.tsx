@@ -1,5 +1,4 @@
 import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import * as zod from 'zod';
 
 import { SkillCategoryDto } from '@api/types';
@@ -24,9 +23,8 @@ describe('CheckBoxList component', () => {
     schema: unknown,
     items: SkillCategoryDto[] | undefined,
     isLoading: boolean
-  ) => ({
-    user: userEvent.setup(),
-    ...appRender(
+  ) =>
+    appRender(
       <FormTestingComponent<Form>
         onSubmit={handleSubmit}
         schema={schema}
@@ -40,8 +38,7 @@ describe('CheckBoxList component', () => {
         />
       </FormTestingComponent>,
       { providers: ['form'] }
-    ),
-  });
+    );
 
   beforeEach(() => {
     jest.clearAllMocks();

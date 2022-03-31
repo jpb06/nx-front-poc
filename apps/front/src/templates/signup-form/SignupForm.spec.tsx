@@ -3,7 +3,6 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { DefaultRequestBody, MockedRequest } from 'msw';
 import React from 'react';
 
@@ -22,10 +21,8 @@ jest.mock('next/router');
 describe('Signup component', () => {
   const { pushMock } = mockNextRouter();
 
-  const render = () => ({
-    user: userEvent.setup(),
-    ...appRender(<Signup />, { providers: ['snackbar', 'reactQuery', 'form'] }),
-  });
+  const render = () =>
+    appRender(<Signup />, { providers: ['snackbar', 'reactQuery', 'form'] });
 
   beforeEach(() => {
     msw.rolesQuery(200, mockedRoles);

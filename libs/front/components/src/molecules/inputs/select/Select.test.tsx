@@ -19,9 +19,8 @@ describe('Select component', () => {
       .gte(0, 'roleRequired'),
   });
 
-  const render = () => ({
-    user: userEvent.setup(),
-    ...appRender(
+  const render = () =>
+    appRender(
       <FormTestingComponent<Form>
         onSubmit={handleSubmit}
         schema={schema}
@@ -40,8 +39,7 @@ describe('Select component', () => {
         providers: ['form'],
         formProviderWrapperDefaultValues: defaultValues,
       }
-    ),
-  });
+    );
 
   it('should display nothing when no data has been provided', () => {
     render();

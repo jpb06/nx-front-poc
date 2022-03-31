@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import { appRender } from '../../../test/renders/appRender';
 import { Brand } from './Brand';
@@ -13,17 +12,15 @@ describe('Brand component', () => {
     big: boolean;
     centered: boolean;
     withBottomMargin: boolean;
-  }) => ({
-    user: userEvent.setup(),
-    ...appRender(
+  }) =>
+    appRender(
       <Brand
         color="white"
         big={big}
         centered={centered}
         withBottomMargin={withBottomMargin}
       />
-    ),
-  });
+    );
 
   it('should display brand informations', () => {
     render({ big: false, centered: false, withBottomMargin: false });

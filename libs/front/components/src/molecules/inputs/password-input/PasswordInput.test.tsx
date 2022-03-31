@@ -1,5 +1,4 @@
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 
 import { appRender } from '../../../test/renders/appRender';
 import { PasswordInput } from './PasswordInput';
@@ -9,13 +8,11 @@ type Form = { password: string };
 describe('PasswordInput component', () => {
   const defaultValues = { password: '' };
 
-  const render = (defaultValues?: Partial<Form>) => ({
-    user: userEvent.setup(),
-    ...appRender(<PasswordInput<Form> name="password" label="Password" />, {
+  const render = (defaultValues?: Partial<Form>) =>
+    appRender(<PasswordInput<Form> name="password" label="Password" />, {
       providers: ['form'],
       formProviderWrapperDefaultValues: defaultValues,
-    }),
-  });
+    });
 
   it('should display a label', () => {
     render();

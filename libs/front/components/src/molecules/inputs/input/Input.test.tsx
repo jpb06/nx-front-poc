@@ -1,5 +1,4 @@
 import { screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import * as zod from 'zod';
 
 import { FormTestingComponent } from '../../../test/forms/FormTestingComponents';
@@ -16,9 +15,8 @@ describe('Input component', () => {
   const render = (
     schema: unknown,
     defaultValues: { name?: string | undefined } | undefined
-  ) => ({
-    user: userEvent.setup(),
-    ...appRender(
+  ) =>
+    appRender(
       <FormTestingComponent<Form>
         onSubmit={handleSubmit}
         schema={schema}
@@ -27,8 +25,7 @@ describe('Input component', () => {
         <Input<Form> name="name" label="Name" />
       </FormTestingComponent>,
       { providers: ['form'] }
-    ),
-  });
+    );
 
   beforeEach(() => {
     jest.clearAllMocks();
