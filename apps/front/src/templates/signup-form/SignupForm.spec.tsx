@@ -312,7 +312,7 @@ describe('Signup component', () => {
 
       await screen.findByText(/forms:roleAndSkillsMismatchError/i);
       expect(pushMock).not.toHaveBeenCalled();
-    });
+    }, 60000);
 
     it('should display an error message when more than three skills have been selected', async () => {
       msw.areSkillsAvailableForRoleMutation(200, { result: [] });
