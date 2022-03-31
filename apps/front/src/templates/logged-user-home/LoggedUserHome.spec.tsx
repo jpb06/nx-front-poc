@@ -4,11 +4,11 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import { mocked } from 'jest-mock';
+import router from 'next/router';
 
 import { msw } from '@api/msw';
 import { isLocalStorageAvailable } from '@logic';
 import { mockedUser } from '@tests/mocked-data';
-import { mockNextRouter } from '@tests/mocks';
 import { appRender, getInterpolableTranslationAssertKey } from '@tests/render';
 
 import { LoggedUserHome } from './LoggedUserHome';
@@ -18,8 +18,6 @@ jest.mock('@logic');
 jest.mock('./molecules/user-skills/skill-icon/logic/getRandomColor');
 
 describe('Logged user home component', () => {
-  const { pushMock } = mockNextRouter();
-
   const render = () =>
     appRender(<LoggedUserHome />, { providers: ['reactQuery'] });
 
@@ -71,7 +69,7 @@ describe('Logged user home component', () => {
       render();
 
       await waitFor(() => {
-        expect(pushMock).toHaveBeenCalledTimes(1);
+        expect(router.pathname).toBe('/');
       });
     });
 

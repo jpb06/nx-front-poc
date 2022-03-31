@@ -1,7 +1,7 @@
 require('@testing-library/jest-dom/extend-expect');
 const { matchers } = require('@emotion/jest');
 
-jest.mock('next/router');
+jest.mock('next/dist/client/router', () => require('next-router-mock'));
 
 const {
   mswServer,

@@ -4,11 +4,11 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import { DefaultRequestBody, MockedRequest } from 'msw';
+import singletonRouter from 'next/router';
 import React from 'react';
 
 import { msw } from '@api/msw';
 import { mockedRoles, mockedUser, mockedSkills } from '@tests/mocked-data';
-import { mockNextRouter } from '@tests/mocks';
 import { mswServer } from '@tests/mswServer';
 import { appRender } from '@tests/render';
 
@@ -16,11 +16,8 @@ import { Signup } from './SignupForm';
 import { FormModel } from './hooks/useSignupFormSchema';
 
 jest.mock('@logic');
-jest.mock('next/router');
 
 describe('Signup component', () => {
-  const { pushMock } = mockNextRouter();
-
   const render = () =>
     appRender(<Signup />, { providers: ['snackbar', 'reactQuery', 'form'] });
 
@@ -147,7 +144,7 @@ describe('Signup component', () => {
       await user.click(signup);
 
       await waitFor(() => {
-        expect(pushMock).toHaveBeenCalledWith('home');
+        expect(singletonRouter.pathname).toBe('home');
       });
     });
 
@@ -311,7 +308,6 @@ describe('Signup component', () => {
       await user.click(signup);
 
       await screen.findByText(/forms:roleAndSkillsMismatchError/i);
-      expect(pushMock).not.toHaveBeenCalled();
     }, 60000);
 
     it('should display an error message when more than three skills have been selected', async () => {
@@ -372,7 +368,6 @@ describe('Signup component', () => {
       await user.click(signup);
 
       await screen.findByText(/forms:atMostThreeSkills/i);
-      expect(pushMock).not.toHaveBeenCalled();
     }, 60000);
 
     it('should cache skills availibility for role checks', async () => {

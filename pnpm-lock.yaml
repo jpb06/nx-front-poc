@@ -99,6 +99,7 @@ specifiers:
   msw-storybook-addon: ^1.6.1
   next: 12.1.2
   next-i18next: ^10.5.0
+  next-router-mock: ^0.6.5
   nx: 13.9.5
   prettier: 2.6.1
   react: ^17.0.2
@@ -242,6 +243,7 @@ devDependencies:
   jest-watch-typeahead: 1.0.0_jest@27.5.1
   msw: 0.39.2
   msw-storybook-addon: 1.6.1_9499dcf549590b7305989652366d7951
+  next-router-mock: 0.6.5_next@12.1.2+react@17.0.2
   nx: 13.9.5
   prettier: 2.6.1
   react-i18next: 11.16.2_f94be6b4dd1edc1d8608af374b838bd6
@@ -14672,6 +14674,16 @@ packages:
       - react-dom
       - react-native
     dev: false
+
+  /next-router-mock/0.6.5_next@12.1.2+react@17.0.2:
+    resolution: {integrity: sha512-gh6phWv4YUhFON0rWGmc02ni91m68ICG1HTj2N9bi2Y0MIlp5Z12QITXF4lNtV33wuMeUzrs/Ik6XyNOZ8rmNQ==}
+    peerDependencies:
+      next: '>=10.0.0'
+      react: '>=17.0.0'
+    dependencies:
+      next: 12.1.2_978f344c876a57c1143ffe356b90df31
+      react: 17.0.2
+    dev: true
 
   /next-tick/1.1.0:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
