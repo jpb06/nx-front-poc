@@ -1,6 +1,6 @@
 {
   "youAreARole": "You are a {{roleName}}",
-  "profileLoadingError": "Something went wrong while loading your profile",
-  "ohNo": "Oh no!",
+  "sessionExpired": "Session expired",
+  "sessionExpiredDescription": "You will shortly be redirected",
   "yourSkillsAre": "Your skills are"
 }

@@ -30,7 +30,7 @@ export const GlobalIndicator: React.FC<GlobalIndicatorProps> = ({
       sx={{
         height: 100,
         width: 100,
-        animation: `${spinKeyframe} 2s linear infinite`,
+        animation: `${spinKeyframe} 1.3s linear`,
       }}
     />
     <Box

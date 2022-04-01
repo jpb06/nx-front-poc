@@ -5,7 +5,7 @@ import Head from 'next/head';
 import React from 'react';
 
 import nextI18NextConfig from '../../next-i18next.config';
-import { LoggedUserHome } from '../templates/logged-user-home/LoggedUserHome';
+import { LoggedUserHome } from '../templates';
 
 const HomePage: NextPage = () => {
   const { t } = useTranslation('common');
