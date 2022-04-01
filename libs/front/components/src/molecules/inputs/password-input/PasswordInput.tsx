@@ -11,8 +11,6 @@ import {
 import { useState } from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 
-import { t } from '@translations';
-
 export interface PasswordInputProps<T> extends UseControllerProps<T> {
   label: string;
 }
@@ -54,7 +52,7 @@ export function PasswordInput<T>(props: PasswordInputProps<T>): JSX.Element {
             </IconButton>
           </InputAdornment>
         }
-        label="Password"
+        label={props.label}
         onChange={(e) => {
           onChange(e.target.value === '' ? undefined : e.target.value);
         }}
@@ -62,7 +60,7 @@ export function PasswordInput<T>(props: PasswordInputProps<T>): JSX.Element {
         {...otherFieldProps}
         inputRef={ref}
       />
-      <FormHelperText>{t(fieldState.error?.message)}</FormHelperText>
+      <FormHelperText>{fieldState.error?.message}</FormHelperText>
     </FormControl>
   );
 }

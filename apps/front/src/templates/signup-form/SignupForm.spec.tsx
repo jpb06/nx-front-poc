@@ -3,24 +3,23 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import { DefaultRequestBody, MockedRequest } from 'msw';
+import singletonRouter from 'next/router';
 import React from 'react';
 
 import { msw } from '@api/msw';
-import { render } from '@tests';
 import { mockedRoles, mockedUser, mockedSkills } from '@tests/mocked-data';
-import { nextRouterMock } from '@tests/mocks';
 import { mswServer } from '@tests/mswServer';
+import { appRender } from '@tests/render';
 
 import { Signup } from './SignupForm';
 import { FormModel } from './hooks/useSignupFormSchema';
 
 jest.mock('@logic');
-jest.mock('next/router');
 
 describe('Signup component', () => {
-  const { pushMock } = nextRouterMock();
+  const render = () =>
+    appRender(<Signup />, { providers: ['snackbar', 'reactQuery', 'form'] });
 
   beforeEach(() => {
     msw.rolesQuery(200, mockedRoles);
@@ -33,58 +32,64 @@ describe('Signup component', () => {
 
   describe('snapshots', () => {
     it('should match snapshot when roles and skills are loading', async () => {
-      const { baseElement } = render(<Signup />);
+      const { baseElement } = render();
 
       expect(baseElement).toMatchSnapshot();
     });
 
     it('should match snapshot when initial data (skills & role) has loaded', async () => {
-      const { baseElement } = render(<Signup />);
+      const { baseElement } = render();
 
-      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
-      expect(await screen.findByText('Skills')).toBeInTheDocument();
+      expect(
+        await screen.findByLabelText(/signupPage:role/i)
+      ).toBeInTheDocument();
+      expect(await screen.findByText(/signupPage:skills/i)).toBeInTheDocument();
 
       expect(baseElement).toMatchSnapshot();
     });
   });
 
   describe('Should display typed value in', () => {
-    it.each([['Username'], ['Firstname'], ['Lastname'], ['Password']])(
-      '%s',
-      (label) => {
-        render(<Signup />);
+    it.each([
+      ['signupPage:form.userName'],
+      ['signupPage:form.firstName'],
+      ['signupPage:form.lastName'],
+      ['signupPage:form.password'],
+    ])('%s', async (label) => {
+      const { user } = render();
 
-        const inputField = screen.getByLabelText(label);
-        const inputValue = `${label}Value`;
+      const inputField = screen.getByLabelText(label);
+      const inputValue = `${label}Value`;
 
-        userEvent.type(inputField, inputValue);
-        expect(inputField).toHaveValue(inputValue);
-      }
-    );
+      await user.type(inputField, inputValue);
+      expect(inputField).toHaveValue(inputValue);
+    });
   });
 
   describe('validation', () => {
     it('should display an error message when no role was selected', async () => {
-      render(<Signup />);
-
-      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
-      expect(await screen.findByText('Skills')).toBeInTheDocument();
-
-      const signup = screen.getByText('Signup');
-
-      userEvent.click(signup);
+      const { user } = render();
 
       expect(
-        await screen.findByText(/a firstname is required/i)
+        await screen.findByLabelText(/signupPage:role/i)
+      ).toBeInTheDocument();
+      expect(await screen.findByText(/signupPage:skills/i)).toBeInTheDocument();
+
+      const signup = screen.getByText(/signupPage:form.submit/i);
+
+      await user.click(signup);
+
+      expect(
+        await screen.findByText(/forms:firstNameRequired/i)
       ).toBeInTheDocument();
       expect(
-        await screen.findByText(/a lastname is required/i)
+        await screen.findByText(/forms:lastNameRequired/i)
       ).toBeInTheDocument();
       expect(
-        await screen.findByText(/a password is required/i)
+        await screen.findByText(/forms:passwordRequired/i)
       ).toBeInTheDocument();
       expect(
-        await screen.findByText(/you need to select a role/i)
+        await screen.findByText(/forms:roleRequired/i)
       ).toBeInTheDocument();
     });
 
@@ -103,31 +108,43 @@ describe('Signup component', () => {
         idSkills: skills.map((s) => s.id),
       };
 
-      render(<Signup />);
+      const { user } = render();
 
-      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
-      expect(await screen.findByText('Skills')).toBeInTheDocument();
+      expect(
+        await screen.findByLabelText(/signupPage:role/i)
+      ).toBeInTheDocument();
+      expect(await screen.findByText(/signupPage:skills/i)).toBeInTheDocument();
 
       // Set data
-      userEvent.type(screen.getByLabelText('Firstname'), validData.firstName);
-      userEvent.type(screen.getByLabelText('Lastname'), validData.lastName);
-      userEvent.type(screen.getByLabelText('Password'), validData.password);
+      await user.type(
+        screen.getByLabelText(/signupPage:form.firstName/i),
+        validData.firstName
+      );
+      await user.type(
+        screen.getByLabelText(/signupPage:form.lastName/i),
+        validData.lastName
+      );
+      await user.type(
+        screen.getByLabelText(/signupPage:form.password/i),
+        validData.password
+      );
 
-      userEvent.click(screen.getByLabelText('Role'));
-      userEvent.click(screen.getByText(role.name));
+      await user.click(screen.getByLabelText(/signupPage:role/i));
+      await user.click(screen.getByText(role.name));
 
-      userEvent.click(screen.getByRole('button', { name: /tech/i }));
-      skills.map(({ name }) => {
-        userEvent.click(screen.getByText(name));
-      });
+      await user.click(screen.getByRole('button', { name: /tech/i }));
 
-      const signup = screen.getByText('Signup');
+      for (const { name } of skills) {
+        await user.click(screen.getByText(name));
+      }
+
+      const signup = screen.getByText(/signupPage:form.submit/i);
 
       // Submit
-      userEvent.click(signup);
+      await user.click(signup);
 
       await waitFor(() => {
-        expect(pushMock).toHaveBeenCalledWith('home');
+        expect(singletonRouter.pathname).toBe('home');
       });
     });
 
@@ -146,28 +163,40 @@ describe('Signup component', () => {
         idSkills: skills.map(({ id }) => id),
       };
 
-      render(<Signup />);
+      const { user } = render();
 
-      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
-      expect(await screen.findByText('Skills')).toBeInTheDocument();
+      expect(
+        await screen.findByLabelText(/signupPage:role/i)
+      ).toBeInTheDocument();
+      expect(await screen.findByText(/signupPage:skills/i)).toBeInTheDocument();
 
       // Set data
-      userEvent.type(screen.getByLabelText('Firstname'), validData.firstName);
-      userEvent.type(screen.getByLabelText('Lastname'), validData.lastName);
-      userEvent.type(screen.getByLabelText('Password'), validData.password);
+      await user.type(
+        screen.getByLabelText(/signupPage:form.firstName/i),
+        validData.firstName
+      );
+      await user.type(
+        screen.getByLabelText(/signupPage:form.lastName/i),
+        validData.lastName
+      );
+      await user.type(
+        screen.getByLabelText(/signupPage:form.password/i),
+        validData.password
+      );
 
-      userEvent.click(screen.getByLabelText('Role'));
-      userEvent.click(screen.getByText(role.name));
+      await user.click(screen.getByLabelText(/signupPage:role/i));
+      await user.click(screen.getByText(role.name));
 
-      userEvent.click(screen.getByRole('button', { name: /tech/i }));
-      skills.map(({ name }) => {
-        userEvent.click(screen.getByText(name));
-      });
+      await user.click(screen.getByRole('button', { name: /tech/i }));
 
-      const signup = screen.getByText('Signup');
+      for (const { name } of skills) {
+        await user.click(screen.getByText(name));
+      }
+
+      const signup = screen.getByText(/signupPage:form.submit/i);
 
       // Submit
-      userEvent.click(signup);
+      await user.click(signup);
 
       await screen.findByRole('alert');
       expect(
@@ -190,34 +219,47 @@ describe('Signup component', () => {
         idSkills: skills.map(({ id }) => id),
       };
 
-      render(<Signup />);
+      const { user } = render();
 
-      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
-      expect(await screen.findByText('Skills')).toBeInTheDocument();
+      expect(
+        await screen.findByLabelText(/signupPage:role/i)
+      ).toBeInTheDocument();
+      expect(await screen.findByText(/signupPage:skills/i)).toBeInTheDocument();
 
       // Set data
-      userEvent.type(screen.getByLabelText('Firstname'), validData.firstName);
-      userEvent.type(screen.getByLabelText('Lastname'), validData.lastName);
-      userEvent.type(screen.getByLabelText('Password'), validData.password);
+      await user.type(
+        screen.getByLabelText(/signupPage:form.firstName/i),
+        validData.firstName
+      );
+      await user.type(
+        screen.getByLabelText(/signupPage:form.lastName/i),
+        validData.lastName
+      );
+      await user.type(
+        screen.getByLabelText(/signupPage:form.password/i),
+        validData.password
+      );
 
-      userEvent.click(screen.getByLabelText('Role'));
-      userEvent.click(screen.getByText(role.name));
+      await user.click(screen.getByLabelText(/signupPage:role/i));
+      await user.click(screen.getByText(role.name));
 
-      userEvent.click(screen.getByRole('button', { name: /tech/i }));
-      skills.map(({ name }) => {
-        userEvent.click(screen.getByText(name));
-      });
+      await user.click(screen.getByRole('button', { name: /tech/i }));
 
-      const signup = screen.getByText('Signup');
+      for (const { name } of skills) {
+        await user.click(screen.getByText(name));
+      }
+
+      const signup = screen.getByText(/signupPage:form.submit/i);
 
       // Submit
-      userEvent.click(signup);
+      await user.click(signup);
 
-      await screen.findByRole('alert');
+      // fail
+      await screen.findByRole('alert', {}, { interval: 100, timeout: 5000 });
       expect(
         screen.getByText(/oh no! something terrible happened/i)
       ).toBeInTheDocument();
-    });
+    }, 60000);
 
     it('should not submit the form if skills are invalid for the selected role', async () => {
       msw.areSkillsAvailableForRoleMutation(201, [6, 8]);
@@ -229,34 +271,44 @@ describe('Signup component', () => {
         password: 'password',
       };
 
-      render(<Signup />);
+      const { user } = render();
 
-      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
-      expect(await screen.findByText('Skills')).toBeInTheDocument();
+      expect(
+        await screen.findByLabelText(/signupPage:role/i)
+      ).toBeInTheDocument();
+      expect(await screen.findByText(/signupPage:skills/i)).toBeInTheDocument();
 
       // Set data
-      userEvent.type(screen.getByLabelText('Firstname'), validData.firstName);
-      userEvent.type(screen.getByLabelText('Lastname'), validData.lastName);
-      userEvent.type(screen.getByLabelText('Password'), validData.password);
+      await user.type(
+        screen.getByLabelText(/signupPage:form.firstName/i),
+        validData.firstName
+      );
+      await user.type(
+        screen.getByLabelText(/signupPage:form.lastName/i),
+        validData.lastName
+      );
+      await user.type(
+        screen.getByLabelText(/signupPage:form.password/i),
+        validData.password
+      );
 
-      userEvent.click(screen.getByLabelText('Role'));
-      userEvent.click(screen.getByText(role.name));
+      await user.click(screen.getByLabelText(/signupPage:role/i));
+      await user.click(screen.getByText(role.name));
 
       const communication = await screen.findByRole('checkbox', {
         name: 'Communication',
       });
-      userEvent.click(communication);
+      await user.click(communication);
       const informationSharing = await screen.findByRole('checkbox', {
         name: 'Information sharing',
       });
-      userEvent.click(informationSharing);
+      await user.click(informationSharing);
 
-      const signup = screen.getByText('Signup');
-      userEvent.click(signup);
+      const signup = screen.getByText(/signupPage:form.submit/i);
+      await user.click(signup);
 
-      await screen.findByText('Invalid skills for this role!');
-      expect(pushMock).not.toHaveBeenCalled();
-    });
+      await screen.findByText(/forms:roleAndSkillsMismatchError/i);
+    }, 60000);
 
     it('should display an error message when more than three skills have been selected', async () => {
       msw.areSkillsAvailableForRoleMutation(200, { result: [] });
@@ -268,44 +320,54 @@ describe('Signup component', () => {
         password: 'password',
       };
 
-      render(<Signup />);
+      const { user } = render();
 
-      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
-      expect(await screen.findByText('Skills')).toBeInTheDocument();
+      expect(
+        await screen.findByLabelText(/signupPage:role/i)
+      ).toBeInTheDocument();
+      expect(await screen.findByText(/signupPage:skills/i)).toBeInTheDocument();
 
       // Set data
-      userEvent.type(screen.getByLabelText('Firstname'), validData.firstName);
-      userEvent.type(screen.getByLabelText('Lastname'), validData.lastName);
-      userEvent.type(screen.getByLabelText('Password'), validData.password);
+      await user.type(
+        screen.getByLabelText(/signupPage:form.firstName/i),
+        validData.firstName
+      );
+      await user.type(
+        screen.getByLabelText(/signupPage:form.lastName/i),
+        validData.lastName
+      );
+      await user.type(
+        screen.getByLabelText(/signupPage:form.password/i),
+        validData.password
+      );
 
-      userEvent.click(screen.getByLabelText('Role'));
-      userEvent.click(screen.getByText(role.name));
+      await user.click(screen.getByLabelText(/signupPage:role/i));
+      await user.click(screen.getByText(role.name));
 
-      userEvent.click(screen.getByRole('button', { name: /tech/i }));
+      await user.click(screen.getByRole('button', { name: /tech/i }));
       const jestCheckbox = await screen.findByRole('checkbox', {
         name: /jest/i,
       });
-      userEvent.click(jestCheckbox);
+      await user.click(jestCheckbox);
       const reactCheckbox = await screen.findByRole('checkbox', {
         name: /react/i,
       });
-      userEvent.click(reactCheckbox);
+      await user.click(reactCheckbox);
       const typescriptCheckbox = await screen.findByRole('checkbox', {
         name: /typescript/i,
       });
-      userEvent.click(typescriptCheckbox);
+      await user.click(typescriptCheckbox);
 
-      userEvent.click(screen.getByRole('button', { name: /management/i }));
+      await user.click(screen.getByRole('button', { name: /management/i }));
       const roadmapDefinition = await screen.findByRole('checkbox', {
         name: /roadmap definition/i,
       });
-      userEvent.click(roadmapDefinition);
+      await user.click(roadmapDefinition);
 
-      const signup = screen.getByText('Signup');
-      userEvent.click(signup);
+      const signup = screen.getByText(/signupPage:form.submit/i);
+      await user.click(signup);
 
-      await screen.findByText(/you need to select at most three skills/i);
-      expect(pushMock).not.toHaveBeenCalled();
+      await screen.findByText(/forms:atMostThreeSkills/i);
     }, 60000);
 
     it('should cache skills availibility for role checks', async () => {
@@ -327,51 +389,62 @@ describe('Signup component', () => {
         password: 'password',
       };
 
-      render(<Signup />);
+      const { user } = render();
 
-      expect(await screen.findByLabelText('Role')).toBeInTheDocument();
-      expect(await screen.findByText('Skills')).toBeInTheDocument();
+      expect(
+        await screen.findByLabelText(/signupPage:role/i)
+      ).toBeInTheDocument();
+      expect(await screen.findByText(/signupPage:skills/i)).toBeInTheDocument();
 
       // Set data
-      userEvent.type(screen.getByLabelText('Firstname'), validData.firstName);
-      userEvent.type(screen.getByLabelText('Lastname'), validData.lastName);
-      userEvent.type(screen.getByLabelText('Password'), validData.password);
+      await user.type(
+        screen.getByLabelText(/signupPage:form.firstName/i),
+        validData.firstName
+      );
+      await user.type(
+        screen.getByLabelText(/signupPage:form.lastName/i),
+        validData.lastName
+      );
+      await user.type(
+        screen.getByLabelText(/signupPage:form.password/i),
+        validData.password
+      );
 
-      userEvent.click(screen.getByLabelText('Role'));
-      userEvent.click(screen.getByText(role.name));
+      await user.click(screen.getByLabelText(/signupPage:role/i));
+      await user.click(screen.getByText(role.name));
 
-      userEvent.click(
+      await user.click(
         screen.getByRole('checkbox', {
           name: /communication/i,
         })
       );
 
-      const signup = screen.getByText('Signup');
-      userEvent.click(signup);
+      const signup = screen.getByText(/signupPage:form.submit/i);
+      await user.click(signup);
 
-      await screen.findByText('Invalid skills for this role!');
+      await screen.findByText(/forms:roleAndSkillsMismatchError/i);
 
       msw.areSkillsAvailableForRoleMutation(201, []);
 
-      userEvent.click(
+      await user.click(
         await screen.findByRole('checkbox', {
           name: /communication/i,
         })
       );
 
       await waitForElementToBeRemoved(() =>
-        screen.queryByText('Invalid skills for this role!')
+        screen.queryByText(/forms:roleAndSkillsMismatchError/i)
       );
 
       msw.areSkillsAvailableForRoleMutation(201, [6]);
 
-      userEvent.click(
+      await user.click(
         await screen.findByRole('checkbox', {
           name: /communication/i,
         })
       );
 
-      await screen.findByText('Invalid skills for this role!');
+      await screen.findByText(/forms:roleAndSkillsMismatchError/i);
 
       expect(callCount).toBe(2);
       mswServer.events.removeListener('request:match', cb);
@@ -380,21 +453,32 @@ describe('Signup component', () => {
 
   describe('initial data loading', () => {
     it('should render form elements', async () => {
-      expect.assertions(6);
-      render(<Signup />);
+      expect.assertions(7);
+      render();
 
-      expect(screen.getByLabelText(/firstname/i)).toBeInTheDocument();
-      expect(screen.getByLabelText(/lastname/i)).toBeInTheDocument();
-      expect(screen.getByLabelText('Password')).toBeInTheDocument();
+      expect(
+        screen.getByLabelText(/signupPage:form.userName/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByLabelText(/signupPage:form.firstName/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByLabelText(/signupPage:form.lastName/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByLabelText(/signupPage:form.password/i)
+      ).toBeInTheDocument();
 
-      expect(await screen.findByLabelText(/role/i)).toBeInTheDocument();
-      expect(await screen.findByText('Skills')).toBeInTheDocument();
+      expect(
+        await screen.findByLabelText(/signupPage:role/i)
+      ).toBeInTheDocument();
+      expect(await screen.findByText(/signupPage:skills/i)).toBeInTheDocument();
 
-      expect(screen.getByText(/signup/i)).toBeInTheDocument();
+      expect(screen.getByText(/signupPage:form.submit/i)).toBeInTheDocument();
     });
 
     it('should display a loading indicator for roles', () => {
-      render(<Signup />);
+      render();
 
       expect(
         screen.getByRole('progressbar', { name: /loading-roles/i })
@@ -404,31 +488,33 @@ describe('Signup component', () => {
     it('should display an error when roles could not be fetched', async () => {
       msw.rolesQuery(500, {});
 
-      render(<Signup />);
+      render();
 
       await waitForElementToBeRemoved(() =>
         screen.getByRole('progressbar', { name: /loading-roles/i })
       );
 
       expect(
-        screen.getByText(/an error occured while fetching roles/i)
+        screen.getByText(/signupPage:itemsFetchinError/i)
       ).toBeInTheDocument();
     });
 
     it('should display an error when there is no roles', async () => {
       msw.rolesQuery(200, []);
 
-      render(<Signup />);
+      render();
 
       await waitForElementToBeRemoved(() =>
         screen.getByRole('progressbar', { name: /loading-roles/i })
       );
 
-      expect(screen.getByText(/no roles were fetched/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/signupPage:noItemsFetched/i)
+      ).toBeInTheDocument();
     });
 
     it('should display a loading indicator for skills', () => {
-      render(<Signup />);
+      render();
 
       expect(
         screen.getByRole('progressbar', { name: /loading-skills/i })
@@ -438,27 +524,29 @@ describe('Signup component', () => {
     it('should display an error when skills could not be fetched', async () => {
       msw.skillsQuery(500, {});
 
-      render(<Signup />);
+      render();
 
       await waitForElementToBeRemoved(() =>
         screen.getByRole('progressbar', { name: /loading-skills/i })
       );
 
       expect(
-        screen.getByText(/an error occured while fetching skills/i)
+        screen.getByText(/signupPage:itemsFetchinError/i)
       ).toBeInTheDocument();
     });
 
     it('should display an error when there is no skills', async () => {
       msw.skillsQuery(200, []);
 
-      render(<Signup />);
+      render();
 
       await waitForElementToBeRemoved(() =>
         screen.getByRole('progressbar', { name: /loading-skills/i })
       );
 
-      expect(screen.getByText(/no skills were fetched/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/signupPage:noItemsFetched/i)
+      ).toBeInTheDocument();
     });
   });
 });

@@ -1,0 +1,14 @@
+{
+  "loadingAvailableItems": "Loading available {{items}} for you ...",
+  "itemsFetchinError": "An error occured while fetching {{items}}",
+  "noItemsFetched": "No {{items}} were fetched",
+  "form": { 
+    "firstName":"Firstname",
+    "lastName":"Lastname",
+    "userName":"Username",
+    "password":"Password",
+    "submit":"Signup"
+  },
+  "role": "Role",
+  "skills": "Skills"
+}

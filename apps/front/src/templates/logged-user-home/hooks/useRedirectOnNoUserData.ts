@@ -14,7 +14,7 @@ type UserDataResult = {
 };
 
 export const useRedirectOnNoUserData = (): UserDataResult => {
-  const router = useRouter();
+  const { push } = useRouter();
   const { status, data: user } = useUserDataQuery();
   const [isRedirecting, setIsRedirecting] = useState(false);
 
@@ -25,13 +25,13 @@ export const useRedirectOnNoUserData = (): UserDataResult => {
         if (token === null) {
           setIsRedirecting(true);
           await delay(2000);
-          await router.push('/');
+          await push('/');
         }
       }
     };
 
     redirect();
-  }, [router]);
+  }, [push]);
 
   return { user, status: isRedirecting ? 'redirecting' : status };
 };

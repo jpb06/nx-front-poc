@@ -1,7 +1,6 @@
-import { screen, render } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+import { screen } from '@testing-library/react';
 
-import { RHFWrapper as wrapper } from '../../../test';
+import { appRender } from '../../../test/renders/appRender';
 import { PasswordInput } from './PasswordInput';
 
 type Form = { password: string };
@@ -9,24 +8,28 @@ type Form = { password: string };
 describe('PasswordInput component', () => {
   const defaultValues = { password: '' };
 
-  it('should display a label', () => {
-    render(<PasswordInput<Form> name="password" label="Password" />, {
-      wrapper,
+  const render = (defaultValues?: Partial<Form>) =>
+    appRender(<PasswordInput<Form> name="password" label="Password" />, {
+      providers: ['form'],
+      formProviderWrapperDefaultValues: defaultValues,
     });
+
+  it('should display a label', () => {
+    render();
 
     expect(screen.getAllByLabelText(/password/i)[0]).toBeInTheDocument();
   });
 
-  it('should display a button to show the typed password', () => {
-    render(<PasswordInput<Form> name="password" label="Password" />, {
-      wrapper: ({ children }) => wrapper({ children, defaultValues }),
-    });
+  it('should display a button to show the typed password', async () => {
+    const { user } = render(defaultValues);
 
     const input = screen.getAllByLabelText('Password')[0];
-    userEvent.type(input, 'yolo');
+    await user.type(input, 'yolo');
 
-    const displayPasswordButton = screen.getByRole('button');
-    userEvent.click(displayPasswordButton);
+    const displayPasswordButton = screen.getByRole('button', {
+      name: /toggle password visibility/i,
+    });
+    await user.click(displayPasswordButton);
 
     expect(input).toHaveValue('yolo');
   });

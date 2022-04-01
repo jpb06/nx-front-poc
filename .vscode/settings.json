@@ -1,8 +1,11 @@
 {
   "editor.formatOnSave": true,
-  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "eslint.run": "onSave",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll": true
   },
-  "editor.tabSize": 2
+  "editor.tabSize": 2,
+  "i18n-ally.localesPaths": ["libs/front/translations/assets/locales"],
+  "i18n-ally.keystyle": "nested"
 }

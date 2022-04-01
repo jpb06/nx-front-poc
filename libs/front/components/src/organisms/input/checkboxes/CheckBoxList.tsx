@@ -11,11 +11,12 @@ import {
   ListItemIcon,
   FormHelperText,
 } from '@mui/material';
+import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
 import { useController, UseControllerProps } from 'react-hook-form';
 
 import { SkillCategoryDto } from '@api/types';
-import { t } from '@translations';
+import { NamespaceKey } from '@translations';
 
 import { getInvalidFields } from './logic/getInvalidFields';
 import { CheckBoxListItem } from './molecules/CheckBoxListItem';
@@ -33,6 +34,7 @@ export interface CheckBoxListProps<T> extends UseControllerProps<T> {
 export function CheckBoxList<T>(
   props: CheckBoxListProps<T>
 ): JSX.Element | null {
+  const { t } = useTranslation('forms');
   const [openedCategoryId, setOpenedCategoryId] = useState(1);
 
   const {
@@ -99,7 +101,7 @@ export function CheckBoxList<T>(
           })}
           {error?.type !== 'custom' && error?.message && (
             <FormHelperText sx={{ textAlign: 'center' }}>
-              {t(error.message)}
+              {t(error.message as NamespaceKey<'forms'>)}
             </FormHelperText>
           )}
           {invalidFields.length > 0 && (

@@ -1,5 +1,3 @@
-//import type { TranslationsKey as TranslationsKeyForExport } from './lib/types/translations-keys.type';
+export * from './types/namespace-key.type';
 
-export * from './lib/translate';
-export * from './lib/types/translations-keys.type';
-//export type translationsKeys = TranslationsKeyForExport;
+export * from './keys/locales.keys';

@@ -9,19 +9,17 @@ type UserProfileProps = {
   user: User;
 };
 
-export const UserProfile: React.FC<UserProfileProps> = ({ user }) => {
-  return (
-    <FullpageBox>
-      <UserAvatar {...user} />
-      <UserInfos {...user} />
-      <Divider
-        sx={{
-          width: '90%',
-          mt: 2,
-          mb: 2,
-        }}
-      />
-      <UserSkills {...user} />
-    </FullpageBox>
-  );
-};
+export const UserProfile: React.FC<UserProfileProps> = ({ user }) => (
+  <FullpageBox>
+    <UserAvatar {...user} />
+    <UserInfos {...user} />
+    <Divider
+      sx={{
+        width: '90%',
+        mt: 2,
+        mb: 2,
+      }}
+    />
+    <UserSkills {...user} />
+  </FullpageBox>
+);

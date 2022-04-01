@@ -1,0 +1,10 @@
+{
+  "pageTitle": {
+    "signup": "Signup",
+    "home":"Home"
+  },
+  "language": {
+    "en": "English",
+    "fr": "French"
+  }
+}

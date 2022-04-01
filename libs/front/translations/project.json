@@ -13,7 +13,7 @@
     "type-check": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "pnpm exec tsc -p ./libs/front/translations/tsconfig.lib.json --noEmit --pretty"
+        "command": "pnpm exec tsc -b ./libs/front/translations --pretty"
       }
     }
   },

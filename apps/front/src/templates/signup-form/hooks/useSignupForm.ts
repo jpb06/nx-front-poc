@@ -8,7 +8,7 @@ import useLocalStorageState from 'use-local-storage-state';
 import { useSignupMutation } from '@api';
 import { SignupError } from '@api/types/signup';
 
-import { customErrorMap } from '../logic/customErrorMap';
+import { useCustomErrorMap } from './useCustomErrorMap';
 import { useSignupFormSchema, FormModel } from './useSignupFormSchema';
 
 type SignupFormHook = {
@@ -25,6 +25,8 @@ export const useSignupForm = (): SignupFormHook => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const schema = useSignupFormSchema();
+  const customErrorMap = useCustomErrorMap();
+
   const { control, handleSubmit } = useForm<FormModel>({
     defaultValues: {
       lastName: '',

@@ -1,13 +1,17 @@
 import { screen } from '@testing-library/react';
+import React from 'react';
 
-import { render } from '../../../test';
+import { appRender } from '../../../test/renders/appRender';
 import { FullpageBox } from './FullpageBox';
 
 describe('FullpageBox component', () => {
+  const render = (children: React.ReactNode) =>
+    appRender(<FullpageBox>{children}</FullpageBox>);
+
   const children = 'children';
 
   it('should display a banner and a brand', () => {
-    render(<FullpageBox>{children}</FullpageBox>);
+    render(children);
 
     expect(screen.getByRole('img')).toBeInTheDocument();
     expect(screen.getByTestId('BuildIcon')).toBeInTheDocument();
@@ -17,7 +21,7 @@ describe('FullpageBox component', () => {
   });
 
   it('should display its children', () => {
-    render(<FullpageBox>{children}</FullpageBox>);
+    render(children);
 
     expect(screen.getByText(children)).toBeInTheDocument();
   });

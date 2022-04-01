@@ -1,0 +1,17 @@
+{
+  "atLeastOneSkill": "You need to select at least one skill",
+  "atMostThreeSkills": "You need to select at most three skills",
+  "roleAndSkillsMismatchError": "Invalid skills for this role!",
+  "firstNameRequired": "A firstname is required",
+  "lastNameRequired": "A lastname is required",
+  "passwordRequired": "A password is required",
+  "roleRequired": "You need to select a role",
+  "generic": {
+    "information_required": "This information is required",
+    "invalid_date": "This date is invalid",
+    "too_small": "The value is too small",
+    "too_big": "The value is too big",
+    "invalid_type": "Invalid type",
+    "incorrect_value": "Invalid value" 
+  }
+}

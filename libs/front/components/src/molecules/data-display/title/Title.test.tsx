@@ -1,13 +1,17 @@
 import { screen } from '@testing-library/react';
 
-import { render } from '../../../test';
+import { appRender } from '@tests/render';
+
 import { Title } from './Title';
 
 describe('Title component', () => {
+  const render = (children: React.ReactNode) =>
+    appRender(<Title>{children}</Title>);
+
   it('should display children', () => {
     const children = 'children';
 
-    render(<Title>children</Title>);
+    render('children');
 
     expect(screen.getByText(children)).toBeInTheDocument();
   });

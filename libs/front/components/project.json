@@ -6,26 +6,20 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/front/components/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["libs/front/components/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "type-check": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "pnpm exec tsc -p ./libs/front/components/tsconfig.lib.json --noEmit --pretty"
+        "command": "pnpm exec tsc -b ./libs/front/components --pretty"
       }
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/libs/front/components"
-      ],
+      "outputs": ["coverage/libs/front/components"],
       "options": {
         "jestConfig": "libs/front/components/jest.config.js",
         "passWithNoTests": true

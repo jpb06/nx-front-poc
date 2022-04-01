@@ -3,11 +3,15 @@
   "sourceRoot": "apps/front",
   "projectType": "application",
   "targets": {
+    "copy-locales": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "echo Copying locales... && cp -R ./libs/front/translations/assets/locales ./apps/front/public/"
+      }
+    },
     "build": {
       "executor": "@nrwl/next:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/front",
@@ -20,6 +24,12 @@
           }
         ]
       },
+      "dependsOn": [
+        {
+          "target": "copy-locales",
+          "projects": "self"
+        }
+      ],
       "configurations": {
         "production": {}
       }
@@ -31,6 +41,12 @@
         "dev": true,
         "port": 3000
       },
+      "dependsOn": [
+        {
+          "target": "copy-locales",
+          "projects": "self"
+        }
+      ],
       "configurations": {
         "production": {
           "buildTarget": "front:build:production",
@@ -46,9 +62,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": [
-        "coverage/apps/front"
-      ],
+      "outputs": ["coverage/apps/front"],
       "options": {
         "jestConfig": "apps/front/jest.config.js",
         "passWithNoTests": true
@@ -62,13 +76,9 @@
     },
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "apps/front/**/*.{ts,tsx,js,jsx}"
-        ]
+        "lintFilePatterns": ["apps/front/**/*.{ts,tsx,js,jsx}"]
       }
     },
     "sonar": {

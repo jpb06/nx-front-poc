@@ -8,7 +8,10 @@ import { themes } from '@storybook/theming';
 
 import { appTheme } from '@theme';
 
+import { i18n } from './i18next';
 import { AppThemeProvider } from './../../components/src/molecules/providers/app-theme.provider';
+
+const finalI18n = i18n.cloneInstance();
 
 // Initialize MSW
 initialize({ onUnhandledRequest: 'bypass' });
@@ -32,6 +35,12 @@ export const parameters = {
   darkMode: {
     dark: { ...themes.dark, appBg: 'black' },
     light: { ...themes.normal, appBg: 'lightgrey' },
+  },
+  i18n: finalI18n,
+  locale: 'en',
+  locales: {
+    en: { right: '🇫🇷', title: 'Français' },
+    fr: { right: '🇬🇧', title: 'English' },
   },
 };
 

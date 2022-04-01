@@ -161,47 +161,41 @@ const MyComponent = () => {
 }
 ```
 
-## 🔶 Using custom error messages
+## 🔶 Custom error messages and localization
 
-Since our app is localized, we will have to override the default error messages provided by zod. We can do this easily by providing parameters to zod functions in our schema.
+Since our app is avaialable in several languages, we will have to override the default error messages provided by zod. We can do this easily by providing parameters to zod functions in our schema.
 
-```typescript
-// Our translations, defined as a nested object
-const langEn = {
-  required: "This field is required..."
-};
-
-// Let's infer its keys
-export const translationsKeys = Object.keys(langEn);
-export type TranslationsKey = keyof typeof langEn;
-```
-
-We can then pass translations keys to the zod validation chain functions:
+We will have to define the schema inside a hook to be able to call the `useTranslation` hook coming from `next-i18next`. That way, we can use the `t` function from within the schema:
 
 ```typescript
 type FormModel = {
   name: string;
 };
 
-const requiredKey: TranslationsKey = "required";
+export const useFormSchema = () => {
+  const { t } = useTranslation('forms');
 
-const schema: zod.ZodSchema<FormModel> = zod.object({
-  name: zod.string().min(1, requiredKey), 
-});
+  const schema: zod.ZodSchema<FormModel> = zod
+    .object({
+      name: zod.string().min(1, t('nameRequired')), 
+    });
+
+  return schema;
+};
 ```
 
-Then, all we have to do is to call the `translate` function of our translations lib in our generic components:
+On inputs, all we have to do is to pass display the message that has already been translated:
 
 ```typescript
 export function Input<T>(props: InputProps<T>): JSX.Element {
   // ...
 
-  const t = useTranslations();
+  const { fieldState } = useController(props);
 
   return (
     <TextField
       // ...
-      helperText={t(fieldState.error?.message)}
+      helperText={fieldState.error?.message}
     />
   );
 }
@@ -209,9 +203,11 @@ export function Input<T>(props: InputProps<T>): JSX.Element {
 
 ## 🔶 Overriding zod default error messages
 
-While defining messages in the schema gives us fine grained control over the messages we want to display, it may be useful to make sure we always send translated default messages. We can do by passing a function to the errorMap option in `zodResolver` function:
+While defining messages in the schema gives us fine grained control over the messages we want to display, it may be useful to make sure we always send translated default messages. We can do so by passing a function to the errorMap option in `zodResolver` function:
 
 ```typescript
+const customErrorMap = useCustomErrorMap();
+
 const { control, handleSubmit } = useForm<FormModel>({
   resolver: zodResolver(schema, {
     errorMap: customErrorMap,
@@ -219,52 +215,57 @@ const { control, handleSubmit } = useForm<FormModel>({
 });
 ```
 
-`customErrorMap` could look like this:
+Then again, we need to define our custom error map in a hook to be able to call `useTranslation`. The `useCustomErrorMap` hook could look like this:
 
 ```typescript
-export const customErrorMap = (
-  issue: ZodIssueOptionalMessage,
-  ctx: ErrorMapCtx
-): ErrorMapResult => {
-  // if we have a custom error defined in the schema, let's use it!
-  if (issue.message && translationsKeys.includes(issue.message)) {
-    return {
-      message: issue.message,
-    };
-  }
-
-  // Otherwise, let's use the default translation for this error code
-  if (translationsKeys.includes(ctx.defaultError)) {
-    return {
-      message: ctx.defaultError,
-    };
-  }
-
-  // Otherwise, let's use the raw code (untranslated) or a generic translation key instead 
-  return { message: issue.code || 'genericError' };
+type ErrorMapCtx = {
+  defaultError: string;
+  data: unknown;
 };
-```
 
-We can simplify further by creating a function that will return a custom `zodResolver`:
+export const useCustomErrorMap: () => ZodErrorMap = () => {
+  const { t } = useTranslation('forms');
 
-```typescript
-export const formResolver: Resolver = (
-  schema,
-  schemaOptions,
-  factoryOptions
-) => zodResolver(
-  schema,
-  { ...schemaOptions, errorMap: customErrorMap },
-  factoryOptions
-)
-```
+  return (issue: ZodIssueOptionalMessage, ctx: ErrorMapCtx) => {
+    // If we defined an error message in our schema, it's already translated so we just have to return it
+    // for example: zod.string().min(1, 'text'))
+    if (issue.message) {
+      return {
+        message: issue.message,
+      };
+    }
 
-This simplifies the definition of our forms:
+    // If we overrided the message of a default error in our schema, it's already translated so we just have to return it
+    // For example: zod.number({ required_error: 'text' })
+    if (ctx.defaultError) {
+      return {
+        message: ctx.defaultError,
+      };
+    }
 
-```typescript
-const { control, handleSubmit } = useForm<FormModel>({
-  resolver: formResolver(schema)
-});
+    // Otherwise we make sure to always return a translated message 
+    if (issue.code === 'invalid_type' && issue.received === 'undefined') {
+      return { message: t('generic.information_required') };
+    }
+
+    switch (issue.code) {
+      case 'invalid_date': {
+        return { message: t('generic.invalid_date') };
+      }
+      case 'too_small': {
+        return { message: t('generic.too_small') };
+      }
+      case 'too_big': {
+        return { message: t('generic.too_big') };
+      }
+      case 'invalid_type': {
+        return { message: t('generic.invalid_type') };
+      }
+      default:
+        return { message: t('generic.incorrect_value') };
+    }
+  };
+};
 ```
 
 ## 🔶 Complex validation

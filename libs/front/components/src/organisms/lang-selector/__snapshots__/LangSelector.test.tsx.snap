@@ -1,0 +1,63 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LangSelector component should match snapshot 1`] = `
+.emotion-0 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #006064;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 96, 100, 0.4);
+  margin-right: 8px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.emotion-0:hover {
+  text-decoration-color: inherit;
+}
+
+.emotion-1 {
+  margin: 0;
+  font-family: "Roboto","Helvetica","Arial",sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: 1.43;
+  letter-spacing: 0.01071em;
+  color: #006064;
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 96, 100, 0.4);
+  margin-left: 8px;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.emotion-1:hover {
+  text-decoration-color: inherit;
+}
+
+<body>
+  <div>
+    <a
+      class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways emotion-0"
+      href="/"
+    >
+      🇬🇧 
+      common:language.en
+    </a>
+    |
+    <a
+      class="MuiTypography-root MuiTypography-body2 MuiLink-root MuiLink-underlineAlways emotion-1"
+      href="/"
+    >
+      🇫🇷 
+      common:language.fr
+    </a>
+  </div>
+</body>
+`;

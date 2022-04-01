@@ -1,5 +1,6 @@
 import { EmotionCache } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
+import { appWithTranslation } from 'next-i18next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import React from 'react';
@@ -39,4 +40,4 @@ const MyApp: React.FC<EmotionAppProps> = ({
   );
 };
 
-export default MyApp;
+export default appWithTranslation(MyApp);

@@ -1,11 +1,29 @@
 import { screen } from '@testing-library/react';
 
-import { render } from '../../../test';
+import { appRender } from '../../../test/renders/appRender';
 import { Brand } from './Brand';
 
 describe('Brand component', () => {
+  const render = ({
+    big,
+    centered,
+    withBottomMargin,
+  }: {
+    big: boolean;
+    centered: boolean;
+    withBottomMargin: boolean;
+  }) =>
+    appRender(
+      <Brand
+        color="white"
+        big={big}
+        centered={centered}
+        withBottomMargin={withBottomMargin}
+      />
+    );
+
   it('should display brand informations', () => {
-    render(<Brand color="white" />);
+    render({ big: false, centered: false, withBottomMargin: false });
 
     expect(screen.getByText('Sandbox')).toBeInTheDocument();
     expect(
@@ -14,25 +32,25 @@ describe('Brand component', () => {
   });
 
   it('should display a brand icon', () => {
-    render(<Brand color="white" />);
+    render({ big: false, centered: false, withBottomMargin: false });
 
     expect(screen.getByTestId('BuildIcon')).toBeInTheDocument();
   });
 
   it('should display sandbox in small text', () => {
-    render(<Brand color="white" big={false} />);
+    render({ big: false, centered: false, withBottomMargin: false });
 
     expect(screen.getByText('Sandbox')).toHaveClass('MuiTypography-h6');
   });
 
   it('should display sandbox in big text', () => {
-    render(<Brand color="white" big />);
+    render({ big: true, centered: false, withBottomMargin: false });
 
     expect(screen.getByText('Sandbox')).toHaveClass('MuiTypography-h4');
   });
 
   it('should display centered content', () => {
-    render(<Brand color="white" centered withBottomMargin />);
+    render({ big: false, centered: true, withBottomMargin: true });
 
     expect(screen.getByText('Sandbox')).toBeInTheDocument();
   });

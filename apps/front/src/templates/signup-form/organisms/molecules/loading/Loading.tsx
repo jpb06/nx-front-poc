@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { LoadingBlock } from '@components/molecules';
@@ -8,9 +9,13 @@ type LoadingProps = {
   label: SignupPreloadedDataLabel;
 };
 
-export const Loading = ({ label }: LoadingProps) => (
-  <LoadingBlock
-    name={`loading-${label}`}
-    text={`Loading available ${label} for you ...`}
-  />
-);
+export const Loading = ({ label }: LoadingProps) => {
+  const { t } = useTranslation('signupPage');
+
+  return (
+    <LoadingBlock
+      name={`loading-${label}`}
+      text={t('loadingAvailableItems', { items: label })}
+    />
+  );
+};

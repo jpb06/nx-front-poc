@@ -6,19 +6,15 @@
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/front/logic/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/front/logic/**/*.ts"]
       }
     },
     "type-check": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "pnpm exec tsc -p ./libs/front/logic/tsconfig.lib.json --noEmit --pretty"
+        "command": "pnpm exec tsc -b ./libs/front/logic --pretty"
       }
     }
   }

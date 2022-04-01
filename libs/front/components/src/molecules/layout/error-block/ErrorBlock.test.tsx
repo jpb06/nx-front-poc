@@ -1,13 +1,14 @@
 import { screen } from '@testing-library/react';
 
-import { render } from '../../../test';
+import { appRender } from '../../../test/renders/appRender';
 import { ErrorBlock } from './ErrorBlock';
 
 describe('ErrorBlock component', () => {
+  const render = (text: string) => appRender(<ErrorBlock text={text} />);
+
   it('should display an alert containing a text', () => {
     const text = 'Oh no!';
-
-    render(<ErrorBlock text={text} />);
+    render(text);
 
     expect(screen.getByText(text)).toBeInTheDocument();
   });

@@ -8,6 +8,7 @@ const storybookMainConfig = {
     '@storybook/addon-links',
     'storybook-addon-next-router',
     'storybook-dark-mode',
+    'storybook-react-i18next',
   ],
   stories: ['../../../../**/*.stories.mdx', '../../../../**/*.stories.tsx'],
   staticDirs: [
@@ -22,6 +23,11 @@ const storybookMainConfig = {
         extensions: config.resolve.extensions,
       }),
     ];
+
+    config.resolve.alias = {
+      ...(config.resolve.alias || {}),
+      'next-i18next': 'react-i18next',
+    };
 
     return config;
   },

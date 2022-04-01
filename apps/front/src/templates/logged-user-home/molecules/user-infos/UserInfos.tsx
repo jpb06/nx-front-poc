@@ -1,4 +1,5 @@
 import { Grid } from '@mui/material';
+import { useTranslation } from 'next-i18next';
 
 import { SignedUser } from '@api/types';
 import { SubTitle, Title } from '@components/molecules';
@@ -13,20 +14,24 @@ export const UserInfos: React.FC<UserInfosProps> = ({
   firstName,
   lastName,
   role,
-}) => (
-  <>
-    <Grid
-      item
-      container
-      direction="column"
-      justifyContent="center"
-      alignItems="center"
-    >
-      <Title>{userName}</Title>
-      <SubTitle>{`${firstName} ${lastName}`}</SubTitle>
-    </Grid>
-    <Grid item>
-      <SubTitle>You are a {role.name}</SubTitle>
-    </Grid>
-  </>
-);
+}) => {
+  const { t } = useTranslation('userInfosPage');
+
+  return (
+    <>
+      <Grid
+        item
+        container
+        direction="column"
+        justifyContent="center"
+        alignItems="center"
+      >
+        <Title>{userName}</Title>
+        <SubTitle>{`${firstName} ${lastName}`}</SubTitle>
+      </Grid>
+      <Grid item>
+        <SubTitle>{t('youAreARole', { roleName: role.name })}</SubTitle>
+      </Grid>
+    </>
+  );
+};

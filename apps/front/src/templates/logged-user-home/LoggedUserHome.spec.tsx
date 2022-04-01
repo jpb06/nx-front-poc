@@ -4,22 +4,22 @@ import {
   waitForElementToBeRemoved,
 } from '@testing-library/react';
 import { mocked } from 'jest-mock';
+import router from 'next/router';
 
 import { msw } from '@api/msw';
 import { isLocalStorageAvailable } from '@logic';
-import { render } from '@tests';
 import { mockedUser } from '@tests/mocked-data';
-import { nextRouterMock } from '@tests/mocks';
+import { appRender, getInterpolableTranslationAssertKey } from '@tests/render';
 
 import { LoggedUserHome } from './LoggedUserHome';
 import { getRandomColor } from './molecules/user-skills/skill-icon/logic/getRandomColor';
 
 jest.mock('@logic');
-jest.mock('next/router');
 jest.mock('./molecules/user-skills/skill-icon/logic/getRandomColor');
 
-describe('Signup component', () => {
-  const { pushMock } = nextRouterMock();
+describe('Logged user home component', () => {
+  const render = () =>
+    appRender(<LoggedUserHome />, { providers: ['reactQuery'] });
 
   beforeEach(() => {
     jest.clearAllMocks();
@@ -36,7 +36,7 @@ describe('Signup component', () => {
     it('should match snapshot when loading', () => {
       msw.userDataQuery(200, undefined);
 
-      const { baseElement } = render(<LoggedUserHome />);
+      const { baseElement } = render();
 
       expect(baseElement).toMatchSnapshot();
     });
@@ -44,7 +44,7 @@ describe('Signup component', () => {
     it('should match snapshot when displaying user data', async () => {
       msw.userDataQuery(200, mockedUser);
 
-      const { baseElement } = render(<LoggedUserHome />);
+      const { baseElement } = render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
       await screen.findByText(`${mockedUser.userName}`);
@@ -57,7 +57,7 @@ describe('Signup component', () => {
     it('should display a loading indicator', async () => {
       msw.userDataQuery(200, undefined);
 
-      render(<LoggedUserHome />);
+      render();
 
       await screen.findByRole('progressbar');
     });
@@ -66,11 +66,24 @@ describe('Signup component', () => {
       msw.userDataQuery(200, undefined);
       localStorage.clear();
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitFor(() => {
-        expect(pushMock).toHaveBeenCalledTimes(1);
+        expect(router.pathname).toBe('/');
       });
+    });
+
+    it('should display an error page when user profile fetching', async () => {
+      msw.userDataQuery(500, undefined);
+      localStorage.setItem('token', '"cool"');
+
+      render();
+
+      await screen.findByTestId(/ErrorOutlineIcon/i);
+      expect(screen.getByText(/userInfosPage:ohNo/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:profileLoadingError/i)
+      ).toBeInTheDocument();
     });
   });
 
@@ -78,7 +91,7 @@ describe('Signup component', () => {
     it('should display user data', async () => {
       msw.userDataQuery(200, mockedUser);
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
@@ -86,6 +99,13 @@ describe('Signup component', () => {
 
       expect(screen.getByText(`${firstName} ${lastName}`)).toBeInTheDocument();
       expect(screen.getByText(`${userName}`)).toBeInTheDocument();
+      expect(
+        screen.getByText(
+          getInterpolableTranslationAssertKey('userInfosPage:youAreARole', [
+            { roleName: 'Skwat owner' },
+          ])
+        )
+      ).toBeInTheDocument();
     });
 
     it('should display the communication skill', async () => {
@@ -94,11 +114,13 @@ describe('Signup component', () => {
         skills: [{ id: 6, name: 'Communication', category: 'Soft skills' }],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByTestId('RecordVoiceOverIcon')).toBeInTheDocument();
       expect(screen.getByText(/communication/i)).toBeInTheDocument();
@@ -112,11 +134,13 @@ describe('Signup component', () => {
         ],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByTestId('QuestionAnswerIcon')).toBeInTheDocument();
       expect(screen.getByText(/information sharing/i)).toBeInTheDocument();
@@ -134,11 +158,13 @@ describe('Signup component', () => {
         ],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByTestId('TwoWheelerIcon')).toBeInTheDocument();
       expect(screen.getByText(/project drive/i)).toBeInTheDocument();
@@ -150,11 +176,13 @@ describe('Signup component', () => {
         skills: [{ id: 9, name: 'Reporting', category: 'Management' }],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByTestId('AssessmentIcon')).toBeInTheDocument();
       expect(screen.getByText(/reporting/i)).toBeInTheDocument();
@@ -168,11 +196,13 @@ describe('Signup component', () => {
         ],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByTestId('LoyaltyIcon')).toBeInTheDocument();
       expect(screen.getByText(/roadmap definition/i)).toBeInTheDocument();
@@ -184,11 +214,13 @@ describe('Signup component', () => {
         skills: [{ id: 1, name: 'jest', category: 'Tech' }],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByRole('img', { name: /jest/i })).toBeInTheDocument();
       expect(screen.getByText(/jest/i)).toBeInTheDocument();
@@ -200,11 +232,13 @@ describe('Signup component', () => {
         skills: [{ id: 4, name: 'react', category: 'Tech' }],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByRole('img', { name: /react/i })).toBeInTheDocument();
       expect(screen.getByText('react')).toBeInTheDocument();
@@ -216,11 +250,13 @@ describe('Signup component', () => {
         skills: [{ id: 5, name: 'Typescript', category: 'Tech' }],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(
         screen.getByRole('img', { name: /typescript/i })
@@ -234,11 +270,13 @@ describe('Signup component', () => {
         skills: [{ id: 10, name: 'Github actions', category: 'Tech' }],
       });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.getByText(/your skills are/i)).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:yourSkillsAre/i)
+      ).toBeInTheDocument();
 
       expect(screen.getByTestId('GitHubIcon')).toBeInTheDocument();
       expect(screen.getByText(/github/i)).toBeInTheDocument();
@@ -247,11 +285,13 @@ describe('Signup component', () => {
     it('should not display a skills section', async () => {
       msw.userDataQuery(200, { ...mockedUser, skills: [] });
 
-      render(<LoggedUserHome />);
+      render();
 
       await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
 
-      expect(screen.queryByText(/your skills are/i)).not.toBeInTheDocument();
+      expect(
+        screen.queryByText(/userInfosPage:yourSkillsAre/i)
+      ).not.toBeInTheDocument();
     });
   });
 });

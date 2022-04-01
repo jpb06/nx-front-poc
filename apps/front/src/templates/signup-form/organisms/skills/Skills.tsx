@@ -1,3 +1,4 @@
+import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useIsMutating } from 'react-query';
 
@@ -16,8 +17,9 @@ type SelectRoleProps = Omit<
 >;
 
 export const Skills = (props: SelectRoleProps) => {
+  const { t } = useTranslation('signupPage');
   const label = 'skills';
-  const { data, error, status } = useSignupData(useSkillsQuery);
+  const { data, status } = useSignupData(useSkillsQuery);
 
   const isLoading =
     useIsMutating({
@@ -28,13 +30,13 @@ export const Skills = (props: SelectRoleProps) => {
   return {
     idle: <Loading label={label} />,
     loading: <Loading label={label} />,
-    error: <LoadingError label={label} error={error} />,
-    noData: <ErrorBlock text={`No ${label} were fetched`} />,
+    error: <LoadingError label={label} />,
+    noData: <ErrorBlock text={t('noItemsFetched', { items: label })} />,
     success: (
       <CheckBoxList
         {...props}
         name="idSkills"
-        label="Skills"
+        label={t('skills')}
         isLoading={isLoading}
         items={data}
       />
