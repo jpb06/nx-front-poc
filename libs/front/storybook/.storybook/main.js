@@ -32,6 +32,10 @@ const storybookMainConfig = {
     return config;
   },
   features: { emotionAlias: false },
+  env: (config) => ({
+    ...config,
+    NEXT_PUBLIC_API_URL: 'https://rhf-mui-nx-sandbox-api.com',
+  }),
 };
 
 // No way to use @nrwl/react/plugins/storybook for now, since it relies on webpack 5. See:
