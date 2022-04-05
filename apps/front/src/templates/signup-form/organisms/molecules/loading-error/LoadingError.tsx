@@ -5,7 +5,7 @@ import { ErrorBlock } from '@components/molecules';
 
 import { SignupPreloadedDataLabel } from '../types/signup-preloaded-data-label.type';
 
-type LoadingErrorProps = {
+export type LoadingErrorProps = {
   label: SignupPreloadedDataLabel;
 };
 

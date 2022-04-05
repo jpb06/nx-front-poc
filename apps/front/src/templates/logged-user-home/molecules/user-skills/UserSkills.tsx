@@ -6,7 +6,7 @@ import { SubTitle } from '@components/molecules';
 
 import { Skill } from './skill/Skill';
 
-type UserSkillsProps = Pick<SignedUser, 'skills'>;
+export type UserSkillsProps = Pick<SignedUser, 'skills'>;
 
 export const UserSkills: React.FC<UserSkillsProps> = ({ skills }) => {
   const { t } = useTranslation('userInfosPage');

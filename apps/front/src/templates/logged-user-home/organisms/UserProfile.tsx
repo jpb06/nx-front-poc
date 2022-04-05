@@ -5,7 +5,7 @@ import { FullpageBox } from '@components/organisms';
 
 import { UserAvatar, UserInfos, UserSkills } from './../molecules';
 
-type UserProfileProps = {
+export type UserProfileProps = {
   user: User;
 };
 

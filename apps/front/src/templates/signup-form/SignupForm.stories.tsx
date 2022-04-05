@@ -8,7 +8,7 @@ import { Signup } from './SignupForm';
 
 export default {
   component: Signup,
-  title: 'Front app/User stories/Signup',
+  title: 'Front app/User stories/Signup/Templates/SignupForm',
   decorators: reactQueryDecorator,
 } as ComponentMeta<typeof Signup>;
 
