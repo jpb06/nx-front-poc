@@ -19,14 +19,14 @@ Cypress tests for our `front` app
 
 ### WIP cucumber
 
-pnpm way :
+nx way :
 
 ```bash
 pnpm nx run front-e2e:e2e -e TAGS="@Cool" --skip-nx-cache
 pnpm nx run front-e2e:e2e --env.TAGS="@Cool" --skip-nx-cache
 ```
 
-Trying to use cypress-tags:
+Trying to use cypress-tags directly:
 
 ```bash
 ./node_modules/.bin/cypress-tags run -e TAGS="@Cool"
@@ -34,7 +34,7 @@ Trying to use cypress-tags:
 
 Issue with cypress-tags: [Reading cypress config](https://github.com/TheBrainFamily/cypress-cucumber-preprocessor/blob/7031d0283330bca814d6923d35d984224622b4cf/cypress-tags.js#L33).
 
-Issues :
+Issues search :
 
 - [nx](https://github.com/nrwl/nx/search?q=cucumber&type=issues)
 - [cucumber preprocessor](https://github.com/TheBrainFamily/cypress-cucumber-preprocessor/search?q=monorepo&type=issues)
