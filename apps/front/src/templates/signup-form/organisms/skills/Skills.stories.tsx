@@ -8,24 +8,21 @@ import * as zod from 'zod';
 import { msw } from '@api/msw';
 import { SnackbarContext } from '@components/organisms';
 import { reactQueryDecorator } from '@storybook';
-import { mockedRoles } from '@tests/mocked-data';
+import { mockedSkills } from '@tests/mocked-data';
 
 import { FormModel } from '../../hooks/useSignupFormSchema';
-import { Roles } from './Roles';
+import { Skills } from './Skills';
 
 export default {
-  component: Roles,
-  title: 'Front app/User stories/Signup/Organisms/Roles',
+  component: Skills,
+  title: 'Front app/User stories/Signup/Organisms/Skills',
   decorators: reactQueryDecorator,
-} as ComponentMeta<typeof Roles>;
+} as ComponentMeta<typeof Skills>;
 
-const roleRequired = 'roleRequired';
 const schema = zod.object({
-  idRole: zod
-    .number({
-      required_error: roleRequired,
-    })
-    .gte(0, roleRequired),
+  idSkills: zod
+    .preprocess((v) => parseInt(zod.string().parse(v), 10), zod.number())
+    .array(),
 });
 
 type FormProps = { displayButton: boolean };
@@ -33,12 +30,17 @@ type FormProps = { displayButton: boolean };
 const Form: React.FC<FormProps> = ({ displayButton }) => {
   const showSnackbar = useContext(SnackbarContext);
   const { control, handleSubmit } = useForm<FormModel>({
-    defaultValues: { lastName: '' },
+    defaultValues: { idSkills: [] },
     resolver: zodResolver(schema),
   });
 
   const onSubmit = handleSubmit((data) => {
-    showSnackbar(`Form submitted with ${data.idRole}`, 'success');
+    showSnackbar(
+      `Form submitted with ${
+        data.idSkills.length === 0 ? 'Nothing' : data.idSkills
+      }`,
+      'success'
+    );
   });
 
   return (
@@ -51,7 +53,7 @@ const Form: React.FC<FormProps> = ({ displayButton }) => {
         spacing={2}
       >
         <Grid item>
-          <Roles control={control} />
+          <Skills control={control} />
         </Grid>
         <Grid
           item
@@ -79,7 +81,12 @@ export const NominalCase = Template.bind({});
 NominalCase.parameters = {
   msw: {
     handlers: {
-      roles: msw.rolesQuery(200, mockedRoles, false),
+      skills: msw.skillsQuery(200, mockedSkills, false),
+      areSkillsAvailableForRoleMutation: msw.areSkillsAvailableForRoleMutation(
+        200,
+        { result: [] },
+        false
+      ),
     },
   },
 };
@@ -98,7 +105,7 @@ export const LoadingErrorCase = Template.bind({});
 LoadingErrorCase.parameters = {
   msw: {
     handlers: {
-      roles: msw.rolesQuery(500, undefined, false),
+      skills: msw.skillsQuery(500, undefined, false),
     },
   },
 };

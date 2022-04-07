@@ -12,8 +12,8 @@ export default {
 
 const Template: Story<LoadingErrorProps> = (args) => <LoadingError {...args} />;
 
-export const RolesCase = Template.bind({});
-RolesCase.parameters = {};
-RolesCase.args = {
+export const NominalCase = Template.bind({});
+NominalCase.parameters = {};
+NominalCase.args = {
   label: 'roles',
 };

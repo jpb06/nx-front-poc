@@ -1,7 +1,7 @@
 import { GlobalIndicator, GlobalIndicatorProps } from '@components/molecules';
 import { FullpageBox } from '@components/organisms';
 
-type FullpageErrorProps = Pick<GlobalIndicatorProps, 'title' | 'Icon'>;
+export type FullpageErrorProps = Pick<GlobalIndicatorProps, 'title' | 'Icon'>;
 
 export const FullpageError: React.FC<FullpageErrorProps> = ({
   Icon,
