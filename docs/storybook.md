@@ -15,15 +15,17 @@ We can use storybook to demonstrate each part of our work to the product team. T
 Let's take an example:
 I was given a signup feature to deliver. We have a few questions to address during the conception phase:
 
-#### 📕 Interactions with our backend(s)
+#### 🔻 Interactions with our backend(s)
 
 > Which endpoints will be called and what will be their input and output?
 
-#### 📕 Components tree
+#### 🔻 Components tree
 
-> Following the [atomic design](./frontend-architecture.md) architecture, what will our component tree look like?
+> Following the [atomic design](./frontend-architecture.md) architecture, what kind of components tree do we need?
 >
-> ❇️ Will we use contexts? Will we use atomic state? Why?
+> ❇️ Will we use contexts? Why?
+>
+> ❇️ Will we use atomic state (jotai)?
 >
 > ❇️ Will we use some generic components or shared hooks, and if so which ones?
 >
@@ -33,7 +35,7 @@ I was given a signup feature to deliver. We have a few questions to address duri
 >
 > > Generic being used in several apps, specialized being used only in that story.
 
-#### 📕 Technical debt
+#### 🔻 Technical debt
 
 > ❇️ Are we sure everything is at the right level? Should we refactor existing code to limit specialization ?
 >
@@ -165,7 +167,7 @@ project.json
 }
 ```
 
-Cool. Now we can do:
+Cool! Now we can use the following commands:
 
 ```bash
 // Launching storybook in watch mode (dev)
