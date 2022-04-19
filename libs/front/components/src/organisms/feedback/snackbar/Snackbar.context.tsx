@@ -1,5 +1,10 @@
 import { AlertColor } from '@mui/material';
-import React, { createContext, SyntheticEvent, useState } from 'react';
+import React, {
+  createContext,
+  PropsWithChildren,
+  SyntheticEvent,
+  useState,
+} from 'react';
 
 import { Snackbar } from './Snackbar';
 
@@ -25,7 +30,7 @@ export type State = {
   messageInfo?: SnackbarMessage;
 };
 
-export const WithSnackbar: React.FC = ({ children }) => {
+export const WithSnackbar = ({ children }: PropsWithChildren<unknown>) => {
   const [snackPack, setSnackPack] = useState<readonly SnackbarMessage[]>([]);
   const [open, setOpen] = useState(false);
   const [messageInfo, setMessageInfo] = useState<SnackbarMessage | undefined>(

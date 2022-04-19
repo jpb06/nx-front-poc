@@ -204,9 +204,7 @@ Of course, for this to work, the page using this component must load both `commo
 We may need to inject dynamic values in our translations. This can be done by using the second parameter of our `t` function:
 
 ```tsx
-export const HomePage: React.FC<HomePageProps> = ({
-  user: { firstname, lastname },
-}) => {
+export const HomePage = ({ user: { firstname, lastname } }: HomePageProps) => {
   const { t } = useTranslation('home');
 
   t('welcomeBanner', {
@@ -325,7 +323,7 @@ i18n.use(initReactI18next).init({
 });
 
 export const appRender = (component: JSX.Element): RenderResult => {
-  const wrapper: React.FC = ({ children }) =>
+  const wrapper = ({ children }: PropsWithChildren<unknown>) =>
     <I18nextProvider i18n={i18n}>{children}</I18nextProvider>
   };
 
@@ -424,7 +422,7 @@ export const I18nProvider = (
 
   // [...]
 
-  const wrapper: React.FC = ({ children }) => (
+  const wrapper = ({ children }) => (
     <I18nextProvider i18n={finalI18n}>{children}</I18nextProvider>
   );
 
@@ -507,7 +505,7 @@ export const I18nProvider = (
     });
   }
 
-  const wrapper: React.FC = ({ children }) => (
+  const wrapper = ({ children }) => (
     <I18nextProvider i18n={finalI18n}>{children}</I18nextProvider>
   );
 

@@ -13,12 +13,12 @@ export type BrandProps = {
   big?: boolean;
 };
 
-export const Brand: React.FC<BrandProps> = ({
+export const Brand = ({
   color,
   centered = false,
   withBottomMargin = false,
   big = false,
-}) => {
+}: BrandProps) => {
   const withMainColor = withThemeColor(color);
 
   const justifyContent = centered ? 'center' : 'flex-start';

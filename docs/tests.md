@@ -14,7 +14,7 @@ A provider typically looks like this:
 
 ```typescript
 const ThemeProvider = (): WrapperResult => {
-  const Wrapper: React.FC = ({ children }) => {
+  const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
     return <MuiThemeProvider theme={appTheme}>{children}</MuiThemeProvider>;
   };
 

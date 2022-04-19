@@ -6,12 +6,12 @@ import {
   CardMedia,
   Grid,
 } from '@mui/material';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import { LangSelector } from '../../../organisms/lang-selector/LangSelector';
 import { Brand } from '../../data-display/brand/Brand';
 
-export const FullpageBox: React.FC = ({ children }) => (
+export const FullpageBox = ({ children }: PropsWithChildren<unknown>) => (
   <Grid
     container
     spacing={0}

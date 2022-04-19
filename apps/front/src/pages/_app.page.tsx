@@ -16,11 +16,7 @@ export interface EmotionAppProps extends AppProps {
   emotionCache: EmotionCache;
 }
 
-const MyApp: React.FC<EmotionAppProps> = ({
-  Component,
-  emotionCache,
-  pageProps,
-}) => (
+const MyApp = ({ Component, emotionCache, pageProps }: EmotionAppProps) => (
   <EmotionCacheProvider emotionCache={emotionCache}>
     <Head>
       <title>Sandbox</title>

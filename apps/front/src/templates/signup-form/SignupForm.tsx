@@ -10,7 +10,7 @@ import { FullpageBox } from '@components/organisms';
 import { useSignupForm } from './hooks/useSignupForm';
 import { Roles, Skills } from './organisms';
 
-export const Signup: React.FC = () => {
+export const Signup = () => {
   const { t } = useTranslation('signupPage');
 
   const { onSubmit, control, isLoading } = useSignupForm();

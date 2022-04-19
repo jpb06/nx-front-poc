@@ -8,7 +8,7 @@ export type LoadingBlockProps = {
   text: string;
 };
 
-export const LoadingBlock: React.FC<LoadingBlockProps> = ({ name, text }) => (
+export const LoadingBlock = ({ name, text }: LoadingBlockProps) => (
   <Grid
     container
     direction="column"

@@ -27,7 +27,7 @@ const schema = zod.object({
 
 type FormProps = { displayButton: boolean };
 
-const Form: React.FC<FormProps> = ({ displayButton }) => {
+const Form = ({ displayButton }: FormProps) => {
   const showSnackbar = useContext(SnackbarContext);
   const { control, handleSubmit } = useForm<FormModel>({
     defaultValues: { idSkills: [] },

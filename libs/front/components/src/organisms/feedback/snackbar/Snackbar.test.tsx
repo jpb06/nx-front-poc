@@ -9,9 +9,11 @@ import { useContext } from 'react';
 import { appRender } from '../../../test/renders/appRender';
 import { SnackbarContext } from './Snackbar.context';
 
+type ClickerProps = { severity: AlertColor };
+
 describe('Snackbar component', () => {
   const render = () => {
-    const Clicker: React.FC<{ severity: AlertColor }> = ({ severity }) => {
+    const Clicker = ({ severity }: ClickerProps) => {
       const showSnackbar = useContext(SnackbarContext);
 
       const handleClick = () => {
@@ -21,7 +23,7 @@ describe('Snackbar component', () => {
       return <Button onClick={handleClick}>{severity}</Button>;
     };
 
-    const SnackbarWrapper: React.FC = () => (
+    const SnackbarWrapper = () => (
       <>
         <Clicker severity="error" />
         <Clicker severity="info" />

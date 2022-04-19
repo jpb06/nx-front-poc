@@ -82,7 +82,7 @@ const schema = zod
   });
 type FormModel = zod.infer<typeof schema>;
 
-const Form: React.FC<CheckBoxListProps<FormModel>> = ({ isLoading, label }) => {
+const Form = ({ isLoading, label }: CheckBoxListProps<FormModel>) => {
   const showSnackbar = useContext(SnackbarContext);
   const { control, handleSubmit } = useForm<FormModel>({
     defaultValues: { idSkills: [] },
