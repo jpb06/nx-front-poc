@@ -101,7 +101,7 @@ export function CheckBoxList<T>(
           })}
           {error?.type !== 'custom' && error?.message && (
             <FormHelperText sx={{ textAlign: 'center' }}>
-              {t(error.message as NamespaceKey<'forms'>)}
+              <>{t(error.message as NamespaceKey<'forms'>)}</>
             </FormHelperText>
           )}
           {invalidFields.length > 0 && (
