@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import React, { PropsWithChildren } from 'react';
 
-import { LangSelector } from '../../../organisms/lang-selector/LangSelector';
+import { LangSelector } from '../../../molecules';
 import { Brand } from '../../data-display/brand/Brand';
 
 export const FullpageBox = ({ children }: PropsWithChildren<unknown>) => (

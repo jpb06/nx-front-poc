@@ -5,7 +5,7 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { Input, PasswordInput } from '@components/molecules';
-import { FullpageBox } from '@components/organisms';
+import { FullpageBox } from '@components/molecules';
 
 import { useSignupForm } from './hooks/useSignupForm';
 import { Roles, Skills } from './organisms';

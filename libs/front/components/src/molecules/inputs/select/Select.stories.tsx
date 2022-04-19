@@ -12,7 +12,7 @@ import { Select, SelectProps } from './Select';
 
 export default {
   component: Select,
-  title: 'Shared/Molecules/Select',
+  title: 'Shared/Molecules/Inputs/Select',
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,

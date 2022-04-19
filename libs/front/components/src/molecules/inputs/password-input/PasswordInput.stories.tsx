@@ -12,7 +12,7 @@ import { PasswordInput, PasswordInputProps } from './PasswordInput';
 
 export default {
   component: PasswordInput,
-  title: 'Shared/Molecules/PasswordInput',
+  title: 'Shared/Molecules/Inputs/PasswordInput',
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,

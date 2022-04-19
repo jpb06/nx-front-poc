@@ -1,7 +1,7 @@
 import { Divider } from '@mui/material';
 
 import { User } from '@api/types';
-import { FullpageBox } from '@components/organisms';
+import { FullpageBox } from '@components/molecules';
 
 import { UserAvatar, UserInfos, UserSkills } from './../molecules';
 

@@ -12,7 +12,7 @@ import { Input, InputProps } from './Input';
 
 export default {
   component: Input,
-  title: 'Shared/Molecules/Input',
+  title: 'Shared/Molecules/Inputs/Input',
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
