@@ -1,7 +1,10 @@
 import { PropsWithChildren } from 'react';
 
-import { GlobalIndicator, GlobalIndicatorProps } from '@components/molecules';
-import { FullpageBox } from '@components/molecules';
+import {
+  GlobalIndicator,
+  GlobalIndicatorProps,
+  FullpageBox,
+} from '@components/molecules';
 
 export type FullpageErrorProps = Pick<GlobalIndicatorProps, 'title' | 'Icon'>;
 
