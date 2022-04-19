@@ -1,4 +1,8 @@
-import { screen, waitFor } from '@testing-library/react';
+import {
+  screen,
+  waitFor,
+  waitForElementToBeRemoved,
+} from '@testing-library/react';
 import * as zod from 'zod';
 
 import { SkillCategoryDto } from '@api/types';
@@ -116,9 +120,9 @@ describe('CheckBoxList component', () => {
     });
     await user.click(managementCategory);
 
-    expect(
+    await waitForElementToBeRemoved(() =>
       screen.queryByRole('checkbox', { name: /communication/i })
-    ).not.toBeInTheDocument();
+    );
     expect(
       screen.queryByRole('checkbox', { name: /information sharing/i })
     ).not.toBeInTheDocument();
