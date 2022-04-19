@@ -12,7 +12,7 @@ const icons = { BugReportIcon, CheckCircleIcon, WarningIcon, InfoIcon };
 
 export default {
   component: FullpageError,
-  title: 'Front app/Molecules/FullpageError',
+  title: 'Front app/Shared/Molecules/FullpageError',
   decorators: reactQueryDecorator,
   argTypes: {
     Icon: {

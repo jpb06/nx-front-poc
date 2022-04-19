@@ -6,7 +6,7 @@ import { FullpageLoader } from './FullpageLoader';
 
 export default {
   component: FullpageLoader,
-  title: 'Front app/Molecules/FullpageLoader',
+  title: 'Front app/Shared/Molecules/FullpageLoader',
   decorators: reactQueryDecorator,
 } as ComponentMeta<typeof FullpageLoader>;
 

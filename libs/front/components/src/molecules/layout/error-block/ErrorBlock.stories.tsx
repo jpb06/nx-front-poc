@@ -4,7 +4,7 @@ import { ErrorBlock, ErrorBlockProps } from './ErrorBlock';
 
 export default {
   component: ErrorBlock,
-  title: 'Shared/molecules/ErrorBlock',
+  title: 'Shared/Molecules/ErrorBlock',
 } as ComponentMeta<typeof ErrorBlock>;
 
 const Template: Story<ErrorBlockProps> = (args) => <ErrorBlock {...args} />;
