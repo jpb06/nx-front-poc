@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import { WithSnackbar } from '../../../organisms/feedback/snackbar/Snackbar.context';
-import { WrapperResult } from './types/wrapper-result.type';
+import { TestWrapper } from './types/test-wrapper.type';
 
-export const SnackbarProvider = (): WrapperResult => {
-  const Wrapper: React.FC = ({ children }) => {
+export const SnackbarProvider = (): TestWrapper => {
+  const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
     return <WithSnackbar>{children}</WithSnackbar>;
   };
 
-  return { wrapper: Wrapper };
+  return Wrapper;
 };

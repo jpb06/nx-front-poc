@@ -1,8 +1,8 @@
-import React from 'react';
+import { PropsWithChildren } from 'react';
 import { I18nextProvider } from 'react-i18next';
 
 import { i18n } from '../../localization/i18n';
-import { WrapperResult } from './types/wrapper-result.type';
+import { TestWrapper } from './types/test-wrapper.type';
 
 export type I18nProviderProps = {
   language: string;
@@ -16,7 +16,7 @@ export type ResourceBundle = {
 
 export const I18nProvider = (
   i18nConfig: I18nProviderProps | undefined = undefined
-): WrapperResult => {
+): TestWrapper => {
   // we have to clone the instance, otherwise our test cases won't be isolated
   const finalI18n = i18n.cloneInstance();
 
@@ -50,9 +50,9 @@ export const I18nProvider = (
     });
   }
 
-  const wrapper: React.FC = ({ children }) => (
+  const Wrapper = ({ children }: PropsWithChildren<unknown>) => (
     <I18nextProvider i18n={finalI18n}>{children}</I18nextProvider>
   );
 
-  return { wrapper };
+  return Wrapper;
 };

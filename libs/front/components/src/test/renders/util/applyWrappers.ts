@@ -27,35 +27,26 @@ export const applyWrappers = <TForm>(props?: ApplyWrappersProps<TForm>) => {
   const wrappers = [...defaultProviders, ...providers].map((key) => {
     switch (key) {
       case 'theme': {
-        const { wrapper: themeWrapper } = ThemeProvider();
-        return themeWrapper;
+        return ThemeProvider();
       }
       case 'i18n': {
-        const { wrapper: i18nProviderWrapper } = I18nProvider(
-          props?.i18nConfig
-        );
-        return i18nProviderWrapper;
+        return I18nProvider(props?.i18nConfig);
       }
       case 'snackbar': {
-        const { wrapper: snackbarWrapper } = SnackbarProvider();
-        return snackbarWrapper;
+        return SnackbarProvider();
       }
       case 'reactQuery': {
-        const { wrapper: reactQueryWrapper } = ReactQueryProvider();
-        return reactQueryWrapper;
+        return ReactQueryProvider();
       }
       case 'form': {
-        const { wrapper: formProviderWrapper } = FormProvider<TForm>(
+        return FormProvider<TForm>(
           props?.formProviderWrapperDefaultValues as UnpackNestedValue<
             DeepPartial<TForm>
           >
         );
-        return formProviderWrapper;
       }
       case 'emotionCache': {
-        const { wrapper: EmotionCacheWrapper } = EmotionCacheProvider();
-
-        return EmotionCacheWrapper;
+        return EmotionCacheProvider();
       }
       default:
         throw new Error(`${key} no handled in applyWrappers`);
