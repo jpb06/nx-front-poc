@@ -28,7 +28,7 @@ export function PasswordInput<T>(props: PasswordInputProps<T>): JSX.Element {
       variant="outlined"
       fullWidth
       size="small"
-      error={fieldState.invalid}
+      error={!!fieldState.error}
     >
       <InputLabel htmlFor={`outlined-adornment-${props.name}`}>
         {props.label}

@@ -18,7 +18,7 @@ export function Input<T>(props: InputProps<T>): JSX.Element {
       variant="outlined"
       size="small"
       fullWidth
-      error={fieldState.invalid}
+      error={!!fieldState.error}
       helperText={fieldState.error?.message}
       onChange={(e) => {
         onChange(e.target.value === '' ? undefined : e.target.value);
