@@ -63,7 +63,10 @@ jobs:
         timeout-minutes: 10
 
       - name: Tests
-        run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --codeCoverage
+        # run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --codeCoverage
+        
+        # Running all tests for now, otherwise we might have missing coverage for sonarcloud quality gate ):
+        run: pnpm exec nx run-many --target=test --parallel --all
         timeout-minutes: 10
 
       - name: Check if coverage folder exists
