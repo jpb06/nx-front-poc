@@ -18,9 +18,9 @@
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=jpb06_mui-rhf-sandbox&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=jpb06_mui-rhf-sandbox)
 ![Last commit](https://img.shields.io/github/last-commit/jpb06/mui-rhf-sandbox?logo=git)
 
-Here is a little POC to help our team move forward with our stack! ✨
-
 ## 🚀 [Main frontend app](https://mui-rhf-sandbox.vercel.app) | [Storybook](https://mui-rhf-sandbox-storybook.vercel.app)
+
+Here is a little POC to help our team move forward with our stack! ✨
 
 ## ⚡ Getting started
 
