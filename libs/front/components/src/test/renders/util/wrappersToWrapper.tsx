@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
+
+type Wrapper = ({ children }: PropsWithChildren<unknown>) => JSX.Element;
 
 export type ReactWrapperComponent = React.JSXElementConstructor<{
   children: React.ReactElement;
@@ -8,15 +10,13 @@ export type ReactWrapperComponent = React.JSXElementConstructor<{
  * @param wrappers The wrappers to apply.
  * The first wrapper in the list will be the one applied at the root and so on
  */
-export const wrappersToWrapper = (
-  wrappers: ReactWrapperComponent[]
-): React.ComponentType =>
+export const wrappersToWrapper = (wrappers: Wrapper[]): Wrapper =>
   wrappers
     .slice()
     .reverse()
-    .reduce<React.ComponentType>(
+    .reduce(
       (Acc, Wrapper) =>
-        ({ children }) =>
+        ({ children }: PropsWithChildren<unknown>) =>
           (
             <Wrapper>
               <Acc>{children}</Acc>

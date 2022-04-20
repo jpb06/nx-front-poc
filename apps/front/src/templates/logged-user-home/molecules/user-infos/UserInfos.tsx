@@ -9,12 +9,12 @@ export type UserInfosProps = Pick<
   'userName' | 'firstName' | 'lastName' | 'role'
 >;
 
-export const UserInfos: React.FC<UserInfosProps> = ({
+export const UserInfos = ({
   userName,
   firstName,
   lastName,
   role,
-}) => {
+}: UserInfosProps) => {
   const { t } = useTranslation('userInfosPage');
 
   return (

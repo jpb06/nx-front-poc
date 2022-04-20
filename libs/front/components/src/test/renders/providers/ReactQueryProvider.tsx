@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import { PropsWithChildren, useContext } from 'react';
 import {
   MutationCache,
   QueryClient,
@@ -11,7 +11,7 @@ import {
   ShowSnackbarFn,
   SnackbarContext,
 } from '../../../organisms/feedback/snackbar/Snackbar.context';
-import { WrapperResult } from './types/wrapper-result.type';
+import { TestWrapper } from './types/test-wrapper.type';
 
 //https://react-query.tanstack.com/guides/testing#_top
 /*eslint-disable*/
@@ -41,8 +41,8 @@ const createTestQueryClient = (showSnackbar: ShowSnackbarFn) => {
   });
 };
 
-export const ReactQueryProvider = (): WrapperResult => {
-  const wrapper: React.FC = ({ children }) => {
+export const ReactQueryProvider = (): TestWrapper => {
+  const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
     const showSnackbar = useContext(SnackbarContext);
     // Create client in render to prevent cache sharing accross the tests
     const queryClient = createTestQueryClient(showSnackbar);
@@ -52,5 +52,5 @@ export const ReactQueryProvider = (): WrapperResult => {
     );
   };
 
-  return { wrapper };
+  return Wrapper;
 };

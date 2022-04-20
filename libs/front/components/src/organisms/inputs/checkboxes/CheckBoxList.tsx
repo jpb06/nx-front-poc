@@ -38,7 +38,7 @@ export function CheckBoxList<T>(
   const [openedCategoryId, setOpenedCategoryId] = useState(1);
 
   const {
-    fieldState: { invalid, error },
+    fieldState: { error },
   } = useController(props);
 
   const handleCategoryClick = (id: number) => () => {
@@ -55,7 +55,7 @@ export function CheckBoxList<T>(
     <FormControl
       component="fieldset"
       variant="standard"
-      error={invalid}
+      error={!!error}
       sx={{ width: '100%' }}
     >
       <FormGroup>
@@ -101,7 +101,7 @@ export function CheckBoxList<T>(
           })}
           {error?.type !== 'custom' && error?.message && (
             <FormHelperText sx={{ textAlign: 'center' }}>
-              {t(error.message as NamespaceKey<'forms'>)}
+              <>{t(error.message as NamespaceKey<'forms'>)}</>
             </FormHelperText>
           )}
           {invalidFields.length > 0 && (

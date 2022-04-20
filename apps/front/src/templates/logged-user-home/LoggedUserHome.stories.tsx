@@ -8,7 +8,7 @@ import { LoggedUserHome } from './LoggedUserHome';
 
 export default {
   component: LoggedUserHome,
-  title: 'Front app/User stories/Logger user',
+  title: 'Front app/User stories/Logger user/Templates/LoggedUserHome',
   decorators: reactQueryDecorator,
 } as ComponentMeta<typeof LoggedUserHome>;
 
@@ -25,16 +25,26 @@ NominalCase.parameters = {
   },
 };
 
-const NotLoggedInTemplate: Story = (_) => {
-  localStorage.removeItem('token');
+const UnauthorizedTemplate: Story = (_) => {
+  localStorage.setItem('token', '"cool"');
 
   return <LoggedUserHome />;
 };
 
-export const ErrorCase = NotLoggedInTemplate.bind({});
-ErrorCase.args = {};
-ErrorCase.parameters = {
+export const UnauthorizedCase = UnauthorizedTemplate.bind({});
+UnauthorizedCase.args = {};
+UnauthorizedCase.parameters = {
   msw: {
-    handlers: [msw.userDataQuery(500, {}, false)],
+    handlers: [msw.userDataQuery(401, {}, false)],
   },
 };
+
+const NotLoggedInTemplate: Story = (_) => {
+  localStorage.clear();
+
+  return <LoggedUserHome />;
+};
+
+export const NotLoggedInCase = NotLoggedInTemplate.bind({});
+NotLoggedInCase.args = {};
+NotLoggedInCase.parameters = {};

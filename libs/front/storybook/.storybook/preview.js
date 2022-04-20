@@ -10,6 +10,7 @@ import { appTheme } from '@theme';
 
 import { i18n } from './i18next';
 import { AppThemeProvider } from './../../components/src/molecules/providers/app-theme.provider';
+import { WithSnackbar } from '@components/organisms';
 
 const finalI18n = i18n.cloneInstance();
 
@@ -49,8 +50,10 @@ export const decorators = [
     <>
       <meta name="theme-color" content={appTheme.palette.primary.main} />
       <AppThemeProvider>
-        <CssBaseline />
-        <Story />
+        <WithSnackbar>
+          <CssBaseline />
+          <Story />
+        </WithSnackbar>
       </AppThemeProvider>
     </>
   ),

@@ -1,4 +1,4 @@
-import { appRender } from '../../test/renders/appRender';
+import { appRender } from '../../../test/renders/appRender';
 import { LangSelector } from './LangSelector';
 
 describe('LangSelector component', () => {

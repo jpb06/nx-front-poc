@@ -1,7 +1,7 @@
 import { Box, SvgIconTypeMap } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { alpha } from '@mui/material/styles';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import { spinKeyframe } from '../../../logic/keyframes/spin.keyframe';
 import { getAppColorFor } from '../../../theme';
@@ -12,12 +12,12 @@ export type GlobalIndicatorProps = {
   Icon: OverridableComponent<SvgIconTypeMap>;
 };
 
-export const GlobalIndicator: React.FC<GlobalIndicatorProps> = ({
+export const GlobalIndicator = ({
   hasTopMargin,
   title,
   Icon,
   children,
-}) => (
+}: PropsWithChildren<GlobalIndicatorProps>) => (
   <Box
     component="div"
     sx={{
@@ -30,7 +30,7 @@ export const GlobalIndicator: React.FC<GlobalIndicatorProps> = ({
       sx={{
         height: 100,
         width: 100,
-        animation: `${spinKeyframe} 2s linear infinite`,
+        animation: `${spinKeyframe} 1.3s linear`,
       }}
     />
     <Box

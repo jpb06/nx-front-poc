@@ -10,7 +10,7 @@ const icons = { TagFacesIcon, ErrorIcon, AnnouncementIcon, BugReportIcon };
 
 export default {
   component: GlobalIndicator,
-  title: 'Shared/molecules/GlobalIndicator',
+  title: 'Shared/Molecules/Feedback/GlobalIndicator',
   argTypes: {
     Icon: {
       options: Object.keys(icons),

@@ -14,7 +14,7 @@ type SkillIconProps = {
   idSkill: number;
 };
 
-export const SkillIcon: React.FC<SkillIconProps> = ({ idSkill }) => {
+export const SkillIcon = ({ idSkill }: SkillIconProps) => {
   const root = '/svg';
 
   const iconsStyle: SxProps<Theme> = {

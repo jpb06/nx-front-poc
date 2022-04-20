@@ -6,8 +6,7 @@ import { Select, SelectProps, ErrorBlock } from '@components/molecules';
 
 import { FormModel } from '../../hooks/useSignupFormSchema';
 import { useSignupData } from '../hooks/useSignupData';
-import { LoadingError } from '../molecules/loading-error/LoadingError';
-import { Loading } from '../molecules/loading/Loading';
+import { Loading, LoadingError } from '../molecules';
 
 type RolesProps = Omit<SelectProps<FormModel>, 'name' | 'label' | 'data'>;
 

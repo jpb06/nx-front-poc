@@ -1,16 +1,20 @@
-import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline';
+import { PropsWithChildren } from 'react';
 
-import { GlobalIndicator, GlobalIndicatorProps } from '@components/molecules';
-import { FullpageBox } from '@components/organisms';
+import {
+  GlobalIndicator,
+  GlobalIndicatorProps,
+  FullpageBox,
+} from '@components/molecules';
 
-type FullpageErrorProps = Pick<GlobalIndicatorProps, 'title'>;
+export type FullpageErrorProps = Pick<GlobalIndicatorProps, 'title' | 'Icon'>;
 
-export const FullpageError: React.FC<FullpageErrorProps> = ({
+export const FullpageError = ({
+  Icon,
   title,
   children,
-}) => (
+}: PropsWithChildren<FullpageErrorProps>) => (
   <FullpageBox>
-    <GlobalIndicator Icon={ErrorOutlineIcon} title={title} hasTopMargin={false}>
+    <GlobalIndicator Icon={Icon} title={title} hasTopMargin={false}>
       {children}
     </GlobalIndicator>
   </FullpageBox>

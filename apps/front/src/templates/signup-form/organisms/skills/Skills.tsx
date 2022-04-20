@@ -8,8 +8,7 @@ import { CheckBoxList, CheckBoxListProps } from '@components/organisms';
 
 import { FormModel } from '../../hooks/useSignupFormSchema';
 import { useSignupData } from '../hooks/useSignupData';
-import { LoadingError } from '../molecules/loading-error/LoadingError';
-import { Loading } from '../molecules/loading/Loading';
+import { Loading, LoadingError } from '../molecules';
 
 type SelectRoleProps = Omit<
   CheckBoxListProps<FormModel>,

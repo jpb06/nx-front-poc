@@ -12,7 +12,7 @@ import { CheckBoxList, CheckBoxListProps } from './CheckBoxList';
 
 export default {
   component: CheckBoxList,
-  title: 'Shared/organisms/CheckBoxList',
+  title: 'Shared/Organisms/Inputs/CheckBoxList',
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,
@@ -82,7 +82,7 @@ const schema = zod
   });
 type FormModel = zod.infer<typeof schema>;
 
-const Form: React.FC<CheckBoxListProps<FormModel>> = ({ isLoading, label }) => {
+const Form = ({ isLoading, label }: CheckBoxListProps<FormModel>) => {
   const showSnackbar = useContext(SnackbarContext);
   const { control, handleSubmit } = useForm<FormModel>({
     defaultValues: { idSkills: [] },

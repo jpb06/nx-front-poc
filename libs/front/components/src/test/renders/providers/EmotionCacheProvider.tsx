@@ -1,12 +1,12 @@
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import { EmotionCacheProvider as EmotionCache } from '../../../molecules/providers';
-import { WrapperResult } from './types/wrapper-result.type';
+import { TestWrapper } from './types/test-wrapper.type';
 
-export const EmotionCacheProvider = (): WrapperResult => {
-  const wrapper: React.FC = ({ children }) => (
+export const EmotionCacheProvider = (): TestWrapper => {
+  const Wrapper = ({ children }: PropsWithChildren<unknown>) => (
     <EmotionCache>{children}</EmotionCache>
   );
 
-  return { wrapper };
+  return Wrapper;
 };

@@ -4,7 +4,7 @@ import { SignedUser } from '@api/types';
 
 import { stringAvatar } from './logic/avatar.logic';
 
-type UserAvatarProps = Pick<SignedUser, 'lastName' | 'firstName'>;
+export type UserAvatarProps = Pick<SignedUser, 'lastName' | 'firstName'>;
 
 export const UserAvatar: React.FC<UserAvatarProps> = ({
   firstName,

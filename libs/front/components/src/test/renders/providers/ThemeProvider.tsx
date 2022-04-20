@@ -1,13 +1,13 @@
 import { ThemeProvider as MuiThemeProvider } from '@mui/material/styles';
-import React from 'react';
+import React, { PropsWithChildren } from 'react';
 
 import { appTheme } from '../../../theme/app-theme';
-import { WrapperResult } from './types/wrapper-result.type';
+import { TestWrapper } from './types/test-wrapper.type';
 
-export const ThemeProvider = (): WrapperResult => {
-  const Wrapper: React.FC = ({ children }) => {
+export const ThemeProvider = (): TestWrapper => {
+  const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
     return <MuiThemeProvider theme={appTheme}>{children}</MuiThemeProvider>;
   };
 
-  return { wrapper: Wrapper };
+  return Wrapper;
 };

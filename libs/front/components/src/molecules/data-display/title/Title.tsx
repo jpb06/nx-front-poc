@@ -1,8 +1,9 @@
 import { Typography } from '@mui/material';
+import { PropsWithChildren } from 'react';
 
 import { getAppColorFor } from '@theme';
 
-export const Title: React.FC = ({ children }) => (
+export const Title = ({ children }: PropsWithChildren<unknown>) => (
   <Typography
     variant="h5"
     sx={{

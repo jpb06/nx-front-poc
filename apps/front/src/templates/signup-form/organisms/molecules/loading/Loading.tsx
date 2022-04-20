@@ -5,7 +5,7 @@ import { LoadingBlock } from '@components/molecules';
 
 import { SignupPreloadedDataLabel } from '../types/signup-preloaded-data-label.type';
 
-type LoadingProps = {
+export type LoadingProps = {
   label: SignupPreloadedDataLabel;
 };
 

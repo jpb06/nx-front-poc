@@ -4,7 +4,7 @@ import { Brand, BrandProps } from './Brand';
 
 export default {
   component: Brand,
-  title: 'Shared/molecules/Brand',
+  title: 'Shared/Molecules/Data Display/Brand',
   argTypes: {
     color: {
       options: ['white', 'amber', 'cyan', 'darkCyan'],

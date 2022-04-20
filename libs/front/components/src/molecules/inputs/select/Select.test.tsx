@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import * as zod from 'zod';
 
 import { FormTestingComponent } from '../../../test/forms/FormTestingComponents';
@@ -72,7 +72,6 @@ describe('Select component', () => {
     await user.click(screen.getByText(/Squat owner/));
     await user.click(screen.getByRole('button', { name: /submit/i }));
 
-    expect(handleSubmit).toHaveBeenCalledTimes(1);
-    expect(handleSubmit).toHaveBeenCalledWith({ role: 2 });
+    waitFor(() => expect(handleSubmit).toHaveBeenCalledWith({ role: 2 }));
   });
 });

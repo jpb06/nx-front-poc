@@ -73,16 +73,18 @@ describe('Logged user home component', () => {
       });
     });
 
-    it('should display an error page when user profile fetching', async () => {
+    it('should display an error page when user profile fetching failed', async () => {
       msw.userDataQuery(500, undefined);
       localStorage.setItem('token', '"cool"');
 
       render();
 
-      await screen.findByTestId(/ErrorOutlineIcon/i);
-      expect(screen.getByText(/userInfosPage:ohNo/i)).toBeInTheDocument();
+      await screen.findByTestId(/ScreenLockPortraitIcon/i);
       expect(
-        screen.getByText(/userInfosPage:profileLoadingError/i)
+        screen.getByText(/^userInfosPage:sessionExpired$/i)
+      ).toBeInTheDocument();
+      expect(
+        screen.getByText(/userInfosPage:sessionExpiredDescription/i)
       ).toBeInTheDocument();
     });
   });

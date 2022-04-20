@@ -4,7 +4,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Head from 'next/head';
 
 import nextI18NextConfig from '../../next-i18next.config';
-import { Signup } from '../templates/signup-form/SignupForm';
+import { Signup } from '../templates';
 
 const Home: NextPage = () => {
   const { t } = useTranslation('common');

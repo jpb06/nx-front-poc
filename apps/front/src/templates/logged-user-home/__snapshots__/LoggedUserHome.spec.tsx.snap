@@ -782,8 +782,7 @@ exports[`Logged user home component snapshots should match snapshot when display
                         alt="jest"
                         data-nimg="intrinsic"
                         decoding="async"
-                        src="/svg/jest.svg"
-                        srcset="/svg/jest.svg 1x, /svg/jest.svg 2x"
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                         style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
                       />
                       <noscript />
@@ -822,8 +821,7 @@ exports[`Logged user home component snapshots should match snapshot when display
                         alt="react"
                         data-nimg="intrinsic"
                         decoding="async"
-                        src="/svg/react.svg"
-                        srcset="/svg/react.svg 1x, /svg/react.svg 2x"
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                         style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
                       />
                       <noscript />
@@ -862,8 +860,7 @@ exports[`Logged user home component snapshots should match snapshot when display
                         alt="typescript"
                         data-nimg="intrinsic"
                         decoding="async"
-                        src="/svg/typescript.svg"
-                        srcset="/svg/typescript.svg 1x, /svg/typescript.svg 2x"
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                         style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
                       />
                       <noscript />
