@@ -5,8 +5,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
 import { delay } from '@logic';
-
-import { FullpageError } from '../../../../molecules';
+import { GlobalIndicator } from '@components/molecules';
 
 export const UserProfileLoadingError = () => {
   const { t } = useTranslation('userInfosPage');
@@ -22,12 +21,16 @@ export const UserProfileLoadingError = () => {
   }, [push]);
 
   return (
-    <FullpageError Icon={ScreenLockPortraitIcon} title={t('sessionExpired')}>
+    <GlobalIndicator
+      Icon={ScreenLockPortraitIcon}
+      title={t('sessionExpired')}
+      hasTopMargin={false}
+    >
       {
         <>
           <Box>{t('sessionExpiredDescription')}</Box>
         </>
       }
-    </FullpageError>
+    </GlobalIndicator>
   );
 };

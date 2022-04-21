@@ -1,6 +1,7 @@
+import { CircularProgress } from '@mui/material';
+
 import { User } from '@api/types';
 
-import { FullpageLoader } from '../../molecules';
 import { useRedirectOnNoUserData } from './hooks/useRedirectOnNoUserData';
 import { UserProfileLoadingError } from './molecules/user-profile-loading-error/UserProfileLoadingError';
 import { UserProfile } from './organisms/UserProfile';
@@ -12,9 +13,9 @@ export const LoggedUserHome = () => {
     <>
       {
         {
-          idle: <FullpageLoader />,
-          redirecting: <FullpageLoader />,
-          loading: <FullpageLoader />,
+          idle: <CircularProgress />,
+          redirecting: <CircularProgress />,
+          loading: <CircularProgress />,
           error: <UserProfileLoadingError />,
           success: <UserProfile user={user as User} />,
         }[status]

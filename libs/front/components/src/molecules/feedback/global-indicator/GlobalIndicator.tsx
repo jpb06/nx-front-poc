@@ -1,7 +1,7 @@
 import { Box, SvgIconTypeMap } from '@mui/material';
 import { OverridableComponent } from '@mui/material/OverridableComponent';
 import { alpha } from '@mui/material/styles';
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 
 import { spinKeyframe } from '../../../logic/keyframes/spin.keyframe';
 import { getAppColorFor } from '../../../theme';

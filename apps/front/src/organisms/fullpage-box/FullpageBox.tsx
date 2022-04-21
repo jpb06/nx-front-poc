@@ -8,8 +8,7 @@ import {
 } from '@mui/material';
 import React, { PropsWithChildren } from 'react';
 
-import { LangSelector } from '../../../molecules';
-import { Brand } from '../../data-display/brand/Brand';
+import { Brand, LangSelector } from '@components/molecules';
 
 export const FullpageBox = ({ children }: PropsWithChildren<unknown>) => (
   <Grid

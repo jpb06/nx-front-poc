@@ -1,7 +1,8 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
 
-import { appRender } from '../../../test/renders/appRender';
+import { appRender } from '@tests/render';
+
 import { FullpageBox } from './FullpageBox';
 
 describe('FullpageBox component', () => {

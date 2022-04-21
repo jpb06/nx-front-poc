@@ -1,7 +1,6 @@
 import { Divider } from '@mui/material';
 
 import { User } from '@api/types';
-import { FullpageBox } from '@components/molecules';
 
 import { UserAvatar, UserInfos, UserSkills } from './../molecules';
 
@@ -10,7 +9,7 @@ export type UserProfileProps = {
 };
 
 export const UserProfile: React.FC<UserProfileProps> = ({ user }) => (
-  <FullpageBox>
+  <>
     <UserAvatar {...user} />
     <UserInfos {...user} />
     <Divider
@@ -21,5 +20,5 @@ export const UserProfile: React.FC<UserProfileProps> = ({ user }) => (
       }}
     />
     <UserSkills {...user} />
-  </FullpageBox>
+  </>
 );

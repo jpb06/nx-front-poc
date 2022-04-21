@@ -4,8 +4,8 @@ import { useIsMutating } from 'react-query';
 
 import { useSkillsQuery } from '@api';
 import { ErrorBlock } from '@components/molecules';
-import { CheckBoxList, CheckBoxListProps } from '@components/organisms';
 
+import { CheckBoxList, CheckBoxListProps } from '../../../../organisms/index';
 import { FormModel } from '../../hooks/useSignupFormSchema';
 import { useSignupData } from '../hooks/useSignupData';
 import { Loading, LoadingError } from '../molecules';

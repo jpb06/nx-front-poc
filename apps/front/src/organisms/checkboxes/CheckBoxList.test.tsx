@@ -8,8 +8,8 @@ import * as zod from 'zod';
 import { SkillCategoryDto } from '@api/types';
 import { mockedSkills } from '@tests/mocked-data';
 
-import { FormTestingComponent } from '../../../test/forms/FormTestingComponents';
-import { appRender } from '../../../test/renders/appRender';
+import { FormTestingComponent } from '../../../../../libs/front/components/src/test/forms/FormTestingComponents';
+import { appRender } from '../../../../../libs/front/components/src/test/renders/appRender';
 import { CheckBoxList } from './CheckBoxList';
 
 type Form = { technos: number[] };

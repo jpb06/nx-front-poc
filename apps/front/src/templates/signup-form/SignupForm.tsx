@@ -4,7 +4,7 @@ import { Box, Grid } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 
-import { Input, PasswordInput, FullpageBox } from '@components/molecules';
+import { Input, PasswordInput } from '@components/molecules';
 
 import { useSignupForm } from './hooks/useSignupForm';
 import { Roles, Skills } from './organisms';
@@ -15,7 +15,7 @@ export const Signup = () => {
   const { onSubmit, control, isLoading } = useSignupForm();
 
   return (
-    <FullpageBox>
+    <>
       <Box
         sx={{
           width: '100%',
@@ -86,6 +86,6 @@ export const Signup = () => {
         </Grid>
         {/* <DevTool control={control} /> */}
       </Box>
-    </FullpageBox>
+    </>
   );
 };
