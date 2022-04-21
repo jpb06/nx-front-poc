@@ -12,6 +12,8 @@ import {
 } from '@components/molecules';
 import { WithSnackbar } from '@components/organisms';
 
+import { FullpageBox } from '../organisms';
+
 export interface EmotionAppProps extends AppProps {
   emotionCache: EmotionCache;
 }
@@ -27,7 +29,9 @@ const MyApp = ({ Component, emotionCache, pageProps }: EmotionAppProps) => (
       <CssBaseline />
       <WithSnackbar>
         <ReactQueryProvider>
-          <Component {...pageProps} />
+          <FullpageBox>
+            <Component {...pageProps} />
+          </FullpageBox>
         </ReactQueryProvider>
       </WithSnackbar>
     </AppThemeProvider>

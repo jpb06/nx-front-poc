@@ -15,6 +15,7 @@
       "@components/providers": ["libs/front/components/src/providers/index.ts"],
       "@logic": ["libs/front/logic/src/index.ts"],
       "@tests": ["libs/front/components/src/test/index.ts"],
+      "@tests/components": ["libs/front/components/src/test/forms/index.ts"],
       "@tests/mswServer": ["libs/front/components/src/test/msw/mswServer.ts"],
       "@tests/forms": ["libs/front/components/src/test/forms/index.ts"],
       "@tests/mocked-data": [

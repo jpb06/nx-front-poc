@@ -11,6 +11,5 @@ export * from './inputs/select/Select';
 export * from './inputs/lang-selector/LangSelector';
 //
 export * from './layout/error-block/ErrorBlock';
-export * from './layout/fullpage-box/FullpageBox';
 //
 export * from './providers';

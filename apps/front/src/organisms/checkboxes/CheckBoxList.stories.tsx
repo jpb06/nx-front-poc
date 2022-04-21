@@ -12,7 +12,7 @@ import { CheckBoxList, CheckBoxListProps } from './CheckBoxList';
 
 export default {
   component: CheckBoxList,
-  title: 'Shared/Organisms/Inputs/CheckBoxList',
+  title: 'Front app/Shared/Organisms/CheckBoxList',
   parameters: {
     viewport: {
       viewports: INITIAL_VIEWPORTS,

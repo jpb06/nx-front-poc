@@ -6,10 +6,10 @@ import {
 import * as zod from 'zod';
 
 import { SkillCategoryDto } from '@api/types';
+import { FormTestingComponent } from '@tests/components';
 import { mockedSkills } from '@tests/mocked-data';
+import { appRender } from '@tests/render';
 
-import { FormTestingComponent } from '../../../test/forms/FormTestingComponents';
-import { appRender } from '../../../test/renders/appRender';
 import { CheckBoxList } from './CheckBoxList';
 
 type Form = { technos: number[] };

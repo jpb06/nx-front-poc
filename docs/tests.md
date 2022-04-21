@@ -13,27 +13,27 @@ The first step is to define the providers that will be used in our custom appRen
 A provider typically looks like this:
 
 ```typescript
-const ThemeProvider = (): WrapperResult => {
-  const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
-    return <MuiThemeProvider theme={appTheme}>{children}</MuiThemeProvider>;
-  };
+type TestWrapper = ({ children }: PropsWithChildren<unknown>) => JSX.Element;
 
-  return { wrapper: Wrapper };
+const ThemeProvider = (): TestWrapper => {
+  const Wrapper = ({ children }: PropsWithChildren<unknown>) => (
+    <MuiThemeProvider theme={appTheme}>{children}</MuiThemeProvider>
+  );
+
+  return Wrapper;
 };
 ```
 
 Then we need to create logic to combine an arbitrary number of wrappers:
 
 ```typescript
-const wrappersToWrapper = (
-  wrappers: ReactWrapperComponent[]
-): React.ComponentType =>
+const wrappersToWrapper = (wrappers: Wrapper[]): Wrapper =>
   wrappers
     .slice()
     .reverse()
-    .reduce<React.ComponentType>(
+    .reduce(
       (Acc, Wrapper) =>
-        ({ children }) =>
+        ({ children }: PropsWithChildren<unknown>) =>
           (
             <Wrapper>
               <Acc>{children}</Acc>
@@ -46,15 +46,15 @@ const wrappersToWrapper = (
 Then we can create an `applyWrappers` function taking an Array of union strings as input:
 
 ```typescript
-export type appRenderProviders = 'reactQuery' | 'form' | 'snackbar';
+type RenderProviders = 'reactQuery' | 'form' | 'snackbar';
 
-export interface ApplyWrappersProps<TForm> {
+type ApplyWrappersProps<TForm> = {
   providers?: Array<RenderProviders>;
   formProviderWrapperDefaultValues?:
     | UnpackNestedValue<DeepPartial<TForm>>
     | undefined;
   i18nConfig?: I18nProviderProps;
-}
+};
 
 const applyWrappers = <TForm>(props?: ApplyWrappersProps<TForm>) => {
   const defaultProviders = ['emotionCache', 'theme', 'i18n'];
@@ -62,35 +62,26 @@ const applyWrappers = <TForm>(props?: ApplyWrappersProps<TForm>) => {
   const wrappers = [...defaultProviders, ...providers].map((key) => {
     switch (key) {
       case 'theme': {
-        const { wrapper: themeWrapper } = ThemeProvider();
-        return themeWrapper;
+        return ThemeProvider();
       }
       case 'i18n': {
-        const { wrapper: i18nProviderWrapper } = I18nProvider(
-          props?.i18nConfig
-        );
-        return i18nProviderWrapper;
+        return I18nProvider(props?.i18nConfig);
       }
       case 'snackbar': {
-        const { wrapper: snackbarWrapper } = SnackbarProvider();
-        return snackbarWrapper;
+        return SnackbarProvider();
       }
       case 'reactQuery': {
-        const { wrapper: reactQueryWrapper } = ReactQueryProvider();
-        return reactQueryWrapper;
+        return ReactQueryProvider();
       }
       case 'form': {
-        const { wrapper: formProviderWrapper } = FormProvider<TForm>(
+        return FormProvider<TForm>(
           props?.formProviderWrapperDefaultValues as UnpackNestedValue<
             DeepPartial<TForm>
           >
         );
-        return formProviderWrapper;
       }
       case 'emotionCache': {
-        const { wrapper: EmotionCacheWrapper } = EmotionCacheProvider();
-
-        return EmotionCacheWrapper;
+        return EmotionCacheProvider();
       }
       default:
         throw new Error(`${key} no handled in applyWrappers`);
@@ -106,11 +97,11 @@ const applyWrappers = <TForm>(props?: ApplyWrappersProps<TForm>) => {
 Finally, let's create our custom appRender functions. Since `@testing-library/user-event@14.0.0` we have to call the `userEvent` `setup` function. Let's wrap the user prop in the returned object:
 
 ```typescript
-export interface AppRenderResult extends RenderResult {
+interface AppRenderResult extends RenderResult {
   user: UserEvent;
 }
 
-export const appRender = <TForm>(
+const appRender = <TForm>(
   ui: ReactElement,
   options?: ApplyWrappersProps<TForm>
 ): AppRenderResult => {
@@ -131,11 +122,11 @@ export const appRender = <TForm>(
 const appRenderHook = <TForm, TProps, TResult>(
   callback: (props: TProps) => TResult,
   options?: ApplyWrappersProps<TForm>
-): appRenderHookResult<TProps, TResult> => {
+): RenderHookResult<TResult, TProps> => {
   const wrapper = applyWrappers(options);
 
-  return appRenderHook(callback, {
-    wrapper: wrapper as WrapperComponent<TProps>,
+  return renderHook(callback, {
+    wrapper,
   });
 };
 ```
