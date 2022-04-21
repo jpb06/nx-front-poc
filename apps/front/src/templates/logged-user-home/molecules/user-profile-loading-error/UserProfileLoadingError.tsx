@@ -4,8 +4,8 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-import { delay } from '@logic';
 import { GlobalIndicator } from '@components/molecules';
+import { delay } from '@logic';
 
 export const UserProfileLoadingError = () => {
   const { t } = useTranslation('userInfosPage');
