@@ -13,13 +13,13 @@ import { wrappersToWrapper } from './wrappersToWrapper';
 
 export type RenderProviders = 'reactQuery' | 'form' | 'snackbar';
 
-export interface ApplyWrappersProps<TForm> {
+export type ApplyWrappersProps<TForm> = {
   providers?: Array<RenderProviders>;
   formProviderWrapperDefaultValues?:
     | UnpackNestedValue<DeepPartial<TForm>>
     | undefined;
   i18nConfig?: I18nProviderProps;
-}
+};
 
 export const applyWrappers = <TForm>(props?: ApplyWrappersProps<TForm>) => {
   const defaultProviders = ['emotionCache', 'theme', 'i18n'];

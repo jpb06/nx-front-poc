@@ -4,9 +4,9 @@ import { WithSnackbar } from '../../../organisms/feedback/snackbar/Snackbar.cont
 import { TestWrapper } from './types/test-wrapper.type';
 
 export const SnackbarProvider = (): TestWrapper => {
-  const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
-    return <WithSnackbar>{children}</WithSnackbar>;
-  };
+  const Wrapper = ({ children }: PropsWithChildren<unknown>) => (
+    <WithSnackbar>{children}</WithSnackbar>
+  );
 
   return Wrapper;
 };
