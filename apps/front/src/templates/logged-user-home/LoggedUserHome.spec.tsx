@@ -12,10 +12,10 @@ import { mockedUser } from '@tests/mocked-data';
 import { appRender, getInterpolableTranslationAssertKey } from '@tests/render';
 
 import { LoggedUserHome } from './LoggedUserHome';
-import { getRandomColor } from './molecules/user-skills/skill-icon/logic/getRandomColor';
+import { getRandomColor } from './organisms/molecules/user-skills/skill-icon/logic/getRandomColor';
 
 jest.mock('@logic');
-jest.mock('./molecules/user-skills/skill-icon/logic/getRandomColor');
+jest.mock('./organisms/molecules/user-skills/skill-icon/logic/getRandomColor');
 
 describe('Logged user home component', () => {
   const render = () =>

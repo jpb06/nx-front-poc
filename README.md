@@ -22,6 +22,8 @@ Here is a little POC to help our team move forward with our stack! ✨
 
 ## 🚀 [Main frontend app](https://mui-rhf-sandbox.vercel.app) | [Storybook](https://mui-rhf-sandbox-storybook.vercel.app)
 
+![Diagram](./docs/assets/components.png)
+
 ## ⚡ Getting started
 
 ```bash

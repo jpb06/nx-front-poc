@@ -3,8 +3,8 @@ import { CircularProgress } from '@mui/material';
 import { User } from '@api/types';
 
 import { useRedirectOnNoUserData } from './hooks/useRedirectOnNoUserData';
-import { UserProfileLoadingError } from './molecules/user-profile-loading-error/UserProfileLoadingError';
-import { UserProfile } from './organisms/UserProfile';
+import { UserProfileLoadingError } from './molecules';
+import { UserProfile } from './organisms';
 
 export const LoggedUserHome = () => {
   const { user, status } = useRedirectOnNoUserData();

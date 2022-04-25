@@ -8,7 +8,6 @@ export * from './feedback/loading-block/LoadingBlock';
 export * from './inputs/input/Input';
 export * from './inputs/password-input/PasswordInput';
 export * from './inputs/select/Select';
-export * from './inputs/lang-selector/LangSelector';
 //
 export * from './layout/error-block/ErrorBlock';
 //
