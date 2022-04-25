@@ -95,7 +95,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
       - name: End to end tests
-        run: pnpm exec nx affected --target=e2e --parallel --max-parallel=3
+        run: pnpm exec nx affected --target=e2e
         timeout-minutes: 10
 
       - name: Stopping nx cloud CI
