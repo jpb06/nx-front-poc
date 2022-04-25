@@ -1,7 +1,7 @@
 import { Given, When, And, Then } from 'cypress-cucumber-preprocessor/steps';
 
 Given(/I open the signup page/, () => {
-  cy.visit('/');
+  cy.visit('/', { timeout: 30000 });
 });
 
 When(/I fill the signup form/, () => {
