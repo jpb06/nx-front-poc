@@ -1,6 +1,6 @@
 describe('Signup', () => {
   beforeEach(() => {
-    cy.visit('/', { timeout: 30000 });
+    cy.visit('/');
   });
 
   it('should display validation errors', () => {
