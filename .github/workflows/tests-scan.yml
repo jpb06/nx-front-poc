@@ -64,7 +64,7 @@ jobs:
 
       - name: Tests
         # run: pnpm exec nx affected --target=test --parallel --max-parallel=3 --codeCoverage
-        
+
         # Running all tests for now, otherwise we might have missing coverage for sonarcloud quality gate ):
         run: pnpm exec nx run-many --target=test --parallel --all --codeCoverage
         timeout-minutes: 10
@@ -76,36 +76,36 @@ jobs:
             echo "::set-output name=exists::true"
           fi
 
-      - name: Installing lcov 
+      - name: Installing lcov
         # Executing this only if coverage has evolved somewhere (nx affected)
         if: steps.coverage-folder.outputs.exists == 'true'
         run: sudo apt-get install -y lcov
-        
+
       - name: Merge coverage
         # Executing this only if coverage has evolved somewhere (nx affected)
         if: steps.coverage-folder.outputs.exists == 'true'
         run: find ./coverage -name "lcov.info" | awk '$0="-a "$0' | xargs lcov -o ./coverage/lcov.info
 
       - name: SonarCloud Scan
-        # Executing this only if coverage has evolved somewhere (nx affected)        
+        # Executing this only if coverage has evolved somewhere (nx affected)
         if: steps.coverage-folder.outputs.exists == 'true'
         uses: sonarsource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      - name: End to end tests
-        run: pnpm exec nx affected --target=e2e --skip-nx-cache
-        timeout-minutes: 10
+      # - name: End to end tests
+      #   run: pnpm exec nx affected --target=e2e --skip-nx-cache
+      #   timeout-minutes: 10
 
       - name: Stopping nx cloud CI
         run: pnpm exec nx-cloud stop-all-agents
-  
+
   agents:
     runs-on: ubuntu-latest
     name: Agent 1
     timeout-minutes: 60
-    
+
     strategy:
       matrix:
         agent: [1, 2, 3]
@@ -117,15 +117,15 @@ jobs:
       - uses: pnpm/action-setup@v2.0.1
         with:
           version: latest
-      
+
       - name: Setup node
         uses: actions/setup-node@v2
         with:
           node-version-file: '.node-version'
           cache: 'pnpm'
-            
+
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
-      
+
       - name: Start Nx Agent ${{ matrix.agent }}
         run: pnpm exec nx-cloud start-agent

@@ -7,8 +7,8 @@
       "builder": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "pnpm exec nx run back:serve",
-          "pnpm exec nx run front:serve"
+          "pnpm exec nx run back:serve --prod",
+          "pnpm exec nx run front:serve --prod"
         ],
         "parallel": true,
         "readyWhen": "[ ready ] on http://localhost:3000"
