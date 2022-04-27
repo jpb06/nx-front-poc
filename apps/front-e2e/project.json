@@ -19,7 +19,9 @@
       "options": {
         "cypressConfig": "apps/front-e2e/cypress.json",
         "devServerTarget": "front-e2e:serve-for-e2e",
-        "baseUrl": "http://localhost:3000"
+        "baseUrl": "http://localhost:3000",
+        "parallel": true,
+        "skipServe": true
       },
       "configurations": {
         "production": {
