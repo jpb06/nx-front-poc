@@ -42,7 +42,10 @@ describe('Signup', () => {
   });
 
   it('should display a loading indicator for skills', () => {
-    cy.findByRole('progressbar', { name: /loading-skills/i }).should('exist');
+    cy.findByRole('progressbar', {
+      name: /loading-skills/i,
+      timeout: 6000,
+    }).should('exist');
 
     cy.findByText('Skills').should('exist');
 
