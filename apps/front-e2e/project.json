@@ -8,7 +8,7 @@
       "options": {
         "commands": [
           "pnpm exec nx run back:serve",
-          "sleep 5 && pnpm exec nx run front:serve"
+          "pnpm exec nx run front:serve"
         ],
         "parallel": true,
         "readyWhen": "[ ready ] on http://localhost:3000"

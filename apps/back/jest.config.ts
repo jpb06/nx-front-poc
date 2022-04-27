@@ -1,6 +1,6 @@
 module.exports = {
   displayName: 'back',
-  preset: '../../jest.preset.js',
+
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -12,4 +12,5 @@ module.exports = {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/apps/back',
+  preset: '../../jest/jest.preset.js',
 };

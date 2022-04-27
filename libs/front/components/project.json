@@ -21,7 +21,7 @@
       "executor": "@nrwl/jest:jest",
       "outputs": ["coverage/libs/front/components"],
       "options": {
-        "jestConfig": "libs/front/components/jest.config.js",
+        "jestConfig": "libs/front/components/jest.config.ts",
         "passWithNoTests": true
       }
     },
