@@ -2,7 +2,7 @@ import { Divider } from '@mui/material';
 
 import { User } from '@api/types';
 
-import { UserAvatar, UserInfos, UserSkills } from './../molecules';
+import { UserAvatar, UserInfos, UserSkills } from './molecules';
 
 export type UserProfileProps = {
   user: User;

@@ -4,12 +4,9 @@
   "fixturesFolder": "./src/fixtures",
   "integrationFolder": "./src/integration",
   "modifyObstructiveCode": false,
-  "pluginsFile": "./src/plugins/index.js",
   "supportFile": "./src/support/index.ts",
   "video": true,
   "videosFolder": "../../dist/cypress/apps/front-e2e/videos",
   "screenshotsFolder": "../../dist/cypress/apps/front-e2e/screenshots",
-  "chromeWebSecurity": false,
-  "ignoreTestFiles": "*.spec.ts",
-  "testFiles": "**/*.{feature,features}"
+  "chromeWebSecurity": false
 }

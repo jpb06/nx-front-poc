@@ -7,7 +7,7 @@ export default {
   title: 'Shared/Molecules/Inputs/LangSelector',
 } as ComponentMeta<typeof LangSelector>;
 
-const Template: Story = (args) => <LangSelector />;
+const Template: Story = (_) => <LangSelector />;
 
 export const Primary = Template.bind({});
 Primary.args = {};

@@ -94,9 +94,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-      # - name: End to end tests
-      #   run: pnpm exec nx affected --target=e2e --parallel --max-parallel=3 --codeCoverage
-      #   timeout-minutes: 10
+      - name: End to end tests
+        run: pnpm exec nx affected --target=e2e --skip-nx-cache
+        timeout-minutes: 10
 
       - name: Stopping nx cloud CI
         run: pnpm exec nx-cloud stop-all-agents
