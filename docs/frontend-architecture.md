@@ -48,20 +48,28 @@ Let's reflect on the classification we want to use and how it would impact our f
 
 ## 🔶 Defining a decision tree to identify components types
 
-With this in mind, we can now think about a decision tree to identify the type of every component. We will also take advantage of this to define a few things:
+With this in mind, we can now think about a decision tree to identify the type of one component. We will also take advantage of this to define a few things:
 
 - What should and shouldn't be on storybook.
 - Which testing strategy should be used for each category.
 
 ![Diagram](./assets/components-categorization.png)
 
-## 🔶 Onward to the intricacies of a multi-apps environment
+## 🔶 Multi-apps environment
 
-Yes! We want to have several frontend applications. And we want to have shared components that we may reuse in our apps. `nx` will help us in that regard:
+Splitting our frontend in several apps can help us a lot:
 
-- We will be using several next apps and it may occur that we end up with components only being used in one app.
-- Shared components can be defined in a library.
-- We will need a library embedding storybook config, so that we only expose a single storybook for all our apps.
+- Cognitive load mitigation: the bigger a codebase is, the harder it is to maintain. It's easier for a developer when the context he has to insert into is small.
+- Apples and tomatoes: Our product may be made of modules with distinct structure (even if they share the same system design). For example we may have an admin app that is a dashboard while the customers app is mobile oriented.
+- Decoupled deployments: Multi apps means distinct deployments, which is awesome for flexibility.
+
+Now, several apps means shared code. `nx` will help us in that regard. For example, we may have three levels of components, from specific to generic:
+
+- Some components will be only used in one single story (no reusability).
+- Some components will be specific to a single app (should be reused only within the app).
+- Finally, some components will be highly generic and reused accross several apps.
+
+We will also need a library embedding storybook config, so that we only expose a single storybook for all our apps.
 
 ![Diagram](./assets/nx-app-architecture.png)
 
@@ -96,9 +104,7 @@ Our shared library may use assets, like images or icons. These files will be sto
     // ...
     "build": {
       "executor": "@nrwl/next:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/front",
@@ -149,9 +155,7 @@ Let's first define a `build` and `dev` script in `project.json`:
     // Building storybook
     "build": {
       "executor": "@nrwl/storybook:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "uiFramework": "@storybook/react",
         "outputPath": "dist/apps/storybook",
@@ -175,15 +179,20 @@ Then, let's take all the story files in all our apps or our libs, and let's add 
 /** @type {import("@storybook/react/types/index").StorybookConfig} */
 const storybookMainConfig = {
   // ...
-  stories: [
-    '../../../../**/*.stories.mdx',
-    '../../../../**/*.stories.tsx',
-  ],
+  stories: ['../../../../**/*.stories.mdx', '../../../../**/*.stories.tsx'],
   staticDirs: [
-    '../../../../apps/front/public', 
-    '../../../../libs/front/components/assets'
+    '../../../../apps/front/public',
+    '../../../../libs/front/components/assets',
   ],
-}
+};
 
-module.exports = storybookMainConfig
+module.exports = storybookMainConfig;
 ```
+
+# ⚡ A concrete example: this repo
+
+This repo contains one frontend application serving two pages: a signup page and user profile page. We have components at various levels: user story, application and generic.
+
+Here is a structure diagram.
+
+![Diagram](./assets/components.png)
