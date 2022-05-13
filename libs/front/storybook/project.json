@@ -1,5 +1,4 @@
 {
-  "root": "libs/front/storybook",
   "projectType": "library",
   "targets": {
     "dev": {
@@ -19,9 +18,7 @@
     },
     "build": {
       "executor": "@nrwl/storybook:build",
-      "outputs": [
-        "{options.outputPath}"
-      ],
+      "outputs": ["{options.outputPath}"],
       "options": {
         "uiFramework": "@storybook/react",
         "outputPath": "dist/apps/storybook",

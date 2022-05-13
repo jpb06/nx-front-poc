@@ -1,5 +1,4 @@
 {
-  "root": "apps/front",
   "sourceRoot": "apps/front",
   "projectType": "application",
   "targets": {

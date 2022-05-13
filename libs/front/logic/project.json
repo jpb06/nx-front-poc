@@ -1,5 +1,4 @@
 {
-  "root": "libs/front/logic",
   "sourceRoot": "libs/front/logic/src",
   "projectType": "library",
   "tags": [],

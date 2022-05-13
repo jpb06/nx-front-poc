@@ -1,10 +1,9 @@
 {
-  "root": "apps/front-e2e",
   "sourceRoot": "apps/front-e2e/src",
   "projectType": "application",
   "targets": {
     "serve-for-e2e": {
-      "builder": "@nrwl/workspace:run-commands",
+      "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
           "pnpm exec nx run back:serve --prod",
