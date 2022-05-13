@@ -1,20 +1,24 @@
+const { pathsToModuleNameMapper } = require('ts-jest');
+const { compilerOptions } = require('./../../tsconfig.front.json');
+
 const getJestOptions = (coverageDirectory, ignoredFilesForCoverage) => {
   const pathLevel = Array(coverageDirectory.split('/').length)
     .fill('..')
     .join('/');
 
-  /**
-   * @type {import('ts-jest/dist/types').InitialOptionsTsJest}
-   **/
+  /** @type {import('@jest/types').Config.InitialOptions} */
   const options = {
     logHeapUsage: true,
     displayName: 'front',
     preset: `${pathLevel}/jest/jest.preset.js`,
     moduleNameMapper: {
       '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$': 'identity-obj-proxy',
+      ...pathsToModuleNameMapper(
+        compilerOptions.paths /*, { prefix: '<rootDir>/' } */
+      ),
     },
     transform: {
-      '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nrwl/react/plugins/jest',
+      //'^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nrwl/react/plugins/jest',
       '^.+\\.[tj]sx?$': [
         'babel-jest',
         {
