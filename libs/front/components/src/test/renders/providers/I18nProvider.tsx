@@ -1,3 +1,4 @@
+import { TFunction } from 'next-i18next';
 import { PropsWithChildren } from 'react';
 import { I18nextProvider } from 'react-i18next';
 
@@ -22,7 +23,7 @@ export const I18nProvider = (
 
   // if we provide translations, no need to monkey patch the t function!
   if (!i18nConfig?.resourcesBundles) {
-    finalI18n.t = (key, options) => {
+    const tFunction = (key: string, options: { ns: string }) => {
       if (typeof options === 'object') {
         const interpolations = Object.entries(options)
           .filter(([key]) => key !== 'lng' && key !== 'lngs' && key !== 'ns')
@@ -41,6 +42,7 @@ export const I18nProvider = (
 
       return key;
     };
+    finalI18n.t = tFunction as TFunction;
   }
 
   if (i18nConfig) {
