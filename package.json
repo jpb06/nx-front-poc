@@ -61,6 +61,7 @@
     "@babel/plugin-proposal-private-property-in-object": "^7.16.7",
     "@babel/preset-env": "^7.17.10",
     "@babel/preset-typescript": "7.16.7",
+    "@emotion/babel-plugin": "^11.9.2",
     "@emotion/jest": "^11.9.1",
     "@hookform/devtools": "^4.1.0",
     "@nestjs/schematics": "^8.0.11",
@@ -90,6 +91,8 @@
     "@storybook/react": "~6.4.22",
     "@storybook/theming": "^6.4.22",
     "@svgr/webpack": "^6.2.1",
+    "@swc/core": "^1.2.192",
+    "@swc/jest": "^0.2.21",
     "@testing-library/cypress": "^8.0.2",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -150,4 +153,3 @@
     "yarn": "1.22.x"
   }
 }
-
