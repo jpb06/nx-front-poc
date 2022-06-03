@@ -1,5 +1,5 @@
 {
-  "extends": "../../../../tsconfig.front.json",
+  "extends": "../../../../.storybook/tsconfig.json",
   "compilerOptions": {
     "jsx": "preserve",
     "lib": ["dom", "dom.iterable", "esnext"],
@@ -17,7 +17,9 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "resolveJsonModule": true,
-    "incremental": true
+    "incremental": true,
+    "emitDecoratorMetadata": true,
+    "outDir": ""
   },
   "files": [
     "../../../../node_modules/@nrwl/react/typings/styled-jsx.d.ts",
@@ -31,10 +33,10 @@
     "../../../../**/*.test.ts"
   ],
   "include": [
-    "../../../../apps/front/src/**/*", 
-    "../../../../libs/front/api/src/**/*", 
-    "../../../../libs/front/components/src/**/*", 
-    "../../../../libs/front/translations/src/**/*", 
+    "../../../../apps/front/src/**/*",
+    "../../../../libs/front/api/src/**/*",
+    "../../../../libs/front/components/src/**/*",
+    "../../../../libs/front/translations/src/**/*",
     "*.js"
   ]
 }

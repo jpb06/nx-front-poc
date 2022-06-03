@@ -3,7 +3,7 @@ import {
   waitFor,
   waitForElementToBeRemoved,
 } from '@testing-library/react';
-import { DefaultBodyType, MockedRequest } from 'msw';
+import { DefaultRequestBody, MockedRequest } from 'msw';
 import singletonRouter from 'next/router';
 import React from 'react';
 
@@ -372,7 +372,7 @@ describe('Signup component', () => {
 
     it('should cache skills availibility for role checks', async () => {
       let callCount = 0;
-      const cb = ({ url }: MockedRequest<DefaultBodyType>) => {
+      const cb = ({ url }: MockedRequest<DefaultRequestBody>) => {
         const uri = new URL(url).toString();
         if (uri.endsWith('/skills/availabiltyForRole')) {
           callCount++;

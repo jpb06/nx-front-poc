@@ -1,4 +1,4 @@
-import { DefaultBodyType } from 'msw';
+import { DefaultRequestBody } from 'msw';
 
 import { mswHandlers } from '@tests';
 
@@ -6,7 +6,7 @@ import { path } from './../specs/SkillsController/getAllSkills';
 
 export const skillsQuery = (
   status: number,
-  result: DefaultBodyType,
+  result: DefaultRequestBody,
   applyToServer = true
 ) =>
   mswHandlers.genericGetHandler({

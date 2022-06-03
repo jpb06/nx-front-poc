@@ -1,8 +1,8 @@
-import { DefaultBodyType } from 'msw';
+import { DefaultRequestBody } from 'msw';
 
 export type GenericHandlerParams = {
   url: string;
   status: number;
-  result: DefaultBodyType;
+  result: DefaultRequestBody;
   applyToServer?: boolean;
 };
