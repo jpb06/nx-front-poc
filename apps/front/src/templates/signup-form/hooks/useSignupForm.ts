@@ -39,9 +39,7 @@ export const useSignupForm = (): SignupFormHook => {
     }),
   });
 
-  const [, setToken] = useLocalStorageState('token', {
-    ssr: true,
-  });
+  const [, setToken] = useLocalStorageState('token');
 
   const {
     isLoading,

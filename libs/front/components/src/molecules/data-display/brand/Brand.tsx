@@ -1,9 +1,7 @@
 import { Build } from '@mui/icons-material';
 import { Grid, Typography } from '@mui/material';
-import React from 'react';
 
-import { AppColor } from '@theme';
-
+import { AppColor } from '../../../theme/types/app-color.type';
 import { withThemeColor } from './Brand.styles';
 
 export type BrandProps = {

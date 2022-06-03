@@ -27,14 +27,14 @@ overrides:
       - '*.ts'
       - '*.tsx'
     rules:
-      '@nrwl/nx/enforce-module-boundaries': 
+      '@nrwl/nx/enforce-module-boundaries':
         - error
         - enforceBuildableLibDependency: true
           allow: []
           depConstraints:
-          - sourceTag: "*"
-            onlyDependOnLibsWithTags:
-            - "*"
+            - sourceTag: '*'
+              onlyDependOnLibsWithTags:
+                - '*'
       no-console:
         - error
         - allow: [warn, error]

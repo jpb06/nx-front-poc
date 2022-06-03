@@ -1,28 +1,47 @@
-const { pathsToModuleNameMapper } = require('ts-jest');
+import type { Config } from '@jest/types';
 const { compilerOptions } = require('./../../tsconfig.front.json');
+const { pathsToModuleNameMapper } = require('ts-jest');
 
-const getJestOptions = (coverageDirectory, ignoredFilesForCoverage) => {
+console.log(compilerOptions.paths);
+
+console.log(
+  pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: '<RootDir>/../../',
+  })
+);
+
+export const getJestOptions = (
+  displayName: string,
+  coverageDirectory: string,
+  ignoredFilesForCoverage: Array<string>
+) => {
   const pathLevel = Array(coverageDirectory.split('/').length)
     .fill('..')
     .join('/');
 
-  /** @type {import('@jest/types').Config.InitialOptions} */
-  const options = {
+  console.log(__dirname);
+
+  const options: Config.InitialOptions = {
+    resolver: `${pathLevel}/jest/front/resolver.js`,
     logHeapUsage: true,
-    displayName: 'front',
+    testEnvironment: 'jest-environment-jsdom',
+    displayName,
     preset: `${pathLevel}/jest/jest.preset.js`,
     moduleNameMapper: {
       '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$': 'identity-obj-proxy',
-      ...pathsToModuleNameMapper(
-        compilerOptions.paths /*, { prefix: '<rootDir>/' } */
-      ),
+      ...pathsToModuleNameMapper(compilerOptions.paths, {
+        prefix: '<RootDir>/../../',
+      }),
     },
     transform: {
-      //'^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nrwl/react/plugins/jest',
       '^.+\\.[tj]sx?$': [
         '@swc/jest',
         {
           jsc: {
+            parser: {
+              syntax: 'typescript',
+            },
+            target: 'es2021',
             transform: {
               react: {
                 runtime: 'automatic',
@@ -55,5 +74,3 @@ const getJestOptions = (coverageDirectory, ignoredFilesForCoverage) => {
 
   return options;
 };
-
-module.exports = getJestOptions;

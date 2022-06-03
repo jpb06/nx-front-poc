@@ -28,7 +28,8 @@
       ],
       "@theme": ["libs/front/components/src/theme/index.ts"],
       "@translations": ["libs/front/translations/src/index.ts"],
-      "@storybook": ["libs/front/storybook/src/index.ts"]
+      "@storybook": ["libs/front/storybook/src/index.ts"],
+      "@yolo/*": ["libs/front/storybook/src/*"]
     }
   }
 }

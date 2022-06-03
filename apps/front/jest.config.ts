@@ -1,4 +1,5 @@
-const getJestOptions = require('../../jest/front/jest-options');
+import { getJestOptions } from '../../jest/front/jest-options';
 
-const options = getJestOptions('apps/front', ['!src/pages/**/*.tsx']);
+const options = getJestOptions('front', 'apps/front', ['!src/pages/**/*.tsx']);
+
 export default options;
