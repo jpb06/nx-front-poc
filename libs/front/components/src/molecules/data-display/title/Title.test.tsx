@@ -1,7 +1,6 @@
 import { screen } from '@testing-library/react';
 
-import { appRender } from '@tests/render';
-
+import { appRender } from '../../../test/renders/appRender';
 import { Title } from './Title';
 
 describe('Title component', () => {

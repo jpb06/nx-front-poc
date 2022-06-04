@@ -1,7 +1,7 @@
-import { DefaultRequestBody, MockedRequest, RestHandler } from 'msw';
+import { DefaultBodyType, MockedRequest, RestHandler } from 'msw';
 
 export const applyHandlerToServer = (
-  handler: RestHandler<MockedRequest<DefaultRequestBody>>,
+  handler: RestHandler<MockedRequest<DefaultBodyType>>,
   useServer: boolean
 ) => {
   if (useServer) {

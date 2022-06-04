@@ -1,29 +1,34 @@
-const tsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const rootMain = require('../../../../.storybook/main');
 
 /** @type {import("@storybook/react/types/index").StorybookConfig} */
 const storybookMainConfig = {
-  addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-viewport',
-    '@storybook/addon-links',
-    'storybook-addon-next-router',
-    'storybook-dark-mode',
-    'storybook-react-i18next',
+  ...rootMain,
+
+  core: { ...rootMain.core, builder: 'webpack5' },
+
+  stories: [
+    ...rootMain.stories,
+    '../../../../**/*.stories.mdx',
+    '../../../../**/*.stories.tsx',
   ],
-  stories: ['../../../../**/*.stories.mdx', '../../../../**/*.stories.tsx'],
   staticDirs: [
     '../../../../apps/front/public',
     '../../../../libs/front/components/assets',
   ],
-  webpackFinal: async (config) => {
-    config.resolve.plugins = [
-      ...(config.resolve.plugins || []),
-      new tsconfigPathsPlugin({
-        configFile: './libs/front/storybook/.storybook/tsconfig.json',
-        extensions: config.resolve.extensions,
-      }),
-    ];
+  addons: [...rootMain.addons, '@nrwl/react/plugins/storybook'],
+  webpackFinal: async (config, { configType }) => {
+    // apply any global webpack configs that might have been specified in .storybook/main.js
+    if (rootMain.webpackFinal) {
+      config = await rootMain.webpackFinal(config, { configType });
+    }
 
+    config.resolve.fallback = {
+      timers: require.resolve('timers-browserify'),
+      http: require.resolve('stream-http'),
+      https: require.resolve('https-browserify'),
+      stream: require.resolve('stream-browserify'),
+      zlib: require.resolve('browserify-zlib'),
+    };
     config.resolve.alias = {
       ...(config.resolve.alias || {}),
       'next-i18next': 'react-i18next',
@@ -37,28 +42,5 @@ const storybookMainConfig = {
     NEXT_PUBLIC_API_URL: 'https://rhf-mui-nx-sandbox-api.com',
   }),
 };
-
-// No way to use @nrwl/react/plugins/storybook for now, since it relies on webpack 5. See:
-// https://github.com/mswjs/msw-storybook-addon/issues/58
-// https://github.com/mswjs/msw-storybook-addon/issues/47
-
-// const storybookMainConfig = {
-//   addons: [
-//     '@storybook/addon-essentials',
-//     '@nrwl/react/plugins/storybook',
-//     '@storybook/addon-viewport',
-//     '@storybook/addon-links'
-//   ],
-//   core: { builder: 'webpack5' },
-//   stories: [
-//     '../../../../**/*.stories.mdx',
-//     '../../../../**/*.stories.tsx',
-//   ],
-//   staticDirs: [
-//     '../../../../apps/front/public',
-//     '../../../../libs/front/components/assets'
-//   ],
-//   features: { emotionAlias: false },
-// }
 
 module.exports = storybookMainConfig;

@@ -1,32 +1,43 @@
-const getJestOptions = (coverageDirectory, ignoredFilesForCoverage) => {
+import type { Config } from '@jest/types';
+const { compilerOptions } = require('./../../tsconfig.front.json');
+const { pathsToModuleNameMapper } = require('ts-jest');
+
+export const getJestOptions = (
+  displayName: string,
+  coverageDirectory: string,
+  ignoredFilesForCoverage: Array<string>
+) => {
   const pathLevel = Array(coverageDirectory.split('/').length)
     .fill('..')
     .join('/');
 
-  /**
-   * @type {import('ts-jest/dist/types').InitialOptionsTsJest}
-   **/
-  const options = {
+  const options: Config.InitialOptions = {
+    resolver: `${pathLevel}/jest/front/resolver.js`,
     logHeapUsage: true,
-    displayName: 'front',
+    testEnvironment: 'jest-environment-jsdom',
+    displayName,
     preset: `${pathLevel}/jest/jest.preset.js`,
     moduleNameMapper: {
       '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$': 'identity-obj-proxy',
+      ...pathsToModuleNameMapper(compilerOptions.paths, {
+        prefix: '<RootDir>/../../',
+      }),
     },
     transform: {
-      '^(?!.*\\.(js|jsx|ts|tsx|css|json)$)': '@nrwl/react/plugins/jest',
       '^.+\\.[tj]sx?$': [
-        'babel-jest',
+        '@swc/jest',
         {
-          presets: ['@nrwl/next/babel'],
-          plugins: [
-            ['@babel/plugin-proposal-class-properties', { loose: true }],
-            ['@babel/plugin-proposal-private-methods', { loose: true }],
-            [
-              '@babel/plugin-proposal-private-property-in-object',
-              { loose: true },
-            ],
-          ],
+          jsc: {
+            parser: {
+              syntax: 'typescript',
+            },
+            target: 'es2021',
+            transform: {
+              react: {
+                runtime: 'automatic',
+              },
+            },
+          },
         },
       ],
     },
@@ -53,5 +64,3 @@ const getJestOptions = (coverageDirectory, ignoredFilesForCoverage) => {
 
   return options;
 };
-
-module.exports = getJestOptions;

@@ -7,10 +7,10 @@ import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { themes } from '@storybook/theming';
 
 import { appTheme } from '@theme';
+import { AppThemeProvider } from '@components/molecules';
+import { WithSnackbar } from '@components/organisms';
 
 import { i18n } from './i18next';
-import { AppThemeProvider } from './../../components/src/molecules/providers/app-theme.provider';
-import { WithSnackbar } from '@components/organisms';
 
 const finalI18n = i18n.cloneInstance();
 

@@ -1,4 +1,10 @@
 {
   "extends": "./tsconfig.base.json",
-  "exclude": ["jest.config.ts"]
+  "exclude": [
+    "jest.config.ts",
+    "**/*.stories.ts",
+    "**/*.stories.js",
+    "**/*.stories.jsx",
+    "**/*.stories.tsx"
+  ]
 }

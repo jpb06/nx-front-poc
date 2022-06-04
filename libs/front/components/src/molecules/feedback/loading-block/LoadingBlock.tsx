@@ -1,7 +1,6 @@
 import { Grid, LinearProgress } from '@mui/material';
-import React from 'react';
 
-import { getAppColorFor } from '@theme';
+import { getAppColorFor } from '../../../theme/util/get-app-color-for';
 
 export type LoadingBlockProps = {
   name: string;

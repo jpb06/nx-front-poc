@@ -1,5 +1,4 @@
 {
-  "root": "libs/front/components",
   "sourceRoot": "libs/front/components/src",
   "projectType": "library",
   "tags": [],
