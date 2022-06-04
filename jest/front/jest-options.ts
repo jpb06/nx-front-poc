@@ -2,14 +2,6 @@ import type { Config } from '@jest/types';
 const { compilerOptions } = require('./../../tsconfig.front.json');
 const { pathsToModuleNameMapper } = require('ts-jest');
 
-console.log(compilerOptions.paths);
-
-console.log(
-  pathsToModuleNameMapper(compilerOptions.paths, {
-    prefix: '<RootDir>/../../',
-  })
-);
-
 export const getJestOptions = (
   displayName: string,
   coverageDirectory: string,
@@ -18,8 +10,6 @@ export const getJestOptions = (
   const pathLevel = Array(coverageDirectory.split('/').length)
     .fill('..')
     .join('/');
-
-  console.log(__dirname);
 
   const options: Config.InitialOptions = {
     resolver: `${pathLevel}/jest/front/resolver.js`,
