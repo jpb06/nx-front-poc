@@ -1,6 +1,6 @@
 import type { Config } from '@jest/types';
 const { compilerOptions } = require('./../../tsconfig.front.json');
-const { pathsToModuleNameMapper } = require('ts-jest');
+const { transformTsPaths } = require('ts-paths-transform');
 
 export const getJestOptions = (
   displayName: string,
@@ -19,8 +19,9 @@ export const getJestOptions = (
     preset: `${pathLevel}/jest/jest.preset.js`,
     moduleNameMapper: {
       '^.+\\.(jpg|jpeg|png|gif|webp|avif|svg)$': 'identity-obj-proxy',
-      ...pathsToModuleNameMapper(compilerOptions.paths, {
+      ...transformTsPaths(compilerOptions.paths, {
         prefix: '<RootDir>/../../',
+        // debug: true,
       }),
     },
     transform: {
