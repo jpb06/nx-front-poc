@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next';
 import { useQueryClient } from 'react-query';
 import * as zod from 'zod';
 
-import { useAreSkillsAvailableForRoleMutation } from '@api';
+import { useAreSkillsAvailableForRoleMutation } from '@front/api';
 
 import { FormModel } from './useSignupFormSchema';
 

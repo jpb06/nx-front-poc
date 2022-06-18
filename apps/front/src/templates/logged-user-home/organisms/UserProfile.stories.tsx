@@ -1,7 +1,7 @@
 import { Story, ComponentMeta } from '@storybook/react';
 
-import { reactQueryDecorator } from '@storybook';
-import { mockedUser } from '@tests/mocked-data';
+import { reactQueryDecorator } from '@front/storybook';
+import { mockedUser } from '@front/tests/mocked-data';
 
 import { UserProfile, UserProfileProps } from './UserProfile';
 

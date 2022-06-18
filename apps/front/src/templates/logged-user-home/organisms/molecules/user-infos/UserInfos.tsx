@@ -1,8 +1,8 @@
 import { Grid } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 
-import { SignedUser } from '@api/types';
-import { SubTitle, Title } from '@components/molecules';
+import { SignedUser } from '@front/api/types';
+import { SubTitle, Title } from '@front/components/molecules';
 
 export type UserInfosProps = Pick<
   SignedUser,

@@ -1,6 +1,6 @@
 import { Divider } from '@mui/material';
 
-import { User } from '@api/types';
+import { User } from '@front/api/types';
 
 import { UserAvatar, UserInfos, UserSkills } from './molecules';
 

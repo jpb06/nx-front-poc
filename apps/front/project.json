@@ -76,7 +76,7 @@
     "type-check": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "pnpm exec tsc -p ./apps/front/tsconfig.base.json --noEmit --pretty"
+        "command": "pnpm exec tsc -p ./apps/front/tsconfig.json --noEmit --pretty"
       }
     },
     "lint": {

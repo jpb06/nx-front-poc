@@ -1,4 +1,4 @@
-import { User } from '@api/types';
+import { User } from '@front/api/types';
 
 export const mockedUser: User = {
   id: '1',

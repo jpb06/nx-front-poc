@@ -1,6 +1,6 @@
 import { ZodIssueOptionalMessage } from 'zod';
 
-import { appRenderHook } from '@tests/render';
+import { appRenderHook } from '@front/tests/render';
 
 import { ErrorMapCtx, useCustomErrorMap } from './useCustomErrorMap';
 

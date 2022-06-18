@@ -1,7 +1,7 @@
 import { Story, ComponentMeta } from '@storybook/react';
 
-import { reactQueryDecorator } from '@storybook';
-import { mockedSkills } from '@tests/mocked-data';
+import { reactQueryDecorator } from '@front/storybook';
+import { mockedSkills } from '@front/tests/mocked-data';
 
 import { UserSkills, UserSkillsProps } from './UserSkills';
 

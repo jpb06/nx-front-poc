@@ -253,7 +253,7 @@ Then all we have to do is to include the declaration file in the application or 
 
 ```json
 {
-  "extends": "../../tsconfig.front.json",
+  "extends": "../../tsconfig.base.json",
   [...],
   "include": [
     [...],

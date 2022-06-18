@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material';
 
-import { User } from '@api/types';
+import { User } from '@front/api/types';
 
 import { useRedirectOnNoUserData } from './hooks/useRedirectOnNoUserData';
 import { UserProfileLoadingError } from './molecules';

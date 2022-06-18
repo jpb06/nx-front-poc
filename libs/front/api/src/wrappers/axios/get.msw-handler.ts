@@ -1,6 +1,6 @@
 import { DefaultBodyType, rest } from 'msw';
 
-import { mswHandlers } from '@tests';
+import { mswHandlers } from '@front/tests';
 
 export const genericGetUrl = 'https://cool.org/get';
 

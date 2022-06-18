@@ -1,4 +1,4 @@
-import { isLocalStorageAvailable } from '@logic';
+import { isLocalStorageAvailable } from '@front/logic';
 
 import { useAxiosQuery } from '../../wrappers/react-query/useAxiosQuery';
 import { path } from '../specs/UsersController/userProfile';

@@ -1,4 +1,4 @@
-import { appRender } from '@tests/render';
+import { appRender } from '@front/tests/render';
 
 import { LangSelector } from './LangSelector';
 

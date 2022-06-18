@@ -1,6 +1,5 @@
+import { ReactQueryProvider } from '@front/tests/wrappers';
 import { StoryFn } from '@storybook/react/types-6-0';
-
-import { ReactQueryProvider } from '@tests/wrappers';
 
 const ReactQueryWrapper = ReactQueryProvider();
 

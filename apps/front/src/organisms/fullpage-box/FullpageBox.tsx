@@ -8,7 +8,7 @@ import {
 } from '@mui/material';
 import React, { PropsWithChildren } from 'react';
 
-import { Brand } from '@components/molecules';
+import { Brand } from '@front/components/molecules';
 
 import { LangSelector } from '../../molecules';
 

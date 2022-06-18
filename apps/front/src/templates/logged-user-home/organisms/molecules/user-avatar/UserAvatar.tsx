@@ -1,6 +1,6 @@
 import { Avatar, Grid } from '@mui/material';
 
-import { SignedUser } from '@api/types';
+import { SignedUser } from '@front/api/types';
 
 import { stringAvatar } from './logic/avatar.logic';
 

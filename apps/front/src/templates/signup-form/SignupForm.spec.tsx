@@ -7,15 +7,19 @@ import { DefaultBodyType, MockedRequest } from 'msw';
 import singletonRouter from 'next/router';
 import React from 'react';
 
-import { msw } from '@api/msw';
-import { mockedRoles, mockedUser, mockedSkills } from '@tests/mocked-data';
-import { mswServer } from '@tests/mswServer';
-import { appRender } from '@tests/render';
+import { msw } from '@front/api/msw';
+import {
+  mockedRoles,
+  mockedUser,
+  mockedSkills,
+} from '@front/tests/mocked-data';
+import { mswServer } from '@front/tests/mswServer';
+import { appRender } from '@front/tests/render';
 
 import { Signup } from './SignupForm';
 import { FormModel } from './hooks/useSignupFormSchema';
 
-jest.mock('@logic');
+jest.mock('@front/logic');
 
 describe('Signup component', () => {
   const render = () =>

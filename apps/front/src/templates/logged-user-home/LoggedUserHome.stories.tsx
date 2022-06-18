@@ -1,8 +1,8 @@
 import { Story, ComponentMeta } from '@storybook/react';
 
-import { msw } from '@api/msw';
-import { reactQueryDecorator } from '@storybook';
-import { mockedUser } from '@tests/mocked-data';
+import { msw } from '@front/api/msw';
+import { reactQueryDecorator } from '@front/storybook';
+import { mockedUser } from '@front/tests/mocked-data';
 
 import { LoggedUserHome } from './LoggedUserHome';
 

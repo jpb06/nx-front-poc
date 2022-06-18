@@ -1,6 +1,6 @@
 import { DefaultBodyType } from 'msw';
 
-import { mswHandlers } from '@tests';
+import { mswHandlers } from '@front/tests';
 
 import { path } from './../specs/UsersController/signup';
 

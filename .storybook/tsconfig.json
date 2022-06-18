@@ -1,5 +1,5 @@
 {
-  "extends": "../tsconfig.front.json",
+  "extends": "../tsconfig.json",
   "exclude": [
     "../**/*.spec.js",
     "../**/*.test.js",
