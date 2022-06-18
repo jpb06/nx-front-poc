@@ -24,14 +24,6 @@ overrides:
       - '*.ts'
       - '*.tsx'
     rules:
-      '@nrwl/nx/enforce-module-boundaries': 
-        - error
-        - enforceBuildableLibDependency: true
-          allow: []
-          depConstraints:
-          - sourceTag: "*"
-            onlyDependOnLibsWithTags:
-            - "*"
       '@next/next/no-html-link-for-pages':
         - error
         - apps/front/src/pages

@@ -9,14 +9,6 @@ overrides:
       - '*.ts'
       - '*.tsx'
     rules:
-      '@nrwl/nx/enforce-module-boundaries': 
-        - error
-        - enforceBuildableLibDependency: true
-          allow: []
-          depConstraints:
-          - sourceTag: "*"
-            onlyDependOnLibsWithTags:
-            - "*"
       '@typescript-eslint/await-thenable': error
       '@typescript-eslint/explicit-module-boundary-types': off
       '@typescript-eslint/interface-name-prefix': off

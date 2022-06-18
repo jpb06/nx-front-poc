@@ -11,19 +11,11 @@ overrides:
       - '*.js'
       - '*.jsx'
     rules: {}
-    
+
   - files:
       - '*.ts'
       - '*.tsx'
-    rules:
-      '@nrwl/nx/enforce-module-boundaries': 
-        - error
-        - enforceBuildableLibDependency: true
-          allow: []
-          depConstraints:
-          - sourceTag: "*"
-            onlyDependOnLibsWithTags:
-            - "*"
+    rules: {}
 
   - files:
       - '*.js'

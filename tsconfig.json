@@ -16,7 +16,6 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
-      "@front/app": ["apps/front/src/organisms/index.ts"],
       "@front/api": ["libs/front/api/src/main-backend/calls/index.ts"],
       "@front/api/types": [
         "libs/front/api/src/main-backend/specs/api-types.ts"
