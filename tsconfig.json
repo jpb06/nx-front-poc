@@ -17,38 +17,39 @@
     "baseUrl": ".",
     "paths": {
       "@front/api": ["libs/front/api/src/main-backend/calls/index.ts"],
+      "@front/api/msw": [
+        "libs/front/api/src/main-backend/msw-handlers/index.ts"
+      ],
       "@front/api/types": [
         "libs/front/api/src/main-backend/specs/api-types.ts"
       ],
       "@front/api/types/signup": [
         "libs/front/api/src/main-backend/specs/UsersController/signup.ts"
       ],
-      "@front/api/msw": [
-        "libs/front/api/src/main-backend/msw-handlers/index.ts"
-      ],
+      "@front/components/logic": ["libs/front/components/src/logic/index.ts"],
       "@front/components/molecules": [
         "libs/front/components/src/molecules/index.ts"
       ],
       "@front/components/organisms": [
         "libs/front/components/src/organisms/index.ts"
       ],
-      "@front/components/logic": ["libs/front/components/src/logic/index.ts"],
       "@front/components/providers": [
         "libs/front/components/src/providers/index.ts"
       ],
       "@front/logic": ["libs/front/logic/src/index.ts"],
+      "@front/storybook": ["libs/front/storybook/src/index.ts"],
       "@front/tests": ["libs/front/components/src/test/index.ts"],
       "@front/tests/components": [
         "libs/front/components/src/test/forms/index.ts"
-      ],
-      "@front/tests/mswServer": [
-        "libs/front/components/src/test/msw/mswServer.ts"
       ],
       "@front/tests/forms": ["libs/front/components/src/test/forms/index.ts"],
       "@front/tests/mocked-data": [
         "libs/front/components/src/test/mocked-data/index.ts"
       ],
       "@front/tests/mocks": ["libs/front/components/src/test/mocks/index.ts"],
+      "@front/tests/mswServer": [
+        "libs/front/components/src/test/msw/mswServer.ts"
+      ],
       "@front/tests/render": [
         "libs/front/components/src/test/renders/index.ts"
       ],
@@ -56,8 +57,7 @@
         "libs/front/components/src/test/renders/providers/index.ts"
       ],
       "@front/theme": ["libs/front/components/src/theme/index.ts"],
-      "@front/translations": ["libs/front/translations/src/index.ts"],
-      "@front/storybook": ["libs/front/storybook/src/index.ts"]
+      "@front/translations": ["libs/front/translations/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

@@ -1,0 +1,46 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/storybook",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/storybook",
+        "outputPath": "dist/apps/storybook"
+      },
+      "dependsOn": [
+        {
+          "projects": "dependencies",
+          "target": "build"
+        }
+      ],
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "front-storybook-app:build",
+        "dev": true
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "front-storybook-app:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "front-storybook-app:build:production",
+          "dev": false
+        }
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["front-storybook-lib"]
+}
