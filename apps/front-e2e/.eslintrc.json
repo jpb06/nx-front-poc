@@ -1,0 +1,20 @@
+{
+  "plugins": ["cypress"],
+  "extends": ["plugin:cypress/recommended", "../../.eslintrc.json"],
+  "env": {
+    "mocha": true
+  },
+  "ignorePatterns": ["!**/*"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@typescript-eslint/no-var-requires": ["off"],
+        "no-undef": ["off"],
+        "jest/expect-expect": ["off"],
+        "jest/valid-expect": ["off"],
+        "jest/valid-expect-in-promise": ["off"]
+      }
+    }
+  ]
+}
