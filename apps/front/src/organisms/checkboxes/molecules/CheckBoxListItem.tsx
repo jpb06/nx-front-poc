@@ -9,8 +9,8 @@ import {
 import React from 'react';
 import { useController } from 'react-hook-form';
 
-import { SkillDto } from '@api/types';
-import { spinKeyframe } from '@components/logic';
+import { SkillDto } from '@front/api/types';
+import { spinKeyframe } from '@front/components/logic';
 
 import { CheckBoxListProps } from '../CheckBoxList';
 

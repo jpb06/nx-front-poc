@@ -1,6 +1,6 @@
 import { Story, ComponentMeta } from '@storybook/react';
 
-import { reactQueryDecorator } from '@storybook';
+import { reactQueryDecorator } from '@front/storybook';
 
 import { LoadingError, LoadingErrorProps } from './LoadingError';
 

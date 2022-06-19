@@ -5,10 +5,10 @@ import {
 } from '@testing-library/react';
 import * as zod from 'zod';
 
-import { SkillCategoryDto } from '@api/types';
-import { FormTestingComponent } from '@tests/components';
-import { mockedSkills } from '@tests/mocked-data';
-import { appRender } from '@tests/render';
+import { SkillCategoryDto } from '@front/api/types';
+import { FormTestingComponent } from '@front/tests/components';
+import { mockedSkills } from '@front/tests/mocked-data';
+import { appRender } from '@front/tests/render';
 
 import { CheckBoxList } from './CheckBoxList';
 

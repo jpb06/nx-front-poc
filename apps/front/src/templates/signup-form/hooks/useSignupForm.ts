@@ -5,8 +5,8 @@ import { Control, useForm } from 'react-hook-form';
 import { useQueryClient } from 'react-query';
 import useLocalStorageState from 'use-local-storage-state';
 
-import { useSignupMutation } from '@api';
-import { SignupError } from '@api/types/signup';
+import { useSignupMutation } from '@front/api';
+import { SignupError } from '@front/api/types/signup';
 
 import { useCustomErrorMap } from './useCustomErrorMap';
 import { useSignupFormSchema, FormModel } from './useSignupFormSchema';

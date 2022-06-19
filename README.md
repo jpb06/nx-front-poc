@@ -40,7 +40,7 @@ pnpm dev "front,back"
 pnpm test-all
 
 # launch cypress tests in watch mode
-pnpm exec nx run front-e2e:e2e --watch
+pnpm exec nx run front-e2e-app:e2e --watch
 
 # launch storybook in dev mode
 pnpm exec nx run storybook:dev
@@ -66,15 +66,15 @@ Seriously, read these please 🥲
 
 ## ⚡ Projects
 
-| Project                                                            | Description                                                                  |
-| ------------------------------------------------------------------ | ---------------------------------------------------------------------------- |
-| 🚀 [`front`](./apps/front/README.md) app                           | Our frontend app, containing a signup form                                   |
-| 🚀 [`front-e2e`](./apps/front-e2e/README.md) app                   | Our end to end testing code using cypress                                    |
-| 🚀 [`back`](./apps/back/README.md) app                             | Our backend app, relying on an in-memory dataset                             |
-| 🧩 [`front-api`](./libs/front/api/README.md) lib                   | Our api types, extracted from the backend swagger                            |
-| 🧩 [`front-components`](./libs/front/components/README.md) lib     | Our generic components and the MUI theme shared by all our frontend apps     |
-| 🧩 [`front-translations`](./libs/front/translations/README.md) lib | Stub implementation for the translation of our UI.                           |
-| 🧩 [`storybook`](./libs/front/storybook/README.md) lib             | Library centralizing the configuration necessary to build and run storybook. |
+| Project                                                                | Description                                                                  |
+| ---------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| 🚀 [`frontend-app`](./apps/front/README.md) app                        | Our frontend app, containing a signup form                                   |
+| 🚀 [`front-e2e-app`](./apps/front-e2e/README.md) app                   | Our end to end testing code using cypress                                    |
+| 🚀 [`backend-app`](./apps/back/README.md) app                          | Our backend app, relying on an in-memory dataset                             |
+| 🧩 [`front-api-lib`](./libs/front/api/README.md) lib                   | Our api types, extracted from the backend swagger                            |
+| 🧩 [`front-components-lib`](./libs/front/components/README.md) lib     | Our generic components and the MUI theme shared by all our frontend apps     |
+| 🧩 [`front-translations-lib`](./libs/front/translations/README.md) lib | Stub implementation for the translation of our UI.                           |
+| 🧩 [`front-storybook-lib`](./libs/front/storybook/README.md) lib       | Library centralizing the configuration necessary to build and run storybook. |
 
 ## ⚡ cli
 

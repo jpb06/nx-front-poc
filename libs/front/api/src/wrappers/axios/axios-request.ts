@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig, Method } from 'axios';
 
-import { delay } from '@logic';
+import { delay } from '@front/logic';
 
 import { UnWrapResult } from './types/unwrap-result.type';
 

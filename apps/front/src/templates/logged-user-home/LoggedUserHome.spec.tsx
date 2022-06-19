@@ -6,15 +6,18 @@ import {
 import { mocked } from 'jest-mock';
 import router from 'next/router';
 
-import { msw } from '@api/msw';
-import { isLocalStorageAvailable } from '@logic';
-import { mockedUser } from '@tests/mocked-data';
-import { appRender, getInterpolableTranslationAssertKey } from '@tests/render';
+import { msw } from '@front/api/msw';
+import { isLocalStorageAvailable } from '@front/logic';
+import { mockedUser } from '@front/tests/mocked-data';
+import {
+  appRender,
+  getInterpolableTranslationAssertKey,
+} from '@front/tests/render';
 
 import { LoggedUserHome } from './LoggedUserHome';
 import { getRandomColor } from './organisms/molecules/user-skills/skill-icon/logic/getRandomColor';
 
-jest.mock('@logic');
+jest.mock('@front/logic');
 jest.mock('./organisms/molecules/user-skills/skill-icon/logic/getRandomColor');
 
 describe('Logged user home component', () => {

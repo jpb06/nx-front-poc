@@ -6,8 +6,8 @@
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "pnpm exec nx run back:serve --prod",
-          "pnpm exec nx run front:serve --prod"
+          "pnpm exec nx run backend-app:serve --prod",
+          "pnpm exec nx run frontend-app:serve --prod"
         ],
         "parallel": true,
         "readyWhen": "[ ready ] on http://localhost:3000"
@@ -22,7 +22,7 @@
       },
       "configurations": {
         "production": {
-          "devServerTarget": "front:serve:production"
+          "devServerTarget": "frontend-app:serve:production"
         }
       }
     },
@@ -35,5 +35,5 @@
     }
   },
   "tags": [],
-  "implicitDependencies": ["front", "back"]
+  "implicitDependencies": ["frontend-app", "backend-app"]
 }

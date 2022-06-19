@@ -28,7 +28,7 @@
     "serve": {
       "executor": "@nrwl/node:node",
       "options": {
-        "buildTarget": "back:build"
+        "buildTarget": "backend-app:build"
       }
     },
     "lint": {

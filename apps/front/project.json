@@ -37,7 +37,7 @@
     "serve": {
       "executor": "@nrwl/next:server",
       "options": {
-        "buildTarget": "front:build",
+        "buildTarget": "frontend-app:build",
         "dev": true,
         "port": 3000
       },
@@ -49,11 +49,11 @@
       ],
       "configurations": {
         "production": {
-          "buildTarget": "front:build:production",
+          "buildTarget": "frontend-app:build:production",
           "dev": false
         },
         "development": {
-          "buildTarget": "front:build:development",
+          "buildTarget": "frontend-app:build:development",
           "dev": true
         }
       },
@@ -62,7 +62,7 @@
     "export": {
       "executor": "@nrwl/next:export",
       "options": {
-        "buildTarget": "front:build:production"
+        "buildTarget": "frontend-app:build:production"
       }
     },
     "test": {
@@ -76,7 +76,7 @@
     "type-check": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "pnpm exec tsc -p ./apps/front/tsconfig.base.json --noEmit --pretty"
+        "command": "pnpm exec tsc -p ./apps/front/tsconfig.json --noEmit --pretty"
       }
     },
     "lint": {

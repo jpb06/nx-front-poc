@@ -1,8 +1,8 @@
 import { Grid, List } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 
-import { SignedUser } from '@api/types';
-import { SubTitle } from '@components/molecules';
+import { SignedUser } from '@front/api/types';
+import { SubTitle } from '@front/components/molecules';
 
 import { Skill } from './skill/Skill';
 

@@ -6,8 +6,7 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import * as zod from 'zod';
 
-import { SnackbarContext, WithSnackbar } from '@components/organisms';
-
+import { SnackbarContext, WithSnackbar } from '../../../organisms';
 import { Input, InputProps } from './Input';
 
 export default {

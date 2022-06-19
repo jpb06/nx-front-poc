@@ -1,6 +1,6 @@
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
 
-import { SkillDto } from '@api/types';
+import { SkillDto } from '@front/api/types';
 
 import { SkillIcon } from '../skill-icon/SkillIcon';
 

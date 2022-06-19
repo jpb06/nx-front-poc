@@ -9,8 +9,8 @@ import {
   EmotionCacheProvider,
   ReactQueryProvider,
   AppThemeProvider,
-} from '@components/molecules';
-import { WithSnackbar } from '@components/organisms';
+} from '@front/components/molecules';
+import { WithSnackbar } from '@front/components/organisms';
 
 import { FullpageBox } from '../organisms';
 

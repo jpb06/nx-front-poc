@@ -1,7 +1,7 @@
 import { screen } from '@testing-library/react';
 import React from 'react';
 
-import { appRender } from '@tests/render';
+import { appRender } from '@front/tests/render';
 
 import { FullpageBox } from './FullpageBox';
 

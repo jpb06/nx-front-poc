@@ -2,9 +2,9 @@ import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { QueryStatus } from 'react-query';
 
-import { useUserDataQuery } from '@api';
-import { User } from '@api/types';
-import { delay, isLocalStorageAvailable } from '@logic';
+import { useUserDataQuery } from '@front/api';
+import { User } from '@front/api/types';
+import { delay, isLocalStorageAvailable } from '@front/logic';
 
 type UserDataStatus = QueryStatus | 'redirecting';
 

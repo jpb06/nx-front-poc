@@ -6,9 +6,9 @@ import { initialize, mswDecorator } from 'msw-storybook-addon';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { themes } from '@storybook/theming';
 
-import { appTheme } from '@theme';
-import { AppThemeProvider } from '@components/molecules';
-import { WithSnackbar } from '@components/organisms';
+import { appTheme } from '@front/theme';
+import { AppThemeProvider } from '@front/components/molecules';
+import { WithSnackbar } from '@front/components/organisms';
 
 import { i18n } from './i18next';
 

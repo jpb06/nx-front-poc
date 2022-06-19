@@ -5,10 +5,10 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import * as zod from 'zod';
 
-import { msw } from '@api/msw';
-import { SnackbarContext } from '@components/organisms';
-import { reactQueryDecorator } from '@storybook';
-import { mockedSkills } from '@tests/mocked-data';
+import { msw } from '@front/api/msw';
+import { SnackbarContext } from '@front/components/organisms';
+import { reactQueryDecorator } from '@front/storybook';
+import { mockedSkills } from '@front/tests/mocked-data';
 
 import { FormModel } from '../../hooks/useSignupFormSchema';
 import { Skills } from './Skills';

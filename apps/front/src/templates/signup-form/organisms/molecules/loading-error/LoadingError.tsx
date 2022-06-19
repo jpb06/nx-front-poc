@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 
-import { ErrorBlock } from '@components/molecules';
+import { ErrorBlock } from '@front/components/molecules';
 
 import { SignupPreloadedDataLabel } from '../types/signup-preloaded-data-label.type';
 

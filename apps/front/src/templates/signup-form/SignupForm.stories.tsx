@@ -1,8 +1,12 @@
 import { Story, ComponentMeta } from '@storybook/react';
 
-import { msw } from '@api/msw';
-import { reactQueryDecorator } from '@storybook';
-import { mockedRoles, mockedSkills, mockedUser } from '@tests/mocked-data';
+import { msw } from '@front/api/msw';
+import { reactQueryDecorator } from '@front/storybook';
+import {
+  mockedRoles,
+  mockedSkills,
+  mockedUser,
+} from '@front/tests/mocked-data';
 
 import { Signup } from './SignupForm';
 

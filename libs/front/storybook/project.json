@@ -21,7 +21,7 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "uiFramework": "@storybook/react",
-        "outputPath": "dist/apps/storybook",
+        "outputPath": "dist/apps/storybook/public/storybook",
         "config": {
           "configFolder": "libs/front/storybook/.storybook"
         }
