@@ -1,13 +1,14 @@
 {
   "version": 2,
   "projects": {
-    "back": "apps/back",
-    "front": "apps/front",
-    "front-api": "libs/front/api",
-    "front-components": "libs/front/components",
-    "front-e2e": "apps/front-e2e",
-    "front-logic": "libs/front/logic",
-    "front-translations": "libs/front/translations",
-    "storybook": "libs/front/storybook"
+    "backend-app": "apps/back",
+    "frontend-app": "apps/front",
+    "front-storybook-app": "apps/storybook",
+    "front-e2e-app": "apps/front-e2e",
+    "front-api-lib": "libs/front/api",
+    "front-components-lib": "libs/front/components",
+    "front-logic-lib": "libs/front/logic",
+    "front-translations-lib": "libs/front/translations",
+    "front-storybook-lib": "libs/front/storybook"
   }
 }
