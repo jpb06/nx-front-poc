@@ -127,6 +127,7 @@ specifiers:
   styled-components: 5.3.5
   swagger-typescript-types: ^2.1.7
   swagger-ui-express: ^4.4.0
+  ts-jest: ^28.0.5
   ts-paths-transform: ^1.0.4
   tslib: ^2.3.1
   typescript: 4.6.4
@@ -269,6 +270,7 @@ devDependencies:
   storybook-dark-mode: 1.1.0_67dfsbfvz4jl445iymf5fkc6gu
   storybook-react-i18next: 1.0.20_4556o3n45tpnpggctxrjh5cro4
   swagger-typescript-types: 2.1.8
+  ts-jest: 28.0.5_j6oxh2vwc4q3asuoubmdbq75iy
   ts-paths-transform: 1.0.4
   typescript: 4.6.4
   url-loader: 4.1.1_webpack@5.73.0
@@ -7865,6 +7867,13 @@ packages:
       escalade: 3.1.1
       node-releases: 2.0.5
       picocolors: 1.0.0
+
+  /bs-logger/0.2.6:
+    resolution: {integrity: sha512-pd8DCoxmbgc7hyPKOvxtqNcjYoOsABPQdcCUjGp3d42VR2CX1ORhk2A87oqqu5R1kk+76nsxZupkmyd+MVtCog==}
+    engines: {node: '>= 6'}
+    dependencies:
+      fast-json-stable-stringify: 2.1.0
+    dev: true
 
   /bser/2.1.1:
     resolution: {integrity: sha512-gQxTNE/GAfIIrmHLUE3oJyp5FO6HRBfhjnw4/wMmA63ZGDJnWBmgY/lyQBpnDUkGmAhbSe39tx2d/iTOAfglwQ==}
@@ -18396,6 +18405,38 @@ packages:
       typescript: '>=3.7.0'
     dependencies:
       typescript: 4.6.4
+    dev: true
+
+  /ts-jest/28.0.5_j6oxh2vwc4q3asuoubmdbq75iy:
+    resolution: {integrity: sha512-Sx9FyP9pCY7pUzQpy4FgRZf2bhHY3za576HMKJFs+OnQ9jS96Du5vNsDKkyedQkik+sEabbKAnCliv9BEsHZgQ==}
+    engines: {node: ^12.13.0 || ^14.15.0 || ^16.10.0 || >=17.0.0}
+    hasBin: true
+    peerDependencies:
+      '@babel/core': '>=7.0.0-beta.0 <8'
+      babel-jest: ^28.0.0
+      esbuild: '*'
+      jest: ^28.0.0
+      typescript: '>=4.3'
+    peerDependenciesMeta:
+      '@babel/core':
+        optional: true
+      babel-jest:
+        optional: true
+      esbuild:
+        optional: true
+    dependencies:
+      '@babel/core': 7.18.2
+      babel-jest: 28.1.0_@babel+core@7.18.2
+      bs-logger: 0.2.6
+      fast-json-stable-stringify: 2.1.0
+      jest: 28.1.0_@types+node@17.0.39
+      jest-util: 28.1.0
+      json5: 2.2.1
+      lodash.memoize: 4.1.2
+      make-error: 1.3.6
+      semver: 7.3.7
+      typescript: 4.6.4
+      yargs-parser: 21.0.1
     dev: true
 
   /ts-loader/9.3.0_dydffymiyrgjbmyedhp7lreziy:

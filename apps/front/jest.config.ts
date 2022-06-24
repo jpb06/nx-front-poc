@@ -1,4 +1,4 @@
-import { getJestOptions } from '../../jest/front/jest-options';
+import { getJestOptions } from '../../libs/front/jest/jest-options';
 
 const options = getJestOptions('front', 'apps/front', ['!src/pages/**/*.tsx']);
 

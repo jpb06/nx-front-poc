@@ -5,7 +5,7 @@ jest.mock('next/dist/client/router', () => require('next-router-mock'));
 
 const {
   mswServer,
-} = require('./../../libs/front/components/src/test/msw/mswServer');
+} = require('./../../../libs/front/components/src/test/msw/mswServer');
 
 beforeAll(() => {
   mswServer.listen({ onUnhandledRequest: 'error' });
