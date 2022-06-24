@@ -7,5 +7,5 @@ export default {
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/apps/back',
-  preset: '../../jest/jest.preset.js',
+  preset: '../../jest.preset.js',
 };
