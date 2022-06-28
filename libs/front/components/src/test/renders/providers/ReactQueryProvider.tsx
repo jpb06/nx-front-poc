@@ -1,10 +1,5 @@
 import { PropsWithChildren, useContext } from 'react';
-import {
-  MutationCache,
-  QueryClient,
-  QueryClientProvider,
-  setLogger,
-} from 'react-query';
+import { MutationCache, QueryClient, QueryClientProvider } from 'react-query';
 
 import { handleMutationsErrors } from '../../../logic/handle-mutations-errors';
 import {
@@ -12,15 +7,6 @@ import {
   SnackbarContext,
 } from '../../../organisms/feedback/snackbar/Snackbar.context';
 import { TestWrapper } from './types/test-wrapper.type';
-
-//https://react-query.tanstack.com/guides/testing#_top
-/*eslint-disable*/
-setLogger({
-  log: console.log,
-  warn: console.warn,
-  error: () => {},
-});
-/*eslint-unable*/
 
 const createTestQueryClient = (showSnackbar: ShowSnackbarFn) => {
   const mutationCache = new MutationCache({
@@ -38,6 +24,11 @@ const createTestQueryClient = (showSnackbar: ShowSnackbarFn) => {
       },
     },
     mutationCache,
+    logger: {
+      log: console.log,
+      warn: console.warn,
+      error: () => {},
+    },
   });
 };
 

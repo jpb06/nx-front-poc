@@ -1,4 +1,4 @@
-import { DeepPartial, UnpackNestedValue } from 'react-hook-form';
+import { DeepPartial } from 'react-hook-form';
 
 import {
   EmotionCacheProvider,
@@ -15,9 +15,7 @@ export type RenderProviders = 'reactQuery' | 'form' | 'snackbar';
 
 export type ApplyWrappersProps<TForm> = {
   providers?: Array<RenderProviders>;
-  formProviderWrapperDefaultValues?:
-    | UnpackNestedValue<DeepPartial<TForm>>
-    | undefined;
+  formProviderWrapperDefaultValues?: DeepPartial<TForm> | undefined;
   i18nConfig?: I18nProviderProps;
 };
 
@@ -40,9 +38,7 @@ export const applyWrappers = <TForm>(props?: ApplyWrappersProps<TForm>) => {
       }
       case 'form': {
         return FormProvider<TForm>(
-          props?.formProviderWrapperDefaultValues as UnpackNestedValue<
-            DeepPartial<TForm>
-          >
+          props?.formProviderWrapperDefaultValues as DeepPartial<TForm>
         );
       }
       case 'emotionCache': {

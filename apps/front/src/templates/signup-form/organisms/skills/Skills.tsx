@@ -22,7 +22,7 @@ export const Skills = (props: SelectRoleProps) => {
 
   const isLoading =
     useIsMutating({
-      mutationKey: 'AreSkillsAvailableForRoleMutation',
+      mutationKey: ['AreSkillsAvailableForRoleMutation'],
       exact: true,
     }) > 0;
 

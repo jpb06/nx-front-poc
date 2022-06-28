@@ -22,7 +22,7 @@ export const useUserDataQuery = () => {
   const token = getToken();
 
   return useAxiosQuery<UserProfileResultDto, ApiResponseDto>({
-    key: 'user-data',
+    key: ['user-data'],
     url: path,
     method: 'GET',
     options: { enabled: token !== undefined },

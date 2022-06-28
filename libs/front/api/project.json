@@ -1,21 +1,17 @@
 {
-  "root": "libs/api",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/api/src",
   "projectType": "library",
   "targets": {
     "lint": {
       "executor": "@nrwl/linter:eslint",
-      "outputs": [
-        "{options.outputFile}"
-      ],
+      "outputs": ["{options.outputFile}"],
       "options": {
-        "lintFilePatterns": [
-          "libs/front/api/**/*.ts"
-        ]
+        "lintFilePatterns": ["libs/front/api/**/*.ts"]
       }
     },
     "generate-types": {
-      "builder": "@nrwl/workspace:run-commands",
+      "executor": "@nrwl/workspace:run-commands",
       "options": {
         "command": "generateTypesFromUrl NEXT_PUBLIC_API_URL -json ./libs/front/api/src/main-backend/specs && eslint ./libs/front/api/src/main-backend/specs --fix"
       }

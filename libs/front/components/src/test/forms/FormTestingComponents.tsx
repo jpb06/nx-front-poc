@@ -2,16 +2,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { Children, cloneElement, isValidElement } from 'react';
-import {
-  Control,
-  DeepPartial,
-  UnpackNestedValue,
-  useForm,
-} from 'react-hook-form';
+import { Control, DeepPartial, useForm } from 'react-hook-form';
 
 type FormTestingComponentProps<TForm> = {
   onSubmit: (d: unknown) => void;
-  defaultValues?: UnpackNestedValue<DeepPartial<TForm>> | undefined;
+  defaultValues?: DeepPartial<TForm> | undefined;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   schema: any;
   children: JSX.Element;
