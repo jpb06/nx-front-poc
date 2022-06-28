@@ -20,6 +20,7 @@
       "@front/api/msw": [
         "libs/front/api/src/main-backend/msw-handlers/index.ts"
       ],
+      "@front/api/msw/server": ["libs/front/api/src/msw/mswServer.ts"],
       "@front/api/types": [
         "libs/front/api/src/main-backend/specs/api-types.ts"
       ],
@@ -47,9 +48,6 @@
         "libs/front/components/src/test/mocked-data/index.ts"
       ],
       "@front/tests/mocks": ["libs/front/components/src/test/mocks/index.ts"],
-      "@front/tests/mswServer": [
-        "libs/front/components/src/test/msw/mswServer.ts"
-      ],
       "@front/tests/render": [
         "libs/front/components/src/test/renders/index.ts"
       ],

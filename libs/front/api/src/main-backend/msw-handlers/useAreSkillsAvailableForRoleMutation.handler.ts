@@ -1,7 +1,6 @@
 import { DefaultBodyType } from 'msw';
 
-import { mswHandlers } from '@front/tests';
-
+import { genericPostHandler } from '../../msw/handlers';
 import { path } from '../specs/SkillsController/areSkillsAvailableForRole';
 
 export const areSkillsAvailableForRoleMutation = (
@@ -9,7 +8,7 @@ export const areSkillsAvailableForRoleMutation = (
   result: DefaultBodyType,
   applyToServer = true
 ) =>
-  mswHandlers.genericPostHandler({
+  genericPostHandler({
     url: path,
     status,
     result: { result },

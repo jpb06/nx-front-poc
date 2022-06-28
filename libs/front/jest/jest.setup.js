@@ -3,9 +3,7 @@ const { matchers } = require('@emotion/jest');
 
 jest.mock('next/dist/client/router', () => require('next-router-mock'));
 
-const {
-  mswServer,
-} = require('./../../../libs/front/components/src/test/msw/mswServer');
+const { mswServer } = require('./../../../libs/front/api/src/msw/mswServer');
 
 beforeAll(() => {
   mswServer.listen({ onUnhandledRequest: 'error' });

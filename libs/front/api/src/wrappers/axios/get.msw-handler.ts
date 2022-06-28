@@ -1,6 +1,6 @@
 import { DefaultBodyType, rest } from 'msw';
 
-import { mswHandlers } from '@front/tests';
+import { applyHandlerToServer } from '../../msw/handlers/applyHandlerToServer';
 
 export const genericGetUrl = 'https://cool.org/get';
 
@@ -13,5 +13,5 @@ export const getHandler = (
     res(ctx.status(status), ctx.json(result))
   );
 
-  return mswHandlers.applyHandlerToServer(handler, applyToServer);
+  return applyHandlerToServer(handler, applyToServer);
 };

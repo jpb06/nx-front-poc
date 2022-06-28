@@ -14,7 +14,7 @@ import {
   mockedUser,
   mockedSkills,
 } from '@front/tests/mocked-data';
-import { mswServer } from '@front/tests/mswServer';
+import { mswServer } from '@front/api/msw/server';
 import { appRender } from '@front/tests/render';
 
 import { Signup } from './SignupForm';

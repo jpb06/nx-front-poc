@@ -1,7 +1,6 @@
 import { DefaultBodyType } from 'msw';
 
-import { mswHandlers } from '@front/tests';
-
+import { genericPostHandler } from '../../msw/handlers';
 import { path } from './../specs/UsersController/signup';
 
 export const signupMutation = (
@@ -9,7 +8,7 @@ export const signupMutation = (
   result: DefaultBodyType,
   applyToServer = true
 ) =>
-  mswHandlers.genericPostHandler({
+  genericPostHandler({
     url: path,
     status,
     result: { result },
