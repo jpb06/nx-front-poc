@@ -7,7 +7,7 @@ import {
 
 export const useSkillsQuery = () =>
   useAxiosQuery<GetAllSkillsSuccess, GetAllSkillsError>({
-    key: 'skills',
+    key: ['skills'],
     url: path,
     method: 'GET',
   });

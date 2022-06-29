@@ -15,7 +15,7 @@ type SkillsCountRefinementPredicate = Pick<FormModel, 'idSkills'>;
 export const useSignupFormRefinements = () => {
   const { t } = useTranslation('forms');
   const { mutateAsync } = useAreSkillsAvailableForRoleMutation({
-    mutationKey: 'AreSkillsAvailableForRoleMutation',
+    mutationKey: ['AreSkillsAvailableForRoleMutation'],
   });
   const queryClient = useQueryClient();
 

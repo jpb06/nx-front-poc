@@ -1,4 +1,5 @@
 import {
+  cleanup,
   screen,
   waitFor,
   waitForElementToBeRemoved,
@@ -13,7 +14,7 @@ import {
   mockedUser,
   mockedSkills,
 } from '@front/tests/mocked-data';
-import { mswServer } from '@front/tests/mswServer';
+import { mswServer } from '@front/api/msw/server';
 import { appRender } from '@front/tests/render';
 
 import { Signup } from './SignupForm';
@@ -39,6 +40,8 @@ describe('Signup component', () => {
       const { baseElement } = render();
 
       expect(baseElement).toMatchSnapshot();
+
+      cleanup();
     });
 
     it('should match snapshot when initial data (skills & role) has loaded', async () => {
@@ -436,9 +439,9 @@ describe('Signup component', () => {
         })
       );
 
-      await waitForElementToBeRemoved(() =>
+      expect(
         screen.queryByText(/forms:roleAndSkillsMismatchError/i)
-      );
+      ).not.toBeInTheDocument();
 
       msw.areSkillsAvailableForRoleMutation(201, [6]);
 
@@ -481,12 +484,16 @@ describe('Signup component', () => {
       expect(screen.getByText(/signupPage:form.submit/i)).toBeInTheDocument();
     });
 
-    it('should display a loading indicator for roles', () => {
+    it('should display a loading indicator for roles', async () => {
       render();
 
       expect(
         screen.getByRole('progressbar', { name: /loading-roles/i })
       ).toBeInTheDocument();
+
+      await waitForElementToBeRemoved(() =>
+        screen.queryByRole('progressbar', { name: /loading-roles/i })
+      );
     });
 
     it('should display an error when roles could not be fetched', async () => {
@@ -517,12 +524,16 @@ describe('Signup component', () => {
       ).toBeInTheDocument();
     });
 
-    it('should display a loading indicator for skills', () => {
+    it('should display a loading indicator for skills', async () => {
       render();
 
       expect(
         screen.getByRole('progressbar', { name: /loading-skills/i })
       ).toBeInTheDocument();
+
+      await waitForElementToBeRemoved(() =>
+        screen.queryByRole('progressbar', { name: /loading-skills/i })
+      );
     });
 
     it('should display an error when skills could not be fetched', async () => {

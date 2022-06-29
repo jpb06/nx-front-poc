@@ -1,7 +1,6 @@
 import { DefaultBodyType } from 'msw';
 
-import { mswHandlers } from '@front/tests';
-
+import { genericGetHandler } from '../../msw/handlers';
 import { path } from '../specs/UsersController/userProfile';
 
 export const userDataQuery = (
@@ -9,7 +8,7 @@ export const userDataQuery = (
   result: DefaultBodyType,
   applyToServer = true
 ) =>
-  mswHandlers.genericGetHandler({
+  genericGetHandler({
     url: path,
     status,
     result: { result },

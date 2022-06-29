@@ -12,8 +12,6 @@ import { WithSnackbar } from '@front/components/organisms';
 
 import { i18n } from './i18next';
 
-const finalI18n = i18n.cloneInstance();
-
 // Initialize MSW
 initialize({ onUnhandledRequest: 'bypass' });
 
@@ -37,11 +35,11 @@ export const parameters = {
     dark: { ...themes.dark, appBg: 'black' },
     light: { ...themes.normal, appBg: 'lightgrey' },
   },
-  i18n: finalI18n,
+  i18n,
   locale: 'en',
   locales: {
-    en: { right: '🇫🇷', title: 'Français' },
-    fr: { right: '🇬🇧', title: 'English' },
+    en: { right: '🇬🇧', title: 'English' },
+    fr: { right: '🇫🇷', title: 'Français' },
   },
 };
 

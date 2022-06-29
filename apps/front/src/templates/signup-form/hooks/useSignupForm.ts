@@ -50,7 +50,7 @@ export const useSignupForm = (): SignupFormHook => {
     onSuccess: async (data) => {
       if (data) {
         setToken(data.token);
-        queryClient.setQueryData('user-data', (_) => data);
+        queryClient.setQueryData(['user-data'], (_: unknown) => data);
         await router.push('home');
       }
     },
