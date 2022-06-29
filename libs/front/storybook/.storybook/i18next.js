@@ -1,8 +1,10 @@
 import { initReactI18next } from 'react-i18next';
 import i18n from 'i18next';
+import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
-const localesPath = './../../translations/assets/locales';
+const ns = ['common', 'forms', 'signupPage', 'userInfosPage'];
+const supportedLngs = ['en', 'fr'];
 
 const getNamespaces = (webpackContext) =>
   webpackContext
@@ -10,33 +12,30 @@ const getNamespaces = (webpackContext) =>
     .map((path) => path.replace('./', '').replace('.json', ''));
 
 const namespaces = getNamespaces(
-  require.context(`${localesPath}/en`, false, /.json/)
+  require.context(`./../../translations/assets/locales/en`, false, /.json/)
 );
-const supportedLanguages = ['en', 'fr'];
 
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
+  .use(LanguageDetector)
+  .use(Backend)
   .init({
-    react: {
-      useSuspense: false,
-    },
+    //debug: true,
     lng: 'en',
     fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false,
-    },
     defaultNS: 'common',
     ns: namespaces,
-    supportedLngs: supportedLanguages,
+    interpolation: { escapeValue: false },
+    react: { useSuspense: false },
+    supportedLngs,
   });
 
-supportedLanguages.forEach((lang) => {
+supportedLngs.forEach((lang) => {
   let notFoundNamespacesCount = 0;
 
-  namespaces.forEach((namespace) => {
+  ns.forEach((namespace) => {
     try {
-      const file = require(`${localesPath}/${lang}/${namespace}.json`);
+      const file = require(`./../../translations/assets/locales/${lang}/${namespace}.json`);
       i18n.addResourceBundle(lang, namespace, file);
     } catch (err) {
       notFoundNamespacesCount++;
@@ -50,4 +49,6 @@ supportedLanguages.forEach((lang) => {
   }
 });
 
-export { i18n };
+const i18nInstance = i18n.cloneInstance();
+
+export { i18nInstance as i18n };
