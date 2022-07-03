@@ -16,16 +16,14 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
-      "@front/api": ["libs/front/api/src/main-backend/calls/index.ts"],
+      "@front/api": ["libs/front/api/src/backend-app/calls/index.ts"],
       "@front/api/msw": [
-        "libs/front/api/src/main-backend/msw-handlers/index.ts"
+        "libs/front/api/src/backend-app/msw-handlers/index.ts"
       ],
       "@front/api/msw/server": ["libs/front/api/src/msw/mswServer.ts"],
-      "@front/api/types": [
-        "libs/front/api/src/main-backend/specs/api-types.ts"
-      ],
+      "@front/api/types": ["libs/front/api/src/backend-app/specs/api-types.ts"],
       "@front/api/types/signup": [
-        "libs/front/api/src/main-backend/specs/UsersController/signup.ts"
+        "libs/front/api/src/backend-app/specs/UsersController/signup.ts"
       ],
       "@front/components/logic": ["libs/front/components/src/logic/index.ts"],
       "@front/components/molecules": [

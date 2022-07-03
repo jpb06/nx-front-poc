@@ -1,3 +1,6 @@
+/* eslint-disable */
+/* tslint:disable */
+
 export interface RoleDto {
   id: number;
   name: string;

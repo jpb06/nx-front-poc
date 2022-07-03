@@ -3,6 +3,20 @@
   "sourceRoot": "apps/back/src",
   "projectType": "application",
   "targets": {
+    "api-types": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "pnpm generateTypesFromFile libs/front/api/src/swaggers/backend-app.swagger.json libs/front/api/src/backend-app/specs"
+      },
+      "dependsOn": ["swagger-file"]
+    },
+    "swagger-file": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "node dist/apps/back-swagger/main.js"
+      },
+      "dependsOn": ["build-swagger"]
+    },
     "build": {
       "executor": "@nrwl/node:webpack",
       "outputs": ["{options.outputPath}"],
@@ -24,6 +38,16 @@
             }
           ]
         }
+      }
+    },
+    "build-swagger": {
+      "executor": "@nrwl/node:webpack",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/back-swagger",
+        "main": "apps/back/src/generate-swagger-file.ts",
+        "tsConfig": "apps/back/tsconfig.app.json",
+        "assets": ["apps/back/src/assets"]
       }
     },
     "serve": {
