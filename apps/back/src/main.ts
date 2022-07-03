@@ -1,3 +1,3 @@
-import { bootstrap } from './bootstrap';
+import { bootstrap } from './boostrapping/bootstrap';
 
 bootstrap();
