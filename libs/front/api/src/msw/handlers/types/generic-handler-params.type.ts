@@ -1,7 +1,10 @@
 import { DefaultBodyType } from 'msw';
 
+import { Backend } from '../../../wrappers/react-query/types/backend.type';
+
 export type GenericHandlerParams = {
-  url: string;
+  backend: Backend;
+  path: string;
   status: number;
   result: DefaultBodyType;
   applyToServer?: boolean;

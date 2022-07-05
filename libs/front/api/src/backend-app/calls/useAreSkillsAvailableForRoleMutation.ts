@@ -18,4 +18,4 @@ export const useAreSkillsAvailableForRoleMutation = (
     AreSkillsAvailableForRoleSuccess,
     AreSkillsAvailableForRoleError,
     RequestBody
-  >(path, 'POST', options);
+  >('backend-app', path, 'POST', options);

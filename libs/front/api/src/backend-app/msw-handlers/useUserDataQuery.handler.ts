@@ -9,7 +9,8 @@ export const userDataQuery = (
   applyToServer = true
 ) =>
   genericGetHandler({
-    url: path,
+    backend: 'backend-app',
+    path,
     status,
     result: { result },
     applyToServer,

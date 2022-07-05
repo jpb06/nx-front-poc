@@ -9,7 +9,8 @@ export const signupMutation = (
   applyToServer = true
 ) =>
   genericPostHandler({
-    url: path,
+    backend: 'backend-app',
+    path,
     status,
     result: { result },
     applyToServer,

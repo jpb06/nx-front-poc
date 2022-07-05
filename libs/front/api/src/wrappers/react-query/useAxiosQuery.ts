@@ -3,11 +3,14 @@ import { useQuery, UseQueryOptions } from 'react-query';
 
 import { axiosRequest } from '../axios/axios-request';
 import { UnWrapResult } from '../axios/types/unwrap-result.type';
+import { getUrl } from './get-url';
+import { Backend } from './types/backend.type';
 import { QueryResult } from './types/query-result.type';
 
 type AxiosQueryProps<TSuccess, TError> = {
   key: Array<unknown>;
-  url: string;
+  backend: Backend;
+  path: string;
   method: Method;
   data?: unknown;
   options?: UseQueryOptions<
@@ -20,14 +23,28 @@ type AxiosQueryProps<TSuccess, TError> = {
 
 export const useAxiosQuery = <TSuccess, TError>({
   key,
-  url,
+  backend,
+  path,
   method,
   data = undefined,
   options = {},
   config = {},
-}: AxiosQueryProps<TSuccess, TError>): QueryResult<TSuccess, TError> =>
-  useQuery<UnWrapResult<TSuccess> | undefined, TError, UnWrapResult<TSuccess>>(
+}: AxiosQueryProps<TSuccess, TError>): QueryResult<TSuccess, TError> => {
+  const url = getUrl(backend, path);
+
+  return useQuery<
+    UnWrapResult<TSuccess> | undefined,
+    TError,
+    UnWrapResult<TSuccess>
+  >(
     key,
-    () => axiosRequest<TSuccess>({ method, url, data, config }),
+    () =>
+      axiosRequest<TSuccess>({
+        method,
+        url,
+        data,
+        config,
+      }),
     options
   );
+};
