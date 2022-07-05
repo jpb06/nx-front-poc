@@ -15,7 +15,7 @@
     "e2e": "nx front-e2e-app:e2e",
     "dev": "nx run-many --target=serve --parallel --projects",
     "swagger": "nx run-many --target=build-swagger --parallel --all --skip-nx-cache",
-    "api-types": "nx run-many --target=api-types --parallel --all  --skip-nx-cache"
+    "api-types": "nx run-many --target=api-types --parallel --all  --skip-nx-cache --verbose"
   },
   "private": true,
   "dependencies": {
@@ -150,7 +150,7 @@
     "storybook-addon-swc": "^1.1.7",
     "storybook-dark-mode": "^1.1.0",
     "storybook-react-i18next": "^1.1.2",
-    "swagger-typescript-types": "^2.2.1",
+    "swagger-typescript-types": "^3.0.0",
     "ts-jest": "^28.0.5",
     "ts-paths-transform": "^1.0.4",
     "typescript": "4.7.4",

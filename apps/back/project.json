@@ -6,7 +6,7 @@
     "api-types": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
-        "command": "pnpm generateTypesFromFile libs/front/api/src/swaggers/backend-app.swagger.json libs/front/api/src/backend-app/specs"
+        "command": "pnpm generateTypesFromFile -i libs/front/api/src/swaggers/backend-app.swagger.json -o libs/front/api/src/backend-app/specs"
       },
       "dependsOn": ["swagger-file"]
     },
