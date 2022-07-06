@@ -29,6 +29,12 @@
         "buildTarget": "front-storybook-app:build",
         "dev": true
       },
+      "dependsOn": [
+        {
+          "projects": "dependencies",
+          "target": "build"
+        }
+      ],
       "configurations": {
         "development": {
           "buildTarget": "front-storybook-app:build:development",
