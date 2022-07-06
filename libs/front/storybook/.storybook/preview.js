@@ -17,7 +17,7 @@ import { i18n } from './i18next';
 initialize({
   onUnhandledRequest: 'bypass',
   serviceWorker: {
-    url: `./mockServiceWorker.js`,
+    url: `./../mockServiceWorker.js`,
     options: { scope: '/' },
   },
 });
