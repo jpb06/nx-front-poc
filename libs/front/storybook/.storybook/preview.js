@@ -18,7 +18,7 @@ initialize({
   onUnhandledRequest: 'bypass',
   serviceWorker: {
     url: `./mockServiceWorker.js`,
-    options: { updateViaCache: {}, scope: '/' },
+    options: { scope: '/' },
   },
 });
 
