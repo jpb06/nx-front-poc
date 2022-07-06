@@ -168,5 +168,8 @@
         "cypress": "10"
       }
     }
+  },
+  "msw": {
+    "workerDirectory": "./apps/storybook/public"
   }
 }

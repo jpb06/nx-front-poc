@@ -13,7 +13,6 @@ const nextConfig = {
   i18n,
   reactStrictMode: true,
   pageExtensions: ['page.tsx', 'api.ts'],
-  
 };
 
 module.exports = withNx(nextConfig);

@@ -14,7 +14,13 @@ import { WithSnackbar } from '@front/components/organisms';
 import { i18n } from './i18next';
 
 // Initialize MSW
-initialize({ onUnhandledRequest: 'bypass' });
+initialize({
+  onUnhandledRequest: 'bypass',
+  serviceWorker: {
+    url: `./mockServiceWorker.js`,
+    options: { updateViaCache: {}, scope: '/' },
+  },
+});
 
 export const parameters = {
   backgrounds: {
@@ -45,6 +51,7 @@ export const parameters = {
 };
 
 export const decorators = [
+  mswDecorator,
   (Story, context) => (
     <>
       <meta name="theme-color" content={appTheme.palette.primary.main} />
@@ -56,5 +63,4 @@ export const decorators = [
       </AppThemeProvider>
     </>
   ),
-  mswDecorator,
 ];
