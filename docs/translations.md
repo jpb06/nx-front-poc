@@ -601,7 +601,11 @@ In order to load translations, we have to add a `i18next.js` file in `.storybook
 ```javascript
 import { initReactI18next } from 'react-i18next';
 import i18n from 'i18next';
+import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
+
+const ns = ['common', 'forms', 'signupPage', 'userInfosPage'];
+const supportedLngs = ['en', 'fr'];
 
 const getNamespaces = (webpackContext) =>
   webpackContext
@@ -609,31 +613,28 @@ const getNamespaces = (webpackContext) =>
     .map((path) => path.replace('./', '').replace('.json', ''));
 
 const namespaces = getNamespaces(
-  require.context('./../../translations/assets/locales/en', false, /.json/)
+  require.context(`./../../translations/assets/locales/en`, false, /.json/)
 );
-const supportedLanguages = ['en', 'fr'];
 
 i18n
-  .use(LanguageDetector)
   .use(initReactI18next)
+  .use(LanguageDetector)
+  .use(Backend)
   .init({
-    react: {
-      useSuspense: false,
-    },
+    //debug: true,
     lng: 'en',
     fallbackLng: 'en',
-    interpolation: {
-      escapeValue: false,
-    },
     defaultNS: 'common',
     ns: namespaces,
-    supportedLngs: supportedLanguages,
+    interpolation: { escapeValue: false },
+    react: { useSuspense: false },
+    supportedLngs,
   });
 
-supportedLanguages.forEach((lang) => {
+supportedLngs.forEach((lang) => {
   let notFoundNamespacesCount = 0;
 
-  namespaces.forEach((namespace) => {
+  ns.forEach((namespace) => {
     try {
       const file = require(`./../../translations/assets/locales/${lang}/${namespace}.json`);
       i18n.addResourceBundle(lang, namespace, file);
@@ -649,7 +650,9 @@ supportedLanguages.forEach((lang) => {
   }
 });
 
-export { i18n };
+const i18nInstance = i18n.cloneInstance();
+
+export { i18nInstance as i18n };
 ```
 
 We will patch `main.js` to use [`storybook-react-i18next`](https://storybook.js.org/addons/storybook-react-i18next) addon. We also need to add the locales files to the static files available in storybook. Finally, we will replace `next-i18next` library with `react-i18next`, its base library, since we are not using next at all within storybook.

@@ -1,6 +1,12 @@
 # 🧩 `front-api-lib` lib 🧩
 
-This library contains the types extracted from the backend swagger.
+This library contains:
+
+- the types extracted from the backend swagger.
+- The wrappers on axios.
+- The wrappers on react-query.
+- the queries and mutations used by our frontend(s).
+- the msw handlers associated with these queries, to be used in integration tests and in our storybook stories.
 
 ## ⚡ CLI
 

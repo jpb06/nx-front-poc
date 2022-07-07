@@ -4,10 +4,10 @@ A library containing a translations system mockup for our frontend app.
 
 ## ⚡ CLI
 
-| Description                | Command                                    |
-| -------------------------- | ------------------------------------------ |
-| ⚠️ Linting the app         | `nx run front-translations-lib:lint`       |
-| ✔️ Type checking using tsc | `nx run front-translations-lib:type-check` |
+| Description                | Command                                         |
+| -------------------------- | ----------------------------------------------- |
+| ⚠️ Linting the app         | `pnpm nx run front-translations-lib:lint`       |
+| ✔️ Type checking using tsc | `pnpm nx run front-translations-lib:type-check` |
 
 ### 🔶 Useful flags
 

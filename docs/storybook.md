@@ -75,48 +75,190 @@ pnpm nx g @nrwl/node:lib storybook
 
 ### 🧿 Configuring storybook
 
-The next step is to configure storybook. Storybook configuration is defined in a `.storybook` folder that is typically at repo root level. In our case, we will create it in our new library.
+The next step is to configure storybook. Storybook configuration is typically defined in a `.storybook` folder at repo root level. In a nx monorepo we generally both have a `.storybook` folder at root level and one inside each frontend app. In our case, since we want to ony have one storybook deployed, we will hold the storybook config in a dedicated library.
 
-### Tweaking storybook config
+#### Tweaking storybook config
 
 The main part of the configuration is defined in the `main.js` file. Our goal here is to include the stories of all our apps and our libs. We also need to include static files defined in the `public` folder of next apps and in the `assets` of our libs.
 
 ```js
-const tsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+// Pulling root storybook config
+const rootMain = require('../../../../.storybook/main');
 
 /** @type {import("@storybook/react/types/index").StorybookConfig} */
 const storybookMainConfig = {
-  // Defining our add-ons
-  addons: [
-    '@storybook/addon-essentials',
-    '@storybook/addon-viewport',
-    '@storybook/addon-links',
-    'storybook-addon-next-router',
-    'storybook-dark-mode',
-    'storybook-react-i18next',
+  ...rootMain,
+
+  core: { ...rootMain.core, builder: 'webpack5' },
+
+  // We will include the stories defined in all the apps and all the libs
+  stories: [
+    ...rootMain.stories,
+    '../../../../**/*.stories.mdx',
+    '../../../../**/*.stories.tsx',
   ],
-  // Pulling stories from all the folders of the repo
-  stories: ['../../../../**/*.stories.mdx', '../../../../**/*.stories.tsx'],
-  // Including static files (images for example)
+  // Including assets
   staticDirs: [
     '../../../../apps/front/public',
     '../../../../libs/front/components/assets',
   ],
-  webpackFinal: async (config) => {
-    config.resolve.plugins = [
-      ...(config.resolve.plugins || []),
-      // Handling typescript
-      new tsconfigPathsPlugin({
-        configFile: './libs/front/storybook/.storybook/tsconfig.json',
-        extensions: config.resolve.extensions,
-      }),
-    ];
+  addons: [...rootMain.addons, '@nrwl/react/plugins/storybook'],
+  webpackFinal: async (config, { configType }) => {
+    // apply any global webpack configs that might have been specified in .storybook/main.js
+    if (rootMain.webpackFinal) {
+      config = await rootMain.webpackFinal(config, { configType });
+    }
 
-    // [...]
+    /**
+     * Fixes issue with `next-i18next` and is ready for webpack@5
+     * @see https://github.com/isaachinman/next-i18next/issues/1012#issuecomment-792697008
+     * @see https://github.com/storybookjs/storybook/issues/4082#issuecomment-758272734
+     * @see https://webpack.js.org/migrate/5/
+     */
+    config.resolve.fallback = {
+      fs: false,
+      http: false,
+      https: false,
+      timers: false,
+      stream: false,
+      zlib: false,
+      path: false, //require.resolve('path-browserify'),
+    };
 
     return config;
   },
   features: { emotionAlias: false },
+  env: (config) => ({
+    ...config,
+    NEXT_PUBLIC_API_URL: 'https://rhf-mui-nx-sandbox-api.com',
+  }),
+};
+
+module.exports = storybookMainConfig;
+```
+
+#### 🎁 Translations
+
+See [`Multi languages support`](./translations.md).
+
+#### 🎁 Msw
+
+We will use msw to intercept XHR calls and give them the result we want to meet the demonstration purpose of each story. To do so we need to do a few things.
+
+**Sharing handlers between integration tests and storybook**
+
+We have to take into account a small difference. In integration tests we have to apply handlers to the server while in storybook we do not, since we are using `msw-storybook-addon`. So we will create an helper function that will conditionally apply `server.use` on the passed handler:
+
+```typescript
+export const genericGetHandler = ({
+  backend,
+  path,
+  status,
+  result,
+  applyToServer = true,
+}: GenericHandlerParams) => {
+  const url = getUrl(backend, path);
+
+  // Defining the handler and applying result to it
+  const handler = rest.get(url, (_, res, ctx) =>
+    res(ctx.status(status), ctx.json(result))
+  );
+
+  return applyHandlerToServer(handler, applyToServer);
+};
+
+const applyHandlerToServer = (
+  handler: RestHandler<MockedRequest<DefaultBodyType>>,
+  useServer: boolean
+) => {
+  // Conditionally calling server.use
+  if (useServer) {
+    const { mswServer } = require('./../mswServer');
+    return mswServer.use(handler);
+  }
+
+  return handler;
+};
+```
+
+Now we can easily define our handlers:
+
+```typescript
+// Our handler for the role query
+export const rolesQuery = (
+  status: number,
+  result: DefaultBodyType,
+  applyToServer = true
+) =>
+  genericGetHandler({
+    backend: 'backend-app',
+    path,
+    status,
+    result: { result },
+    applyToServer,
+  });
+```
+
+**Configuring storybook**
+
+Let's tweak `preview.js` file by adding the msw decorator:
+
+```javascript
+import { initialize, mswDecorator } from 'msw-storybook-addon';
+
+// Initialize MSW
+initialize({
+  onUnhandledRequest: 'bypass',
+  serviceWorker: {
+    url: `./../mockServiceWorker.js`,
+    options: { scope: '/' },
+  },
+});
+
+export const parameters = {
+  // ...
+  msw: {
+    // We could define default handlers here
+    handlers: {},
+  },
+};
+
+export const decorators = [
+  mswDecorator,
+  // ...
+];
+```
+
+**Using msw in storybook**
+
+Now, let's intercept XHR calls in stories:
+
+```typescript
+export default {
+  component: Signup,
+  title: 'Front app/User stories/Signup/Templates/SignupForm',
+  decorators: reactQueryDecorator,
+} as ComponentMeta<typeof Signup>;
+
+const MominalCaseTemplate: Story = (_) => {
+  return <Signup />;
+};
+
+export const NominalCase = MominalCaseTemplate.bind({});
+NominalCase.parameters = {
+  msw: {
+    handlers: {
+      // setting third parameters to false to NOT apply the handler to server
+      roles: msw.rolesQuery(200, mockedRoles, false),
+      skills: msw.skillsQuery(200, mockedSkills, false),
+      signup: msw.signupMutation(200, mockedUser, false),
+      areSkillsAvailableForRole: msw.areSkillsAvailableForRoleMutation(
+        200,
+        [],
+        false
+      ),
+    },
+  },
 };
 ```
 
@@ -128,30 +270,15 @@ project.json
 
 ```json
 {
-  "root": "libs/front/storybook",
+  // ...
   "projectType": "library",
   "targets": {
-    "dev": {
-      "executor": "@nrwl/storybook:storybook",
-      "options": {
-        "uiFramework": "@storybook/react",
-        "port": 4400,
-        "config": {
-          "configFolder": "libs/front/storybook/.storybook"
-        }
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
     "build": {
       "executor": "@nrwl/storybook:build",
       "outputs": ["{options.outputPath}"],
       "options": {
         "uiFramework": "@storybook/react",
-        "outputPath": "dist/apps/storybook",
+        "outputPath": "dist/apps/storybook/public/storybook",
         "config": {
           "configFolder": "libs/front/storybook/.storybook"
         }
@@ -162,17 +289,18 @@ project.json
         }
       }
     }
-  },
-  "tags": []
+  }
 }
 ```
 
-Cool! Now we can use the following commands:
+## 🔶 Running storybook
+
+We can use the next app to run storybook. The `build` and `serve` commands will call `front-storybook-lib:build` under the hood.
 
 ```bash
 // Launching storybook in watch mode (dev)
-pnpm nx run storybook:dev
+pnpm nx run front-storybook-app:serve
 
 // Building storybook
-pnpm nx run storybook:build
+pnpm nx run front-storybook-app:build
 ```

@@ -1,7 +1,17 @@
-# logic
+# 🧩 `front-logic-lib` lib 🧩
 
-This library was generated with [Nx](https://nx.dev).
+Our shared logic modules.
 
-## Running unit tests
+## ⚡ CLI
 
-Run `nx test logic` to execute the unit tests via [Jest](https://jestjs.io).
+| Description                | Command                                  |
+| -------------------------- | ---------------------------------------- |
+| ⚠️ Linting the app         | `pnpm nx run front-logic-lib:lint`       |
+| ✔️ Type checking using tsc | `pnpm nx run front-logic-lib:type-check` |
+
+### 🔶 Useful flags
+
+| flag                 | Description                                        |
+| -------------------- | -------------------------------------------------- |
+| ⬛ `--skip-nx-cache` | disables nx caching; the command will be ran fully |
+| ⬛ `--verbose`       | prints additional error stack trace on failure     |

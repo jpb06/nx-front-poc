@@ -128,37 +128,23 @@ Our shared library may use assets, like images or icons. These files will be sto
 
 ### 🧿 Storybook
 
-We will be using a simple node library to build and launch storybook in dev mode.
+#### 🎁 Node library
 
-Let's first define a `build` and `dev` script in `project.json`:
+We will be using a node library to build storybook. Let's define a `build` task in `front-storybook-lib`.
+
+`project.json`:
 
 ```json
 {
   // ...
   "targets": {
-    // Launching storybook in dev mode
-    "dev": {
-      "executor": "@nrwl/storybook:storybook",
-      "options": {
-        "uiFramework": "@storybook/react",
-        "port": 4400,
-        "config": {
-          "configFolder": "libs/front/storybook/.storybook"
-        }
-      },
-      "configurations": {
-        "ci": {
-          "quiet": true
-        }
-      }
-    },
     // Building storybook
     "build": {
       "executor": "@nrwl/storybook:build",
       "outputs": ["{options.outputPath}"],
       "options": {
         "uiFramework": "@storybook/react",
-        "outputPath": "dist/apps/storybook",
+        "outputPath": "dist/apps/storybook/public/storybook",
         "config": {
           "configFolder": "libs/front/storybook/.storybook"
         }
@@ -187,6 +173,63 @@ const storybookMainConfig = {
 };
 
 module.exports = storybookMainConfig;
+```
+
+#### 🎁 Next app
+
+```json
+{
+  // ...
+  "targets": {
+    // Build the next app, building storybook first (calling front-storybook-lib:build)
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "root": "apps/storybook",
+        "outputPath": "dist/apps/storybook"
+      },
+      "dependsOn": [
+        {
+          "projects": "dependencies",
+          "target": "build"
+        }
+      ],
+      "configurations": {
+        "development": {},
+        "production": {}
+      }
+    },
+    // Launching the next app in dev mode, building storybook first (calling front-storybook-lib:build)
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "front-storybook-app:build",
+        "dev": true
+      },
+      "dependsOn": [
+        {
+          "projects": "dependencies",
+          "target": "build"
+        }
+      ],
+      "configurations": {
+        "development": {
+          "buildTarget": "front-storybook-app:build:development",
+          "dev": true
+        },
+        "production": {
+          "buildTarget": "front-storybook-app:build:production",
+          "dev": false
+        }
+      }
+    }
+  },
+  // Depending on the storybook library
+  "implicitDependencies": ["front-storybook-lib"]
+}
 ```
 
 # ⚡ A concrete example: this repo

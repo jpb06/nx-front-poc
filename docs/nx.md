@@ -29,7 +29,7 @@ Libraries contain code that will be shared between several apps. They are define
 
 In our example, we will be using four libs:
 
-- 📗 A library containing the types shared between frontend and backend (api types).
+- 📗 A library containing the queries and mutations used by our frontend(s). This library will also contain the type generated from the backend swaggers.
 - 📗 A library containing react components that could be shared between several apps.
 - 📗 A library centralizing the logic related with building and serving storybook.
 - 📗 A library containing an implementation mockup for translations used in our frontend app.
@@ -46,9 +46,14 @@ The `workspace.json` file is defined at root level and keeps track of the availa
 {
   // ...
   "projects": {
-    "back": "apps/back",
-    "front": "apps/front",
-    "storybook": "libs/front/storybook"
+    "frontend-app": "apps/front",
+    "backend-app": "apps/back",
+    "front-storybook-app": "apps/storybook",
+    "front-api-lib": "libs/front/api",
+    "front-components-lib": "libs/front/components",
+    "front-logic-lib": "libs/front/logic",
+    "front-storybook-lib": "libs/front/storybook",
+    "front-translations-lib": "libs/front/translations"
     // ...
   }
 }
