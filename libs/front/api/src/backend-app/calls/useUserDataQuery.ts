@@ -23,7 +23,8 @@ export const useUserDataQuery = () => {
 
   return useAxiosQuery<UserProfileResultDto, ApiResponseDto>({
     key: ['user-data'],
-    url: path,
+    backend: 'backend-app',
+    path,
     method: 'GET',
     options: { enabled: token !== undefined },
     config: {

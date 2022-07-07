@@ -11,6 +11,7 @@ export const useSignupMutation = (
   options?: AxiosMutationOptions<SignupSuccess, SignupError, RequestBody>
 ) =>
   useAxiosMutation<SignupSuccess, SignupError, RequestBody>(
+    'backend-app',
     path,
     'POST',
     options

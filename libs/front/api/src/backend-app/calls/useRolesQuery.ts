@@ -8,6 +8,7 @@ import {
 export const useRolesQuery = () =>
   useAxiosQuery<GetAllRolesSuccess, GetAllRolesError>({
     key: ['roles'],
-    url: path,
+    backend: 'backend-app',
+    path,
     method: 'GET',
   });

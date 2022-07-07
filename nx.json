@@ -1,5 +1,5 @@
 {
-  "npmScope": "mui-rhf-sandbox",
+  "npmScope": "nx-front-poc",
   "affected": {
     "defaultBase": "master"
   },

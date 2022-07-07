@@ -3,12 +3,22 @@
   "sourceRoot": "apps/front-e2e/src",
   "projectType": "application",
   "targets": {
+    "build-for-e2e": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "commands": [
+          "pnpm nx exec backend-app:build:production",
+          "pnpm nx exec frontend-app:build:production"
+        ],
+        "parallel": true
+      }
+    },
     "serve-for-e2e": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "commands": [
-          "pnpm exec nx run backend-app:serve --prod",
-          "pnpm exec nx run frontend-app:serve --prod"
+          "pnpm nx exec backend-app:serve:production",
+          "pnpm nx exec frontend-app:serve"
         ],
         "parallel": true,
         "readyWhen": "[ ready ] on http://localhost:3000"
@@ -17,14 +27,9 @@
     "e2e": {
       "executor": "@nrwl/cypress:cypress",
       "options": {
-        "cypressConfig": "apps/front-e2e/cypress.json",
-        "devServerTarget": "front-e2e:serve-for-e2e",
-        "baseUrl": "http://localhost:3000"
-      },
-      "configurations": {
-        "production": {
-          "devServerTarget": "frontend-app:serve:production"
-        }
+        "cypressConfig": "apps/front-e2e/cypress.config.js",
+        "baseUrl": "http://localhost:3000",
+        "devServerTarget": "front-e2e-app:serve-for-e2e"
       }
     },
     "lint": {

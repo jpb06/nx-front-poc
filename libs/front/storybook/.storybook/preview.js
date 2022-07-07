@@ -1,3 +1,4 @@
+/* eslint-disable @nrwl/nx/enforce-module-boundaries */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable @typescript-eslint/no-empty-function */
 import CssBaseline from '@mui/material/CssBaseline';
@@ -13,7 +14,13 @@ import { WithSnackbar } from '@front/components/organisms';
 import { i18n } from './i18next';
 
 // Initialize MSW
-initialize({ onUnhandledRequest: 'bypass' });
+initialize({
+  onUnhandledRequest: 'bypass',
+  serviceWorker: {
+    url: `./../mockServiceWorker.js`,
+    options: { scope: '/' },
+  },
+});
 
 export const parameters = {
   backgrounds: {
@@ -44,6 +51,7 @@ export const parameters = {
 };
 
 export const decorators = [
+  mswDecorator,
   (Story, context) => (
     <>
       <meta name="theme-color" content={appTheme.palette.primary.main} />
@@ -55,5 +63,4 @@ export const decorators = [
       </AppThemeProvider>
     </>
   ),
-  mswDecorator,
 ];

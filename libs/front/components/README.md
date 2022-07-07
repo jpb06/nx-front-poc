@@ -1,14 +1,14 @@
 # 🧩 `front-components-lib` lib 🧩
 
-Our frontend app, containing a signup form.
+Our shared components, to be used in several apps.
 
 ## ⚡ CLI
 
 | Description                | Command                                       |
 | -------------------------- | --------------------------------------------- |
-| ⚠️ Linting the app         | `nx run front-components-lib:lint`            |
-| ✔️ Type checking using tsc | `nx run front-components-lib:type-check`      |
-| ✅ Launching tests         | `nx run front-components-lib:test`            |
+| ⚠️ Linting the app         | `pnpm nx run front-components-lib:lint`       |
+| ✔️ Type checking using tsc | `pnpm nx run front-components-lib:type-check` |
+| ✅ Launching tests         | `pnpm nx run front-components-lib:test`       |
 | 🕵️ Run sonarcloud command  | `pnpm exec nx run front-components-lib:sonar` |
 
 ### 🔶 Useful flags
