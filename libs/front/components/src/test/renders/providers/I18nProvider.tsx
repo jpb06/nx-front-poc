@@ -26,7 +26,13 @@ export const I18nProvider = (
     const tFunction = (key: string, options: { ns: string }) => {
       if (typeof options === 'object') {
         const interpolations = Object.entries(options)
-          .filter(([key]) => key !== 'lng' && key !== 'lngs' && key !== 'ns')
+          .filter(
+            ([key]) =>
+              key !== 'lng' &&
+              key !== 'lngs' &&
+              key !== 'ns' &&
+              key !== 'keyPrefix'
+          )
           .map(([key, value]) => `${key}=${value}`)
           .join('|');
 
