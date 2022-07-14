@@ -15,7 +15,8 @@
     "e2e": "nx front-e2e-app:e2e",
     "dev": "nx run-many --target=serve --parallel --projects",
     "swagger": "nx run-many --target=build-swagger --parallel --all --skip-nx-cache",
-    "api-types": "nx run-many --target=api-types --parallel --all  --skip-nx-cache --verbose"
+    "api-types": "nx run-many --target=api-types --parallel --all  --skip-nx-cache --verbose",
+    "sync-icons": "yarn generateReadmeIcons -h 50"
   },
   "private": true,
   "dependencies": {
@@ -144,6 +145,7 @@
     "prettier": "2.7.1",
     "react-i18next": "^11.17.4",
     "react-test-renderer": "18.2.0",
+    "readme-package-icons": "^1.0.5",
     "require-from-string": "^2.0.2",
     "sonarqube-scanner": "^2.8.1",
     "storybook-addon-next-router": "^4.0.0",
