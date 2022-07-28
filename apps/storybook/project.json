@@ -18,7 +18,9 @@
         }
       ],
       "configurations": {
-        "development": {},
+        "development": {
+          "outputPath": "tmp/apps/storybook"
+        },
         "production": {}
       }
     },
