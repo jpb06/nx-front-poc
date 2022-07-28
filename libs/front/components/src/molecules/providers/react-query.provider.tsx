@@ -1,5 +1,9 @@
 import { PropsWithChildren, useContext, useState } from 'react';
-import { MutationCache, QueryClient, QueryClientProvider } from 'react-query';
+import {
+  MutationCache,
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query';
 
 import { handleMutationsErrors } from '../../logic/handle-mutations-errors';
 import {

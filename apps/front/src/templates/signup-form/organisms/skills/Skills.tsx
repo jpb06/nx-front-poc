@@ -1,6 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { useIsMutating } from 'react-query';
+import { useIsMutating } from '@tanstack/react-query';
 
 import { useSkillsQuery } from '@front/api';
 import { ErrorBlock } from '@front/components/molecules';

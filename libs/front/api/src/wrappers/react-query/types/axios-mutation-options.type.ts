@@ -1,4 +1,4 @@
-import { UseMutationOptions } from 'react-query';
+import { UseMutationOptions } from '@tanstack/react-query';
 
 import { UnWrapResult } from '../../axios/types/unwrap-result.type';
 

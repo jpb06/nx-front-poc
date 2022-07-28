@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'next/router';
 import { BaseSyntheticEvent } from 'react';
 import { Control, useForm } from 'react-hook-form';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import useLocalStorageState from 'use-local-storage-state';
 
 import { useSignupMutation } from '@front/api';
