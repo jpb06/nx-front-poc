@@ -1,5 +1,5 @@
-import { Method } from 'axios';
 import { useMutation } from '@tanstack/react-query';
+import { Method } from 'axios';
 
 import { axiosRequest } from '../axios/axios-request';
 import { UnWrapResult } from '../axios/types/unwrap-result.type';
