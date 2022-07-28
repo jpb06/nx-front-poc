@@ -1,5 +1,5 @@
 import { AxiosRequestConfig, Method } from 'axios';
-import { useQuery, UseQueryOptions } from 'react-query';
+import { useQuery, UseQueryOptions } from '@tanstack/react-query';
 
 import { axiosRequest } from '../axios/axios-request';
 import { UnWrapResult } from '../axios/types/unwrap-result.type';

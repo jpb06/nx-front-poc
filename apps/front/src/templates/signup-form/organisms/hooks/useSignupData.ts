@@ -1,4 +1,4 @@
-import { QueryStatus as Status } from 'react-query';
+import { QueryStatus as Status } from '@tanstack/react-query';
 
 import { ApiResponseDto } from '@front/api/types';
 
