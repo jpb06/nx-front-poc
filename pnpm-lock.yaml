@@ -11,8 +11,8 @@ specifiers:
   '@emotion/react': 11.9.3
   '@emotion/server': ^11.4.0
   '@emotion/styled': 11.9.3
-  '@hookform/devtools': ^4.1.1
-  '@hookform/resolvers': ^2.9.3
+  '@hookform/devtools': ^4.2.2
+  '@hookform/resolvers': ^2.9.7
   '@jest/types': ^28.1.1
   '@mui/icons-material': ^5.8.4
   '@mui/lab': 5.0.0-alpha.89
@@ -111,7 +111,7 @@ specifiers:
   prettier: 2.7.1
   react: 18.2.0
   react-dom: 18.2.0
-  react-hook-form: 7.33.1
+  react-hook-form: 7.34.0
   react-i18next: ^11.17.4
   react-is: 18.2.0
   react-test-renderer: 18.2.0
@@ -136,14 +136,14 @@ specifiers:
   use-local-storage-state: ^18.1.0
   uuid: ^8.3.2
   webpack: ^5.73.0
-  zod: ^3.17.3
+  zod: ^3.17.10
 
 dependencies:
   '@emotion/cache': 11.9.3
   '@emotion/react': 11.9.3_dlcr7kzjh265l7kenqxjsvuiz4
   '@emotion/server': 11.4.0
   '@emotion/styled': 11.9.3_xorl7rqfpn4gtnla4dfecagcw4
-  '@hookform/resolvers': 2.9.3_react-hook-form@7.33.1
+  '@hookform/resolvers': 2.9.7_react-hook-form@7.34.0
   '@mui/icons-material': 5.8.4_3qrniyd4fth4fdw4jngl7l7ure
   '@mui/lab': 5.0.0-alpha.89_rhte65vpbns5hpacw7slurftki
   '@mui/material': 5.8.7_bl6qrq6463ovzmqn4cmwv7vydq
@@ -166,7 +166,7 @@ dependencies:
   next-i18next: 11.0.0_53oqlnqnxhbetdy4ljlkkvmoby
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
-  react-hook-form: 7.33.1_react@18.2.0
+  react-hook-form: 7.34.0_react@18.2.0
   react-is: 18.2.0
   reflect-metadata: 0.1.13
   regenerator-runtime: 0.13.9
@@ -176,7 +176,7 @@ dependencies:
   tslib: 2.4.0
   use-local-storage-state: 18.1.0_biqbaboplfbrettd7655fr4n2y
   uuid: 8.3.2
-  zod: 3.17.3
+  zod: 3.17.10
 
 devDependencies:
   '@babel/core': 7.18.6
@@ -185,7 +185,7 @@ devDependencies:
   '@babel/preset-typescript': 7.18.6_@babel+core@7.18.6
   '@emotion/babel-plugin': 11.9.2_@babel+core@7.18.6
   '@emotion/jest': 11.9.3_@types+jest@28.1.4
-  '@hookform/devtools': 4.1.1_pg7zwgkftjasast4opvdxsmtly
+  '@hookform/devtools': 4.2.2_ac7ugx3clswyotqfcsjpqs4zye
   '@jest/types': 28.1.1
   '@nestjs/schematics': 9.0.1_typescript@4.7.4
   '@nestjs/testing': 9.0.7_6yv4x6xkyzfgxcggckwhfckqmq
@@ -2147,12 +2147,11 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
 
-  /@hookform/devtools/4.1.1_pg7zwgkftjasast4opvdxsmtly:
-    resolution: {integrity: sha512-EIvHP/u9Mt9eNhe00SoarKsZIZ3kU9kFKMkCFdogAkX6URrcmW6R8zzi3IKfjIj0no1k1beuXOuI2SzmAZ4eYA==}
+  /@hookform/devtools/4.2.2_ac7ugx3clswyotqfcsjpqs4zye:
+    resolution: {integrity: sha512-0Sfweb4jkoGDivO+UF8QH1tf4pQQ0Ll00MjxMFWL+rORy2Xrf5m0QlxRESJnCd72VYRCZA5TO+2G9h7uPlMLzQ==}
     peerDependencies:
       react: '>=17.0.2 || 18'
       react-dom: '>=17.0.2 || 18'
-      react-hook-form: ^7.33.1
     dependencies:
       '@emotion/react': 11.9.3_dlcr7kzjh265l7kenqxjsvuiz4
       '@emotion/styled': 11.9.3_xorl7rqfpn4gtnla4dfecagcw4
@@ -2161,19 +2160,20 @@ packages:
       lodash: 4.17.21
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      react-hook-form: 7.33.1_react@18.2.0
       react-simple-animate: 3.5.0_react-dom@18.2.0
+      use-deep-compare-effect: 1.8.1_react@18.2.0
+      uuid: 8.3.2
     transitivePeerDependencies:
       - '@babel/core'
       - '@types/react'
     dev: true
 
-  /@hookform/resolvers/2.9.3_react-hook-form@7.33.1:
-    resolution: {integrity: sha512-Eqc/qgjq0VX/TU0a5D2O+yR/kAKflnjaVlYFC1wI2qBm/sgjKTXxv27ijLwHUoHPIF+MUkB/VuQqHJ5DcmbCww==}
+  /@hookform/resolvers/2.9.7_react-hook-form@7.34.0:
+    resolution: {integrity: sha512-BloehX3MOLwuFEwT4yZnmolPjVmqyn8VsSuodLfazbCIqxBHsQ4qUZsi+bvNNCduRli1AGWFrkDLGD5QoNzsoA==}
     peerDependencies:
       react-hook-form: ^7.0.0
     dependencies:
-      react-hook-form: 7.33.1_react@18.2.0
+      react-hook-form: 7.34.0_react@18.2.0
     dev: false
 
   /@humanwhocodes/config-array/0.9.5:
@@ -9506,6 +9506,11 @@ packages:
     resolution: {integrity: sha512-g7nH6P6dyDioJogAAGprGpCtVImJhpPk/roCzdb3fIh61/s/nPsfR6onyMwkCAR/OlC3yBC0lESvUoQEAssIrw==}
     engines: {node: '>= 0.8'}
 
+  /dequal/2.0.3:
+    resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
+    engines: {node: '>=6'}
+    dev: true
+
   /des.js/1.0.1:
     resolution: {integrity: sha512-Q0I4pfFrv2VPd34/vfLrFOoRmlYj3OV50i7fskps1jZWK1kApMWWT9G6RRUeYedLcBDIhnSDaUvJMb3AhUlaEA==}
     dependencies:
@@ -16447,13 +16452,14 @@ packages:
       react-is: 17.0.2
     dev: true
 
-  /react-hook-form/7.33.1_react@18.2.0:
-    resolution: {integrity: sha512-ydTfTxEJdvgjCZBj5DDXRc58oTEfnFupEwwTAQ9FSKzykEJkX+3CiAkGtAMiZG7IPWHuzgT6AOBfogiKhUvKgg==}
+  /react-hook-form/7.34.0_react@18.2.0:
+    resolution: {integrity: sha512-s0/TJ09NVlEk2JPp3yit1WnMuPNBXFmUKEQPulgDi9pYBw/ZmmAFHe6AXWq73Y+kp8ye4OcMf0Jv+i/qLPektg==}
     engines: {node: '>=12.22.0'}
     peerDependencies:
       react: ^16.8.0 || ^17 || ^18 || 18
     dependencies:
       react: 18.2.0
+    dev: false
 
   /react-i18next/11.17.4_ao6o37yfkczvknlhujnhfyzjhu:
     resolution: {integrity: sha512-LswEIl8KNDTP4Wk3c22XDstbR++Vc4BZyNwvGFGaYbYDjdDLkHDLwrgd7DN28f8jufFHaYhQvCG5YWLxFhRt/g==}
@@ -16716,7 +16722,7 @@ packages:
   /regenerator-transform/0.15.0:
     resolution: {integrity: sha512-LsrGtPmbYg19bcPHwdtmXwbW+TqNvtY4riE3P83foeHRroMbH6/2ddFBfab3t7kbzc7v7p4wbkIecHImqt0QNg==}
     dependencies:
-      '@babel/runtime': 7.18.6
+      '@babel/runtime': 7.18.9
 
   /regex-not/1.0.2:
     resolution: {integrity: sha512-J6SDjUgDxQj5NusnOtdFxDwN/+HWykR8GELwctJ7mdqhcyy1xEc4SRFHUXvxTp661YaVKAjfRLZ9cCqS6tn32A==}
@@ -19061,6 +19067,17 @@ packages:
       querystring: 0.2.0
     dev: true
 
+  /use-deep-compare-effect/1.8.1_react@18.2.0:
+    resolution: {integrity: sha512-kbeNVZ9Zkc0RFGpfMN3MNfaKNvcLNyxOAAd9O4CBZ+kCBXXscn9s/4I+8ytUER4RDpEYs5+O6Rs4PqiZ+rHr5Q==}
+    engines: {node: '>=10', npm: '>=6'}
+    peerDependencies:
+      react: '>=16.13 || 18'
+    dependencies:
+      '@babel/runtime': 7.18.9
+      dequal: 2.0.3
+      react: 18.2.0
+    dev: true
+
   /use-local-storage-state/18.1.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-UY86uFHeQyh0oVMjKdco+lzDWok+rx2Fz4uBXVvLM1kfjd71tDmiOPtZY48SsAP3UAGndjUAS9tslQCxSQ4L7Q==}
     engines: {node: '>=12'}
@@ -19814,8 +19831,8 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
 
-  /zod/3.17.3:
-    resolution: {integrity: sha512-4oKP5zvG6GGbMlqBkI5FESOAweldEhSOZ6LI6cG+JzUT7ofj1ZOC0PJudpQOpT1iqOFpYYtX5Pw0+o403y4bcg==}
+  /zod/3.17.10:
+    resolution: {integrity: sha512-IHXnQYQuOOOL/XgHhgl8YjNxBHi3xX0mVcHmqsvJgcxKkEczPshoWdxqyFwsARpf41E0v9U95WUROqsHHxt0UQ==}
     dev: false
 
   /zwitch/1.0.5:
