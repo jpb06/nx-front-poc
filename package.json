@@ -41,7 +41,6 @@
     "class-validator": "^0.13.2",
     "core-js": "^3.23.3",
     "fs-extra": "^10.1.0",
-    "jotai": "^1.7.3",
     "jsonwebtoken": "^8.5.1",
     "next": "12.2.3",
     "next-i18next": "^11.0.0",
