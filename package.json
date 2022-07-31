@@ -146,7 +146,6 @@
     "react-test-renderer": "18.2.0",
     "readme-package-icons": "^1.1.1",
     "require-from-string": "^2.0.2",
-    "sonarqube-scanner": "^2.8.1",
     "storybook-addon-next-router": "^4.0.0",
     "storybook-addon-swc": "^1.1.7",
     "storybook-dark-mode": "^1.1.0",
