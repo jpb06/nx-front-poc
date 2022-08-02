@@ -4,6 +4,12 @@
   "projectType": "library",
   "tags": [],
   "targets": {
+    "copy-assets": {
+      "executor": "@nrwl/workspace:run-commands",
+      "options": {
+        "command": "echo Copying assets... && mkdir -p ./dist/apps/front/public && cp -R ./libs/front/components/assets/* ./dist/apps/front/public/"
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],

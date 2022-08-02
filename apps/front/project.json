@@ -15,25 +15,22 @@
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/front",
-        "outputPath": "dist/apps/front",
-        "assets": [
-          {
-            "input": "libs/front/components/assets",
-            "glob": "**/*",
-            "output": "."
-          }
-        ]
+        "outputPath": "dist/apps/front"
       },
       "dependsOn": [
         {
           "target": "copy-locales",
           "projects": "self"
+        },
+        {
+          "target": "copy-assets",
+          "projects": "dependencies"
         }
       ],
       "configurations": {
         "production": {},
         "development": {
-          "outputPath": "tmp/apps/front"
+          "outputPath": "dist/apps/front"
         }
       }
     },
@@ -48,6 +45,10 @@
         {
           "target": "copy-locales",
           "projects": "self"
+        },
+        {
+          "target": "copy-assets",
+          "projects": "dependencies"
         }
       ],
       "configurations": {
