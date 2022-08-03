@@ -439,9 +439,9 @@ describe('Signup component', () => {
         })
       );
 
-      expect(
+      await waitForElementToBeRemoved(() =>
         screen.queryByText(/forms:roleAndSkillsMismatchError/i)
-      ).not.toBeInTheDocument();
+      );
 
       msw.areSkillsAvailableForRoleMutation(201, [6]);
 
