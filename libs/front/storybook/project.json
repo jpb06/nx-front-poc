@@ -17,6 +17,38 @@
           "quiet": true
         }
       }
+    },
+    "dev": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/react",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/front/storybook/.storybook"
+        },
+        "assets": [
+          {
+            "input": "apps/front/public",
+            "glob": "**/*",
+            "output": "."
+          },
+          {
+            "input": "apps/storybook/public",
+            "glob": "**/*",
+            "output": "."
+          },
+          {
+            "input": "libs/front/components/assets",
+            "glob": "**/*",
+            "output": "."
+          }
+        ]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
     }
   },
   "tags": []
