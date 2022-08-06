@@ -20,7 +20,11 @@ import { appRender } from '@front/tests/render';
 import { Signup } from './SignupForm';
 import { FormModel } from './hooks/useSignupFormSchema';
 
-jest.mock('@front/logic');
+jest.mock('@front/logic', () => {
+  const actualModule = jest.requireActual('@front/logic');
+
+  return { ...actualModule, delay: jest.fn() };
+});
 
 describe('Signup component', () => {
   const render = () =>
