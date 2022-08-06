@@ -10,7 +10,7 @@ import React from 'react';
 import { useController } from 'react-hook-form';
 
 import { SkillDto } from '@front/api/types';
-import { spinKeyframe } from '@front/components/logic';
+import { spinKeyframe } from '@front/logic';
 
 import { CheckBoxListProps } from '../CheckBoxList';
 

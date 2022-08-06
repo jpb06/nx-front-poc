@@ -10,7 +10,7 @@ import {
   ReactQueryProvider,
   AppThemeProvider,
 } from '@front/components/molecules';
-import { WithSnackbar } from '@front/components/organisms';
+import { WithSnackbar } from '@front/contexts';
 
 import { FullpageBox } from '../organisms';
 

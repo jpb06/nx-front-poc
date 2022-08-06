@@ -2,7 +2,8 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import { useRolesQuery } from '@front/api';
-import { Select, SelectProps, ErrorBlock } from '@front/components/molecules';
+import { ErrorBlock } from '@front/components/molecules';
+import { Select, SelectProps } from '@front/design-system';
 
 import { FormModel } from '../../hooks/useSignupFormSchema';
 import { useSignupData } from '../hooks/useSignupData';

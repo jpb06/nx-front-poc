@@ -6,7 +6,7 @@ import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import * as zod from 'zod';
 
-import { SnackbarContext, WithSnackbar } from '@front/components/organisms';
+import { SnackbarContext, WithSnackbar } from '@front/contexts';
 
 import { CheckBoxList, CheckBoxListProps } from './CheckBoxList';
 

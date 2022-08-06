@@ -4,7 +4,7 @@ import { Box, Grid } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 
-import { Input, PasswordInput } from '@front/components/molecules';
+import { Input, PasswordInput } from '@front/design-system';
 
 import { useSignupForm } from './hooks/useSignupForm';
 import { Roles, Skills } from './organisms';
