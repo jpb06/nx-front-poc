@@ -71,7 +71,7 @@ Now, several apps means shared code. `nx` will help us in that regard. For examp
 
 We will also need a library embedding storybook config, so that we only expose a single storybook for all our apps.
 
-![Diagram](./assets/nx-app-architecture.png)
+![Diagram](./assets/nx-app-folder-architecture.png)
 
 A few things to mention here.
 
