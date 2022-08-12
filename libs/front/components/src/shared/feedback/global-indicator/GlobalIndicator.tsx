@@ -4,7 +4,7 @@ import { alpha } from '@mui/material/styles';
 import { PropsWithChildren } from 'react';
 
 import { spinKeyframe } from '@front/logic';
-import { getAppColorFor } from '@front/theme';
+import { appTheme } from '@front/theme';
 
 export type GlobalIndicatorProps = {
   hasTopMargin: boolean;
@@ -22,7 +22,7 @@ export const GlobalIndicator = ({
     component="div"
     sx={{
       textAlign: 'center',
-      color: alpha(getAppColorFor('darkCyan'), 0.8),
+      color: alpha(appTheme.appColors.darkCyan, 0.8),
       marginTop: hasTopMargin ? 15 : 0,
     }}
   >

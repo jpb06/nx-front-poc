@@ -1,6 +1,6 @@
 import { Grid, LinearProgress } from '@mui/material';
 
-import { getAppColorFor } from '@front/theme';
+import { appTheme } from '@front/theme';
 
 export type LoadingBlockProps = {
   name: string;
@@ -21,7 +21,7 @@ export const LoadingBlock = ({ name, text }: LoadingBlockProps) => (
     <Grid
       item
       sx={{
-        color: getAppColorFor('darkCyan'),
+        color: appTheme.appColors.darkCyan,
       }}
     >
       {text}

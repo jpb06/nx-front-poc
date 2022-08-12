@@ -14,7 +14,7 @@ import { INITIAL_VIEWPORTS } from '@storybook/addon-viewport';
 import { Story, ComponentMeta } from '@storybook/react';
 import { useContext } from 'react';
 
-import { getAppColorFor } from '@front/theme';
+import { appTheme } from '@front/theme';
 
 import { SnackbarContext, WithSnackbar } from './Snackbar.context';
 
@@ -51,11 +51,11 @@ const ActionsList = () => {
             }
           >
             <ListItemIcon>
-              <Icon sx={{ color: getAppColorFor('amber') }} />
+              <Icon sx={{ color: appTheme.appColors.amber }} />
             </ListItemIcon>
             <ListItemText
               primary={`${severity} snackbar`}
-              sx={{ color: getAppColorFor('darkCyan') }}
+              sx={{ color: appTheme.appColors.darkCyan }}
             />
           </ListItemButton>
         </ListItem>
