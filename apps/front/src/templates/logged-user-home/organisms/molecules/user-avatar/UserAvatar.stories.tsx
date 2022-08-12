@@ -7,7 +7,7 @@ import { UserAvatar, UserAvatarProps } from './UserAvatar';
 
 export default {
   component: UserAvatar,
-  title: 'Front app/User stories/Logger user/Molecules/UserAvatar',
+  title: 'Front app/User stories/Logged user/Molecules/UserAvatar',
   decorators: reactQueryDecorator,
   argTypes: {
     firstName: {

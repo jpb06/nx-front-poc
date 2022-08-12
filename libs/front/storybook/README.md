@@ -4,9 +4,10 @@ Our library responsible for building storybook.
 
 ## ⚡ CLI
 
-| Description           | Command                                 |
-| --------------------- | --------------------------------------- |
-| 🛠️ Building storybook | `pnpm nx run front-storybook-lib:build` |
+| Description                                | Command                                 |
+| ------------------------------------------ | --------------------------------------- |
+| 🛠️ Building storybook                      | `pnpm nx run front-storybook-lib:build` |
+| ▶️ Launching storybook in watch mode (dev) | `pnpm nx run front-storybook-lib:dev`   |
 
 ### 🔶 Useful flags
 

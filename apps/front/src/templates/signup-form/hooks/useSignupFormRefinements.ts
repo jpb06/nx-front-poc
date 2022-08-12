@@ -1,5 +1,5 @@
-import { useTranslation } from 'next-i18next';
 import { useQueryClient } from '@tanstack/react-query';
+import { useTranslation } from 'next-i18next';
 import * as zod from 'zod';
 
 import { useAreSkillsAvailableForRoleMutation } from '@front/api';

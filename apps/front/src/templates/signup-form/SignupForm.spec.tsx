@@ -9,12 +9,12 @@ import singletonRouter from 'next/router';
 import React from 'react';
 
 import { msw } from '@front/api/msw';
+import { mswServer } from '@front/api/msw/server';
 import {
   mockedRoles,
   mockedUser,
   mockedSkills,
 } from '@front/tests/mocked-data';
-import { mswServer } from '@front/api/msw/server';
 import { appRender } from '@front/tests/render';
 
 import { Signup } from './SignupForm';

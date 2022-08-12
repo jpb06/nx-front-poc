@@ -2,7 +2,7 @@ import { Grid } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 
 import { SignedUser } from '@front/api/types';
-import { SubTitle, Title } from '@front/components/molecules';
+import { SubTitle, Title } from '@front/components/design-system';
 
 export type UserInfosProps = Pick<
   SignedUser,

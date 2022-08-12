@@ -7,7 +7,7 @@ import { UserInfos, UserInfosProps } from './UserInfos';
 
 export default {
   component: UserInfos,
-  title: 'Front app/User stories/Logger user/Molecules/UserInfos',
+  title: 'Front app/User stories/Logged user/Molecules/UserInfos',
   decorators: reactQueryDecorator,
   argTypes: {
     firstName: {

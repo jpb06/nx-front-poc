@@ -7,7 +7,7 @@ import { UserProfile, UserProfileProps } from './UserProfile';
 
 export default {
   component: UserProfile,
-  title: 'Front app/User stories/Logger user/Organisms/UserProfile',
+  title: 'Front app/User stories/Logged user/Organisms/UserProfile',
   decorators: reactQueryDecorator,
 } as ComponentMeta<typeof UserProfile>;
 

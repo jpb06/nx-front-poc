@@ -4,7 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 
-import { GlobalIndicator } from '@front/components/molecules';
+import { GlobalIndicator } from '@front/components/shared';
 import { delay } from '@front/logic';
 
 export const UserProfileLoadingError = () => {

@@ -2,7 +2,7 @@ import { Grid, List } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 
 import { SignedUser } from '@front/api/types';
-import { SubTitle } from '@front/components/molecules';
+import { SubTitle } from '@front/components/design-system';
 
 import { Skill } from './skill/Skill';
 
