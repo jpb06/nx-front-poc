@@ -16,34 +16,27 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@0.9.1
+        uses: styfle/cancel-workflow-action@0.10.0
         with:
           access_token: ${{ github.token }}
 
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           # Disabling shallow clone is recommended for improving relevancy of reporting
           fetch-depth: 0
 
       - name: Derive appropriate SHAs for base and head for `nx affected` commands
-        uses: nrwl/nx-set-shas@v2
+        uses: nrwl/nx-set-shas@v2.0.2
         with:
           main-branch-name: master
 
-      # - name: Determine master HEAD commit hash
-      #   id: master_head_commit
-      #   run: echo "::set-output name=hash::$(git rev-parse origin/master)"
-      # - run: echo "master branch HEAD hash commit is ${{ steps.master_head_commit.outputs.hash }}"
-
-      # - run: echo "current branch HEAD hash commit is ${{ github.event.pull_request.head.sha }}"
-
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: pnpm/action-setup@v2.2.2
         with:
           version: latest
 
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3.4.1
         with:
           node-version-file: '.node-version'
           cache: 'pnpm'
@@ -112,14 +105,14 @@ jobs:
 
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - uses: pnpm/action-setup@v2.0.1
+      - uses: pnpm/action-setup@v2.2.2
         with:
           version: latest
 
       - name: Setup node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3.4.1
         with:
           node-version-file: '.node-version'
           cache: 'pnpm'
