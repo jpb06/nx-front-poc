@@ -1,14 +1,17 @@
+import { useIsMutating } from '@tanstack/react-query';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { useIsMutating } from '@tanstack/react-query';
 
 import { useSkillsQuery } from '@front/api';
-import { ErrorBlock } from '@front/components/molecules';
+import { ErrorBlock } from '@front/components/shared';
 
-import { CheckBoxList, CheckBoxListProps } from '../../../../organisms/index';
 import { FormModel } from '../../hooks/useSignupFormSchema';
 import { useSignupData } from '../hooks/useSignupData';
 import { Loading, LoadingError } from '../molecules';
+import {
+  CheckBoxList,
+  CheckBoxListProps,
+} from './organisms/checkbox-list/CheckBoxList';
 
 type SelectRoleProps = Omit<
   CheckBoxListProps<FormModel>,

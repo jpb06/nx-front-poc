@@ -22,7 +22,7 @@ Here is a little POC to help our team move forward with our stack! ✨
 
 <!-- readme-package-icons start -->
 
-<p align="left"><a href="https://docs.github.com/en/actions"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/github-actions.svg" /></a>&nbsp;<a href="https://www.typescriptlang.org/docs/"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" /></a>&nbsp;<a href="https://nodejs.org/en/docs/"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" /></a>&nbsp;<a href="https://pnpm.io/motivation"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/pnpm.svg" /></a>&nbsp;<a href="https://axios-http.com/fr/docs/intro"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/axios.png" /></a>&nbsp;<a href="https://babeljs.io/docs/en/"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/babel/babel-original.svg" /></a>&nbsp;<a href="https://docs.cypress.io/guides/overview/why-cypress"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/cypress.png" /></a>&nbsp;<a href="https://emotion.sh/docs/introduction"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/emotion.png" /></a>&nbsp;<a href="https://eslint.org/docs/latest/"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" /></a>&nbsp;<a href="https://expressjs.com/en/starter/installing.html"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" /></a>&nbsp;<a href="https://www.i18next.com/overview/getting-started"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/i18next.png" /></a>&nbsp;<a href="https://jestjs.io/docs/getting-started"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" /></a>&nbsp;<a href="https://jotai.org/docs/introduction"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/jotai.png" /></a>&nbsp;<a href="https://jwt.io"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/jwt.png" /></a>&nbsp;<a href="https://mui.com/material-ui/getting-started/overview/"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" /></a>&nbsp;<a href="https://mswjs.io/docs/"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/msw.svg" /></a>&nbsp;<a href="https://docs.nestjs.com"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg" /></a>&nbsp;<a href="https://nx.dev/getting-started/intro"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/nx.png" /></a>&nbsp;<a href="https://prettier.io/docs/en/index.html"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/prettier.png" /></a>&nbsp;<a href="https://reactjs.org/docs/getting-started.html"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" /></a>&nbsp;<a href="https://react-hook-form.com/get-started"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/react-hook-form.png" /></a>&nbsp;<a href="https://tanstack.com/query/v4/docs/overview"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/react-query.svg" /></a>&nbsp;<a href="https://rxjs.dev/guide/overview"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/rxjs.png" /></a>&nbsp;<a href="https://storybook.js.org/docs/react/get-started/introduction"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/storybook/storybook-original.svg" /></a>&nbsp;<a href="https://styled-components.com/docs"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/styled-components.png" /></a>&nbsp;<a href="https://swagger.io"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/swagger.png" /></a>&nbsp;<a href="https://swc.rs/docs/getting-started"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/swc.svg" /></a>&nbsp;<a href="https://testing-library.com/docs/"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/testing-library.png" /></a>&nbsp;<a href="https://github.com/typestack"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/type-stack.png" /></a>&nbsp;<a href="https://webpack.js.org/concepts/"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" /></a>&nbsp;<a href="https://github.com/colinhacks/zod#introduction"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/zod.svg" /></a></p>
+<p align="left"><a href="https://docs.github.com/en/actions" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/github-actions.svg" /></a>&nbsp;<a href="https://www.typescriptlang.org/docs/" target="_blank"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" /></a>&nbsp;<a href="https://nodejs.org/en/docs/" target="_blank"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" /></a>&nbsp;<a href="https://pnpm.io/motivation" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/pnpm.svg" /></a>&nbsp;<a href="https://axios-http.com/fr/docs/intro" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/axios.png" /></a>&nbsp;<a href="https://babeljs.io/docs/en/" target="_blank"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/babel/babel-original.svg" /></a>&nbsp;<a href="https://github.com/conventional-changelog" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/conventional-changelog.svg" /></a>&nbsp;<a href="https://docs.cypress.io/guides/overview/why-cypress" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/cypress.png" /></a>&nbsp;<a href="https://emotion.sh/docs/introduction" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/emotion.png" /></a>&nbsp;<a href="https://eslint.org/docs/latest/" target="_blank"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/eslint/eslint-original.svg" /></a>&nbsp;<a href="https://expressjs.com/en/starter/installing.html" target="_blank"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" /></a>&nbsp;<a href="https://www.i18next.com/overview/getting-started" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/i18next.png" /></a>&nbsp;<a href="https://jestjs.io/docs/getting-started" target="_blank"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg" /></a>&nbsp;<a href="https://jwt.io" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/jwt.png" /></a>&nbsp;<a href="https://mui.com/material-ui/getting-started/overview/" target="_blank"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" /></a>&nbsp;<a href="https://mswjs.io/docs/" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/msw.svg" /></a>&nbsp;<a href="https://docs.nestjs.com" target="_blank"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg" /></a>&nbsp;<a href="https://nx.dev/getting-started/intro" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/nx.png" /></a>&nbsp;<a href="https://prettier.io/docs/en/index.html" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/prettier.png" /></a>&nbsp;<a href="https://reactjs.org/docs/getting-started.html" target="_blank"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" /></a>&nbsp;<a href="https://react-hook-form.com/get-started" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/react-hook-form.png" /></a>&nbsp;<a href="https://tanstack.com/query/v4/docs/overview" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/react-query.svg" /></a>&nbsp;<a href="https://rxjs.dev/guide/overview" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/rxjs.png" /></a>&nbsp;<a href="https://storybook.js.org/docs/react/get-started/introduction" target="_blank"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/storybook/storybook-original.svg" /></a>&nbsp;<a href="https://styled-components.com/docs" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/styled-components.png" /></a>&nbsp;<a href="https://swagger.io" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/swagger.png" /></a>&nbsp;<a href="https://swc.rs/docs/getting-started" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/swc.svg" /></a>&nbsp;<a href="https://testing-library.com/docs/" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/testing-library.png" /></a>&nbsp;<a href="https://github.com/typestack" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/type-stack.png" /></a>&nbsp;<a href="https://webpack.js.org/concepts/" target="_blank"><img height="50" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webpack/webpack-original.svg" /></a>&nbsp;<a href="https://github.com/colinhacks/zod#introduction" target="_blank"><img height="50" src="https://raw.githubusercontent.com/jpb06/readme-package-icons/main/icons/zod.svg" /></a></p>
 
 <!-- readme-package-icons end -->
 
@@ -55,14 +55,14 @@ pnpm test-all
 pnpm nx e2e front-e2e-app --watch
 
 # launch storybook in dev mode
-pnpm nx serve front-storybook-app
+pnpm nx dev front-storybook-lib
 ```
 
 ## ⚡ Documentation
 
 Seriously, read these please 🥲
 
-### 🔶 [`nx`](./docs/nx.md)
+### 🔶 [`Codebase structure (the monorepo wonderland)`](./docs/nx.md)
 
 ### 🔶 [`Frontend architecture`](./docs/frontend-architecture.md)
 
@@ -76,6 +76,10 @@ Seriously, read these please 🥲
 
 ### 🔶 [`Cypress`](./docs/cypress.md)
 
+## ⚡ A quick peek at the nx graph
+
+![`nx`](./docs/assets/nx-graph.png)
+
 ## ⚡ Projects
 
 | Project                                                                | Description                                                                  |
@@ -86,33 +90,37 @@ Seriously, read these please 🥲
 | 🚀 [`backend-app`](./apps/back/README.md) app                          | Our backend app, relying on an in-memory dataset                             |
 | 🧩 [`front-api-lib`](./libs/front/api/README.md) lib                   | Our api types, extracted from the backend swagger                            |
 | 🧩 [`front-components-lib`](./libs/front/components/README.md) lib     | Our generic components and the MUI theme shared by all our frontend apps     |
+| 🧩 [`front-contexts-lib`](./libs/front/contexts/README.md) lib         | Shared contexts                                                              |
 | 🧩 [`front-logic-lib`](./libs/front/logic/README.md) lib               | Shared logic code                                                            |
-| 🧩 [`front-translations-lib`](./libs/front/translations/README.md) lib | Stub implementation for the translation of our UI.                           |
 | 🧩 [`front-storybook-lib`](./libs/front/storybook/README.md) lib       | Library centralizing the configuration necessary to build and run storybook. |
+| 🧩 [`front-tests-lib`](./libs/front/tests/README.md) lib               | Tests related helpers and wrappers.                                          |
+| 🧩 [`front-theme-lib`](./libs/front/theme/README.md) lib               | Our applications theme (Mui).                                                |
+| 🧩 [`front-translations-lib`](./libs/front/translations/README.md) lib | Translations locales and helpers for our UI.                                 |
 
 ## ⚡ cli
 
 ### 🔶 Running actions
 
-| Description                                          | Command                                                                    |
-| ---------------------------------------------------- | -------------------------------------------------------------------------- |
-| ▶️ Run an action on one project                      | `pnpm exec nx run <project>:<action>`                                      |
-| ▶️ Run an action on all projects                     | `pnpm exec nx run-many --target=<action> --all`                            |
-| ▶️ Run an action on a set of projects                | `pnpm exec nx run-many --target=<action> --projects=<project1>,<project2>` |
-| ▶️ Run an action only on projects containing changes | `pnpm exec nx affected:<action>`                                           |
+| Description                                          | Command                                                               |
+| ---------------------------------------------------- | --------------------------------------------------------------------- |
+| ▶️ Run an action on one project                      | `pnpm nx run <action> <project>`                                      |
+| ▶️ Run an action on all projects                     | `pnpm nx run-many --target=<action> --all`                            |
+| ▶️ Run an action on a set of projects                | `pnpm nx run-many --target=<action> --projects=<project1>,<project2>` |
+| ▶️ Run an action only on projects containing changes | `pnpm nx affected:<action>`                                           |
 
 #### 🧿 Typical actions
 
 Actions are defined by project in `project.json` files. Here are a few standard actions:
 
-| Action        | Description                                                  |
-| ------------- | ------------------------------------------------------------ |
-| 🛠️ build      | Builds the app/lib. Use `--prod` flag for a production build |
-| 🚀 serve      | Runs the app                                                 |
-| ⚠️ lint       | Run the linter against project files                         |
-| ✔️ type-check | Uses `tsc --noEmit` to validate types against project files  |
-| ✅ test       | Runs tests                                                   |
-| ☑️ e2e        | Runs end to end tests                                        |
+| Action             | Description                                                  |
+| ------------------ | ------------------------------------------------------------ |
+| 🛠️ build           | Builds the app/lib. Use `--prod` flag for a production build |
+| 🚀 serve           | Runs the app                                                 |
+| ⚠️ lint            | Run the linter against project files                         |
+| ✔️ type-check      | Uses `tsc --noEmit` to validate types against project files  |
+| ✅ test            | Runs tests                                                   |
+| ☑️ e2e             | Runs end to end tests                                        |
+| 🕵️ Sonarcloud scan | Execute sonarcloud scanner on the targetted app of lib       |
 
 #### 🧿 Useful flags
 
@@ -126,16 +134,16 @@ Actions are defined by project in `project.json` files. Here are a few standard 
 
 ### 🔶 Running tests
 
-| Description                               | Command                                                                          |
-| ----------------------------------------- | -------------------------------------------------------------------------------- |
-| ✅ Run tests for a project (watch)        | `pnpm test-changes <project>` or `pnpm exec nx test --project=<project> --watch` |
-| ✅ Run all tests for a project (watchAll) | `pnpm test-dev <project>` or `pnpm exec nx test --project=<project> --watchAll`  |
-| ✅ Run all tests in parallel              | `pnpm test-all` or `pnpm exec nx run-many --target=test --parallel --all`        |
+| Description                               | Command                                                                     |
+| ----------------------------------------- | --------------------------------------------------------------------------- |
+| ✅ Run tests for a project (watch)        | `pnpm test-changes <project>` or `pnpm nx test --project=<project> --watch` |
+| ✅ Run all tests for a project (watchAll) | `pnpm test-dev <project>` or `pnpm nx test --project=<project> --watchAll`  |
+| ✅ Run all tests in parallel              | `pnpm test-all` or `pnpm nx run-many --target=test --parallel --all`        |
 
 ### 🔶 Creating applications or libraries
 
-| Description                        | Command                                                                                  |
-| ---------------------------------- | ---------------------------------------------------------------------------------------- |
-| 🗃️ Create a new front app or lib   | `pnpm exec nx g @nrwl/react:app <appname>` or `pnpm exec nx g @nrwl/react:lib <appname>` |
-| 🗃️ Create a new backend app or lib | `pnpm exec nx g @nrwl/nest:app <appname>` or `pnpm exec nx g @nrwl/nest:lib <appname>`   |
-| 🗃️ Create a vanilla node lib       | `pnpm exec nx g @nrwl/node:lib <libname>`                                                |
+| Description                        | Command                                                                        |
+| ---------------------------------- | ------------------------------------------------------------------------------ |
+| 🗃️ Create a new front app or lib   | `pnpm nx g @nrwl/react:app <appname>` or `pnpm nx g @nrwl/react:lib <libname>` |
+| 🗃️ Create a new backend app or lib | `pnpm nx g @nrwl/nest:app <appname>` or `pnpm nx g @nrwl/nest:lib <libname>`   |
+| 🗃️ Create a vanilla node lib       | `pnpm nx g @nrwl/node:lib <libname>`                                           |

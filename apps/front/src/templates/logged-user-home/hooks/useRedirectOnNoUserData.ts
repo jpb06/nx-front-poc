@@ -1,6 +1,6 @@
+import { QueryStatus } from '@tanstack/react-query';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
-import { QueryStatus } from '@tanstack/react-query';
 
 import { useUserDataQuery } from '@front/api';
 import { User } from '@front/api/types';

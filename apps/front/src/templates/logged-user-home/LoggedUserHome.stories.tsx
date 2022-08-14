@@ -8,7 +8,7 @@ import { LoggedUserHome } from './LoggedUserHome';
 
 export default {
   component: LoggedUserHome,
-  title: 'Front app/User stories/Logger user/Templates/LoggedUserHome',
+  title: 'Front app/User stories/Logged user/LoggedUserHome',
   decorators: reactQueryDecorator,
 } as ComponentMeta<typeof LoggedUserHome>;
 

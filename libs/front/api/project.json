@@ -9,12 +9,6 @@
       "options": {
         "lintFilePatterns": ["libs/front/api/**/*.ts"]
       }
-    },
-    "generate-types": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "command": "generateTypesFromUrl NEXT_PUBLIC_API_URL -json ./libs/front/api/src/main-backend/specs && eslint ./libs/front/api/src/main-backend/specs --fix"
-      }
     }
   },
   "tags": []

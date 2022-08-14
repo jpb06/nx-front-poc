@@ -1,5 +1,7 @@
 # ⚡ Storybook
 
+![Storybook](./assets/storybook-logo.png)
+
 ## 🔶 Why using storybook?
 
 Storybook is a great tool. We can use it to help both developers and our product team.
@@ -12,30 +14,37 @@ It's easier for the dev team to find out if a component already exists and if it
 
 We can use storybook to demonstrate each part of our work to the product team. The idea is to break down user stories in milestones that can be independently validated.
 
-Let's take an example:
+## 🔶 An example: the Signup feature
+
 I was given a signup feature to deliver. We have a few questions to address during the conception phase:
 
-#### 🔻 Interactions with our backend(s)
+### 🧿 Interactions with our backend(s)
 
-> Which endpoints will be called and what will be their input and output?
+> ❇️ Which endpoints will be called and what will be their input and output?
+>
+> ❇️ How will these endpoints be mapped, front wise? Queries, mutations?
+>
+> ❇️ Will we reuse existing queries or mutations?
+>
+> ❇️ Is there dependencies between identified calls? For example, does a query depend on another to be ran?
 
-#### 🔻 Components tree
+### 🧿 Components tree
 
 > Following the [atomic design](./frontend-architecture.md) architecture, what kind of components tree do we need?
 >
 > ❇️ Will we use contexts? Why?
 >
-> ❇️ Will we use atomic state (jotai)?
+> ❇️ Will we need atomic state (jotai)?
 >
 > ❇️ Will we use some generic components or shared hooks, and if so which ones?
 >
 > ❇️ Will we need local state? At which level of the tree?
 >
-> ❇️ What will be the level of genericity or specialization of each component or hook?
+> ❇️ What will be the level of genericity or specialization of each component or hook (user story level, app level, multi app level) ?
 >
 > > Generic being used in several apps, specialized being used only in that story.
 
-#### 🔻 Technical debt
+### 🧿 Technical debt
 
 > ❇️ Are we sure everything is at the right level? Should we refactor existing code to limit specialization ?
 >
@@ -47,17 +56,29 @@ I was given a signup feature to deliver. We have a few questions to address duri
 
 etc, etc.
 
-But let's focus on the component tree for now. Doing it allows us to easily define our delivery milestones:
+### 🧿 Components tree
 
-![Diagram](./assets/signup.png)
+Let's focus on the component tree. Defining it will allow us to easily identify milestones we can demonstrate independently:
 
-In our example, and following [this plan](./frontend-architecture.md), we can demonstrate one template (the final delivery), two organisms and two molecules (milestones).
+![Diagram](./assets/signup-components-tree.png)
 
-These are the specialized elements for our story while others are generic items that may already exist in our codebase. Of course, if we have to create a generic component, we would have to add it to storybook and get it validated as well then!
+So what do we have here? A few design choices:
 
-## 🔶 Storybook categories
+- We extracted all the logic inside hooks. Components themselves should contain no logic, save for conditional rendering.
+- We will use two queries (`Roles` and `Skills`) and two mutations (`AreSkillsAvailableForRole` and `Signup`).
+- We will reuse three design system components (`Select`, `Input` and `PasswordInput`).
+- We will reuse one shared component (`ErrorBlock`).
+- We will need to create six specialized components for the user story (`Skills`, `Roles`, `CheckBoxList`, `Loading`, and `LoadingError`).
 
-The point is to have only one storybook for all our ecosystem, that may be made of several apps. That storybook will also contain generic components defined in libraries.
+Turns out we can demonstrate independently a lot of components before even finishing the user story! Following [this plan](./frontend-architecture.md), we can actually demonstrate one template (the final delivery), three organisms and two molecules.
+
+When it comes to this story, storybook folders architecture could look like this:
+
+![Diagram](./assets/signup-storybook.png)
+
+## 🔶 Storybook folder architecture
+
+Our objective is to have only one storybook for all our ecosystem, that may be made of several apps. When the number of apps will grow, we might switch to several storybooks: one by application and one for shared components and design system.
 
 We can follow the following diagram to organize stories within storybook:
 
@@ -185,7 +206,7 @@ Now we can easily define our handlers:
 
 ```typescript
 // Our handler for the role query
-export const rolesQuery = (
+const rolesQuery = (
   status: number,
   result: DefaultBodyType,
   applyToServer = true
@@ -273,6 +294,7 @@ project.json
   // ...
   "projectType": "library",
   "targets": {
+    // Building storybook
     "build": {
       "executor": "@nrwl/storybook:build",
       "outputs": ["{options.outputPath}"],
@@ -282,6 +304,39 @@ project.json
         "config": {
           "configFolder": "libs/front/storybook/.storybook"
         }
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    },
+    // Launching storybook in watch mode
+    "dev": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/react",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/front/storybook/.storybook"
+        },
+        "assets": [
+          {
+            "input": "apps/front/public",
+            "glob": "**/*",
+            "output": "."
+          },
+          {
+            "input": "apps/storybook/public",
+            "glob": "**/*",
+            "output": "."
+          },
+          {
+            "input": "libs/front/components/assets",
+            "glob": "**/*",
+            "output": "."
+          }
+        ]
       },
       "configurations": {
         "ci": {
@@ -299,8 +354,7 @@ We can use the next app to run storybook. The `build` and `serve` commands will 
 
 ```bash
 // Launching storybook in watch mode (dev)
-pnpm nx run front-storybook-app:serve
-
+pnpm nx run front-storybook-lib:dev
 // Building storybook
-pnpm nx run front-storybook-app:build
+pnpm nx run front-storybook-lib:build
 ```

@@ -2,18 +2,17 @@
 
 This library contains:
 
-- the types extracted from the backend swagger.
-- The wrappers on axios.
-- The wrappers on react-query.
-- the queries and mutations used by our frontend(s).
-- the msw handlers associated with these queries, to be used in integration tests and in our storybook stories.
+- Types extracted from the backend swagger.
+- Axios wrappers.
+- react-query wrappers.
+- Queries and mutations used by our frontend(s).
+- Msw handlers associated with these queries, to be used in integration tests and in our storybook stories.
 
 ## ⚡ CLI
 
-| Description         | Command                                         |
-| ------------------- | ----------------------------------------------- |
-| ⚠️ Linting the app  | `pnpm exec nx run front-api-lib:lint`           |
-| ⚙️ generating types | `pnpm exec nx run front-api-lib:generate-types` |
+| Description        | Command                      |
+| ------------------ | ---------------------------- |
+| ⚠️ Linting the app | `pnpm nx lint front-api-lib` |
 
 ### 🔶 Useful flags
 

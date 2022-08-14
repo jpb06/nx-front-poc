@@ -4,10 +4,10 @@ A frontend app serving our storybook.
 
 ## ⚡ CLI
 
-| Description                                     | Command                                      |
-| ----------------------------------------------- | -------------------------------------------- |
-| 🛠️ Build                                        | `pnpm exec nx run front-storybook-app:build` |
-| 🚀 Launching front-storybook-append (port 4200) | `pnpm exec nx run front-storybook-app:serve` |
+| Description                                  | Command                             |
+| -------------------------------------------- | ----------------------------------- |
+| 🛠️ Build                                     | `pnpm nx build front-storybook-app` |
+| 🚀 Launching front-storybook-app (port 4200) | `pnpm nx serve front-storybook-app` |
 
 ### 🔶 Useful flags
 

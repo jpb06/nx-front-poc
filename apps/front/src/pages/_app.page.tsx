@@ -9,10 +9,10 @@ import {
   EmotionCacheProvider,
   ReactQueryProvider,
   AppThemeProvider,
-} from '@front/components/molecules';
-import { WithSnackbar } from '@front/components/organisms';
+} from '@front/components/providers';
+import { WithSnackbar } from '@front/contexts';
 
-import { FullpageBox } from '../organisms';
+import { FullpageBox } from '../shared';
 
 export interface EmotionAppProps extends AppProps {
   emotionCache: EmotionCache;

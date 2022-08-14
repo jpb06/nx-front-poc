@@ -12,7 +12,7 @@ import { Signup } from './SignupForm';
 
 export default {
   component: Signup,
-  title: 'Front app/User stories/Signup/Templates/SignupForm',
+  title: 'Front app/User stories/Signup/SignupForm',
   decorators: reactQueryDecorator,
 } as ComponentMeta<typeof Signup>;
 

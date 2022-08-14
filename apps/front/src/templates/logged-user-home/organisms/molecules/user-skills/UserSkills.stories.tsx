@@ -7,7 +7,7 @@ import { UserSkills, UserSkillsProps } from './UserSkills';
 
 export default {
   component: UserSkills,
-  title: 'Front app/User stories/Logger user/Molecules/UserSkills',
+  title: 'Front app/User stories/Logged user/Molecules/UserSkills',
   decorators: reactQueryDecorator,
 } as ComponentMeta<typeof UserSkills>;
 

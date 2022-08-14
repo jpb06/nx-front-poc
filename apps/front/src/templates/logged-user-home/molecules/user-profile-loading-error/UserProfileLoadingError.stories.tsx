@@ -6,7 +6,7 @@ import { UserProfileLoadingError } from './UserProfileLoadingError';
 
 export default {
   component: UserProfileLoadingError,
-  title: 'Front app/User stories/Logger user/Molecules/UserProfileLoadingError',
+  title: 'Front app/User stories/Logged user/Molecules/UserProfileLoadingError',
   decorators: reactQueryDecorator,
 } as ComponentMeta<typeof UserProfileLoadingError>;
 

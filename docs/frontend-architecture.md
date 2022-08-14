@@ -69,9 +69,9 @@ Now, several apps means shared code. `nx` will help us in that regard. For examp
 - Some components will be specific to a single app (should be reused only within the app).
 - Finally, some components will be highly generic and reused accross several apps.
 
-We will also need a library embedding storybook config, so that we only expose a single storybook for all our apps.
+We will also need a library embedding storybook config, so that we only expose a single storybook for all our apps or at least for the design system: once we scale up, we might want to have one storybook by application.
 
-![Diagram](./assets/nx-app-architecture.png)
+![Diagram](./assets/nx-app-folder-architecture.png)
 
 A few things to mention here.
 
@@ -79,11 +79,7 @@ A few things to mention here.
 
 #### 🎁 `molecules` and `organisms` folders
 
-We will have these folders at several levels, by order of genericity:
-
-- Shared components library, when components are meant to be used in several applications.
-- Inside the `src` folder of an application, when these components are meant to be used by several user stories in that application.
-- Inside a user story folder within an application, when the components will only be used in this user story.
+We might see these folders at several levels, depending on the complexity of the current component: some might be very simple (no need to split them in smaller components) while some may a universe on their own, forcing us to use composition (by splitting them in smaller entities, we will be able to limit the cognitive load needed to understand each part).
 
 #### 🎁 `templates` folder
 
@@ -155,6 +151,51 @@ We will be using a node library to build storybook. Let's define a `build` task 
         }
       }
     }
+    // ...
+  }
+}
+```
+
+We might also want to launch storybook in watch mode (dev):
+
+```json
+{
+  // ...
+  "targets": {
+    // Launching storybook in watch mode
+    "dev": {
+      "executor": "@nrwl/storybook:storybook",
+      "options": {
+        "uiFramework": "@storybook/react",
+        "port": 4400,
+        "config": {
+          "configFolder": "libs/front/storybook/.storybook"
+        },
+        // Defining assets location
+        "assets": [
+          {
+            "input": "apps/front/public",
+            "glob": "**/*",
+            "output": "."
+          },
+          {
+            "input": "apps/storybook/public",
+            "glob": "**/*",
+            "output": "."
+          },
+          {
+            "input": "libs/front/components/assets",
+            "glob": "**/*",
+            "output": "."
+          }
+        ]
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      }
+    }
   }
 }
 ```
@@ -177,6 +218,10 @@ module.exports = storybookMainConfig;
 
 #### 🎁 Next app
 
+We will use a next app to serve our storybook build. This app can be served using vercel for example. Let's take a look at the tasks for this app:
+
+`project.json`:
+
 ```json
 {
   // ...
@@ -197,33 +242,10 @@ module.exports = storybookMainConfig;
         }
       ],
       "configurations": {
-        "development": {},
-        "production": {}
-      }
-    },
-    // Launching the next app in dev mode, building storybook first (calling front-storybook-lib:build)
-    "serve": {
-      "executor": "@nrwl/next:server",
-      "defaultConfiguration": "development",
-      "options": {
-        "buildTarget": "front-storybook-app:build",
-        "dev": true
-      },
-      "dependsOn": [
-        {
-          "projects": "dependencies",
-          "target": "build"
-        }
-      ],
-      "configurations": {
         "development": {
-          "buildTarget": "front-storybook-app:build:development",
-          "dev": true
+          "outputPath": "dist/apps/storybook"
         },
-        "production": {
-          "buildTarget": "front-storybook-app:build:production",
-          "dev": false
-        }
+        "production": {}
       }
     }
   },
@@ -234,8 +256,9 @@ module.exports = storybookMainConfig;
 
 # ⚡ A concrete example: this repo
 
-This repo contains one frontend application serving two pages: a signup page and user profile page. We have components at various levels: user story, application and generic.
+This repo contains one frontend application serving two pages: a signup page and user profile page. In order to create this pages, we use components with various degrees of genericity:
 
-Here is a structure diagram.
-
-![Diagram](./assets/components.png)
+- The most specialized ones are in the user story folder, for example [CheckBoxList component](./../apps/front/src/templates/signup-form/organisms/skills/organisms/checkbox-list/) used in the skills part of the signup page.
+- Others components are used in several pages of our application, like [FullpageBox component](./../apps/front/src/shared/fullpage-box/).
+- We then have specialized components built on top of the design system, for example the [Brand component](./../libs/front/components/src/shared/data-display/brand/).
+- Finally, we have design system components, the most basic components that will serve as a base for our specialized components. For example an input like [PasswordInput component](./../libs/front/components/src/design-system/inputs/password-input/).

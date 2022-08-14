@@ -55,6 +55,7 @@ export const getJestOptions = (
     snapshotSerializers: ['@emotion/jest/serializer'],
     collectCoverageFrom: [
       '**/*.{ts,tsx}',
+      '!jest.config.ts',
       '!**/*.d.ts',
       '!**/index.ts',
       '!**/*.type.ts',

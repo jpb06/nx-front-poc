@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form';
 import * as zod from 'zod';
 
 import { msw } from '@front/api/msw';
-import { SnackbarContext } from '@front/components/organisms';
+import { SnackbarContext } from '@front/contexts';
 import { reactQueryDecorator } from '@front/storybook';
 import { mockedSkills } from '@front/tests/mocked-data';
 

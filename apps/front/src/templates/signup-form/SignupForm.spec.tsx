@@ -9,18 +9,22 @@ import singletonRouter from 'next/router';
 import React from 'react';
 
 import { msw } from '@front/api/msw';
+import { mswServer } from '@front/api/msw/server';
 import {
   mockedRoles,
   mockedUser,
   mockedSkills,
 } from '@front/tests/mocked-data';
-import { mswServer } from '@front/api/msw/server';
 import { appRender } from '@front/tests/render';
 
 import { Signup } from './SignupForm';
 import { FormModel } from './hooks/useSignupFormSchema';
 
-jest.mock('@front/logic');
+jest.mock('@front/logic', () => {
+  const actualModule = jest.requireActual('@front/logic');
+
+  return { ...actualModule, delay: jest.fn() };
+});
 
 describe('Signup component', () => {
   const render = () =>
@@ -439,9 +443,9 @@ describe('Signup component', () => {
         })
       );
 
-      expect(
+      await waitForElementToBeRemoved(() =>
         screen.queryByText(/forms:roleAndSkillsMismatchError/i)
-      ).not.toBeInTheDocument();
+      );
 
       msw.areSkillsAvailableForRoleMutation(201, [6]);
 

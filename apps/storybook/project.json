@@ -19,7 +19,7 @@
       ],
       "configurations": {
         "development": {
-          "outputPath": "tmp/apps/storybook"
+          "outputPath": "dist/apps/storybook"
         },
         "production": {}
       }

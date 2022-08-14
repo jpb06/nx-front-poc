@@ -11,10 +11,26 @@
         "lintFilePatterns": ["libs/front/logic/**/*.ts"]
       }
     },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/libs/front/logic"],
+      "options": {
+        "jestConfig": "libs/front/logic/jest.config.ts",
+        "passWithNoTests": true
+      }
+    },
     "type-check": {
       "executor": "@nrwl/workspace:run-commands",
       "options": {
         "command": "pnpm exec tsc -b ./libs/front/logic --pretty"
+      }
+    },
+    "sonar": {
+      "executor": "@nrwl/workspace:run-commands",
+      "outputs": [],
+      "options": {
+        "command": "sonar-scanner",
+        "cwd": "libs/front/logic"
       }
     }
   }

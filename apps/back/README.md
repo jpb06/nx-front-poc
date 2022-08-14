@@ -4,12 +4,15 @@ Our backend app, relying on an in-memory dataset.
 
 ## ⚡ CLI
 
-| Description                             | Command                              |
-| --------------------------------------- | ------------------------------------ |
-| 🛠️ Build                                | `pnpm exec nx run backend-app:build` |
-| 🚀 Launching backend-append (port 3001) | `pnpm exec nx run backend-app:serve` |
-| ⚠️ Linting the app                      | `pnpm exec nx run backend-app:lint`  |
-| ✅ Launching tests                      | `pnpm exec nx run backend-app:test`  |
+| Description                                                                         | Command                             |
+| ----------------------------------------------------------------------------------- | ----------------------------------- |
+| ⚙️ Writing the swagger json spec of the backend in `libs/api/src/swaggers`          | `pnpm nx swagger-file backend-app`  |
+| ⚙️ Generating api types from the swagger file written using `swagger-file` task     | `pnpm nx api-types backend-app`     |
+| 🛠️ Build                                                                            | `pnpm nx build backend-app`         |
+| 🛠️ Building the app to launch it in dry run mode, just to generate the swagger spec | `pnpm nx build-swagger backend-app` |
+| 🚀 Launching backend-append (port 3001)                                             | `pnpm nx serve backend-app`         |
+| ⚠️ Linting the app                                                                  | `pnpm nx lint backend-app`          |
+| ✅ Launching tests                                                                  | `pnpm nx test backend-app`          |
 
 ### 🔶 Useful flags
 

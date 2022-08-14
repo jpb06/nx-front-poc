@@ -8,8 +8,8 @@ import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { themes } from '@storybook/theming';
 
 import { appTheme } from '@front/theme';
-import { AppThemeProvider } from '@front/components/molecules';
-import { WithSnackbar } from '@front/components/organisms';
+import { AppThemeProvider } from '@front/components/providers';
+import { WithSnackbar } from '@front/contexts';
 
 import { i18n } from './i18next';
 

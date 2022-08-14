@@ -1,4 +1,4 @@
-# ⚡ nx
+# ⚡ Monorepo paradygm and codebase structure
 
 We will be using [Nx](https://nx.dev) to make sure we can use several frontend apps, and to share code between them. Nx also has a cloud service that does pretty cool stuffs, like caching runs results, allowing us to save a lot of time for parts of the codebase that had no changes.
 
@@ -12,27 +12,37 @@ So how does nx work? We first have to talk about applications and libraries.
 
 In a nx workspace, the `apps` folder contains all the available applications. Applications can be easily bootstraped using generators. There is a lot of already available generators, like [`@nrwl/react`](https://nx.dev/react/overview), [`@nrwl/nest`](https://nx.dev/nest/overview), [`@nrwl/next`](https://nx.dev/next/overview), [`@nrwl/storybook`](https://nx.dev/storybook/overview-react) and so on.
 
-So to create a next app, I simply have to do this:
+So to create a next app, we would simply do the following:
 
 ```bash
 nx g @nrwl/next:app my-new-app
 ```
 
-In our example, we will have two apps:
+In our example, we will have four apps:
 
-- 📗 A frontend, based on [nextjs](https://nextjs.org/docs/getting-started).
-- 📗 A backend, based on [nestjs](https://docs.nestjs.com).
+| Application       | Description                                                                 | Framework                                                                                                                                                                                                                                                            |
+| ----------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🚀 Backend app    | Our main backend, exposing REST endpoints                                   | [nestjs](https://docs.nestjs.com), [swagger](https://swagger.io/docs/)                                                                                                                                                                                               |
+| 🚀 Frontend app   | Our sample application containing a signup page and a logged user home page | [nextjs](https://nextjs.org/docs/getting-started), [react-query](https://tanstack.com/query/v4/docs/overview), [material-ui](https://mui.com/material-ui/getting-started/overview/), [testing library](https://testing-library.com/docs/react-testing-library/intro) |
+| 🚀 Storybook app  | An app responsible for serving storybook build                              | [nextjs](https://nextjs.org/docs/getting-started), [storybook](https://storybook.js.org/docs/react/get-started/introduction)                                                                                                                                         |
+| 🚀 End to end app | An app responsible for running end to end tests                             | [cypress](https://docs.cypress.io), [testing library](https://testing-library.com/docs/cypress-testing-library/intro)                                                                                                                                                |
 
 ### 🧿 Libraries
 
 Libraries contain code that will be shared between several apps. They are defined in the `libs` folder. Then again, libraries can be bootstraped using generators, like [`@nrwl/node`](https://nx.dev/node/overview), for example.
 
-In our example, we will be using four libs:
+In our example, we will be using a bunch of libs to be able to work with several frontend apps sharing common code:
 
-- 📗 A library containing the queries and mutations used by our frontend(s). This library will also contain the type generated from the backend swaggers.
-- 📗 A library containing react components that could be shared between several apps.
-- 📗 A library centralizing the logic related with building and serving storybook.
-- 📗 A library containing an implementation mockup for translations used in our frontend app.
+| Library                 | Description                                                                         | Framework                                                                                                                                                                                                                                                                        |
+| ----------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 🧩 Api library          | Library containing react-query queries & mutations as well as their msw handlers    | [react-query](https://tanstack.com/query/v4/docs/overview), [axios](https://axios-http.com/docs/intro), [msw](https://mswjs.io/docs/)                                                                                                                                            |
+| 🧩 Components library   | Design system components and components shared among several frontend apps          | [material-ui](https://mui.com/material-ui/getting-started/overview/), [storybook](https://storybook.js.org/docs/react/get-started/introduction), [jest](https://jestjs.io/docs/getting-started), [testing library](https://testing-library.com/docs/react-testing-library/intro) |
+| 🧩 Contexts library     | Shared contexts (Snackbar, for example)                                             |                                                                                                                                                                                                                                                                                  |
+| 🧩 Logic library        | Shared logic files                                                                  |                                                                                                                                                                                                                                                                                  |
+| 🧩 Storybook library    | Building storybook and serving it in watch mode                                     | [storybook](https://storybook.js.org/docs/react/get-started/introduction), [msw](https://mswjs.io/docs/)                                                                                                                                                                         |
+| 🧩 Tests library        | Tests related wrappers and helpers used in frontend apps and the components library | [jest](https://jestjs.io/docs/getting-started), [testing library](https://testing-library.com/docs/react-testing-library/intro)                                                                                                                                                  |
+| 🧩 Theme library        | Application theme                                                                   | [material-ui](https://mui.com/material-ui/getting-started/overview/)                                                                                                                                                                                                             |
+| 🧩 Translations library | Translations locales and helpers                                                    | [i18next](https://www.i18next.com)                                                                                                                                                                                                                                               |
 
 ## 🔶 nx configuration
 
