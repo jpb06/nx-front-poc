@@ -1,13 +1,13 @@
 # 🧩 `front-translations-lib` lib 🧩
 
-A library containing a translations system mockup for our frontend app.
+A library containing translations locales and helpers.
 
 ## ⚡ CLI
 
 | Description                | Command                                         |
 | -------------------------- | ----------------------------------------------- |
-| ⚠️ Linting the app         | `pnpm nx run front-translations-lib:lint`       |
-| ✔️ Type checking using tsc | `pnpm nx run front-translations-lib:type-check` |
+| ⚠️ Linting the app         | `pnpm nx run lint front-translations-lib`       |
+| ✔️ Type checking using tsc | `pnpm nx run type-check front-translations-lib` |
 
 ### 🔶 Useful flags
 

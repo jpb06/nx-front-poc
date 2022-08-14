@@ -55,14 +55,14 @@ pnpm test-all
 pnpm nx e2e front-e2e-app --watch
 
 # launch storybook in dev mode
-pnpm nx serve front-storybook-app
+pnpm nx dev front-storybook-lib
 ```
 
 ## ⚡ Documentation
 
 Seriously, read these please 🥲
 
-### 🔶 [`nx`](./docs/nx.md)
+### 🔶 [`Codebase structure (the monorepo wonderland)`](./docs/nx.md)
 
 ### 🔶 [`Frontend architecture`](./docs/frontend-architecture.md)
 
@@ -76,6 +76,10 @@ Seriously, read these please 🥲
 
 ### 🔶 [`Cypress`](./docs/cypress.md)
 
+## ⚡ A quick peek at the nx graph
+
+![`nx`](./docs/assets/nx-graph.png)
+
 ## ⚡ Projects
 
 | Project                                                                | Description                                                                  |
@@ -86,33 +90,37 @@ Seriously, read these please 🥲
 | 🚀 [`backend-app`](./apps/back/README.md) app                          | Our backend app, relying on an in-memory dataset                             |
 | 🧩 [`front-api-lib`](./libs/front/api/README.md) lib                   | Our api types, extracted from the backend swagger                            |
 | 🧩 [`front-components-lib`](./libs/front/components/README.md) lib     | Our generic components and the MUI theme shared by all our frontend apps     |
+| 🧩 [`front-contexts-lib`](./libs/front/contexts/README.md) lib         | Shared contexts                                                              |
 | 🧩 [`front-logic-lib`](./libs/front/logic/README.md) lib               | Shared logic code                                                            |
-| 🧩 [`front-translations-lib`](./libs/front/translations/README.md) lib | Stub implementation for the translation of our UI.                           |
 | 🧩 [`front-storybook-lib`](./libs/front/storybook/README.md) lib       | Library centralizing the configuration necessary to build and run storybook. |
+| 🧩 [`front-tests-lib`](./libs/front/tests/README.md) lib               | Tests related helpers and wrappers.                                          |
+| 🧩 [`front-theme-lib`](./libs/front/theme/README.md) lib               | Our applications theme (Mui).                                                |
+| 🧩 [`front-translations-lib`](./libs/front/translations/README.md) lib | Translations locales and helpers for our UI.                                 |
 
 ## ⚡ cli
 
 ### 🔶 Running actions
 
-| Description                                          | Command                                                                    |
-| ---------------------------------------------------- | -------------------------------------------------------------------------- |
-| ▶️ Run an action on one project                      | `pnpm exec nx run <project>:<action>`                                      |
-| ▶️ Run an action on all projects                     | `pnpm exec nx run-many --target=<action> --all`                            |
-| ▶️ Run an action on a set of projects                | `pnpm exec nx run-many --target=<action> --projects=<project1>,<project2>` |
-| ▶️ Run an action only on projects containing changes | `pnpm exec nx affected:<action>`                                           |
+| Description                                          | Command                                                               |
+| ---------------------------------------------------- | --------------------------------------------------------------------- |
+| ▶️ Run an action on one project                      | `pnpm nx run <action> <project>`                                      |
+| ▶️ Run an action on all projects                     | `pnpm nx run-many --target=<action> --all`                            |
+| ▶️ Run an action on a set of projects                | `pnpm nx run-many --target=<action> --projects=<project1>,<project2>` |
+| ▶️ Run an action only on projects containing changes | `pnpm nx affected:<action>`                                           |
 
 #### 🧿 Typical actions
 
 Actions are defined by project in `project.json` files. Here are a few standard actions:
 
-| Action        | Description                                                  |
-| ------------- | ------------------------------------------------------------ |
-| 🛠️ build      | Builds the app/lib. Use `--prod` flag for a production build |
-| 🚀 serve      | Runs the app                                                 |
-| ⚠️ lint       | Run the linter against project files                         |
-| ✔️ type-check | Uses `tsc --noEmit` to validate types against project files  |
-| ✅ test       | Runs tests                                                   |
-| ☑️ e2e        | Runs end to end tests                                        |
+| Action             | Description                                                  |
+| ------------------ | ------------------------------------------------------------ |
+| 🛠️ build           | Builds the app/lib. Use `--prod` flag for a production build |
+| 🚀 serve           | Runs the app                                                 |
+| ⚠️ lint            | Run the linter against project files                         |
+| ✔️ type-check      | Uses `tsc --noEmit` to validate types against project files  |
+| ✅ test            | Runs tests                                                   |
+| ☑️ e2e             | Runs end to end tests                                        |
+| 🕵️ Sonarcloud scan | Execute sonarcloud scanner on the targetted app of lib       |
 
 #### 🧿 Useful flags
 
@@ -126,16 +134,16 @@ Actions are defined by project in `project.json` files. Here are a few standard 
 
 ### 🔶 Running tests
 
-| Description                               | Command                                                                          |
-| ----------------------------------------- | -------------------------------------------------------------------------------- |
-| ✅ Run tests for a project (watch)        | `pnpm test-changes <project>` or `pnpm exec nx test --project=<project> --watch` |
-| ✅ Run all tests for a project (watchAll) | `pnpm test-dev <project>` or `pnpm exec nx test --project=<project> --watchAll`  |
-| ✅ Run all tests in parallel              | `pnpm test-all` or `pnpm exec nx run-many --target=test --parallel --all`        |
+| Description                               | Command                                                                     |
+| ----------------------------------------- | --------------------------------------------------------------------------- |
+| ✅ Run tests for a project (watch)        | `pnpm test-changes <project>` or `pnpm nx test --project=<project> --watch` |
+| ✅ Run all tests for a project (watchAll) | `pnpm test-dev <project>` or `pnpm nx test --project=<project> --watchAll`  |
+| ✅ Run all tests in parallel              | `pnpm test-all` or `pnpm nx run-many --target=test --parallel --all`        |
 
 ### 🔶 Creating applications or libraries
 
-| Description                        | Command                                                                                  |
-| ---------------------------------- | ---------------------------------------------------------------------------------------- |
-| 🗃️ Create a new front app or lib   | `pnpm exec nx g @nrwl/react:app <appname>` or `pnpm exec nx g @nrwl/react:lib <libname>` |
-| 🗃️ Create a new backend app or lib | `pnpm exec nx g @nrwl/nest:app <appname>` or `pnpm exec nx g @nrwl/nest:lib <libname>`   |
-| 🗃️ Create a vanilla node lib       | `pnpm exec nx g @nrwl/node:lib <libname>`                                                |
+| Description                        | Command                                                                        |
+| ---------------------------------- | ------------------------------------------------------------------------------ |
+| 🗃️ Create a new front app or lib   | `pnpm nx g @nrwl/react:app <appname>` or `pnpm nx g @nrwl/react:lib <libname>` |
+| 🗃️ Create a new backend app or lib | `pnpm nx g @nrwl/nest:app <appname>` or `pnpm nx g @nrwl/nest:lib <libname>`   |
+| 🗃️ Create a vanilla node lib       | `pnpm nx g @nrwl/node:lib <libname>`                                           |

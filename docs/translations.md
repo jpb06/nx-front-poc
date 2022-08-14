@@ -92,12 +92,7 @@ Now we need to make sure this task is ran before building the app or launching i
           "projects": "self"
         }
       ],
-      "configurations": {
-        "production": {
-          "buildTarget": "front:build:production",
-          "dev": false
-        }
-      }
+      [...]
     },
     [...]
   }
@@ -117,7 +112,7 @@ module.exports = {
     defaultLocale: 'en',
     locales: ['en', 'fr'],
   },
-  // Here we must specify the path of our namespaces, that will be copied in the public folder.
+  defaultNS: 'common',
   localePath: path.resolve(`apps/front/public/locales`),
 };
 ```
@@ -131,17 +126,21 @@ In the following example, we are loading the `common` and `home` namespaces.
 ```typescript
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 
+import nextI18NextConfig from '../../next-i18next.config';
+
 const Home: NextPage = () => <HomeRoot />;
 
 export const getStaticProps: GetStaticProps = async ({
   locale,
-}: GetStaticPropsContext) => {
-  return {
-    props: {
-      ...(await serverSideTranslations(locale || 'en', ['common', 'home'])),
-    },
-  };
-};
+}: GetStaticPropsContext) => ({
+  props: {
+    ...(await serverSideTranslations(
+      locale || 'en',
+      ['common', 'userInfosPage'],
+      nextI18NextConfig
+    )),
+  },
+});
 
 export default Home;
 ```

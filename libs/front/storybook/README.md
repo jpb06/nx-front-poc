@@ -6,8 +6,8 @@ Our library responsible for building storybook.
 
 | Description                                | Command                                 |
 | ------------------------------------------ | --------------------------------------- |
-| 🛠️ Building storybook                      | `pnpm nx run front-storybook-lib:build` |
-| ▶️ Launching storybook in watch mode (dev) | `pnpm nx run front-storybook-lib:dev`   |
+| 🛠️ Building storybook                      | `pnpm nx run build front-storybook-lib` |
+| ▶️ Launching storybook in watch mode (dev) | `pnpm nx run dev front-storybook-lib`   |
 
 ### 🔶 Useful flags
 

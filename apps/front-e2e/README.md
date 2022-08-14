@@ -4,11 +4,11 @@ Cypress tests for our `front` app
 
 ## ⚡ CLI
 
-| Description                                 | Command                                      |
-| ------------------------------------------- | -------------------------------------------- |
-| ⚠️ Linting the app                          | `pnpm exec nx run front-e2e-app:lint`        |
-| ✅ Launching end to end tests               | `pnpm exec nx run front-e2e-app:e2e`         |
-| ✅ Launching end to end tests in watch mode | `pnpm exec nx run front-e2e-app:e2e --watch` |
+| Description                                 | Command                             |
+| ------------------------------------------- | ----------------------------------- |
+| ⚠️ Linting the app                          | `pnpm nx lint front-e2e-app`        |
+| ✅ Launching end to end tests               | `pnpm nx e2e front-e2e-app`         |
+| ✅ Launching end to end tests in watch mode | `pnpm nx e2e front-e2e-app --watch` |
 
 ### 🔶 Useful flags
 

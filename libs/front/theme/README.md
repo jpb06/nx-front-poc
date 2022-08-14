@@ -1,7 +1,17 @@
-# front-theme-lib
+# 🧩 `front-theme-lib` lib 🧩
 
-This library was generated with [Nx](https://nx.dev).
+Our app theme, to be used by all our frontend applications
 
-## Running unit tests
+## ⚡ CLI
 
-Run `nx test front-theme-lib` to execute the unit tests via [Jest](https://jestjs.io).
+| Description                | Command                                  |
+| -------------------------- | ---------------------------------------- |
+| ⚠️ Linting the app         | `pnpm nx run lint front-theme-lib`       |
+| ✔️ Type checking using tsc | `pnpm nx run type-check front-theme-lib` |
+
+### 🔶 Useful flags
+
+| flag                 | Description                                        |
+| -------------------- | -------------------------------------------------- |
+| ⬛ `--skip-nx-cache` | disables nx caching; the command will be ran fully |
+| ⬛ `--verbose`       | prints additional error stack trace on failure     |
