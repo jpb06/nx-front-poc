@@ -30,10 +30,10 @@
       "@front/components/design-system": [
         "libs/front/components/src/design-system/index.ts"
       ],
-      "@front/components/shared": ["libs/front/components/src/shared/index.ts"],
       "@front/components/providers": [
         "libs/front/components/src/shared/providers/index.ts"
       ],
+      "@front/components/shared": ["libs/front/components/src/shared/index.ts"],
       "@front/contexts": ["libs/front/contexts/src/index.ts"],
       "@front/logic": ["libs/front/logic/src/index.ts"],
       "@front/storybook": ["libs/front/storybook/src/index.ts"],

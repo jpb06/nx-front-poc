@@ -13,6 +13,7 @@
     "**/*.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "./../translations/react-i18next.d.ts"
+    "./../translations/react-i18next.d.ts",
+    "jest.config.ts"
   ]
 }
