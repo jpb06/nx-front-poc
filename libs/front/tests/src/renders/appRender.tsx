@@ -1,6 +1,6 @@
 import { render, RenderResult } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import type { UserEvent } from '@testing-library/user-event/dist/types/setup';
+import { UserEvent } from '@testing-library/user-event/dist/types/setup/setup';
 import { ReactElement } from 'react';
 
 import { applyWrappers, ApplyWrappersProps } from './util/applyWrappers';

@@ -43,3 +43,6 @@ Thumbs.db
 
 # Translations
 apps/*/public/locales/*
+
+# Next.js
+.next
