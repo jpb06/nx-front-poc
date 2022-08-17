@@ -19,7 +19,7 @@ type FormModel = {
 
 const schema: zod.ZodSchema<FormModel> = zod.object({
   // Defining a field expecting a string that must not be empty, passing a custom error message via the `min` function
-  name: zod.string().min(1, "This field is required!"),
+  name: zod.string().min(1, 'This field is required!'),
   // Defining a field expecting a number that must be greater than 18
   // since we are not passing a message to the `gte` function, we will get the default error message defined by zod
   age: zod.number().gte(18),
@@ -43,7 +43,7 @@ Using our schema is easy enough, using a resolver:
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
-const formDefaultValues : Partial<FormModel> = {
+const formDefaultValues: Partial<FormModel> = {
   name: '',
   age: '',
   idHobbies: [],
@@ -71,7 +71,7 @@ type Form = {
   age: 21
 }
 
-// or 
+// or
 {
   name: 'Yolanda McCool'
 }
@@ -130,12 +130,12 @@ Now, using this component is pretty trivial:
 
 ```typescript
 type FormModel = {
-  name: string
-}
+  name: string;
+};
 
 const MyComponent = () => {
   const schema: zod.ZodSchema<FormModel> = zod.object({
-    name: zod.string().min(1, requiredKey), 
+    name: zod.string().min(1, requiredKey),
   });
 
   const { control, handleSubmit } = useForm<FormModel>({
@@ -146,19 +146,16 @@ const MyComponent = () => {
   });
 
   const onSubmit = handleSubmit((data) => {
-    console.info(data)
+    console.info(data);
   });
 
   return (
-    <Box
-        component="form"
-        onSubmit={onSubmit}
-      >
+    <Box component="form" onSubmit={onSubmit}>
       <Input control={control} name="name" label="Name" />
       <Button type="submit">Submit</Button>
     </Box>
-  )
-}
+  );
+};
 ```
 
 ## 🔶 Custom error messages and localization
@@ -175,10 +172,9 @@ type FormModel = {
 export const useFormSchema = () => {
   const { t } = useTranslation('forms');
 
-  const schema: zod.ZodSchema<FormModel> = zod
-    .object({
-      name: zod.string().min(1, t('nameRequired')), 
-    });
+  const schema: zod.ZodSchema<FormModel> = zod.object({
+    name: zod.string().min(1, t('nameRequired')),
+  });
 
   return schema;
 };
@@ -235,16 +231,16 @@ export const useCustomErrorMap: () => ZodErrorMap = () => {
       };
     }
 
-    // If we overrided the message of a default error in our schema, it's already translated so we just have to return it
-    // For example: zod.number({ required_error: 'text' })
-    if (ctx.defaultError) {
-      return {
-        message: ctx.defaultError,
-      };
-    }
-
-    // Otherwise we make sure to always return a translated message 
+    // Otherwise we make sure to always return a translated message
     if (issue.code === 'invalid_type' && issue.received === 'undefined') {
+      // If we overrided the message in our schema, it's already translated so we just have to return it
+      // For example: zod.number({ required_error: 'Oh no!' }).gte(0, 'Oh no!')
+      if (ctx.defaultError) {
+        return {
+          message: ctx.defaultError,
+        };
+      }
+
       return { message: t('generic.information_required') };
     }
 
@@ -261,8 +257,17 @@ export const useCustomErrorMap: () => ZodErrorMap = () => {
       case 'invalid_type': {
         return { message: t('generic.invalid_type') };
       }
-      default:
+      default: {
+        // If we overrided the message of a default error in our schema, it's already translated so we just have to return it
+        // For example: zod.string().min(1, 'my error message')
+        if (ctx.defaultError) {
+          return {
+            message: ctx.defaultError,
+          };
+        }
+
         return { message: t('generic.incorrect_value') };
+      }
     }
   };
 };
@@ -286,9 +291,9 @@ const passwordForm = zod
   })
   .refine(({ password, confirmPassword }) => password === confirmPassword, {
     // Our custom error message
-    message: "Passwords do not match!",
+    message: 'Passwords do not match!',
     // The impacted field; in this example, the error message will be displayed for the `confirmPassword` input
-    path: ["confirmPassword"],
+    path: ['confirmPassword'],
   });
 ```
 
@@ -310,9 +315,9 @@ const schema = zod.array(zod.string()).superRefine((val, ctx) => {
     ctx.addIssue({
       code: zod.ZodIssueCode.too_big,
       maximum: 3,
-      type: "array",
+      type: 'array',
       inclusive: true,
-      message: "Too many items 😡",
+      message: 'Too many items 😡',
     });
   }
 

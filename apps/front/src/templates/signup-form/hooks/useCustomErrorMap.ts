@@ -16,13 +16,13 @@ export const useCustomErrorMap: () => ZodErrorMap = () => {
       };
     }
 
-    if (ctx.defaultError) {
-      return {
-        message: ctx.defaultError,
-      };
-    }
-
     if (issue.code === 'invalid_type' && issue.received === 'undefined') {
+      if (ctx.defaultError) {
+        return {
+          message: ctx.defaultError,
+        };
+      }
+
       return { message: t('generic.information_required') };
     }
 
@@ -39,8 +39,15 @@ export const useCustomErrorMap: () => ZodErrorMap = () => {
       case 'invalid_type': {
         return { message: t('generic.invalid_type') };
       }
-      default:
+      default: {
+        if (ctx.defaultError) {
+          return {
+            message: ctx.defaultError,
+          };
+        }
+
         return { message: t('generic.incorrect_value') };
+      }
     }
   };
 };
