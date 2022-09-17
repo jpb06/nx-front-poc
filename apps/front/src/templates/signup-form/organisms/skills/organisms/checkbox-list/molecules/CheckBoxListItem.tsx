@@ -7,21 +7,21 @@ import {
   ListItemIcon,
 } from '@mui/material';
 import React from 'react';
-import { useController } from 'react-hook-form';
+import { FieldValues, useController } from 'react-hook-form';
 
 import { SkillDto } from '@front/api/types';
 import { spinKeyframe } from '@front/logic';
 
 import { CheckBoxListProps } from '../CheckBoxList';
 
-type CheckBoxListItemProps<T> = {
+type CheckBoxListItemProps<T extends FieldValues> = {
   isCheckBeingPerformed: boolean;
   checkGroupProps: CheckBoxListProps<T>;
   skills: Array<SkillDto>;
   invalidFields: Array<number>;
 };
 
-export function CheckBoxListItem<T>({
+export function CheckBoxListItem<T extends FieldValues>({
   checkGroupProps,
   skills,
   isCheckBeingPerformed,

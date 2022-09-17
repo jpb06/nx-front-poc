@@ -2,9 +2,9 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@mui/material';
 import { Box } from '@mui/system';
 import { Children, cloneElement, isValidElement } from 'react';
-import { Control, DeepPartial, useForm } from 'react-hook-form';
+import { Control, DeepPartial, FieldValues, useForm } from 'react-hook-form';
 
-type FormTestingComponentProps<TForm> = {
+type FormTestingComponentProps<TForm extends FieldValues> = {
   onSubmit: (d: unknown) => void;
   defaultValues?: DeepPartial<TForm> | undefined;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -12,7 +12,7 @@ type FormTestingComponentProps<TForm> = {
   children: JSX.Element;
 };
 
-export function FormTestingComponent<TForm>({
+export function FormTestingComponent<TForm extends FieldValues>({
   onSubmit,
   defaultValues,
   schema,

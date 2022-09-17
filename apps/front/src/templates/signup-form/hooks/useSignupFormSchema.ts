@@ -31,7 +31,10 @@ export const useSignupFormSchema = () => {
         .gte(0, roleRequired),
       idSkills: zod
         .preprocess((v) => parseInt(zod.string().parse(v), 10), zod.number())
-        .array(),
+        .array() as zod.ZodArray<
+        zod.ZodEffects<zod.ZodNumber, number, number>, // 🤡
+        'many'
+      >,
     })
     .superRefine(skillsAvailabilityForRole)
     .superRefine(skillsCount);

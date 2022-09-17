@@ -1,12 +1,19 @@
 import { TextField } from '@mui/material';
-import { useController, UseControllerProps } from 'react-hook-form';
+import {
+  FieldValues,
+  useController,
+  UseControllerProps,
+} from 'react-hook-form';
 
-export interface InputProps<T> extends UseControllerProps<T> {
+export interface InputProps<T extends FieldValues>
+  extends UseControllerProps<T> {
   label: string;
   loading?: boolean;
 }
 
-export function Input<T>(props: InputProps<T>): JSX.Element {
+export function Input<T extends FieldValues>(
+  props: InputProps<T>
+): JSX.Element {
   const {
     field: { ref, value, onChange, ...otherFieldProps },
     fieldState,

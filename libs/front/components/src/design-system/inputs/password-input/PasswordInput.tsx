@@ -9,13 +9,20 @@ import {
   FormHelperText,
 } from '@mui/material';
 import { useState } from 'react';
-import { useController, UseControllerProps } from 'react-hook-form';
+import {
+  FieldValues,
+  useController,
+  UseControllerProps,
+} from 'react-hook-form';
 
-export interface PasswordInputProps<T> extends UseControllerProps<T> {
+export interface PasswordInputProps<T extends FieldValues>
+  extends UseControllerProps<T> {
   label: string;
 }
 
-export function PasswordInput<T>(props: PasswordInputProps<T>): JSX.Element {
+export function PasswordInput<T extends FieldValues>(
+  props: PasswordInputProps<T>
+): JSX.Element {
   const {
     field: { ref, value, onChange, ...otherFieldProps },
     fieldState,
