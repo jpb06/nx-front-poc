@@ -15,7 +15,7 @@ import { WithSnackbar } from '@front/contexts';
 import { FullpageBox } from '../shared';
 
 export interface EmotionAppProps extends AppProps {
-  emotionCache: EmotionCache;
+  emotionCache?: EmotionCache;
 }
 
 const MyApp = ({ Component, emotionCache, pageProps }: EmotionAppProps) => (

@@ -5,19 +5,24 @@ import {
   Select as MuiSelect,
   FormHelperText,
 } from '@mui/material';
-import { useController, UseControllerProps } from 'react-hook-form';
+import {
+  FieldValues,
+  useController,
+  UseControllerProps,
+} from 'react-hook-form';
 
 export type SelectItem = {
   key?: number;
   text: string;
 };
 
-export interface SelectProps<T> extends UseControllerProps<T> {
+export interface SelectProps<T extends FieldValues>
+  extends UseControllerProps<T> {
   label: string;
   data?: SelectItem[];
 }
 
-export function Select<T>({
+export function Select<T extends FieldValues>({
   label,
   data,
   ...controllerProps

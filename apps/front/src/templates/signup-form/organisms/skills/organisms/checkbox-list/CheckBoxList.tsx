@@ -13,7 +13,11 @@ import {
 } from '@mui/material';
 import { useTranslation } from 'next-i18next';
 import React, { useState } from 'react';
-import { useController, UseControllerProps } from 'react-hook-form';
+import {
+  FieldValues,
+  useController,
+  UseControllerProps,
+} from 'react-hook-form';
 
 import { SkillCategoryDto } from '@front/api/types';
 import { NamespaceKey } from '@front/translations';
@@ -25,13 +29,14 @@ export type CheckboxItem = {
   id: number;
   label: string;
 };
-export interface CheckBoxListProps<T> extends UseControllerProps<T> {
+export interface CheckBoxListProps<T extends FieldValues>
+  extends UseControllerProps<T> {
   label: string;
   isLoading: boolean;
   items?: Array<SkillCategoryDto>;
 }
 
-export function CheckBoxList<T>(
+export function CheckBoxList<T extends FieldValues>(
   props: CheckBoxListProps<T>
 ): JSX.Element | null {
   const { t } = useTranslation('forms');
