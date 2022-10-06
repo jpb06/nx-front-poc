@@ -4,7 +4,7 @@
   "projectType": "application",
   "targets": {
     "copy-locales": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "echo Copying locales... && cp -R ./libs/front/translations/assets/locales ./apps/front/public/"
       }
@@ -78,7 +78,7 @@
       }
     },
     "type-check": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "pnpm exec tsc -p ./apps/front/tsconfig.json --noEmit --pretty"
       }
@@ -91,7 +91,7 @@
       }
     },
     "sonar": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "outputs": [],
       "options": {
         "command": "sonar-scanner",

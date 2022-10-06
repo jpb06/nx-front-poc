@@ -5,7 +5,7 @@
   "tags": [],
   "targets": {
     "copy-assets": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "echo Copying assets... && mkdir -p ./dist/apps/front/public && cp -R ./libs/front/components/assets/* ./dist/apps/front/public/"
       }
@@ -18,7 +18,7 @@
       }
     },
     "type-check": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "pnpm exec tsc -b ./libs/front/components --pretty"
       }
@@ -32,7 +32,7 @@
       }
     },
     "sonar": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "outputs": [],
       "options": {
         "command": "sonar-scanner",
