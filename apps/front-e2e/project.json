@@ -4,7 +4,7 @@
   "projectType": "application",
   "targets": {
     "build-for-e2e": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "pnpm nx exec backend-app:build:production",
@@ -14,7 +14,7 @@
       }
     },
     "serve-for-e2e": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "pnpm nx exec backend-app:serve:production",
