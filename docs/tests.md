@@ -1,8 +1,8 @@
 # ⚡ Testing
 
-Let's talk a bit about the various types of tests we can do and what problems they do solve.
+Let's talk a bit about the various types of tests we can do and the kind of problems they solve.
 
-What we aim to do is trophy testing, basing ourself on [Typescript](https://www.typescriptlang.org), [jest](https://jestjs.io), [testing library](https://testing-library.com), [msw](https://mswjs.io) and [cypress](https://www.cypress.io).
+What we aim to do is trophy testing, basing ourself on [eslint](https://eslint.org), [Typescript](https://www.typescriptlang.org), [jest](https://jestjs.io), [testing library](https://testing-library.com), [msw](https://mswjs.io) and [cypress](https://www.cypress.io).
 
 ## 🔶 Providing testing helpers
 
@@ -50,9 +50,7 @@ type RenderProviders = 'reactQuery' | 'form' | 'snackbar';
 
 type ApplyWrappersProps<TForm> = {
   providers?: Array<RenderProviders>;
-  formProviderWrapperDefaultValues?:
-    | UnpackNestedValue<DeepPartial<TForm>>
-    | undefined;
+  formProviderWrapperDefaultValues?: DeepPartial<TForm> | undefined;
   i18nConfig?: I18nProviderProps;
 };
 
@@ -75,9 +73,7 @@ const applyWrappers = <TForm>(props?: ApplyWrappersProps<TForm>) => {
       }
       case 'form': {
         return FormProvider<TForm>(
-          props?.formProviderWrapperDefaultValues as UnpackNestedValue<
-            DeepPartial<TForm>
-          >
+          props?.formProviderWrapperDefaultValues as DeepPartial<TForm>
         );
       }
       case 'emotionCache': {
@@ -150,7 +146,13 @@ describe('Logged user home component', () => {
 
 ## 🔶 Testing strategy
 
+As mentioned, our testing strategy is based on the testing trophy.
+
 ![Diagram](./assets/testing-trophy.jpg)
+
+### 🧿 Static analysis
+
+The base of the trophy is static code analysis, using [eslint](https://eslint.org) and [Typescript](https://www.typescriptlang.org), allowing us to catch most simple mistakes. We can automate easily these checks in CI/CD so the return on investment is high.
 
 ### 🧿 Unit tests
 
@@ -171,9 +173,30 @@ describe('Brand component', () => {
 });
 ```
 
-### 🧿 Visual regression tests
+### 🧿 Integration tests
 
-These tests check that the small bricks of our app didn't drastically change visually. This is pretty useful when we defined our own system design relying on a whole set of generic components.
+These tests have the highest return on investment because they are not as hard to write and maintain as e2e tests while giving us good confidence about a part of our system.
+Integration testing is about taking a components tree and testing it while mocking as little as possible. For example, we will use [msw](https://mswjs.io) to avoid mocking the resources fetching layer within our codebase.
+
+You can find integration tests in the templates folder:
+
+- [Logged user home](./../apps/front/src/templates/logged-user-home/LoggedUserHome.spec.tsx).
+- [Signup form](./../apps/front/src/templates/signup-form/SignupForm.spec.tsx).
+
+```typescript
+it('should display user data', async () => {
+  msw.userDataQuery(200, mockedUser);
+
+  appRender(<LoggedUserHome />);
+
+  await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
+
+  const { firstName, lastName, userName } = mockedUser;
+
+  expect(screen.getByText(`${firstName} ${lastName}`)).toBeInTheDocument();
+  expect(screen.getByText(`${userName}`)).toBeInTheDocument();
+});
+```
 
 ### 🧿 Snapshots
 
@@ -206,29 +229,9 @@ describe('snapshots', () => {
 });
 ```
 
-### 🧿 Integration tests
+### 🧿 Visual regression tests
 
-Integration tests have the highest return on investment because they are not as hard to write and maintain as e2e tests while giving us good confidence about a part of our system.
-
-You can find integration tests in the templates folder:
-
-- [Logged user home](./../apps/front/src/templates/logged-user-home/LoggedUserHome.spec.tsx).
-- [Signup form](./../apps/front/src/templates/signup-form/SignupForm.spec.tsx).
-
-```typescript
-it('should display user data', async () => {
-  msw.userDataQuery(200, mockedUser);
-
-  appRender(<LoggedUserHome />);
-
-  await waitForElementToBeRemoved(() => screen.queryByRole('progressbar'));
-
-  const { firstName, lastName, userName } = mockedUser;
-
-  expect(screen.getByText(`${firstName} ${lastName}`)).toBeInTheDocument();
-  expect(screen.getByText(`${userName}`)).toBeInTheDocument();
-});
-```
+These tests check that the small bricks of our app didn't drastically change visually. This is pretty useful when we defined our own system design relying on a whole set of generic components.
 
 ### 🧿 End to end testing
 

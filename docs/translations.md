@@ -1,6 +1,6 @@
 # ⚡ Multi languages support
 
-We will use [next-i18next](https://github.com/isaachinman/next-i18next) for this task. The library is built on top of [react-i18next](https://react.i18next.com) which is the most used tool for internationalization in the react ecosystem.
+We will use [next-i18next](https://github.com/isaachinman/next-i18next) to handle localization within our apps. The library is built on top of [react-i18next](https://react.i18next.com) which is the most used tool for internationalization in react ecosystem.
 
 Let's see together how it rolls!
 
@@ -38,7 +38,7 @@ On this POC, translations are defined directly in the json files. However, we ma
   [...]
   "targets": {
     "fetch-translations": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "pnpm fetchTranslations"
       }
@@ -62,7 +62,7 @@ Since we are using next, the namespaces must be copied in the `public` folder of
   [...]
   "targets": {
     "copy-locales": {
-      "executor": "@nrwl/workspace:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "command": "echo Copying locales... && cp -R ./libs/front/translations/assets/locales ./apps/front/public/"
       }
@@ -122,6 +122,8 @@ module.exports = {
 Namespaces are loaded by page using either `getStaticProps` (SSG) or `getServerSideProps` (SSR). We want to only inject the namespaces that we really need for each page to limit the impact on performances.
 
 In the following example, we are loading the `common` and `home` namespaces.
+
+`Home page`:
 
 ```typescript
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -392,16 +394,22 @@ One way to solve the problem is to monkey patch the `t` function in the i18n pro
 ```tsx
 export const I18nProvider = (
   i18nConfig: I18nProviderProps | undefined = undefined
-): WrapperResult => {
-  // [...]
+): TestWrapper => {
+  // we have to clone the instance, otherwise our test cases won't be isolated
+  const finalI18n = i18n.cloneInstance();
 
-  // if we provide bundles, no need to monkey patch the t function!
-  // More about bundles injection later 🙈
+  // if we provide translations, no need to monkey patch the t function!
   if (!i18nConfig?.resourcesBundles) {
-    finalI18n.t = (key, options) => {
+    const tFunction = (key: string, options: { ns: string }) => {
       if (typeof options === 'object') {
         const interpolations = Object.entries(options)
-          .filter(([key]) => key !== 'lng' && key !== 'lngs' && key !== 'ns')
+          .filter(
+            ([key]) =>
+              key !== 'lng' &&
+              key !== 'lngs' &&
+              key !== 'ns' &&
+              key !== 'keyPrefix'
+          )
           .map(([key, value]) => `${key}=${value}`)
           .join('|');
 
@@ -417,15 +425,16 @@ export const I18nProvider = (
 
       return key;
     };
+    finalI18n.t = tFunction as TFunction;
   }
 
   // [...]
 
-  const wrapper = ({ children }) => (
+  const Wrapper = ({ children }: PropsWithChildren<unknown>) => (
     <I18nextProvider i18n={finalI18n}>{children}</I18nextProvider>
   );
 
-  return { wrapper };
+  return Wrapper;
 };
 ```
 
@@ -485,10 +494,9 @@ export type ResourceBundle = {
   namespace: string;
   resources: Record<string, unknown>;
 };
-
 export const I18nProvider = (
   i18nConfig: I18nProviderProps | undefined = undefined
-): WrapperResult => {
+): TestWrapper => {
   // we have to clone the instance, otherwise our test cases won't be isolated
   const finalI18n = i18n.cloneInstance();
 
@@ -504,11 +512,11 @@ export const I18nProvider = (
     });
   }
 
-  const wrapper = ({ children }) => (
+  const Wrapper = ({ children }: PropsWithChildren<unknown>) => (
     <I18nextProvider i18n={finalI18n}>{children}</I18nextProvider>
   );
 
-  return { wrapper };
+  return Wrapper;
 };
 ```
 
@@ -654,30 +662,41 @@ const i18nInstance = i18n.cloneInstance();
 export { i18nInstance as i18n };
 ```
 
-We will patch `main.js` to use [`storybook-react-i18next`](https://storybook.js.org/addons/storybook-react-i18next) addon. We also need to add the locales files to the static files available in storybook. Finally, we will replace `next-i18next` library with `react-i18next`, its base library, since we are not using next at all within storybook.
+We will patch `main.js` to use [`storybook-react-i18next`](https://storybook.js.org/addons/storybook-react-i18next) addon. We also need to add the locales files to the static files available in storybook using `staticDirs`. Finally, we will tell webpack to avoid resolving several packages used by react-i18next that won't work in a browser environment.
 
 ```javascript
 /** @type {import("@storybook/react/types/index").StorybookConfig} */
 const storybookMainConfig = {
   addons: [
-    [...]
+    // ...
     'storybook-react-i18next',
   ],
   staticDirs: [
-    [...]
+    '../../../../apps/front/public',
     '../../../../libs/front/components/assets',
   ],
-  webpackFinal: async (config) => {
-    [...]
+  webpackFinal: async (config, { configType }) => {
+    // ...
 
-    config.resolve.alias = {
-      ...(config.resolve.alias || {}),
-      'next-i18next': 'react-i18next',
-    }
+    /**
+     * Fixes issue with `next-i18next` and is ready for webpack@5
+     * @see https://github.com/isaachinman/next-i18next/issues/1012#issuecomment-792697008
+     * @see https://github.com/storybookjs/storybook/issues/4082#issuecomment-758272734
+     * @see https://webpack.js.org/migrate/5/
+     */
+    config.resolve.fallback = {
+      fs: false,
+      http: false,
+      https: false,
+      timers: false,
+      stream: false,
+      zlib: false,
+      path: false,
+    };
 
     return config;
   },
-  [...]
+  // ...
 };
 ```
 

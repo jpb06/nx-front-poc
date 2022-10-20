@@ -20,7 +20,7 @@ nx g @nrwl/next:app my-new-app
 
 In our example, we will have four apps:
 
-| Application       | Description                                                                 | Framework                                                                                                                                                                                                                                                            |
+| Application       | Description                                                                 | Framework / Dependencies                                                                                                                                                                                                                                             |
 | ----------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 🚀 Backend app    | Our main backend, exposing REST endpoints                                   | [nestjs](https://docs.nestjs.com), [swagger](https://swagger.io/docs/)                                                                                                                                                                                               |
 | 🚀 Frontend app   | Our sample application containing a signup page and a logged user home page | [nextjs](https://nextjs.org/docs/getting-started), [react-query](https://tanstack.com/query/v4/docs/overview), [material-ui](https://mui.com/material-ui/getting-started/overview/), [testing library](https://testing-library.com/docs/react-testing-library/intro) |
@@ -33,7 +33,7 @@ Libraries contain code that will be shared between several apps. They are define
 
 In our example, we will be using a bunch of libs to be able to work with several frontend apps sharing common code:
 
-| Library                 | Description                                                                         | Framework                                                                                                                                                                                                                                                                        |
+| Library                 | Description                                                                         | Framework / Dependencies                                                                                                                                                                                                                                                         |
 | ----------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | 🧩 Api library          | Library containing react-query queries & mutations as well as their msw handlers    | [react-query](https://tanstack.com/query/v4/docs/overview), [axios](https://axios-http.com/docs/intro), [msw](https://mswjs.io/docs/)                                                                                                                                            |
 | 🧩 Components library   | Design system components and components shared among several frontend apps          | [material-ui](https://mui.com/material-ui/getting-started/overview/), [storybook](https://storybook.js.org/docs/react/get-started/introduction), [jest](https://jestjs.io/docs/getting-started), [testing library](https://testing-library.com/docs/react-testing-library/intro) |
@@ -72,76 +72,164 @@ The `workspace.json` file is defined at root level and keeps track of the availa
 ### 🧿 `project.json`
 
 Each app/lib contains a `project.json` file that defines the available commands for this item.
-For example, here is a project file defining five tasks:
+Let's take as an example the `project.json` file of our [frontend app](./../apps/front/project.json) and review a few tasks there:
 
-- `build` (building the application)
-- `serve` (launching the application in dev mode)
-- `test` (launching test using jest)
-- `type-check` (launching tsc to validate types)
-- `lint` (linting our app).
+#### 🎁 `copy-locales`
 
-Each command uses an executor, for example `@nrwl/workspace:run-commands` to simply run a command.
+We can run arbitrary commands using the `nx:run-commands` executor. that one copies locales in the app public folder, so that they can be used by i18next.
 
 ```json
 {
-  "root": "apps/front",
-  "sourceRoot": "apps/front",
-  "projectType": "application",
+  [...]
   "targets": {
+    [...]
+    "copy-locales": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo Copying locales... && cp -R ./libs/front/translations/assets/locales ./apps/front/public/"
+      }
+    },
+    [...]
+  }
+```
+
+#### 🎁 `build`
+
+This task uses the build exectutor of `@nrwl/next` to build our nextjs app. Note the use of `dependsOn` property, allowing us to set tasks that need to be ran as a prerequisite for the build task.
+
+```json
+{
+  [...]
+  "targets": {
+    [...]
     "build": {
       "executor": "@nrwl/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/front",
-        "outputPath": "dist/apps/front",
-        "assets": [
-          {
-            "input": "libs/front/components/assets",
-            "glob": "**/*",
-            "output": "."
-          }
-        ]
+        "outputPath": "dist/apps/front"
       },
+      "dependsOn": [
+        {
+          "target": "copy-locales",
+          "projects": "self"
+        },
+        {
+          "target": "copy-assets",
+          "projects": "dependencies"
+        }
+      ],
       "configurations": {
-        "production": {}
-      }
-    },
-    "serve": {
-      "executor": "@nrwl/next:server",
-      "options": {
-        "buildTarget": "front:build",
-        "dev": true,
-        "port": 3000
-      },
-      "configurations": {
-        "production": {
-          "buildTarget": "front:build:production",
-          "dev": false
+        "production": {},
+        "development": {
+          "outputPath": "dist/apps/front"
         }
       }
     },
+    [...]
+  }
+```
+
+#### 🎁 `serve`
+
+This task uses the server exector of `@nrwl/next` to launch the nextjs app. Again we use `dependsOn` to run tasks before launching the server.
+
+```json
+{
+  [...]
+  "targets": {
+    [...]
+    "serve": {
+      "executor": "@nrwl/next:server",
+      "options": {
+        "buildTarget": "frontend-app:build",
+        "dev": true,
+        "port": 3000
+      },
+      "dependsOn": [
+        {
+          "target": "copy-locales",
+          "projects": "self"
+        },
+        {
+          "target": "copy-assets",
+          "projects": "dependencies"
+        }
+      ],
+      "configurations": {
+        "production": {
+          "buildTarget": "frontend-app:build:production",
+          "dev": false
+        },
+        "development": {
+          "buildTarget": "frontend-app:build:development",
+          "dev": true
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    [...]
+  }
+```
+
+#### 🎁 `test`
+
+That one uses the jest executor of `@nrwl/jest` to run jest, using the config file passed in the options prop.
+
+```json
+{
+  [...]
+  "targets": {
+    [...]
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/front"],
+      "outputs": ["{workspaceRoot}/coverage/apps/front"],
       "options": {
-        "jestConfig": "apps/front/jest.config.js",
+        "jestConfig": "apps/front/jest.config.ts",
         "passWithNoTests": true
       }
     },
-    "type-check": {
-      "executor": "@nrwl/workspace:run-commands",
-      "options": {
-        "command": "pnpm exec tsc -b ./apps/front --pretty"
-      }
-    },
+    [...]
+  }
+```
+
+#### 🎁 `lint`
+
+That one uses the eslint executor of `@nrwl/linter` to run eslint, using the path passed in the options prop.
+
+```json
+{
+  [...]
+  "targets": {
+    [...]
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
       "options": {
         "lintFilePatterns": ["apps/front/**/*.{ts,tsx,js,jsx}"]
       }
-    }
+    },
+    [...]
+  }
+```
+
+#### 🎁 `type-check`
+
+Finally, we want to run typescript to validate the types. We can do this using `nx:run-commands`:
+
+```json
+{
+  [...]
+  "targets": {
+    [...]
+    "type-check": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "pnpm exec tsc -p ./apps/front/tsconfig.json --noEmit --pretty"
+      }
+    },
+    [...]
   }
 }
 ```

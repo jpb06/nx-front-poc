@@ -311,7 +311,7 @@ project.json
         }
       }
     },
-    // Launching storybook in watch mode
+    // Lauching storybook in watch mode
     "dev": {
       "executor": "@nrwl/storybook:storybook",
       "options": {
