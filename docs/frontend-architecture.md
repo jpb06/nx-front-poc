@@ -79,7 +79,7 @@ A few things to mention here.
 
 #### 🎁 `molecules` and `organisms` folders
 
-We might see these folders at several levels, depending on the complexity of the current component: some might be very simple (no need to split them in smaller components) while some may a universe on their own, forcing us to use composition (by splitting them in smaller entities, we will be able to limit the cognitive load needed to understand each part).
+We might want to explicitely state using the arborescence the type of components, depending on the complexity of the current component: some might be very simple (no need to split them in smaller components) while some may be a universe on their own, forcing us to use composition (by splitting them in smaller entities, we will be able to limit the cognitive load needed to understand each part).
 
 #### 🎁 `templates` folder
 
@@ -156,7 +156,7 @@ We will be using a node library to build storybook. Let's define a `build` task 
 }
 ```
 
-We might also want to launch storybook in watch mode (dev):
+We might also want to launch storybook in watch mode (dev). We specify the assets that need to be integrated to the storybook build using the `assets` prop:
 
 ```json
 {
@@ -171,7 +171,6 @@ We might also want to launch storybook in watch mode (dev):
         "config": {
           "configFolder": "libs/front/storybook/.storybook"
         },
-        // Defining assets location
         "assets": [
           {
             "input": "apps/front/public",
@@ -207,6 +206,7 @@ Then, let's take all the story files in all our apps or our libs, and let's add 
 const storybookMainConfig = {
   // ...
   stories: ['../../../../**/*.stories.mdx', '../../../../**/*.stories.tsx'],
+  // Including assets here (app public folder and components lib assets)
   staticDirs: [
     '../../../../apps/front/public',
     '../../../../libs/front/components/assets',
@@ -256,9 +256,11 @@ We will use a next app to serve our storybook build. This app can be served usin
 
 # ⚡ A concrete example: this repo
 
-This repo contains one frontend application serving two pages: a signup page and user profile page. In order to create this pages, we use components with various degrees of genericity:
+![stories](./assets/storybook-nx.png)
 
-- The most specialized ones are in the user story folder, for example [CheckBoxList component](./../apps/front/src/templates/signup-form/organisms/skills/organisms/checkbox-list/) used in the skills part of the signup page.
-- Others components are used in several pages of our application, like [FullpageBox component](./../apps/front/src/shared/fullpage-box/).
-- We then have specialized components built on top of the design system, for example the [Brand component](./../libs/front/components/src/shared/data-display/brand/).
+This repo contains one frontend application serving two pages: a signup page and user profile page. In order to create these pages, we use components with various degrees of genericity:
+
+- The most specialized ones are in the `templates` folder, for example [CheckBoxList component](./../apps/front/src/templates/signup-form/organisms/skills/organisms/checkbox-list/) used in the skills part of the signup page.
+- Others components are used in several pages of one application but only in that application, like [FullpageBox component](./../apps/front/src/shared/fullpage-box/). They are then defined in the `shared` folder within the app.
+- We then have specialized components built on top of the design system, for example the [Brand component](./../libs/front/components/src/shared/data-display/brand/). These one would go to the `shared` folder of the components library.
 - Finally, we have design system components, the most basic components that will serve as a base for our specialized components. For example an input like [PasswordInput component](./../libs/front/components/src/design-system/inputs/password-input/).
