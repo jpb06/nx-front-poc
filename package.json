@@ -16,7 +16,8 @@
     "dev": "nx run-many --target=serve --parallel --projects",
     "swagger": "nx run-many --target=build-swagger --parallel --all --skip-nx-cache",
     "api-types": "nx run-many --target=api-types --parallel --all  --skip-nx-cache --verbose",
-    "sync-icons": "pnpm generateReadmeIcons -h 50"
+    "sync-icons": "pnpm generateReadmeIcons -h 50",
+    "storybook": "pnpm nx dev front-storybook-lib"
   },
   "private": true,
   "dependencies": {

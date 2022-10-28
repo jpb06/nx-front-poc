@@ -55,7 +55,7 @@ pnpm test-all
 pnpm nx e2e front-e2e-app --watch
 
 # launch storybook in dev mode
-pnpm nx dev front-storybook-lib
+pnpm storybook
 ```
 
 ## ⚡ Documentation
