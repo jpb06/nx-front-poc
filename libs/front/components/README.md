@@ -4,13 +4,12 @@ Our shared components, to be used in several apps.
 
 ## ⚡ CLI
 
-| Description                                   | Command                                        |
-| --------------------------------------------- | ---------------------------------------------- |
-| 💿 Copying to dist assets used in the library | `pnpm nx run copy-assets front-components-lib` |
-| ⚠️ Linting the app                            | `pnpm nx run lint front-components-lib`        |
-| ✔️ Type checking using tsc                    | `pnpm nx run type-check front-components-lib`  |
-| ✅ Launching tests                            | `pnpm nx run test front-components-lib`        |
-| 🕵️ Run sonarcloud command                     | `pnpm nx run sonar front-components-lib`       |
+| Description                | Command                                       |
+| -------------------------- | --------------------------------------------- |
+| ⚠️ Linting the app         | `pnpm nx run lint front-components-lib`       |
+| ✔️ Type checking using tsc | `pnpm nx run type-check front-components-lib` |
+| ✅ Launching tests         | `pnpm nx run test front-components-lib`       |
+| 🕵️ Run sonarcloud command  | `pnpm nx run sonar front-components-lib`      |
 
 ### 🔶 Useful flags
 
