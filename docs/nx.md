@@ -74,7 +74,7 @@ The `workspace.json` file is defined at root level and keeps track of the availa
 Each app/lib contains a `project.json` file that defines the available commands for this item.
 Let's take as an example the `project.json` file of our [frontend app](./../apps/front/project.json) and review a few tasks there:
 
-#### 🎁 `copy-locales`
+#### 🎁 Running commands
 
 We can run arbitrary commands using the `nx:run-commands` executor. that one copies locales in the app public folder, so that they can be used by i18next.
 
@@ -95,7 +95,7 @@ We can run arbitrary commands using the `nx:run-commands` executor. that one cop
 
 #### 🎁 `build`
 
-This task uses the build exectutor of `@nrwl/next` to build our nextjs app. Note the use of `dependsOn` property, allowing us to set tasks that need to be ran as a prerequisite for the build task.
+This task uses the build exectutor of `@nrwl/next` to build our nextjs app. Note the use of the `assets` property, allowing us to add content to the `public` folder of the next app.
 
 ```json
 {
@@ -108,32 +108,32 @@ This task uses the build exectutor of `@nrwl/next` to build our nextjs app. Note
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/front",
-        "outputPath": "dist/apps/front"
+        "outputPath": "dist/apps/front",
+        "assets": [
+          {
+            "input": "apps/front/public",
+            "glob": "**/*",
+            "output": "."
+          },
+          {
+            "input": "libs/front/translations/assets",
+            "glob": "**/*",
+            "output": "."
+          },
+          {
+            "input": "libs/front/components/assets",
+            "glob": "**/*",
+            "output": "."
+          }
+        ]
       },
-      "dependsOn": [
-        {
-          "target": "copy-locales",
-          "projects": "self"
-        },
-        {
-          "target": "copy-assets",
-          "projects": "dependencies"
-        }
-      ],
-      "configurations": {
-        "production": {},
-        "development": {
-          "outputPath": "dist/apps/front"
-        }
-      }
-    },
     [...]
   }
 ```
 
 #### 🎁 `serve`
 
-This task uses the server exector of `@nrwl/next` to launch the nextjs app. Again we use `dependsOn` to run tasks before launching the server.
+This task uses the server exector of `@nrwl/next` to launch the nextjs app.
 
 ```json
 {
@@ -147,16 +147,6 @@ This task uses the server exector of `@nrwl/next` to launch the nextjs app. Agai
         "dev": true,
         "port": 3000
       },
-      "dependsOn": [
-        {
-          "target": "copy-locales",
-          "projects": "self"
-        },
-        {
-          "target": "copy-assets",
-          "projects": "dependencies"
-        }
-      ],
       "configurations": {
         "production": {
           "buildTarget": "frontend-app:build:production",

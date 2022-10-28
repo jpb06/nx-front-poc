@@ -55,45 +55,28 @@ The typescript file could then do something as simple as using fetch to retrieve
 
 ## 🔶 Integrating our translations in our front apps
 
-Since we are using next, the namespaces must be copied in the `public` folder of each app before building the application. To do so, we will define a task in the `project.json` of each application:
+Since we are using next, the namespaces must be copied in the `public` folder of each app before building the application. To do so, we can use the `assets` property of the build task:
 
 ```json
 {
   [...]
   "targets": {
-    "copy-locales": {
-      "executor": "nx:run-commands",
+    "build": {
+      "executor": "@nrwl/next:build",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
       "options": {
-        "command": "echo Copying locales... && cp -R ./libs/front/translations/assets/locales ./apps/front/public/"
-      }
-    },
-    [...]
-  }
-  [...]
-}
-```
-
-Now we need to make sure this task is ran before building the app or launching it in dev mode. To do so, we can use the `dependsOn` property for this. Here is an example with the serve step:
-
-```json
-{
-  [...]
-  "targets": {
-    "serve": {
-      "executor": "@nrwl/next:server",
-      "options": {
-        "buildTarget": "front:build",
-        "dev": true,
-        "port": 3000
+        "root": "apps/front/front-legacy",
+        "outputPath": "dist/apps/front/front-legacy",
+        "assets": [
+          [...]
+          {
+            "input": "libs/front/translations/assets",
+            "glob": "**/*",
+            "output": "."
+          },
+        ]
       },
-      "dependsOn": [
-        {
-          "target": "copy-locales",
-          "projects": "self"
-        }
-      ],
-      [...]
-    },
     [...]
   }
   [...]

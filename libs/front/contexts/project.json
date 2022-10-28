@@ -13,7 +13,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/libs/front/contexts"],
+      "outputs": ["{workspaceRoot}/coverage/libs/front/contexts"],
       "options": {
         "jestConfig": "libs/front/contexts/jest.config.ts",
         "passWithNoTests": true

@@ -3,30 +3,31 @@
   "sourceRoot": "apps/front",
   "projectType": "application",
   "targets": {
-    "copy-locales": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "echo Copying locales... && cp -R ./libs/front/translations/assets/locales ./apps/front/public/"
-      }
-    },
     "build": {
       "executor": "@nrwl/next:build",
       "outputs": ["{options.outputPath}"],
       "defaultConfiguration": "production",
       "options": {
         "root": "apps/front",
-        "outputPath": "dist/apps/front"
+        "outputPath": "dist/apps/front",
+        "assets": [
+          {
+            "input": "apps/front/public",
+            "glob": "**/*",
+            "output": "."
+          },
+          {
+            "input": "libs/front/translations/assets",
+            "glob": "**/*",
+            "output": "."
+          },
+          {
+            "input": "libs/front/components/assets",
+            "glob": "**/*",
+            "output": "."
+          }
+        ]
       },
-      "dependsOn": [
-        {
-          "target": "copy-locales",
-          "projects": "self"
-        },
-        {
-          "target": "copy-assets",
-          "projects": "dependencies"
-        }
-      ],
       "configurations": {
         "production": {},
         "development": {
@@ -41,16 +42,6 @@
         "dev": true,
         "port": 3000
       },
-      "dependsOn": [
-        {
-          "target": "copy-locales",
-          "projects": "self"
-        },
-        {
-          "target": "copy-assets",
-          "projects": "dependencies"
-        }
-      ],
       "configurations": {
         "production": {
           "buildTarget": "frontend-app:build:production",
@@ -71,7 +62,7 @@
     },
     "test": {
       "executor": "@nrwl/jest:jest",
-      "outputs": ["coverage/apps/front"],
+      "outputs": ["{workspaceRoot}/coverage/apps/front"],
       "options": {
         "jestConfig": "apps/front/jest.config.ts",
         "passWithNoTests": true
