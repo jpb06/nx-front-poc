@@ -1,5 +1,6 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "front-storybook-app",
   "sourceRoot": "apps/storybook",
   "projectType": "application",
   "targets": {
@@ -24,7 +25,7 @@
         "production": {}
       }
     },
-    "serve": {
+    "serve-storybook": {
       "executor": "@nrwl/next:server",
       "defaultConfiguration": "development",
       "options": {

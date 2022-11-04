@@ -1,9 +1,16 @@
 {
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "front-components-lib",
   "sourceRoot": "libs/front/components/src",
   "projectType": "library",
   "tags": [],
   "targets": {
+    "copy-assets": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo Copying assets... && mkdir -p ./dist/apps/front/public && cp -R ./libs/front/components/assets/* ./apps/front/public/"
+      }
+    },
     "lint": {
       "executor": "@nrwl/linter:eslint",
       "outputs": ["{options.outputFile}"],
