@@ -1,8 +1,15 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "frontend-app",
   "sourceRoot": "apps/front",
   "projectType": "application",
   "targets": {
+    "copy-locales": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "echo Copying locales... && cp -R ./libs/front/translations/assets/locales ./apps/front/public/"
+      }
+    },
     "build": {
       "executor": "@nrwl/next:build",
       "outputs": ["{options.outputPath}"],
@@ -17,17 +24,18 @@
             "output": "."
           },
           {
-            "input": "libs/front/translations/assets",
-            "glob": "**/*",
-            "output": "."
-          },
-          {
             "input": "libs/front/components/assets",
             "glob": "**/*",
             "output": "."
           }
         ]
       },
+      "dependsOn": [
+        {
+          "target": "copy-locales",
+          "projects": "self"
+        }
+      ],
       "configurations": {
         "production": {},
         "development": {
