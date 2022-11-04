@@ -25,7 +25,7 @@
         "production": {}
       }
     },
-    "serve": {
+    "serve-storybook": {
       "executor": "@nrwl/next:server",
       "defaultConfiguration": "development",
       "options": {
