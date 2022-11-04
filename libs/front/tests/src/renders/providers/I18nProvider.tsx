@@ -1,4 +1,4 @@
-import { TFunction } from 'next-i18next';
+import { TFunction } from 'i18next';
 import { PropsWithChildren } from 'react';
 import { I18nextProvider } from 'react-i18next';
 
@@ -48,7 +48,7 @@ export const I18nProvider = (
 
       return key;
     };
-    finalI18n.t = tFunction as TFunction;
+    finalI18n.t = tFunction as TFunction<never, undefined>;
   }
 
   if (i18nConfig) {
