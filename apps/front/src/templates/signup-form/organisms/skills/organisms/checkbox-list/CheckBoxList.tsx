@@ -20,7 +20,6 @@ import {
 } from 'react-hook-form';
 
 import { SkillCategoryDto } from '@front/api/types';
-import { NamespaceKey } from '@front/translations';
 
 import { getInvalidFields } from './logic/getInvalidFields';
 import { CheckBoxListItem } from './molecules/CheckBoxListItem';
@@ -106,7 +105,7 @@ export function CheckBoxList<T extends FieldValues>(
           })}
           {error?.type !== 'custom' && error?.message && (
             <FormHelperText sx={{ textAlign: 'center' }}>
-              <>{t(error.message as NamespaceKey<'forms'>)}</>
+              <>{t(error.message as never)}</>
             </FormHelperText>
           )}
           {invalidFields.length > 0 && (
