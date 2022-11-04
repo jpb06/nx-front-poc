@@ -42,7 +42,7 @@ testem.log
 Thumbs.db
 
 # Translations
-apps/*/public/locales/*
+apps/*/public/
 
 # Next.js
 .next
