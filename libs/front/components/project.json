@@ -1,5 +1,6 @@
 {
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "front-components-lib",
   "sourceRoot": "libs/front/components/src",
   "projectType": "library",
   "tags": [],

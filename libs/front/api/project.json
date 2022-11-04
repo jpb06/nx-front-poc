@@ -1,5 +1,6 @@
 {
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "front-api-lib",
   "sourceRoot": "libs/api/src",
   "projectType": "library",
   "targets": {

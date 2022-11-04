@@ -1,5 +1,6 @@
 {
   "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "name": "front-logic-lib",
   "sourceRoot": "libs/front/logic/src",
   "projectType": "library",
   "tags": [],

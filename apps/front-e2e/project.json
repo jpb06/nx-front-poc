@@ -1,5 +1,6 @@
 {
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "front-e2e-app",
   "sourceRoot": "apps/front-e2e/src",
   "projectType": "application",
   "targets": {
