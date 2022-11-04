@@ -22,11 +22,6 @@
             "input": "apps/front/public",
             "glob": "**/*",
             "output": "."
-          },
-          {
-            "input": "libs/front/components/assets",
-            "glob": "**/*",
-            "output": "."
           }
         ]
       },
@@ -34,6 +29,10 @@
         {
           "target": "copy-locales",
           "projects": "self"
+        },
+        {
+          "target": "copy-assets",
+          "projects": "dependencies"
         }
       ],
       "configurations": {
@@ -50,6 +49,16 @@
         "dev": true,
         "port": 3000
       },
+      "dependsOn": [
+        {
+          "target": "copy-locales",
+          "projects": "self"
+        },
+        {
+          "target": "copy-assets",
+          "projects": "dependencies"
+        }
+      ],
       "configurations": {
         "production": {
           "buildTarget": "frontend-app:build:production",
