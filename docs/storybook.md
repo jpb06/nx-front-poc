@@ -354,7 +354,7 @@ We can use the next app to run storybook. The `build` and `serve` commands will 
 
 ```bash
 // Launching storybook in watch mode (dev)
-pnpm nx run front-storybook-lib:dev
+pnpm storybook
 // Building storybook
 pnpm nx run front-storybook-lib:build
 ```
