@@ -1,6 +1,6 @@
 {
-  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "name": "front-contexts-lib",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/front/contexts/src",
   "projectType": "library",
   "tags": [],
