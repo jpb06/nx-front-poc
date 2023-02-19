@@ -1,37 +1,34 @@
 {
+  "plugins": ["jest-dom", "@tanstack/query"],
   "extends": [
     "./.eslintrc.json",
-    "plugin:import/typescript",
-    "next",
-    "next/core-web-vitals"
+    "plugin:react/recommended",
+    "plugin:jest-dom/recommended",
+    "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
+  "env": { "jest": true },
+  "settings": { "react": { "version": "detect" } },
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
       "rules": {
-        "import/order": [
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "no-console": ["error", { "allow": ["warn", "error"] }],
+        "react/react-in-jsx-scope": ["off"],
+        "react/display-name": ["off"],
+        "react/prop-types": ["off"],
+        "jest/expect-expect": [
           "error",
           {
-            "newlines-between": "always",
-            "groups": [
-              "builtin",
-              "external",
-              "internal",
-              ["parent", "sibling", "index"]
-            ],
-            "alphabetize": {
-              "order": "asc"
-            },
-            "pathGroups": [
-              {
-                "pattern": "{@front/**}",
-                "group": "internal",
-                "position": "before"
-              }
-            ],
-            "pathGroupsExcludedImportTypes": ["builtin"]
+            "assertFunctionNames": [
+              "expect",
+              "expect*",
+              "waitForElementToBeRemoved",
+              "screen.findBy*"
+            ]
           }
-        ]
+        ],
+        "react/no-danger": ["error"]
       }
     }
   ]

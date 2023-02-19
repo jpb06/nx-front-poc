@@ -1,0 +1,6 @@
+**/dist
+**/node_modules
+**/documentation
+**/prisma
+**/jest.*.ts
+**/apps/front/**/public/*

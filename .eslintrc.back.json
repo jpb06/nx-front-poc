@@ -1,36 +1,10 @@
 {
-  "extends": [
-    "./.eslintrc.json",
-    "plugin:import/recommended",
-    "plugin:import/typescript"
-  ],
+  "extends": ["./.eslintrc.json"],
   "overrides": [
     {
       "files": ["*.ts", "*.tsx"],
       "rules": {
-        "import/order": [
-          "error",
-          {
-            "newlines-between": "always",
-            "groups": [
-              "builtin",
-              "external",
-              "internal",
-              ["parent", "sibling", "index"]
-            ],
-            "alphabetize": {
-              "order": "asc"
-            },
-            "pathGroups": [
-              {
-                "pattern": "{}",
-                "group": "internal",
-                "position": "before"
-              }
-            ],
-            "pathGroupsExcludedImportTypes": ["builtin"]
-          }
-        ]
+        "@typescript-eslint/explicit-function-return-type": "error"
       }
     }
   ]
