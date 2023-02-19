@@ -1,0 +1,20 @@
+{
+  "name": "graphql-codegen-lib",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/graphql/codegen/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/graphql/codegen/**/*.ts"],
+        "fix": true
+      }
+    },
+    "type-check": {
+      "command": "tsc -p ./libs/graphql/codegen/tsconfig.lib.json --noEmit --pretty"
+    }
+  },
+  "tags": []
+}
