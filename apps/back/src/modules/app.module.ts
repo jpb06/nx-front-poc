@@ -1,20 +1,33 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { join } from 'path';
 
-import { RolesController } from './business/roles/roles.controller';
-import { SkillsController } from './business/skills/skill.controller';
-import { JwtService } from './business/users/jwt.service';
-import { UsersController } from './business/users/user.controller';
-import { DalModule } from './dal/dal.module';
+import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
+import { Module } from '@nestjs/common';
+import { GraphQLModule } from '@nestjs/graphql';
+
+import { DatabaseModule } from '@backend/database';
+
+import { AuthModule } from './auth/auth.module';
+import { AuthResolver } from './auth/auth.resolver';
+import { UsersModule } from './users/users.module';
+import { UsersResolver } from './users/users.resolver';
 
 @Module({
   imports: [
-    DalModule,
-    ConfigModule.forRoot({
-      envFilePath: ['.env.local'],
+    DatabaseModule,
+    UsersModule,
+    AuthModule,
+    GraphQLModule.forRoot<ApolloDriverConfig>({
+      driver: ApolloDriver,
+      autoSchemaFile: join(
+        process.cwd(),
+        'apps/back/src/graphql/schema.graphql'
+      ),
+      fieldResolverEnhancers: ['guards', 'interceptors'],
+      // debug: true,
+      playground: true,
+      introspection: true,
     }),
   ],
-  providers: [JwtService],
-  controllers: [RolesController, SkillsController, UsersController],
+  providers: [UsersResolver, AuthResolver],
 })
 export class AppModule {}

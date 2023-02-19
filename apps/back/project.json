@@ -27,7 +27,8 @@
         "tsConfig": "apps/back/tsconfig.app.json",
         "assets": ["apps/back/src/assets"],
         "target": "node",
-        "compiler": "tsc"
+        "compiler": "tsc",
+        "babelUpwardRootMode": true
       },
       "configurations": {
         "production": {
@@ -65,6 +66,9 @@
       "options": {
         "lintFilePatterns": ["apps/back/**/*.ts"]
       }
+    },
+    "type-check": {
+      "command": "tsc -p ./apps/back/tsconfig.app.json --noEmit --pretty"
     },
     "test": {
       "executor": "@nrwl/jest:jest",

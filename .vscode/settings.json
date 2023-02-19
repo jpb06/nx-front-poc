@@ -1,4 +1,7 @@
 {
+  "[prisma]": {
+    "editor.defaultFormatter": "Prisma.prisma"
+  },
   "editor.formatOnSave": true,
   "eslint.run": "onSave",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -7,5 +10,8 @@
   },
   "editor.tabSize": 2,
   "i18n-ally.localesPaths": ["libs/front/translations/assets/locales"],
-  "i18n-ally.keystyle": "nested"
+  "i18n-ally.keystyle": "nested",
+  "[dotenv]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  }
 }

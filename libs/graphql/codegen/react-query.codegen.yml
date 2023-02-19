@@ -1,0 +1,7 @@
+outputPath: 'libs/graphql/codegen/src/codegen'
+schemaUrl: NEXT_PUBLIC_GQL_API_URL
+fetcher:
+  path: './../../useFetchData'
+  functionName: 'useFetchData'
+infiniteQueries:
+  -
