@@ -7,7 +7,6 @@
       "rules": {
         "@typescript-eslint/await-thenable": "error",
         "@typescript-eslint/explicit-module-boundary-types": ["off"],
-        "@typescript-eslint/interface-name-prefix": ["off"],
         "@typescript-eslint/member-ordering": "error",
         "@typescript-eslint/no-confusing-non-null-assertion": "error",
         "@typescript-eslint/no-empty-interface": ["off"],

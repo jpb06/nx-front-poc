@@ -1,0 +1,23 @@
+{
+  "name": "back-database-lib",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/backend/database/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/backend/database/**/*.ts"]
+      }
+    },
+    "type-check": {
+      "executor": "nx:run-commands",
+      "outputs": ["{workspaceRoot}/dist/libs/backend/database"],
+      "options": {
+        "command": "pnpm tsc -b libs/backend/database/tsconfig.json"
+      }
+    }
+  },
+  "tags": []
+}

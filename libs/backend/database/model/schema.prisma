@@ -1,0 +1,119 @@
+// https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("NX_DATABASE_URL")
+}
+
+// -----------------------------------------------------------------------------------
+// Users domain
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model User {
+  id String @id @default(uuid()) @db.Uuid
+
+  idCompanyUserGroup String? @db.Uuid
+
+  email     String   @unique
+  lastName  String
+  firstName String
+  password  String
+  joinDate  DateTime @default(now())
+  role      Role     @default(USER)
+
+  CompanyGroup CompanyUserGroup? @relation(fields: [idCompanyUserGroup], references: [id])
+  Orders       Order[]
+}
+
+model Address {
+  id String @id @default(uuid()) @db.Uuid
+
+  address   String   @db.VarChar(255)
+  zipCode   String   @db.VarChar(255)
+  city      String   @db.VarChar(255)
+  country   String   @db.VarChar(255)
+  createdAt DateTime @default(now())
+
+  Order Order[]
+}
+
+// -----------------------------------------------------------------------------------
+// Companies domain
+
+model Company {
+  id String @id @default(uuid()) @db.Uuid
+
+  name                   String   @db.Text
+  createdAt              DateTime @default(now())
+  onboardingBudgetPoints Int      @default(0)
+  domain                 String   @db.Text
+  logoUrl                String
+
+  Groups CompanyUserGroup[]
+}
+
+model CompanyUserGroup {
+  id String @id @default(uuid()) @db.Uuid
+
+  idCompany String @db.Uuid
+
+  name                   String @db.Text
+  subDomain              String @db.Text
+  onboardingBudgetPoints Int    @default(0)
+
+  Company Company? @relation(fields: [idCompany], references: [id])
+  Members User[]
+}
+
+// -----------------------------------------------------------------------------------
+// Products domain
+
+model Product {
+  id String @id @default(uuid()) @db.Uuid
+
+  name        String  @db.VarChar(255)
+  brand       String  @db.VarChar(255)
+  description String?
+  pictureUrl  String
+  points      Int     @default(0)
+
+  OrderedProducts OrderedProducts[]
+}
+
+// -----------------------------------------------------------------------------------
+// Orders domain
+
+model Order {
+  id String @id @default(uuid()) @db.Uuid
+
+  idUser    String @db.Uuid
+  idAddress String @db.Uuid
+
+  number      String   @unique
+  createdAt   DateTime @default(now())
+  totalPoints Int
+
+  Address  Address           @relation(fields: [idAddress], references: [id])
+  User     User              @relation(fields: [idUser], references: [id])
+  Products OrderedProducts[]
+}
+
+model OrderedProducts {
+  id String @id @default(uuid()) @db.Uuid
+
+  idOrder   String? @db.Uuid
+  idProduct String? @db.Uuid
+
+  quantity Int
+
+  Order   Order?   @relation(fields: [idOrder], references: [id])
+  Product Product? @relation(fields: [idProduct], references: [id])
+}
