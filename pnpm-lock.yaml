@@ -106,7 +106,7 @@ specifiers:
   eslint-plugin-react-hooks: 4.6.0
   express: 4.18.2
   graphql: ^16.6.0
-  graphql-codegen-react-query: ^1.0.11
+  graphql-codegen-react-query: ^1.0.12
   i18next: ^22.4.10
   i18next-browser-languagedetector: ^7.0.1
   i18next-http-backend: ^2.1.1
@@ -280,7 +280,7 @@ devDependencies:
   eslint-plugin-react: 7.32.2_eslint@8.34.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.34.0
   express: 4.18.2
-  graphql-codegen-react-query: 1.0.11_biqbaboplfbrettd7655fr4n2y
+  graphql-codegen-react-query: 1.0.12_biqbaboplfbrettd7655fr4n2y
   i18next: 22.4.10
   i18next-browser-languagedetector: 7.0.1
   i18next-http-backend: 2.1.1
@@ -9907,6 +9907,13 @@ packages:
     resolution: {integrity: sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==}
     dev: true
 
+  /dotenv-flow/3.2.0:
+    resolution: {integrity: sha512-GEB6RrR4AbqDJvNSFrYHqZ33IKKbzkvLYiD5eo4+9aFXr4Y4G+QaFrB/fNp0y6McWBmvaPn3ZNjIufnj8irCtg==}
+    engines: {node: '>= 8.0.0'}
+    dependencies:
+      dotenv: 8.6.0
+    dev: true
+
   /dotenv/10.0.0:
     resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
     engines: {node: '>=10'}
@@ -11671,13 +11678,14 @@ packages:
   /grapheme-splitter/1.0.4:
     resolution: {integrity: sha512-bzh50DW9kTPM00T8y4o8vQg89Di9oLJVLW/KaOGIXJWP/iqCN6WKYkbNOF04vFLJhwcpYUh9ydh/+5vpOqV4YQ==}
 
-  /graphql-codegen-react-query/1.0.11_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-3JlEVDn1V47O8Voq96C0YLe8yMjkCTVpLsF7mj3+TH+A4tLBQB3OiNvt+sAK3OWxRMYPV/MDM4mp1UVcLTypWA==}
+  /graphql-codegen-react-query/1.0.12_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-xLHn3Yo0pqJYC6GbM3zyUZSbQRl9HMY6M3Q8rkjhg3dvaVeFktnWUZIuk3hvu2vhqVRv4RmTqccKFaSlJAF9VA==}
     hasBin: true
     dependencies:
       '@tanstack/react-query': 4.24.9_biqbaboplfbrettd7655fr4n2y
       axios: 1.3.3
       chalk: 4.1.2
+      dotenv-flow: 3.2.0
       yaml: 2.2.1
       yargs: 17.7.0
     transitivePeerDependencies:
