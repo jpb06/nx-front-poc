@@ -18,6 +18,7 @@
     "noImplicitAny": true,
     "baseUrl": ".",
     "paths": {
+      "@backend/database": ["libs/backend/database/src/index.ts"],
       "@front/api": ["libs/front/api/src/backend-app/calls/index.ts"],
       "@front/api/msw": [
         "libs/front/api/src/backend-app/msw-handlers/index.ts"
