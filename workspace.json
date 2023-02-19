@@ -2,6 +2,7 @@
   "version": 2,
   "projects": {
     "backend-app": "apps/back",
+    "back-database-lib": "libs/backend/database",
     "front-api-lib": "libs/front/api",
     "front-components-lib": "libs/front/components",
     "front-contexts-lib": "libs/front/contexts",
