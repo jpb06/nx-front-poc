@@ -27,7 +27,8 @@
         "tsConfig": "apps/back/tsconfig.app.json",
         "assets": ["apps/back/src/assets"],
         "target": "node",
-        "compiler": "tsc"
+        "compiler": "tsc",
+        "babelUpwardRootMode": true
       },
       "configurations": {
         "production": {

@@ -12,11 +12,7 @@
       }
     },
     "type-check": {
-      "executor": "nx:run-commands",
-      "outputs": ["{workspaceRoot}/dist/libs/backend/database"],
-      "options": {
-        "command": "pnpm tsc -b libs/backend/database/tsconfig.json"
-      }
+      "command": "tsc -p ./libs/backend/database/tsconfig.lib.json --noEmit --pretty"
     }
   },
   "tags": []

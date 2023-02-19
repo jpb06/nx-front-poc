@@ -1,7 +1,7 @@
 const { transformTsPaths } = require('ts-paths-transform');
 import type { Config } from '@jest/types';
 
-const { compilerOptions } = require('./../../../tsconfig.json');
+const { compilerOptions } = require('./../../../tsconfig.base.json');
 
 export const getJestOptions = (
   displayName: string,
